@@ -1,0 +1,59 @@
+:root {
+  --color-ccidc-white: #f9f9f9;
+  --color-ccidc-red: #ad281f;
+  --color-background: var(--color-ccidc-white);
+  --color-text-primary: #000000;
+  --color-text-secondary: #ffffff;
+  --color-accent: #b4b4b4;
+  --color-error: #fc3030;
+  --font-title: normal bold 2rem "Rubik", sans-serif;
+  --font-heading: normal bold 1.5rem "Rubik", sans-serif;
+  --font-label: normal bold 1rem "Rubik", sans-serif;
+  --font-body: normal 400 1rem "Rubik", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+*:focus-visible {
+  outline: var(--color-accent) solid medium;
+}
+
+html,
+body {
+  font: var(--font-body);
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 2em;
+}
+
+p,
+a {
+  margin-top: 1em;
+  line-height: 1.5em;
+}
+
+button {
+  background-color: var(--color-ccidc-red);
+  border: none;
+  border-radius: 4px;
+  font: var(--font-body);
+  color: var(--color-text-secondary);
+  text-align: center;
+  cursor: pointer;
+  padding: 1rem 1.5rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
