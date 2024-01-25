@@ -1,0 +1,450 @@
+/* Pathways To Certification Title */
+
+.PathwaysTitle {
+  width: 1248px;
+  height: 64px;
+  top: 1379px;
+  left: 96px;
+  position: relative;
+  border: 1px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+
+  display: flex;
+}
+
+.PathwaysToCertification {
+  width: 449px;
+  height: 64px;
+  text-align: center;
+  color: black;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 2.25;
+  letter-spacing: 0.56;
+  word-wrap: break-word;
+  font-family: "Rubik";
+}
+
+.line149 {
+  width: 424px;
+  height: 0;
+  left: 0;
+  top: 32px;
+  position: absolute;
+  border: 1px solid #d8d8d8;
+}
+
+.line150 {
+  width: 424px;
+  height: 0;
+  right: 0;
+  position: absolute;
+  border: 1px solid #d8d8d8;
+}
+
+/* Eligibility Description */
+.descriptionContainer {
+  width: 1248px;
+  height: 90px;
+  top: 1379px;
+  left: 96px;
+  position: relative;
+  border: 1px;
+}
+
+.eligibilityDescription {
+  width: 1248px;
+  height: 90px;
+  top: 1379px;
+  left: 96px;
+  /* font-family: "Rubik"; */
+  font-size: 16px;
+  line-height: 24px;
+  color: black;
+}
+
+/* Pathways */
+
+.pathways {
+  position: relative;
+  width: 1248px;
+  height: 507px;
+  top: 1379px;
+  left: 96px;
+  border: 1px;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.pathway1container {
+  width: 614px;
+  height: 244px;
+  top: 1379px;
+  left: 96px;
+  border-radius: 10px;
+  border: 1px solid #d8d8d8;
+}
+
+.pathway1 {
+  width: 293px;
+  height: 33px;
+  top: 20px;
+  left: 20px;
+  position: relative;
+  font-family: "Rubik";
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 36px;
+  letter-spacing: 2%;
+  color: black;
+}
+
+.pathway1Text {
+  width: 519px;
+  height: 109px;
+  top: 30px;
+  left: 20px;
+  position: relative;
+  font-family: "Rubik";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: black;
+}
+
+.pathway2container {
+  width: 614px;
+  height: 244px;
+  left: 20px;
+  border-radius: 10px;
+  border: 1px;
+  position: relative;
+  border: 1px solid #d8d8d8;
+}
+
+.pathway2 {
+  width: 293px;
+  height: 33px;
+  top: 20px;
+  left: 20px;
+  position: relative;
+  font-family: "Rubik";
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 36px;
+  letter-spacing: 2%;
+  color: black;
+}
+
+.pathway2Text {
+  width: 519px;
+  height: 109px;
+  top: 30px;
+  left: 20px;
+  position: relative;
+  font-family: "Rubik";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: black;
+}
+
+.pathway3container {
+  width: 614px;
+  height: 244px;
+  top: 10px;
+  border-radius: 10px;
+  border: 1px;
+  position: relative;
+  border: 1px solid #d8d8d8;
+}
+
+.pathway3 {
+  width: 293px;
+  height: 33px;
+  top: 20px;
+  left: 20px;
+  position: relative;
+  font-family: "Rubik";
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 36px;
+  letter-spacing: 2%;
+  color: black;
+}
+
+.pathway3Text {
+  width: 519px;
+  height: 109px;
+  top: 30px;
+  left: 20px;
+  position: relative;
+  font-family: "Rubik";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: black;
+}
+
+.pathway4container {
+  width: 614px;
+  height: 244px;
+  left: 20px;
+  top: 10px;
+  border-radius: 10px;
+  border: 1px;
+  position: relative;
+  border: 1px solid #d8d8d8;
+}
+
+.pathway4 {
+  width: 293px;
+  height: 33px;
+  top: 20px;
+  left: 20px;
+  position: relative;
+  font-family: "Rubik";
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 36px;
+  letter-spacing: 2%;
+  color: black;
+}
+
+.pathway4Text {
+  width: 519px;
+  height: 109px;
+  top: 30px;
+  left: 20px;
+  position: relative;
+  font-family: "Rubik";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: black;
+}
+
+/* Learn More Button */
+.learnMoreBtn {
+  width: 132px;
+  height: 48px;
+  left: 482px;
+  top: 50px;
+  border-radius: 4px;
+  gap: 10px;
+  position: relative;
+  background-color: #ad281f;
+}
+
+.learnMoreTxt {
+  font-family: "Rubik";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  top: 11px;
+  text-align: center;
+  position: relative;
+}
+
+/* FAQ's Title, Contianer, and Components */
+
+.FaqS {
+  width: 336px;
+  height: 65px;
+  top: 1409px;
+  left: 552px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  display: flex;
+}
+
+.FaqStitle {
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 42px;
+  letter-spacing: 2%;
+  color: black;
+}
+
+.FaqContainer {
+  width: 883px;
+  height: 269px;
+  top: 1419px;
+  left: 146px;
+  border-radius: 4px;
+  position: relative;
+}
+
+.faq1Bar {
+  width: 883px;
+  height: 33px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  position: relative;
+  display: flex;
+}
+
+.faq1 {
+  width: 807px;
+  height: 33px;
+  left: 12px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  position: relative;
+  color: black;
+}
+
+.faq2Bar {
+  width: 883px;
+  height: 33px;
+  top: 40px;
+  position: 100px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  position: relative;
+  display: flex;
+}
+
+.faq2 {
+  width: 807px;
+  height: 33px;
+  left: 12px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  position: relative;
+  color: black;
+}
+
+.faq3Bar {
+  width: 883px;
+  height: 33px;
+  top: 85px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  position: relative;
+  display: flex;
+}
+
+.faq3 {
+  width: 807px;
+  height: 33px;
+  left: 12px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  position: relative;
+  color: black;
+}
+
+.faq4Bar {
+  width: 883px;
+  height: 33px;
+  top: 125px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  position: relative;
+  display: flex;
+}
+
+.faq4 {
+  width: 807px;
+  height: 33px;
+  left: 12px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: black;
+  position: relative;
+}
+
+/* FAQs button */
+.moreInfo {
+  width: 41px;
+  height: 43px;
+  border-radius: 4px;
+  border: 5px;
+  background-color: #ad281f;
+  position: relative;
+}
+
+.Vector15 {
+  width: 25px;
+  height: 5px;
+  top: 18px;
+  left: 7.5px;
+  position: relative;
+  background-color: white;
+}
+
+.Vector16 {
+  width: 5px;
+  height: 25px;
+  top: 2.5px;
+  left: 17.5px;
+  position: relative;
+  background-color: white;
+}
+
+/* Basic Styles */
+
+.qualificationsWord {
+  color: #bc0e0f;
+}
+
+#text {
+  color: "black";
+  font-size: 16;
+  font-family: "Rubik";
+  font-weight: "400";
+  line-height: 24;
+  word-wrap: "break-word";
+}
+
+.Group19 p {
+  width: 449px;
+  height: 64px;
+  top: 1379px;
+  left: 495px;
+  color: black;
+  font-family: Rubik;
+  font-weight: 700;
+  size: 28px;
+  line-height: 42px;
+  letter-spacing: 2%;
+}
+
+#Transition {
+  color: "black";
+  font-size: 16;
+  font-family: "Rubik";
+  font-weight: "400";
+  line-height: 24;
+  word-wrap: "break-word";
+}
+
+#IDEXCalifornia {
+  color: "#AD281F";
+  font-size: 16;
+  font-size: "Rubik";
+  font-weight: "400";
+  line-height: 24;
+  word-wrap: "break-word";
+}
+
+.BecomeACIDPage {
+  width: 1440;
+  height: 2571;
+  position: "relative";
+  background: var(--Functional-Background, #f9f9f9);
+}
