@@ -1,0 +1,52 @@
+.navBar {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.15);
+  z-index: 5;
+}
+
+.navContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 24px 48px;
+}
+
+.navContent * {
+  height: fit-content;
+  white-space: nowrap;
+  align-items: center;
+}
+
+.navContent *:hover {
+  cursor: pointer;
+}
+
+.navigation {
+  display: flex;
+  gap: 48px;
+}
+
+.navIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.button {
+  background-color: #ad281f;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0px;
+  text-align: center;
+  border-radius: 4px;
+  padding: 12px 24px;
+  user-select: none;
+}
