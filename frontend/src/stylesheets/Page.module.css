@@ -11,6 +11,10 @@
 
 .content {
   width: 90%;
-  max-width: 56rem;
+  max-width: 78rem;
   margin: 3rem auto;
+}
+
+.content > * {
+  margin-top: 2em;
 }

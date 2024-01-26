@@ -1,7 +1,5 @@
-import React from "react";
-
-import { Page } from "../components";
-import styles from "../components/Page.module.css";
+import { Page } from "../components/Page";
+import styles from "../stylesheets/Home.module.css";
 
 export function Home() {
   return (
@@ -65,7 +63,101 @@ export function Home() {
         unexpired ID for identity verification. This LRP policy now aligns with Meazure Learning’s
         Test Center policy.
       </p>
-      <button type="button">Apply Now</button>
+      <button className={styles.apply} type="button">
+        Apply Now
+      </button>
+      <div className={styles.textDivider2}>
+        <div className={styles.heading}>Pathways to Certification</div>
+      </div>
+
+      <p>
+        To be eligible for the
+        <span className={styles.red}> IDEX® California</span> and begin the certification process,
+        a candidate must provide evidence of completing the required education and/or diversified
+        design work experience in interior design or architectural work. Candidates must meet the
+        minimum education/experience requirements to apply. Each path and their unique
+        qualifications are listed below.
+      </p>
+
+      <div className={styles.pathwaysContainer}>
+        <div className={styles.pathwayRows}>
+          <div className={styles.pathwayContainer}>
+            <h2 className={styles.pathName}>Path 1</h2>
+            <div className={styles.pathwayText}>
+              <span className={styles.red}>Qualifications:</span>
+              {" >"} 40 Core Units or 5 years of Diversified Design Experience.
+            </div>
+            <button className={styles.learnMoreBtn} type="button">
+              Learn More
+            </button>
+          </div>
+          <div className={styles.pathwayContainer}>
+            <h2 className={styles.pathName}>Path 2</h2>
+            <div className={styles.pathwayText}>
+              <span className={styles.red}>Qualifications: </span>
+              Meet education and/or work experience requirements at the time of application.
+            </div>
+            <button className={styles.learnMoreBtn} type="button">
+              Learn More
+            </button>
+          </div>
+        </div>
+        <div className={styles.pathwayRows}>
+          <div className={styles.pathwayContainer}>
+            <h2 className={styles.pathName}>Path 3</h2>
+            <div className={styles.pathwayText}>
+              <span className={styles.red}>Qualifications:</span> Meet education and/or work
+              experience requirements and have successfully passed one of the qualifying National
+              Interior Design Exams at the time of application.
+            </div>
+            <button className={styles.learnMoreBtn} type="button">
+              Learn More
+            </button>
+          </div>
+          <div className={styles.pathwayContainer}>
+            <h2 className={styles.pathName}>Path 4</h2>
+            <div className={styles.pathwayText}>
+              <span className={styles.red}>Qualifications:</span> Mainly practice commercial design,
+              meet education and/or work experience requirements, and passed one of the qualifying
+              National Interior Design Exams at the time of application.
+            </div>
+            <button className={styles.learnMoreBtn} type="button">
+              Learn More
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <h1 className={styles.title}>FAQ’s</h1>
+
+      <div className={styles.FaqsContainer}>
+        <div className={styles.faqBar}>
+          <button className={styles.moreInfo} type="button">
+            <img alt="" src="/moreInfoButton.svg" />
+          </button>
+          <p className={styles.item}>Certification Information & Overview</p>
+        </div>
+        <div className={styles.faqBar}>
+          <button className={styles.moreInfo} type="button">
+            <img alt="" src="/moreInfoButton.svg" />
+          </button>
+          <p className={styles.item}>Certification Qualification & Paths</p>
+        </div>
+        <div className={styles.faqBar}>
+          <button className={styles.moreInfo} type="button">
+            <img alt="" src="/moreInfoButton.svg" />
+          </button>
+          <p className={styles.item}>Becoming Certified</p>
+        </div>
+        <div className={styles.faqBar}>
+          <button className={styles.moreInfo} type="button">
+            <img alt="" src="/moreInfoButton.svg" />
+          </button>
+          <p className={styles.item}>What You Need to Apply</p>
+        </div>
+      </div>
     </Page>
   );
 }
+
+export default Home;
