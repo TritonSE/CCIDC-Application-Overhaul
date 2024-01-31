@@ -17,6 +17,10 @@ img {
   margin-left: 2rem;
 }
 
+.olist {
+  margin-left: 1.5rem;
+}
+
 .red {
   color: var(--color-ccidc-red);
 }
@@ -47,6 +51,10 @@ img {
 .apply {
   margin-left: auto;
   margin-right: auto;
+  background-color: var(--color-ccidc-red);
+  border-radius: 4px;
+  color: var(--color-text-secondary);
+  padding: 1rem 1.5rem;
 }
 
 .textDivider2 {
@@ -76,19 +84,19 @@ img {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  row-gap: 1.25rem;
+  row-gap: 2rem;
 }
 
 .pathwayRows {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  column-gap: 1.25rem;
+  column-gap: 2rem;
 }
 
 .pathwayContainer {
   width: 38rem;
-  height: 15.25rem;
+  height: 400px;
   border-radius: 10px;
   border: 1px solid #d8d8d8;
 }
@@ -105,19 +113,13 @@ img {
   line-height: 1.5em;
 }
 
-/* Learn More Button */
-.learnMoreBtn {
-  margin-right: 1.7rem;
-  float: right;
-}
-
 /* FAQ's Title, Contianer, and Components */
 
 .FaqsContainer {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  row-gap: 1.875rem;
+  row-gap: 0.8rem;
 }
 
 .faqBar {
@@ -128,5 +130,11 @@ img {
 }
 
 .moreInfo {
-  padding: 0 !important;
+  height: 43px;
+}
+
+.line {
+  content: "";
+  height: 1px;
+  background-color: #d8d8d8;
 }
