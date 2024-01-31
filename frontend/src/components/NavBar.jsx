@@ -2,6 +2,7 @@ import styles from "./NavBar.module.css";
 import logo from "../assets/logo.svg";
 import cartIcon from "../assets/cart.svg";
 import searchIcon from "../assets/search.svg";
+import Button from "./Button";
 export default function NavBar() {
   return (
     <div className={styles.navBar}>
@@ -17,7 +18,7 @@ export default function NavBar() {
           <div>Login</div>
           <img src={cartIcon} className={styles.navIcon}></img>
           <img src={searchIcon} className={styles.navIcon}></img>
-          <div className={styles.button}> Apply</div>
+          <Button>Apply</Button>
         </div>
       </div>
     </div>
