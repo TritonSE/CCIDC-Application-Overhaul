@@ -1,7 +1,8 @@
 const express = require("express");
-const fileRoutes = require('./src/routes/fileRoutes.ts')
 
-const PORT = process.env.PORT || 3001;
+const fileRoutes = require("./src/routes/fileRoutes.ts");
+
+const PORT: string | number = process.env.PORT || 3001;
 
 const app = express();
 
