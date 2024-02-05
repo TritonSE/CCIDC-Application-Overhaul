@@ -26,4 +26,4 @@ router.delete("/delete/:id", (req: Request<DeleteParams>, res: Response) => {});
 // PATCH method to update file by ID
 router.patch("/update/:id", (req: Request<UpdateParams>, res: Response) => {});
 
-export default router;
+module.exports = router;
