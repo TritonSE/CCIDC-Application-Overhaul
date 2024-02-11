@@ -94,6 +94,23 @@ img {
   column-gap: 2rem;
 }
 
+@media screen and (max-width: 1385px) {
+  .pathwaysContainer {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    row-gap: 2rem;
+    align-items: center;
+  }
+
+  .pathwayRows {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    row-gap: 2rem;
+  }
+}
+
 .pathwayContainer {
   width: 38rem;
   height: 400px;
