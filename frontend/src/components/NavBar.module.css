@@ -1,15 +1,15 @@
 .navBar {
   position: fixed;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   width: 100%;
   display: flex;
   align-items: center;
-  background-color: white;
-  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.15);
   z-index: 5;
-  font-size: 16px;
-  font-family: var(--nav-font);
+  background-color: var(--color-background);
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.15);
+  font-size: 1rem;
+  font-family: var(--font-nav);
 }
 
 .navContent {
@@ -17,7 +17,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 24px 48px;
+  padding: 1.5rem 3rem;
 }
 
 .logo:hover {
@@ -34,32 +34,23 @@
   cursor: pointer;
 }
 
+ul {
+  list-style-type: none;
+}
+
 .active {
   text-decoration: underline;
-  text-underline-offset: 8px;
-  text-decoration-thickness: 2px;
-  text-decoration-color: var(--primary);
+  text-underline-offset: 0.5rem;
+  text-decoration-thickness: 0.125rem;
+  text-decoration-color: var(--color-ccidc-red);
 }
 
 .navigation {
   display: flex;
-  gap: 48px;
+  gap: 3rem;
 }
 
 .navIcon {
-  width: 24px;
-  height: 24px;
-}
-
-.button {
-  background-color: #ad281f;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  letter-spacing: 0px;
-  text-align: center;
-  border-radius: 4px;
-  padding: 12px 24px;
-  user-select: none;
+  width: 1.5rem;
+  height: 1.5rem;
 }
