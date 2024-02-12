@@ -1,5 +1,5 @@
 .navBar {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
@@ -38,16 +38,21 @@ ul {
   list-style-type: none;
 }
 
+.navigation {
+  display: flex;
+  gap: 3rem;
+}
+
+.navLink {
+  text-decoration: none;
+  color: var(--color-text-primary);
+}
+
 .active {
   text-decoration: underline;
   text-underline-offset: 0.5rem;
   text-decoration-thickness: 0.125rem;
   text-decoration-color: var(--color-ccidc-red);
-}
-
-.navigation {
-  display: flex;
-  gap: 3rem;
 }
 
 .navIcon {
