@@ -1,16 +1,18 @@
-import styles from "./NavBar.module.css";
-import logo from "../assets/logo.svg";
-import cartIcon from "../assets/cart.svg";
-import searchIcon from "../assets/search.svg";
-import Button from "./Button";
 import { NavLink } from "react-router-dom";
+
+import cartIcon from "../assets/cart.svg";
+import logo from "../assets/logo.svg";
+import searchIcon from "../assets/search.svg";
+
+import Button from "./Button";
+import styles from "./NavBar.module.css";
 
 export default function NavBar() {
   return (
     <nav className={styles.navBar}>
       <div className={styles.navContent}>
         <NavLink className={styles.navLink} to={"/"}>
-          <img src={logo} className={styles.logo} />
+          <img src={logo} className={styles.logo} alt={"CCIDC"} />
         </NavLink>
         <ul className={styles.navigation}>
           <li>

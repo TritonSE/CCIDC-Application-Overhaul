@@ -1,14 +1,23 @@
-import NavBar from "./components/NavBar.js";
-import { Routes, Route, Outlet } from "react-router-dom";
+import { Outlet, Route, Routes } from "react-router-dom";
 
-import Consumers from "./pages/Consumers.tsx";
-import Candidates from "./pages/Candidates.tsx";
-import CIDS from "./pages/CIDS.tsx";
+import NavBar from "./components/NavBar.js";
 import AboutUs from "./pages/AboutUs.tsx";
-import Resources from "./pages/Resources.tsx";
+import Apply from "./pages/Apply.tsx";
+import CIDS from "./pages/CIDS.tsx";
+import Candidates from "./pages/Candidates.tsx";
+import Consumers from "./pages/Consumers.tsx";
 import ContactUs from "./pages/ContactUs.tsx";
 import Login from "./pages/Login.tsx";
-import Apply from "./pages/Apply.tsx";
+import Resources from "./pages/Resources.tsx";
+
+function Layout() {
+  return (
+    <>
+      <NavBar></NavBar>
+      <Outlet />
+    </>
+  );
+}
 
 function App() {
   return (
@@ -27,15 +36,6 @@ function App() {
         </Route>
       </Routes>
     </div>
-  );
-}
-
-function Layout() {
-  return (
-    <>
-      <NavBar></NavBar>
-      <Outlet />
-    </>
   );
 }
 
