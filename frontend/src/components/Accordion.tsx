@@ -1,4 +1,5 @@
-import { FC, useState, useEffect, useRef, ReactNode } from "react";
+import { FC, ReactNode, useEffect, useRef, useState } from "react";
+
 import styles from "../stylesheets/Home.module.css";
 
 const Accordion: FC<{ title: string; content: ReactNode }> = ({ title, content }) => {
@@ -36,7 +37,7 @@ const Accordion: FC<{ title: string; content: ReactNode }> = ({ title, content }
       >
         {toggle && content}
       </div>
-      <div className={styles.line} />
+      <hr style={{ border: "1px solid #d8d8d8" }}></hr>
     </>
   );
 };

@@ -1,5 +1,5 @@
-import { Page } from "../components/Page";
 import Accordion from "../components/Accordion";
+import { Page } from "../components/Page";
 import styles from "../stylesheets/Home.module.css";
 
 export function Home() {
@@ -151,7 +151,7 @@ export function Home() {
       <h1 className={styles.title}>FAQ’s</h1>
 
       <div className={styles.FaqsContainer}>
-        <div className={styles.line} />
+        <hr style={{ border: "1px solid #d8d8d8" }}></hr>
 
         <Accordion
           title="Information about the Pathways to Certification"
