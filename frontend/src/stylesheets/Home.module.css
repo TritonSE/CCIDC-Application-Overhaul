@@ -155,3 +155,13 @@ img {
   height: 1px;
   background-color: #d8d8d8;
 }
+
+.moreInfo {
+  height: 43px;
+}
+
+.line {
+  content: "";
+  height: 1px;
+  background-color: #d8d8d8;
+}
