@@ -80,18 +80,15 @@ img {
 
 /* Pathways */
 
-.pathwaysContainer {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  row-gap: 2rem;
+h3 {
+  font-size: 24px;
 }
 
-.pathwayRows {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  column-gap: 2rem;
+.pathwaysContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  grid-template-rows: repeat(2, auto); /* 2 rows */
+  gap: 2rem; /* gap between grid items */
 }
 
 @media screen and (max-width: 1385px) {
@@ -101,13 +98,6 @@ img {
     flex-direction: column;
     row-gap: 2rem;
     align-items: center;
-  }
-
-  .pathwayRows {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    row-gap: 2rem;
   }
 }
 
@@ -148,12 +138,6 @@ img {
 
 .moreInfo {
   height: 43px;
-}
-
-.line {
-  content: "";
-  height: 1px;
-  background-color: #d8d8d8;
 }
 
 .moreInfo {

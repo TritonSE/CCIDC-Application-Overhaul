@@ -1,12 +1,14 @@
+import homeCover from "../assets/home_cover.svg";
 import Accordion from "../components/Accordion";
 import { Page } from "../components/Page";
+import { Pathway } from "../components/Pathway";
 import styles from "../stylesheets/Home.module.css";
 
 export function Home() {
   return (
     <Page>
-      <h1 className={styles.title}>Become a Certified Interior Designer</h1>
-      <img alt="" src="/home_cover.svg" />
+      <h1 className={styles.title}>Become a Certified Interior Designer (CID)</h1>
+      <img alt="home cover" src={homeCover} />
       <div className={styles.textDivider}>
         <h2 className={styles.heading}>CID Candidate Information</h2>
       </div>
@@ -37,7 +39,7 @@ export function Home() {
         <li>
           <p className={styles.item}>
             Certification in California is a Title Act, not a license or registration (Practice
-            Act). The Certified Interior Designer’s Title Act is the only thing the state
+            Act). The Certified Interior Designer&#39;s Title Act is the only thing the state
             recognizes.
           </p>
         </li>
@@ -68,87 +70,65 @@ export function Home() {
       </p>
 
       <div className={styles.pathwaysContainer}>
-        <div className={styles.pathwayRows}>
-          <div className={styles.pathwayContainer}>
-            <h2 className={styles.pathName}>Path 1</h2>
-            <div className={styles.pathwayText}>
-              <span className={styles.red}>Qualifications:</span>
-              Candidates who meet the education requirement, and have <strong>NOT</strong> met the
-              work experience requirement, may opt first to apply to take the IDEX® California
-              Exam. Candidates must meet one of these qualifications to sit for the IDEX®
-              California Exam:
-              <ol className={styles.olist}>
-                <li>
-                  At least 40 semester core units from an accredited design program (60 quarter
-                  units)
-                </li>
-                <li>5-8 years of diversified design experience</li>
-              </ol>
-            </div>
-          </div>
-          <div className={styles.pathwayContainer}>
-            <h2 className={styles.pathName}>Path 2</h2>
-            <div className={styles.pathwayText}>
-              <span className={styles.red}>Qualifications: </span>
-              Candidates who meet both the education <strong>AND</strong> work experience
-              requirements will be eligible to complete the certification process upon completing
-              the IDEX® California Exam if they meet one of these requirements:
-              <ol className={styles.olist}>
-                <li>
-                  80+ semester core units from an accredited design program (120+ quarter units)
-                </li>
-                <li>
-                  60 - 79 semester core units from an accredited design program (90+ quarter units)
-                </li>
-                <li>
-                  40 - 59 semester core units from an accredited design program (60+ quarter units)
-                </li>
-                <li>
-                  At least 8 years of diversified design experience, interior design education, or
-                  combination that totals 8 years.
-                </li>
-              </ol>
-            </div>
-          </div>
-        </div>
-        <div className={styles.pathwayRows}>
-          <div className={styles.pathwayContainer}>
-            <h2 className={styles.pathName}>Path 3</h2>
-            <div className={styles.pathwayText}>
-              <span className={styles.red}>Qualifications:</span> Candidates who meet the education,
-              work experience requirements, <strong>AND</strong> have successfully passed one of the
-              qualifying National Interior Design Exams at the time of application, will be eligible
-              to complete the certification process upon completing the IDEX® California Exam.
-              Qualifying exams include:
-              <ul className={styles.list}>
-                <li>ARE, CASp, LEED | Minimum AP, NCBDC, NCIDQ, NKBA | Minimum CKBD</li>
-              </ul>
-              <br />
-              RIDQC Exam Candidates, please apply under <strong>Path 1 or 2</strong>
-            </div>
-          </div>
-          <div className={styles.pathwayContainer}>
-            <h2 className={styles.pathName}>Path 4</h2>
-            <div className={styles.pathwayText}>
-              <span className={styles.red}>Qualifications:</span> Candidates who mainly practice
-              commercial design meet the education, work experience requirements
-              <strong>AND</strong> have successfully passed 1 of the qualifying National Interior
-              Design Exams at the time of application will be eligible to complete the certification
-              process with a commercial designation upon successful completion of the IDEX®
-              California Exam and passing required ICC Courses.
-              <br />
-              Qualifying exams include:
-              <ul className={styles.list}>
-                <li>ARE, CASp, LEED | Minimum AP, NCBDC, NCIDQ, NKBA | Minimum CKBD</li>
-              </ul>
-              <br />
-              RIDQC Exam Candidates, please apply under <strong>Path 1 or 2</strong>
-            </div>
-          </div>
-        </div>
+        <Pathway
+          pathName="Path 1"
+          qualifications=" Candidates who meet the education requirement, and have NOT met the work experience requirement, may opt first to apply to take the IDEX® California Exam."
+        >
+          <ol className={styles.olist}>
+            <li>
+              At least 40 semester core units from an accredited design program (60 quarter units)
+            </li>
+            <li>5-8 years of diversified design experience</li>
+          </ol>
+        </Pathway>
+        <Pathway
+          pathName="Path 2"
+          qualifications=" Candidates who meet both the education <strong>AND</strong> work experience requirements
+          will be eligible to complete the certification process upon completing the IDEX®
+          California Exam if they meet one of these requirements:"
+        >
+          <ol className={styles.olist}>
+            <li>80+ semester core units from an accredited design program (120+ quarter units)</li>
+            <li>
+              60 - 79 semester core units from an accredited design program (90+ quarter units)
+            </li>
+            <li>
+              40 - 59 semester core units from an accredited design program (60+ quarter units)
+            </li>
+            <li>
+              At least 8 years of diversified design experience, interior design education, or
+              combination that totals 8 years.
+            </li>
+          </ol>
+        </Pathway>
+        <Pathway
+          pathName="Path 3"
+          qualifications=" Candidates who meet the education,
+          work experience requirements, <strong>AND</strong> have successfully passed one of the
+          qualifying National Interior Design Exams at the time of application, will be eligible
+          to complete the certification process upon completing the IDEX® California Exam.
+          Qualifying exams include:"
+        >
+          <ul className={styles.list}>
+            <li>ARE, CASp, LEED | Minimum AP, NCBDC, NCIDQ, NKBA | Minimum CKBD</li>
+          </ul>
+        </Pathway>
+        <Pathway
+          pathName="Path 4"
+          qualifications=" Candidates who mainly practice
+          commercial design meet the education, work experience requirements
+          <strong>AND</strong> have successfully passed 1 of the qualifying National Interior
+          Design Exams at the time of application will be eligible to complete the certification
+          process with a commercial designation upon successful completion of the IDEX®
+          California Exam and passing required ICC Courses."
+        >
+          <ul className={styles.list}>
+            <li>ARE, CASp, LEED | Minimum AP, NCBDC, NCIDQ, NKBA | Minimum CKBD</li>
+          </ul>
+        </Pathway>
       </div>
 
-      <h1 className={styles.title}>FAQ’s</h1>
+      <h2 className={styles.title}>FAQ&#39;s</h2>
 
       <div className={styles.FaqsContainer}>
         <hr style={{ border: "1px solid #d8d8d8" }}></hr>
@@ -185,10 +165,10 @@ export function Home() {
                 <span style={{ fontWeight: "bold" }}>4. Who can refer themselves as CID</span>
                 <br></br>
                 Only individuals who have fulfilled education, experience, and exam requirements and
-                received certificaiton from CCIDC can use the title "Certified Interior Designer" in
-                California. The title is legally protected, and it is deemed an "unfair buisness
-                practice" under B&P Code Section 17200 for anyone to claim this designation without
-                complying with Section 5800.
+                received certificaiton from CCIDC can use the title &#34;Certified Interior
+                Designer&#34; in California. The title is legally protected, and it is deemed an
+                &#34;unfair buisness practice&#34; under B&P Code Section 17200 for anyone to claim
+                this designation without complying with Section 5800.
                 <br></br>
                 <span style={{ fontWeight: "bold" }}>5. When do I become CID</span>
                 <br></br>
@@ -256,7 +236,7 @@ export function Home() {
                 <br></br>
                 The IDEX® California is a certification exam designed for California, focusing on
                 the California Building Code (CBC), Title 24, ethics, business practies, and design
-                standards. The examincation evaluates designers' competence in various areas,
+                standards. The examincation evaluates designers&#39; competence in various areas,
                 including Commercial and Residential California Codes and Regulations, Design
                 Synthesis, Schematics, Programming, Space Planning, Design Development, Working
                 Drawings, Construction documents, Furniture and finish specifications, Lighting
@@ -452,7 +432,7 @@ export function Home() {
                   <li>Sign Code of Ethics</li>
                   <li>Proof of Education</li>
                   <li>Proof of diversified interior design experience</li>
-                  <li>Photocopy of driver's license</li>
+                  <li>Photocopy of driver&#39;s license</li>
                   <li>
                     Credit card payment or check payable to CCIDC for the: one-time non-refundable
                     application and processing fee, IDEX@ California Exam fees, Testing center fee

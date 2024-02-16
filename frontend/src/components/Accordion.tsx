@@ -1,5 +1,7 @@
 import { FC, ReactNode, useEffect, useRef, useState } from "react";
 
+import moreInfo from "../assets/moreInfoButton.svg";
+import clickedFAQ from "../assets/clickedFAQ.svg";
 import styles from "../stylesheets/Home.module.css";
 
 const Accordion: FC<{ title: string; content: ReactNode }> = ({ title, content }) => {
@@ -24,7 +26,7 @@ const Accordion: FC<{ title: string; content: ReactNode }> = ({ title, content }
           <img
             className={toggle ? styles.active : "/clickedFAQ.svg"}
             alt=""
-            src={toggle ? "/clickedFAQ.svg" : "/moreInfoButton.svg"}
+            src={toggle ? clickedFAQ : moreInfo}
           />
         </button>
         <p className={styles.item}>{title}</p>
