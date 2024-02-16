@@ -43,6 +43,11 @@ ul {
   gap: 3rem;
 }
 
+.navigation .legacyLink {
+  text-decoration: none;
+  color: var(--color-text-primary);
+}
+
 .navLink {
   text-decoration: none;
   color: var(--color-text-primary);

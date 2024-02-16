@@ -1,3 +1,3 @@
-export default function Apply() {
+export function Apply() {
   return <h2>Apply</h2>;
 }

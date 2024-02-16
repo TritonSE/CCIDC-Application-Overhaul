@@ -4,10 +4,19 @@ import cartIcon from "../assets/cart.svg";
 import logo from "../assets/logo.svg";
 import searchIcon from "../assets/search.svg";
 
-import Button from "./Button";
 import styles from "./NavBar.module.css";
+import { Button } from "./index.ts";
 
-export default function NavBar() {
+export function NavBar() {
+  const destinations = {
+    consumers: "https://ccidc.org/consumer-items-of-interest/",
+    cids: "https://ccidc.org/wp-login.php",
+    aboutUs: "https://ccidc.org/about-us/",
+    resources: "https://ccidc.org/", // resources nav item on ccidc.org does not have link address
+    contactUs: "https://ccidc.org/contact-ccidc/",
+    login: "https://ccidc.org/wp-login.php",
+  };
+
   return (
     <nav className={styles.navBar}>
       <div className={styles.navContent}>
@@ -16,14 +25,9 @@ export default function NavBar() {
         </NavLink>
         <ul className={styles.navigation}>
           <li>
-            <NavLink
-              className={({ isActive }: { isActive: boolean }) =>
-                `${styles.navLink} ${isActive ? styles.active : ""}`
-              }
-              to={"/consumers"}
-            >
+            <a className={styles.legacyLink} href={destinations.consumers}>
               Consumers
-            </NavLink>
+            </a>
           </li>
           <li>
             <NavLink
@@ -36,44 +40,24 @@ export default function NavBar() {
             </NavLink>
           </li>
           <li>
-            <NavLink
-              className={({ isActive }: { isActive: boolean }) =>
-                `${styles.navLink} ${isActive ? styles.active : ""}`
-              }
-              to={"/cids"}
-            >
+            <a className={styles.legacyLink} href={destinations.cids}>
               CIDS
-            </NavLink>
+            </a>
           </li>
           <li>
-            <NavLink
-              className={({ isActive }: { isActive: boolean }) =>
-                `${styles.navLink} ${isActive ? styles.active : ""}`
-              }
-              to={"/about-us"}
-            >
+            <a className={styles.legacyLink} href={destinations.aboutUs}>
               About Us
-            </NavLink>
+            </a>
           </li>
           <li>
-            <NavLink
-              className={({ isActive }: { isActive: boolean }) =>
-                `${styles.navLink} ${isActive ? styles.active : ""}`
-              }
-              to={"/resources"}
-            >
+            <a className={styles.legacyLink} href={destinations.resources}>
               Resources
-            </NavLink>
+            </a>
           </li>
           <li>
-            <NavLink
-              className={({ isActive }: { isActive: boolean }) =>
-                `${styles.navLink} ${isActive ? styles.active : ""}`
-              }
-              to={"/contact-us"}
-            >
+            <a className={styles.legacyLink} href={destinations.contactUs}>
               Contact Us
-            </NavLink>
+            </a>
           </li>
           <li>
             <img src={cartIcon} className={styles.navIcon} alt="shop"></img>
@@ -83,14 +67,9 @@ export default function NavBar() {
           </li>
 
           <li>
-            <NavLink
-              className={({ isActive }: { isActive: boolean }) =>
-                `${styles.navLink} ${isActive ? styles.active : ""}`
-              }
-              to={"/login"}
-            >
+            <a className={styles.legacyLink} href={destinations.login}>
               Login
-            </NavLink>
+            </a>
           </li>
           <li>
             <NavLink className={styles.navLink} to={"/apply"}>
