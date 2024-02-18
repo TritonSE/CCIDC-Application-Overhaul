@@ -1,0 +1,12 @@
+:root {
+  --color-ccidc-red: #ad281f;
+  --color-text-primary: #000000;
+  --color-text-secondary: #ffffff;
+  --color-background: var(--color-ccidc-white);
+  --font-nav: "Roboto", sans-serif;
+  --font-body: normal 400 1rem "Rubik", sans-serif;
+}
+
+body {
+  margin: 0;
+}
