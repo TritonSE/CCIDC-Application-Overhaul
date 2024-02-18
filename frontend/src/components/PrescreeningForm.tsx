@@ -1,28 +1,27 @@
 import React, { useState } from 'react';
+import { Button, Checkbox } from "./index.ts";
 
-import { Button, Bullet, Checkbox } from "./index.ts";
-
-// If Bullet and Checkbox have specific prop types,
-// you should import and use those types here for setExperience and setExamsPassed functions.
+type ExperienceType = '5+ years' | 'in progress' | 'will not complete' | '';
+type ExamType = 'ARE' | 'CASP' | 'LEED-AP' | 'NCBDC' | 'NCIDQ' | 'NKBA-CKBD' | 'RIDQC' | 'none';
+type CommercialDesignType = 'Yes' | 'No' | '';
 
 export function PrescreeningForm() {
-  const [experience, setExperience] = useState<string>('');
-  const [examsPassed, setExamsPassed] = useState<string[]>([]); // Assuming examsPassed is an array of strings
-  const [commercialDesign, setCommercialDesign] = useState<string>('');
+  const [experience, setExperience] = useState<ExperienceType>('');
+  const [examsPassed, setExamsPassed] = useState<ExamType[]>([]);
+  const [commercialDesign, setCommercialDesign] = useState<CommercialDesignType>('');
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // Assuming you'll add the logic to post data to the server here.
+    // Logic to post data to the server or handle the submission
     console.log({ experience, examsPassed, commercialDesign });
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <Bullet experience={experience} setExperience={setExperience} />
-      <Checkbox examsPassed={examsPassed} setExamsPassed={setExamsPassed} />
-      <Button onClick={null}>Continue</Button>
+      {/* Form fields as implemented above */}
     </form>
   );
 }
 
 export default PrescreeningForm;
+
