@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import ExperienceSelector from './ExperienceSelector';
-import ExamsCheckboxGroup from './ExamsCheckboxGroup';
-import Button from './Button';
+import Bullet from './Bullet';
+import Checkbox from './Checkbox';
+import { Button } from "./index.ts";
 
-// If ExperienceSelector and ExamsCheckboxGroup have specific prop types,
+// If Bullet and Checkbox have specific prop types,
 // you should import and use those types here for setExperience and setExamsPassed functions.
 
 export function PrescreeningForm() {
@@ -19,9 +19,9 @@ export function PrescreeningForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <ExperienceSelector experience={experience} setExperience={setExperience} />
-      <ExamsCheckboxGroup examsPassed={examsPassed} setExamsPassed={setExamsPassed} />
-      <Button />
+      <Bullet experience={experience} setExperience={setExperience} />
+      <Checkbox examsPassed={examsPassed} setExamsPassed={setExamsPassed} />
+      <Button onClick={null}>Continue</Button>
     </form>
   );
 }

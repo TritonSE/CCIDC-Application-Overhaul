@@ -1,8 +1,8 @@
 import React from 'react';
 
-import styles from './ExamsCheckboxGroup.module.css';
+import styles from './Checkbox.module.css';
 
-const ExamsCheckboxGroup = ({ examsPassed, setExamsPassed }) => {
+const Checkbox = ({ examsPassed, setExamsPassed }) => {
   const handleCheckboxChange = (event) => {
     if (examsPassed.includes(event.target.name)) {
       setExamsPassed(examsPassed.filter((exam) => exam !== event.target.name));
@@ -27,4 +27,4 @@ const ExamsCheckboxGroup = ({ examsPassed, setExamsPassed }) => {
   );
 };
 
-export default ExamsCheckboxGroup;
+export default Checkbox;

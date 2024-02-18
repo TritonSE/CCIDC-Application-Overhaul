@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './ExperienceSelector.module.css';
+import styles from './Bullet.module.css';
 
-const ExperienceSelector = ({ experience, setExperience }) => {
+const Bullet = ({ experience, setExperience }) => {
   const handleChange = (event) => {
     setExperience(event.target.value);
   };
@@ -30,4 +30,4 @@ const ExperienceSelector = ({ experience, setExperience }) => {
   );
 };
 
-export default ExperienceSelector;
+export default Bullet;
