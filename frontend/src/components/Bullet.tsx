@@ -7,7 +7,7 @@ type BulletProps = {
   setExperience: (experience: string) => void;
 };
 
-const Bullet: React.FC<BulletProps> = ({ experience, setExperience }) => {
+export const Bullet: React.FC<BulletProps> = ({ experience, setExperience }) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setExperience(event.target.value);
   };

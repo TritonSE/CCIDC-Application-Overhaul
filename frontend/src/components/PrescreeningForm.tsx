@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import Bullet from './Bullet';
-import Checkbox from './Checkbox';
-import { Button } from "./index.ts";
+
+import { Button, Bullet, Checkbox } from "./index.ts";
 
 // If Bullet and Checkbox have specific prop types,
 // you should import and use those types here for setExperience and setExamsPassed functions.

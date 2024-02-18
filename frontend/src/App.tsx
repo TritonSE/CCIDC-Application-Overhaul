@@ -1,12 +1,13 @@
 import { Outlet, Route, Routes } from "react-router-dom";
 
-import { NavBar } from "./components/index.ts";
+import { NavBar, PrescreeningForm } from "./components/index.ts";
 import { Apply, Candidates } from "./pages/index.ts"
 
 function Layout() {
   return (
     <>
       <NavBar></NavBar>
+      <PrescreeningForm></PrescreeningForm>
       <Outlet />
     </>
   );

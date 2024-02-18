@@ -7,7 +7,7 @@ type CheckboxProps = {
   setExamsPassed: (exams: string[]) => void;
 };
 
-const Checkbox: React.FC<CheckboxProps> = ({ examsPassed, setExamsPassed }) => {
+export const Checkbox: React.FC<CheckboxProps> = ({ examsPassed, setExamsPassed }) => {
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const examName = event.target.name;
     if (examsPassed.includes(examName)) {
