@@ -1,10 +1,30 @@
-// import React from "react";
+import { Outlet, Route, Routes } from "react-router-dom";
 
-// import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import { HelmetProvider } from "react-helmet-async";
-import { Home } from "./pages";
-import "./globals.css";
+import { NavBar } from "./components/index.ts";
+import { Home, Apply, Candidates } from "./pages/index.ts";
 
-export default function App() {
-  return <Home />;
+function Layout() {
+  return (
+    <>
+      <NavBar></NavBar>
+      <Home></Home>
+      <Outlet />
+    </>
+  );
 }
+
+function App() {
+  return (
+    <div className="app-container">
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Candidates />} />
+          <Route path="candidates" element={<Candidates />} />
+          <Route path="apply" element={<Apply />} />
+        </Route>
+      </Routes>
+    </div>
+  );
+}
+
+export default App;
