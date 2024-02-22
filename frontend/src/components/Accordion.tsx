@@ -1,10 +1,10 @@
 import { FC, ReactNode, useEffect, useRef, useState } from "react";
 
-import moreInfo from "../assets/moreInfoButton.svg";
 import clickedFAQ from "../assets/clickedFAQ.svg";
+import moreInfo from "../assets/moreInfoButton.svg";
 import styles from "../stylesheets/Home.module.css";
 
-const Accordion: FC<{ title: string; content: ReactNode }> = ({ title, content }) => {
+export const Accordion: FC<{ title: string; content: ReactNode }> = ({ title, content }) => {
   const [toggle, setIsOpen] = useState(false);
   const [height, setHeight] = useState("0px");
   const contentRef = useRef<HTMLDivElement>(null);

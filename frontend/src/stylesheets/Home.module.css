@@ -48,13 +48,10 @@ img {
   margin-left: var(--text-divider-gap);
 }
 
-.apply {
-  margin-left: auto;
-  margin-right: auto;
-  background-color: var(--color-ccidc-red);
-  border-radius: 4px;
-  color: var(--color-text-secondary);
-  padding: 1rem 1.5rem;
+.centeredContainer {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 3em;
 }
 
 .textDivider2 {
@@ -76,6 +73,28 @@ img {
   background-color: #d8d8d8;
   flex-grow: 1;
   margin-left: var(--text-divider-gap);
+}
+
+.imgs {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 1em;
+}
+
+.imgCaption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 18rem;
+}
+
+.cert {
+  max-width: 194px;
+}
+
+.caption {
+  text-align: center;
 }
 
 /* Pathways */

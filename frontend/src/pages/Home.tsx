@@ -1,7 +1,8 @@
+import certificate from "../assets/certifcate.svg";
 import homeCover from "../assets/home_cover.svg";
-import Accordion from "../components/Accordion";
-import { Page } from "../components/Page";
-import { Pathway } from "../components/Pathway";
+import idcard from "../assets/idcard.svg";
+import stamp from "../assets/stamp.svg";
+import { Accordion, Button, Page, Pathway } from "../components/index.ts";
 import styles from "../stylesheets/Home.module.css";
 
 export function Home() {
@@ -9,123 +10,94 @@ export function Home() {
     <Page>
       <h1 className={styles.title}>Become a Certified Interior Designer (CID)</h1>
       <img alt="home cover" src={homeCover} />
-      <div className={styles.textDivider}>
-        <h2 className={styles.heading}>CID Candidate Information</h2>
+      <div className={styles.textDivider2}>
+        <div className={styles.heading}>CID Candidate Information</div>
       </div>
-      <ul className={styles.list}>
-        <li>
-          <p className={styles.item}>
-            Under the Certified Interior Designers Title Act law, Certified Interior Designers are
-            qualified by the California Council for Interior Design Certification (CCIDC) upon
-            evidence of a combination of interior design education, experience <strong>AND</strong>{" "}
-            passage of the IDEX® California examination.
-          </p>
-        </li>
-        <li>
-          <p className={styles.item}>
-            <strong>ONLY</strong> CCIDC can determine eligibility to be a Certified Interior
-            Designer in California. Designers who meet the criteria of the CCIDC are allowed to use
-            the “Certified Interior Designer” title and “CID” appellation and are recognized in the
-            State of California.
-          </p>
-        </li>
-        <li>
-          <p className={styles.item}>
-            Upon qualification, the Certified Interior Designer will be identified by an individual
-            number on a certificate, a stamp to identify interior design nonstructural and
-            non-seismic drawings and documents, and an identification card (ID).
-          </p>
-        </li>
-        <li>
-          <p className={styles.item}>
-            Certification in California is a Title Act, not a license or registration (Practice
-            Act). The Certified Interior Designer&#39;s Title Act is the only thing the state
-            recognizes.
-          </p>
-        </li>
-      </ul>
-      <button className={styles.apply} type="button">
-        Apply Now
-      </button>
+      <p>
+        Certified Interior Designers (CIDs) must fulfill CCIDC&#39;s education, experience, and exam
+        criteria to achieve the designation of &#34;Certified Interior Designer&#34;. CCIDC is
+        backed by The Certified Interior Designers Title Act which is governed by California
+        Business & Professions Codes Sections 5800-5812. CIDs, recognized as skilled professionals,
+        are authorized to develop and submit non-structural construction documents, demonstrating
+        expertise in the California Building Code. Upon qualification, CIDs receive a unique
+        identification number, a certificate, a stamp for nonstructural drawings, and an ID card,
+        symbolizing their unwavering commitment to upholding high professional standards and ethical
+        conduct.
+      </p>
+      <div className={styles.imgs}>
+        <div className={styles.imgCaption}>
+          <img alt="certificate" className={styles.cert} src={certificate} />
+          <p className={styles.caption}>CCIDC Certificate & Indentification Number</p>
+        </div>
+        <div className={styles.imgCaption}>
+          <img alt="stamp" src={stamp} />
+          <p className={styles.caption}>Individual Stamp</p>
+        </div>
+        <div className={styles.imgCaption}>
+          <img alt="id card" src={idcard} />
+          <p className={styles.caption}>Identification Card (ID)</p>
+        </div>
+      </div>
+      <p>
+        As the exclusive authority for approving the CID title, CCIDC establishes rigorous
+        eligibility criteria for achieving the title to ensure a high standard of qualification.
+        Becoming a CID is the exclusive and legally recognized title for interior designers in
+        California. CIDs demonstrate education, experience, and examination expertise tailored to
+        California&#39;s requirements, reducing legal risks and instilling heightened confidence in
+        clients. Accredited for professionalism, CIDs strictly adhere to the CCIDC Code of Ethics
+        and Conduct, emphasizing their unwavering commitment to maintaining the highest industry
+        standards.
+      </p>
+      <div className={styles.centeredContainer}>
+        <Button onClick={null}>Apply Now</Button>
+      </div>
       <div className={styles.textDivider2}>
         <div className={styles.heading}>Pathways to Certification</div>
       </div>
 
       <p>
-        To become a CID, you must:
-        <ul className={styles.list}>
-          <li>
-            Have a minimum of 6 years of combined accredited interior design education and
-            experience <strong>OR</strong> a minimum of 8 years of combined interior design
-            education and experience.
-          </li>
-          <li>
-            Provide evidence of competing the required education and/or diversified design work
-            experience in interior design, architecture, or building design.
-          </li>
-          <li>Pass the IDEX® California Exam.</li>
-        </ul>
-        There are four paths to qualification, candidates must meet one of the following path
-        criteria and each is listed with proper qualifications below:
+        To be eligible for the IDEX® California and begin the certification process, you must
+        provide evidence of completing the required education and/or diversified design work
+        experience in interior design or architectural work. You must meet one of the following path
+        criteria with proper qualifications listed below:
       </p>
 
       <div className={styles.pathwaysContainer}>
         <Pathway
           pathName="Path 1"
-          qualifications=" Candidates who meet the education requirement, and have NOT met the work experience requirement, may opt first to apply to take the IDEX® California Exam."
-        >
-          <ol className={styles.olist}>
-            <li>
-              At least 40 semester core units from an accredited design program (60 quarter units)
-            </li>
-            <li>5-8 years of diversified design experience</li>
-          </ol>
-        </Pathway>
+          qualifications={[
+            "<40 semester core units from an accredited design program",
+            "5+ years of diversified design experience",
+          ]}
+        ></Pathway>
         <Pathway
           pathName="Path 2"
-          qualifications=" Candidates who meet both the education <strong>AND</strong> work experience requirements
-          will be eligible to complete the certification process upon completing the IDEX®
-          California Exam if they meet one of these requirements:"
-        >
-          <ol className={styles.olist}>
-            <li>80+ semester core units from an accredited design program (120+ quarter units)</li>
-            <li>
-              60 - 79 semester core units from an accredited design program (90+ quarter units)
-            </li>
-            <li>
-              40 - 59 semester core units from an accredited design program (60+ quarter units)
-            </li>
-            <li>
-              At least 8 years of diversified design experience, interior design education, or
-              combination that totals 8 years.
-            </li>
-          </ol>
-        </Pathway>
+          qualifications={[
+            "80+ semester core units & 2 years of design experience",
+            "60+ semester core units & 3 years of design experience",
+            "40+ semester core units & 4 years of design experience",
+            "At least 8 years of diversified design experience, interior design education, or combination that totals 8 years.",
+          ]}
+        ></Pathway>
         <Pathway
           pathName="Path 3"
-          qualifications=" Candidates who meet the education,
-          work experience requirements, <strong>AND</strong> have successfully passed one of the
-          qualifying National Interior Design Exams at the time of application, will be eligible
-          to complete the certification process upon completing the IDEX® California Exam.
-          Qualifying exams include:"
-        >
-          <ul className={styles.list}>
-            <li>ARE, CASp, LEED | Minimum AP, NCBDC, NCIDQ, NKBA | Minimum CKBD</li>
-          </ul>
-        </Pathway>
+          qualifications={[
+            "Meet one of the Path 2 education and work experience requirements",
+            "Passed one of the qualifying National Interior Design Exams: ARE | CASP | LEED-AP (+) | NCBDC | NCIDQ | NKBA-CKBD (+) ",
+          ]}
+        ></Pathway>
         <Pathway
           pathName="Path 4"
-          qualifications=" Candidates who mainly practice
-          commercial design meet the education, work experience requirements
-          <strong>AND</strong> have successfully passed 1 of the qualifying National Interior
-          Design Exams at the time of application will be eligible to complete the certification
-          process with a commercial designation upon successful completion of the IDEX®
-          California Exam and passing required ICC Courses."
-        >
-          <ul className={styles.list}>
-            <li>ARE, CASp, LEED | Minimum AP, NCBDC, NCIDQ, NKBA | Minimum CKBD</li>
-          </ul>
-        </Pathway>
+          qualifications={[
+            "Meet one of the Path 2 education and work experience requirements",
+            "Passed one of the qualifying National Interior Design Exams: ARE | CASP | LEED-AP (+) | NCBDC | NCIDQ | NKBA-CKBD (+) ",
+            "Pass required ICC Courses",
+          ]}
+        ></Pathway>
+      </div>
+
+      <div className={styles.centeredContainer}>
+        <Button onClick={null}>Discover Your Ideal Pathway</Button>
       </div>
 
       <h2 className={styles.title}>FAQ&#39;s</h2>
