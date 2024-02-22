@@ -1,5 +1,6 @@
-import React from 'react';
-import styles from './Checkbox.module.css';
+import React from "react";
+
+import styles from "./Checkbox.module.css";
 
 // Define a type for the props
 type CheckboxProps = {
@@ -34,4 +35,3 @@ export const Checkbox: React.FC<CheckboxProps> = ({ examsPassed, setExamsPassed 
 };
 
 export default Checkbox;
-

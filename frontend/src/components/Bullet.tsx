@@ -1,15 +1,15 @@
 import React from "react";
+
 import styles from "./Bullet.module.css";
 
-export function Bullet(props: {children: string}) {
-  const {children} = props;
+export function Bullet(props: { children: string }) {
+  const { children } = props;
 
   return (
-    <div>
-      <label>
-        <input type="radio"/>
-        {children}
-      </label>
-    </div>
+    <>
+      {/* You'll need to add in the name attribute to the input to make the selection logic work  */}
+      <input type="radio" id={children} />
+      <label htmlFor={children}>{children}</label>
+    </>
   );
 }
