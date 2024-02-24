@@ -155,16 +155,84 @@ h3 {
   align-items: center;
 }
 
-.moreInfo {
-  height: 43px;
+.faqTitle {
+  width: 1248px;
+  height: 65px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  --text-divider-gap: 1rem;
+  font-size: 28px;
 }
 
-.moreInfo {
-  height: 43px;
+.infoTitle {
+  width: 1248px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.infoTitle h2 {
+  align-self: center;
+  margin-top: 0em;
 }
 
 .line {
   content: "";
   height: 1px;
   background-color: #d8d8d8;
+}
+
+.expand {
+  display: flex;
+  width: 145px;
+  height: hug(40px);
+  padding: 8px, 48px, 8px, 16px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 1);
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.expandAllPlus {
+  display: flex;
+  height: 40px;
+  width: 40px;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.footer p,
+span,
+a {
+  color: rgba(12, 43, 53, 1);
+}
+
+.tseLogo {
+  height: 32px;
+  width: 32px;
+}
+
+.footerContent {
+  margin-left: 5px; /* Adjust the margin as needed */
+  margin-bottom: 12.5px;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  outline: none;
+}
+
+.lightBlue {
+  color: rgba(66, 139, 205, 1);
 }
