@@ -1,0 +1,10 @@
+.modal-content {
+  padding: 20px;
+}
+
+/* Apply gap to child elements within the modal body */
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
