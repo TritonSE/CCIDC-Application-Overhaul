@@ -1,9 +1,0 @@
-:root {
-  --primary: #ad281f;
-  --primary-font: "Rubik", sans-serif;
-  --nav-font: "Roboto", sans-serif;
-}
-
-body {
-  font-family: var(--primary-font);
-}

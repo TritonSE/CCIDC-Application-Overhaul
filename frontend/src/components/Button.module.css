@@ -1,13 +1,13 @@
 .button {
-  padding: 8px 16px;
+  padding: 0.5rem 1rem;
   margin: 0;
-  background: var(--primary);
+  background: var(--color-ccidc-red);
   color: #ffffff;
   border: none;
-  border-radius: 4px;
+  border-radius: 0.25rem;
   cursor: pointer;
   outline: none;
-  font-family: var(--primary-font);
-  font-size: 16px;
-  line-height: 24px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
