@@ -1,3 +1,10 @@
+import FileUploadPopupWindow from "../components/FileUploadPopupWindow.tsx";
+
 export function Candidates() {
-  return <h2>Candidates</h2>;
+  return (
+    <>
+      <h2>Candidates</h2>
+      <FileUploadPopupWindow></FileUploadPopupWindow>
+    </>
+  );
 }

@@ -1,38 +1,40 @@
 import React, { useRef, useState } from "react";
-import "./FileUploadPopupWindow.css"; // Import the CSS file
+import styles from "./FileUploadPopupWindow.module.css";
+import closeIcon from "../assets/closeIcon.svg";
+import fileUploadIcon from "../assets/fileUploadIcon.svg";
 
 const PopupWindow: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const closeButtonRef = useRef<HTMLImageElement>(null);
 
-  const togglePopup = () => {
-    setIsOpen(!isOpen);
+  const openPopup = () => {
+    setIsOpen(true);
+  };
+
+  const closePopup = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    // close if clicking outside of popup or on close button
+    if (e.target !== e.currentTarget && e.target !== closeButtonRef.current) return;
+    setIsOpen(false);
   };
 
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
-  };
-
-  const handleDragEnter = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    // Add visual indication (e.g., change background color) when a file is dragged over the area
-    e.currentTarget.classList.add("drag-over");
+    e.currentTarget.classList.add(styles.dragOver);
   };
 
   const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    // Remove the visual indication when a file leaves the area
-    e.currentTarget.classList.remove("drag-over");
+    e.currentTarget.classList.remove(styles.dragOver);
   };
 
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
     // Remove the visual indication when a file is dropped
-    e.currentTarget.classList.remove("drag-over");
+    e.currentTarget.classList.remove(styles.dragOver);
     // Access the dropped files
     const files = e.dataTransfer.files;
     console.log(files);
@@ -47,39 +49,46 @@ const PopupWindow: React.FC = () => {
 
   return (
     <div>
-      <button onClick={togglePopup}>Open Popup</button>
+      <button onClick={openPopup}>Open Popup</button>
       {isOpen && (
-        <div className="popup-window">
-          <button className="close-button" onClick={togglePopup}>
-            Close
-          </button>
-          <div className="title"> Upload Files </div>
-          <div className="subtext"> Add your relevant files here. </div>
-          <div
-            className="drag-and-drop-area"
-            onDragOver={handleDragOver}
-            onDragEnter={handleDragEnter}
-            onDragLeave={handleDragLeave}
-            onDrop={handleDrop}
-          >
-            <p> Drag and drop your files here</p>
+        <div className={styles.popupCanvas} onClick={closePopup}>
+          <div className={styles.popupWindow}>
+            <div className={styles.closeButtonContainer}>
+              <img
+                className={styles.closeButton}
+                onClick={closePopup}
+                ref={closeButtonRef}
+                src={closeIcon}
+              />
+            </div>
 
-            <p> or </p>
-
-            <p onClick={handleUploadClick} className="upload-text-button">
-              browse files
-            </p>
-
-            <input
-              type="file"
-              ref={fileInputRef}
-              style={{ display: "none" }}
-              onChange={(e) => {
-                const files = e.target.files;
-                console.log(files);
-                // Handle the file reading logic here
-              }}
-            />
+            <div className={styles.title}> Upload Files </div>
+            <div className={styles.subtext}> Add your relevant files here. </div>
+            <div
+              className={styles.dragAndDropArea}
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDrop}
+            >
+              <div className={styles.dragAndDropInstructions}>
+                <img src={fileUploadIcon} />
+                <p className={styles.subtext}> Drag and drop your files here</p>
+                <p className={styles.subtext}> or </p>
+                <p className={styles.browseFiles} onClick={handleUploadClick}>
+                  browse files
+                </p>
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  style={{ display: "none" }}
+                  onChange={(e) => {
+                    const files = e.target.files;
+                    console.log(files);
+                    // Handle the file reading logic here
+                  }}
+                />
+              </div>
+            </div>
           </div>
         </div>
       )}
