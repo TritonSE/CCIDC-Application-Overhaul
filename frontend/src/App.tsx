@@ -3,6 +3,7 @@ import { Outlet, Route, Routes } from "react-router-dom";
 import { NavBar } from "./components/index.ts";
 import { Apply, Candidates } from "./pages/index.ts";
 import UploadButtonWithPopup from "./components/ButtonForFileUploadPopup";
+import TestButton from "./components/PopupWindow.tsx";
 
 function Layout() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="apply" element={<Apply />} />
         </Route>
       </Routes>
+      <TestButton />
     </div>
   );
 }

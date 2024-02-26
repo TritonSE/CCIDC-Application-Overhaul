@@ -1,0 +1,25 @@
+.popup-window {
+  width: 536px;
+  height: 433px;
+  top: 339px;
+  left: 452px;
+  border-radius: 8px;
+  gap: 10px;
+  position: absolute;
+  background-color: #ffffff; /* Example background color */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Example box shadow */
+  /* You can add more styles as needed */
+}
+
+.drag-and-drop-area {
+  width: 476px;
+  height: 293px;
+  top: 110px;
+  left: 30px;
+  padding: 10px;
+  border-radius: 8px;
+  gap: 10px;
+  border: 2px dashed #ccc; /* Example border style for the drag and drop area */
+  position: absolute;
+  background-color: #f9f9f9; /* Example background color for the drag and drop area */
+}
