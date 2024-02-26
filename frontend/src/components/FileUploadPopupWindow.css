@@ -13,12 +13,50 @@
 .drag-and-drop-area {
   width: 476px;
   height: 293px;
-  top: 110px;
-  left: 30px;
   padding: 10px;
   border-radius: 8px;
   gap: 10px;
-  border: 2px;
-  position: absolute;
-  background-color: #f9f9f9;
+  background: #d8d8d854;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.upload-text-button {
+  font-family: Rubik;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0px;
+  text-align: center;
+  color: #428bcd;
+  text-decoration: underline;
+}
+
+.title {
+  width: 151px;
+  height: 36px;
+  top: 30px;
+  left: 192.5px;
+
+  font-family: "Rubik";
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 36px;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+.subtext {
+  width: 206px;
+  height: 24px;
+  top: 76px;
+  left: 165px;
+
+  font-family: "Rubik";
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0px;
+  text-align: center;
 }

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import "./PopupWindow.css"; // Import the CSS file
+import "./FileUploadPopupWindow.css"; // Import the CSS file
 
 const PopupWindow: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -53,6 +53,8 @@ const PopupWindow: React.FC = () => {
           <button className="close-button" onClick={togglePopup}>
             Close
           </button>
+          <div className="title"> Upload Files </div>
+          <div className="subtext"> Add your relevant files here. </div>
           <div
             className="drag-and-drop-area"
             onDragOver={handleDragOver}
@@ -60,9 +62,14 @@ const PopupWindow: React.FC = () => {
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
           >
-            <p onClick={handleUploadClick} className="upload-text">
-              Upload files
+            <p> Drag and drop your files here</p>
+
+            <p> or </p>
+
+            <p onClick={handleUploadClick} className="upload-text-button">
+              browse files
             </p>
+
             <input
               type="file"
               ref={fileInputRef}
