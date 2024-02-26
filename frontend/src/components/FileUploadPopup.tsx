@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
-import Modal from "react-modal";
 import axios from "axios";
 
-const FileUploadPopup = ({}) => {
-  // Use an array of File objects instead of FileList
+const FileUploadPopup = () => {
   const [files, setFiles] = useState<File[]>([]);
   // Track upload status and error messages
   const [status, setStatus] = useState<"initial" | "uploading" | "success" | "fail">("initial");
@@ -16,7 +14,7 @@ const FileUploadPopup = ({}) => {
       setFiles(acceptedFiles);
     },
   });
-  // Handle upload button click
+
   const handleUpload = async () => {
     // Check if files are selected
     if (files.length === 0) {
@@ -33,7 +31,6 @@ const FileUploadPopup = ({}) => {
     });
 
     try {
-      // Use axios for API call
       const result = await axios.post("YOUR_API_ENDPOINT", formData, {
         onUploadProgress: (progressEvent) => {
           // Update progress bar here
@@ -47,19 +44,18 @@ const FileUploadPopup = ({}) => {
       setError("Upload failed. Please try again.");
       setStatus("fail");
     } finally {
-      // Reset files and error state after upload
+      setFiles([]);
+      setError(null);
     }
   };
 
   return (
     <div>
-      {/* Use react-dropzone props for dropzone area */}
       <div {...getRootProps({ className: "dropzone" })}>
         <input {...getInputProps()} />
         <p>Drag & drop files here, or click to browse.</p>
       </div>
 
-      {/* Show selected files list if any */}
       {files.length > 0 && (
         <>
           <h3>Selected files:</h3>
@@ -76,7 +72,6 @@ const FileUploadPopup = ({}) => {
         </>
       )}
 
-      {/* Display status messages based on upload status */}
       {status === "uploading" && <p>Uploading files...</p>}
       {status === "success" && <p>✅ Uploaded successfully!</p>}
       {status === "fail" && <p>❌ {error || "Upload failed. Please try again."}</p>}
