@@ -20,9 +20,10 @@
   width: 536px;
   height: 433px;
   padding: 2rem;
+
   background-color: var(--color-background);
   border-radius: 0.5rem;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.28);
   font-family: var(--font-body);
   font: var(--font-body);
 }
@@ -70,7 +71,16 @@
 }
 
 .title {
-  font: var(--font-heading);
+  color: #000;
+
+  text-align: center;
+  /* Title/Small */
+  font-family: Rubik;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 36px */
+  letter-spacing: 0.48px;
 }
 
 .subtext {

@@ -3,7 +3,10 @@ import styles from "./FileUploadPopupWindow.module.css";
 import closeIcon from "../assets/closeIcon.svg";
 import fileUploadIcon from "../assets/fileUploadIcon.svg";
 
-const PopupWindow: React.FC = () => {
+interface FileUploadPopupWindowProps {
+  buttonText: string; // Define prop for button text
+}
+const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonText }) => {
   const [isOpen, setIsOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const closeButtonRef = useRef<HTMLImageElement>(null);
@@ -49,7 +52,7 @@ const PopupWindow: React.FC = () => {
 
   return (
     <div>
-      <button onClick={openPopup}>Open Popup</button>
+      <button onClick={openPopup}>{buttonText}</button>
       {isOpen && (
         <div className={styles.popupCanvas} onClick={closePopup}>
           <div className={styles.popupWindow}>
@@ -95,4 +98,4 @@ const PopupWindow: React.FC = () => {
     </div>
   );
 };
-export default PopupWindow;
+export default FileUploadPopupWindow;
