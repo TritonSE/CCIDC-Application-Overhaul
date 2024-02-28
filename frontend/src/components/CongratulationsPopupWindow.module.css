@@ -90,3 +90,8 @@
 .boldText {
   font-weight: 700;
 }
+
+.uploaded-files-container {
+  display: flex;
+  align-items: center; /* Aligns vertically */
+}

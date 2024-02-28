@@ -113,6 +113,16 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTex
           </div>
         </div>
       )}
+      <div className="uploaded-files-container">
+        <div>Uploaded: </div>
+        {selectedFiles.length > 0 && (
+          <ul className={styles.fileList}>
+            {selectedFiles.map((file) => (
+              <li key={file.name}>{file.name}</li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 };
