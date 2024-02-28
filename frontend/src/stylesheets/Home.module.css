@@ -97,6 +97,20 @@ img {
   text-align: center;
 }
 
+#c1 {
+  margin-top: 2rem;
+}
+
+#c2 {
+  position: relative;
+  bottom: 1.2rem;
+  right: 0.5rem; /* Centers image 2 caption appropriately */
+}
+
+#c3 {
+  margin-top: 1.5rem;
+}
+
 /* Pathways */
 
 h3 {
@@ -146,6 +160,8 @@ h3 {
   flex-wrap: wrap;
   flex-direction: column;
   row-gap: 0.8rem;
+  margin-top: 1.5rem;
+  flex-grow: 1;
 }
 
 .faqBar {
@@ -166,11 +182,11 @@ h3 {
 }
 
 .infoTitle {
-  width: 1248px;
-  height: 56px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .infoTitle h2 {
@@ -183,6 +199,15 @@ h3 {
   height: 1px;
   background-color: #d8d8d8;
 }
+
+#answerList {
+  line-height: 1.5;
+}
+
+#pathwaysFAQ {
+  margin-top: 2.5rem;
+}
+/* Exapnd All Component */
 
 .expand {
   display: flex;
@@ -203,6 +228,8 @@ h3 {
   justify-content: center;
   align-items: center;
 }
+
+/* Footer content */
 
 .footer {
   display: flex;
@@ -227,12 +254,13 @@ a {
   margin-bottom: 12.5px;
 }
 
+.lightBlue {
+  color: rgba(66, 139, 205, 1);
+}
+
+/* General Styling */
 button {
   border: none;
   background-color: transparent;
   outline: none;
-}
-
-.lightBlue {
-  color: rgba(66, 139, 205, 1);
 }

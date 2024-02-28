@@ -11,14 +11,13 @@ export type AccordionProps = {
 };
 
 export const Accordion: FC<AccordionProps> = ({ title, children, toggleAll }) => {
-  // const [expandAllCertificationInfo, setExpandAllCertificationInfo] = useState(false);
   const [toggle, setIsOpen] = useState(toggleAll);
   const [height, setHeight] = useState(toggleAll || toggle ? "auto" : "0px");
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (contentRef.current) {
-      setHeight(toggle || toggleAll ? `${contentRef.current.scrollHeight}px` : "0px");
+      setHeight(toggle ? `${contentRef.current.scrollHeight}px` : "0px");
     }
   }, [toggle, toggleAll]);
 
@@ -27,28 +26,22 @@ export const Accordion: FC<AccordionProps> = ({ title, children, toggleAll }) =>
   }, [toggleAll]);
 
   const toggleAccordion = () => {
-    // if (toggleAll) {
-    //   setIsOpen(!toggleAll);
-    //   setExpandAllCertificationInfo(!expandAllCertificationInfo);
-    // } else {
-    //   setIsOpen(!toggle);
-    // }
     setIsOpen(!toggle);
   };
 
   return (
     <>
       <div className={styles.faqBar} onClick={toggleAccordion}>
-        <span style={{ fontWeight: 600 }}>{title}</span>
+        <span style={{ fontWeight: 600, marginTop: 10 }}>{title}</span>
         <button onClick={toggleAccordion} style={{ marginLeft: "auto" }}>
           <img alt="" src={toggle ? unselectFAQ : selectFAQ} />
         </button>
       </div>
       <div style={{ height }} ref={contentRef}>
-        {(toggle || toggleAll) && children}
+        {toggle && children}
       </div>
       <hr
-        style={{ border: "1px solid #d8d8d8", boxShadow: "20px 2px 4px rgba(0, 0, 0, 0.1)" }}
+        style={{ border: "1px solid #d8d8d8", boxShadow: "0px 3px 4px 0px rgba(0, 0, 0, 0.15)" }}
       ></hr>
     </>
   );

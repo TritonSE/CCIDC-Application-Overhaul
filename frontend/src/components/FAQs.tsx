@@ -1,4 +1,5 @@
 import plusIcon from "../assets/plusIcon.svg";
+import minusIcon from "../assets/minusIcon.svg";
 import { Accordion } from "../components/index.ts";
 import styles from "../stylesheets/Home.module.css";
 
@@ -29,13 +30,16 @@ export function FAQs() {
               {expandAllCertificationInfo ? "Collapse" : "Expand All"}
             </span>
             <div className={styles.expandAllPlus}>
-              <img src={plusIcon} style={{ height: "14px", width: "14px" }}></img>
+              <img
+                src={expandAllCertificationInfo ? minusIcon : plusIcon}
+                style={{ height: "14px", width: "14px" }}
+              ></img>
             </div>
             {expandAllCertificationInfo}
           </button>
         </div>
         <hr
-          style={{ border: "1px solid #d8d8d8", boxShadow: "20px 2px 4px rgba(0, 0, 0, 0.1)" }}
+          style={{ border: "1px solid #d8d8d8", boxShadow: "0px 3px 4px 0px rgba(0, 0, 0, 0.15)" }}
         ></hr>
         <Accordion title="Why should I become a CID?" toggleAll={expandAllCertificationInfo}>
           <p>
@@ -57,7 +61,7 @@ export function FAQs() {
             tailored to the California Building COde (CBC) or Title 24 is mandatory. Applicants
             should check the different pathways to ensure they meet CID requirements.
           </p>
-          <ol className={styles.olist}>
+          <ol className={styles.olist} id={styles.answerList}>
             <li>Complete Online Application</li>
             <li>Sign Code of Ethics</li>
             <li>Provide Proof of Education</li>
@@ -97,7 +101,7 @@ export function FAQs() {
         </Accordion>
         <Accordion title="When do I become CID" toggleAll={expandAllCertificationInfo}>
           <p>Candidates are certified once the following have been completed:</p>
-          <ol style={{ marginLeft: 20 }}>
+          <ol style={{ marginLeft: 20, lineHeight: 1.5 }}>
             <li>Bi-annual certification fees have been paid</li>
             <li>Certifcation number has been assigned</li>
             <li>
@@ -136,7 +140,7 @@ export function FAQs() {
           title="How will I be identified as a CID?"
           toggleAll={expandAllCertificationInfo}
         >
-          <ol type="a" style={{ marginLeft: 35 }}>
+          <ol type="a" style={{ marginLeft: 35, lineHeight: 1.5 }}>
             <li>
               Each CID should affix a stamp or wet signature to all drawings, speicifations, or
               documents prepared for submission. All documents should be presented as interior
@@ -163,20 +167,26 @@ export function FAQs() {
             </a>
           </p>
         </Accordion>
-        <div className={styles.infoTitle}>
+        <div className={styles.infoTitle} id={styles.pathwaysFAQ}>
           <h2 className={styles.red}>Pathways Information</h2>
           <button className={styles.expand} onClick={toggleExpandAllPathwaysInfo}>
             <span style={{ marginLeft: 20 }}>
               {expandAllPathwaysInfo ? "Collapse" : "Expand All"}
             </span>
             <div className={styles.expandAllPlus}>
-              <img src={plusIcon} style={{ height: "14px", width: "14px" }}></img>
+              <img
+                src={expandAllPathwaysInfo ? minusIcon : plusIcon}
+                style={{ height: "14px", width: "14px" }}
+              ></img>
             </div>
             {expandAllCertificationInfo}
           </button>
         </div>
         <hr
-          style={{ border: "1px solid #d8d8d8", boxShadow: "20px 2px 4px rgba(0, 0, 0, 0.1)" }}
+          style={{
+            border: "1px solid #d8d8d8",
+            boxShadow: "0px 3px 4px 0px rgba(0, 0, 0, 0.15)",
+          }}
         ></hr>
 
         <Accordion
@@ -262,7 +272,7 @@ export function FAQs() {
           </ol>
         </Accordion>
         <Accordion title="Can international candidates apply?" toggleAll={expandAllPathwaysInfo}>
-          <ol type="a" style={{ marginLeft: 45 }}>
+          <ol type="a" style={{ marginLeft: 45, lineHeight: 1.5 }}>
             <li>
               All candidates who meet the qualifications are encouraged to become certified, as long
               as they provide

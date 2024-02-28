@@ -28,15 +28,21 @@ export function Home() {
       <div className={styles.imgs}>
         <div className={styles.imgCaption}>
           <img alt="certificate" className={styles.cert} src={certificate} />
-          <p className={styles.caption}>CCIDC Certificate & Indentification Number</p>
+          <p className={styles.caption} id={styles.c1}>
+            CCIDC Certificate & Indentification Number
+          </p>
         </div>
         <div className={styles.imgCaption}>
           <img alt="stamp" src={stamp} />
-          <p className={styles.caption}>Individual Stamp</p>
+          <p className={styles.caption} id={styles.c2}>
+            Individual Stamp
+          </p>
         </div>
         <div className={styles.imgCaption}>
           <img alt="id card" src={idcard} />
-          <p className={styles.caption}>Identification Card (ID)</p>
+          <p className={styles.caption} id={styles.c3}>
+            Identification Card (ID)
+          </p>
         </div>
       </div>
       <p>
