@@ -34,4 +34,4 @@ router.patch("/update/:id", (req: Request<UpdateParams>, res: Response) => {
   res.json({ message: "update hit" });
 });
 
-module.exports = router;
+export default router;

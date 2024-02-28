@@ -1,8 +1,9 @@
-const express = require("express");
+import express from "express";
 
-const fileRoutes = require("./src/routes/fileRoutes.ts");
+import fileRoutes from "./src/routes/fileRoutes";
+// const fileRoutes = require("./src/routes/fileRoutes.ts");
 
-const PORT: string | number = process.env.PORT || 3001;
+const PORT: string | number = process.env.PORT ?? 3001;
 
 const app = express();
 
