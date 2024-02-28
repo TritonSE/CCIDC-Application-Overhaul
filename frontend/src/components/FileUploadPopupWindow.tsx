@@ -10,6 +10,7 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTex
   const [isOpen, setIsOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const closeButtonRef = useRef<HTMLImageElement>(null);
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
 
   const openPopup = () => {
     setIsOpen(true);
@@ -40,8 +41,28 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTex
     e.currentTarget.classList.remove(styles.dragOver);
     // Access the dropped files
     const files = e.dataTransfer.files;
-    console.log(files);
+
+    // Limit the number of selected files to 10
+    const filesToUpload = [...selectedFiles].slice(0, 10);
+    filesToUpload.push(...files);
+    setSelectedFiles(filesToUpload.slice(0, 10));
+
+    console.log(filesToUpload);
     // Handle the file reading logic here
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+
+    if (files) {
+      // Limit the number of selected files to 10
+      const filesToUpload = [...selectedFiles].slice(0, 10);
+      filesToUpload.push(...files);
+      setSelectedFiles(filesToUpload.slice(0, 10));
+
+      console.log(filesToUpload);
+      // Handle the file reading logic here
+    }
   };
 
   const handleUploadClick = () => {
@@ -84,11 +105,8 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTex
                   type="file"
                   ref={fileInputRef}
                   style={{ display: "none" }}
-                  onChange={(e) => {
-                    const files = e.target.files;
-                    console.log(files);
-                    // Handle the file reading logic here
-                  }}
+                  multiple
+                  onChange={handleChange}
                 />
               </div>
             </div>
