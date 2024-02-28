@@ -29,7 +29,7 @@ const CongratulationsPopupWindow: React.FC<CongratulationsPopupWindowProps> = ({
 
   return (
     <div>
-      <button onClick={openPopup}>{buttonText}</button>
+      <Button onClick={openPopup}>{buttonText}</Button>
       {isOpen && (
         <div className={styles.popupCanvas} onClick={closePopup}>
           <div className={styles.popupWindow}>
