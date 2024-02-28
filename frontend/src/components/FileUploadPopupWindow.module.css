@@ -96,3 +96,8 @@
 .browseFiles:hover {
   cursor: pointer;
 }
+
+.uploaded-files-container {
+  display: flex;
+  align-items: center; /* Aligns vertically */
+}
