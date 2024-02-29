@@ -5,6 +5,7 @@
   --color-background: var(--color-ccidc-white);
   --font-nav: "Roboto", sans-serif;
   --font-body: normal 400 1rem "Rubik", sans-serif;
+  --font-title-medium: 700 1.75rem "Rubik";
 }
 
 body {
