@@ -6,7 +6,40 @@ import {
 
 import styles from "./PathwayTimeline.module.css";
 
-type PathwayProps = { progress: 0 | 1 | 2 | 3 | 4 | 5};
+type TimelinePointProps = {
+  completed: boolean;
+  inProgress: boolean;
+  children: string;
+};
+function TimelinePoint(props: TimelinePointProps) {
+  const { completed, inProgress, children } = props;
+
+  const uncompleted = !completed && !inProgress;
+  const iconSrc = completed
+    ? timelinePointCompleted
+    : inProgress
+      ? timelinePointInProgress
+      : timelinePointUncompleted;
+
+  return (
+    <div className={styles.timelinePoint}>
+      <div className={styles.timelinePointIcon}>
+        <img
+          className={uncompleted ? styles.uncompleted : ""}
+          src={iconSrc}
+          alt="timeline point"
+        ></img>
+      </div>
+      <div
+        className={styles.timelinePointDescription + " " + (uncompleted ? styles.uncompleted : "")}
+      >
+        {children}
+      </div>
+    </div>
+  );
+}
+
+type PathwayProps = { progress: 0 | 1 | 2 | 3 | 4 | 5 };
 export function PathwayTimeline(props: PathwayProps) {
   const { progress } = props;
 
@@ -37,39 +70,6 @@ export function PathwayTimeline(props: PathwayProps) {
           </TimelinePoint>
           <hr className={styles.timelineLine} />
         </div>
-      </div>
-    </div>
-  );
-}
-
-type TimelinePointProps = {
-  completed: boolean;
-  inProgress: boolean;
-  children: string;
-};
-function TimelinePoint(props: TimelinePointProps) {
-  const { completed, inProgress, children } = props;
-
-  const uncompleted = !completed && !inProgress;
-  const iconSrc = completed
-    ? timelinePointCompleted
-    : inProgress
-      ? timelinePointInProgress
-      : timelinePointUncompleted;
-
-  return (
-    <div className={styles.timelinePoint}>
-      <div className={styles.timelinePointIcon}>
-        <img
-          className={uncompleted ? styles.uncompleted : ""}
-          src={iconSrc}
-          alt="timeline point"
-        ></img>
-      </div>
-      <div
-        className={styles.timelinePointDescription + " " + (uncompleted ? styles.uncompleted : "")}
-      >
-        {children}
       </div>
     </div>
   );
