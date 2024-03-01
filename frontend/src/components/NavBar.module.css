@@ -1,0 +1,66 @@
+.navBar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  z-index: 5;
+  background-color: var(--color-background);
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.15);
+  font-size: 1rem;
+  font-family: var(--font-nav);
+}
+
+.navContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1.5rem 3rem;
+}
+
+.logo:hover {
+  cursor: pointer;
+}
+
+.navContent * {
+  height: fit-content;
+  white-space: nowrap;
+  align-items: center;
+}
+
+.navigation *:hover {
+  cursor: pointer;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.navigation {
+  display: flex;
+  gap: 3rem;
+}
+
+.navigation .legacyLink {
+  text-decoration: none;
+  color: var(--color-text-primary);
+}
+
+.navLink {
+  text-decoration: none;
+  color: var(--color-text-primary);
+}
+
+.active {
+  text-decoration: underline;
+  text-underline-offset: 0.5rem;
+  text-decoration-thickness: 0.125rem;
+  text-decoration-color: var(--color-ccidc-red);
+}
+
+.navIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
