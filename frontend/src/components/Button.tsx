@@ -1,5 +1,6 @@
-import styles from "./Button.module.css";
 import { MouseEventHandler } from "react"; // Import MouseEventHandler
+
+import styles from "./Button.module.css";
 
 export function Button(props: {
   onClick: MouseEventHandler<HTMLButtonElement> | undefined;

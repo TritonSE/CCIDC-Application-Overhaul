@@ -29,30 +29,33 @@
 }
 
 .closeButtonContainer {
-  width: 100%;
+  width: fit-content;
   height: fit-content;
   display: flex;
   justify-content: flex-end;
-}
-
-.closeButton {
-  all: unset;
+  margin-left: auto;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 .closeButton:hover {
   cursor: pointer;
 }
 
+.checkMark {
+  margin-bottom: 2px;
+}
+
 .title {
   color: #000;
 
   text-align: center;
-  /* Title/Small */
   font-family: Rubik;
   font-size: 24px;
   font-style: normal;
   font-weight: 700;
-  line-height: 150%; /* 36px */
+  line-height: 150%;
   letter-spacing: 0.48px;
 }
 
@@ -64,7 +67,7 @@
   font-size: 32px;
   font-style: normal;
   font-weight: 700;
-
+  margin-bottom: 20px;
   letter-spacing: 0.64px;
 }
 
@@ -77,6 +80,13 @@
 
 .centeredText {
   text-align: center;
+}
+.reviewText {
+  width: 596px;
+  font: var(--font-body);
+  color: var(--color-text-neutral-grey);
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 .boldText {
