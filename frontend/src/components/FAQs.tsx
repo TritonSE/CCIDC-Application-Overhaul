@@ -1,9 +1,9 @@
-import plusIcon from "../assets/plusIcon.svg";
+import { useState } from "react";
+
 import minusIcon from "../assets/minusIcon.svg";
+import plusIcon from "../assets/plusIcon.svg";
 import { Accordion } from "../components/index.ts";
 import styles from "../stylesheets/Home.module.css";
-
-import { useState } from "react";
 
 export function FAQs() {
   const [expandAllCertificationInfo, setExpandAllCertificationInfo] = useState(false);
@@ -19,7 +19,7 @@ export function FAQs() {
   return (
     <>
       <div className={styles.textDivider2}>
-        <div className={styles.heading}>FAQ's</div>
+        <div className={styles.heading}>FAQ&apos;s</div>
       </div>
 
       <div className={styles.FaqsContainer}>
@@ -33,6 +33,7 @@ export function FAQs() {
               <img
                 src={expandAllCertificationInfo ? minusIcon : plusIcon}
                 style={{ height: "14px", width: "14px" }}
+                alt={expandAllCertificationInfo ? "1" : "+"}
               ></img>
             </div>
             {expandAllCertificationInfo}
@@ -66,7 +67,7 @@ export function FAQs() {
             <li>Sign Code of Ethics</li>
             <li>Provide Proof of Education</li>
             <li>Provide Proof of Diversified interior design experience</li>
-            <li>Provide a Photocopy of driver's license</li>
+            <li>Provide a Photocopy of driver&apos;s license</li>
             <li>
               Pay with credit card or check to CCIDC for the: one-time-non-refundable application
               and processing fee. IDEX® California Exam fee, and testing center fee.
@@ -127,7 +128,7 @@ export function FAQs() {
             Total Fees with application (Includes Application Fee + IDEX Exam Fee + Testing Center
             Fee)*:<br></br>Path 1 & Path 2: $700 Total* <br></br>Path 3 & Path 4: $600 Total*{" "}
             <br></br>Total Bi-annual Certification Fees<br></br> Due after passing exam and
-            compliance approval: <br></br> All candidates $275-300ed title for interior designers in
+            compliance approval:<br></br> All candidates $275-300ed title for interior designers in
             California. CIDs demonstrate their education, experience, and examination expertise in
             California, reducing legal risks and boosting client confidence. They are accredited for
             professionalism, mandated to adhere to the{" "}
@@ -156,8 +157,8 @@ export function FAQs() {
           <p>
             The IDEX® California is a certification exam designed for Calfornia, focusing on the
             California Building Code (CBC), Title 24, ethics, buisness practices, and design
-            standards. The examination evaluates designers' competence in various areas, including
-            Commercial and Residential California Codes and Regulations, Design Synthesis,
+            standards. The examination evaluates designers&apos; competence in various areas,
+            including Commercial and Residential California Codes and Regulations, Design Synthesis,
             Schematics, Programming, Space Planning, Design Development, Working Drawings,
             Construction documents, Furniture and finish specifications, Lighting layout and
             specifications, Contract documents, Contract administration, Buisness law, and Ethics.
@@ -177,6 +178,7 @@ export function FAQs() {
               <img
                 src={expandAllPathwaysInfo ? minusIcon : plusIcon}
                 style={{ height: "14px", width: "14px" }}
+                alt={expandAllPathwaysInfo ? "-" : "+"}
               ></img>
             </div>
             {expandAllCertificationInfo}
@@ -227,7 +229,7 @@ export function FAQs() {
           title="I do not have a degree, will I qualify?"
           toggleAll={expandAllPathwaysInfo}
         >
-          <p>Total core units determine eligibility, degree completion is NOT required. </p>
+          <p>Total core units determine eligibility, degree completion is NOT required.</p>
         </Accordion>
         <Accordion title="How much education do I need?" toggleAll={expandAllPathwaysInfo}>
           <p>

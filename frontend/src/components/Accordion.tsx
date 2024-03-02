@@ -31,7 +31,7 @@ export const Accordion: FC<AccordionProps> = ({ title, children, toggleAll }) =>
 
   return (
     <>
-      <div className={styles.faqBar} onClick={toggleAccordion}>
+      <div className={styles.faqBar}>
         <span style={{ fontWeight: 600, marginTop: 10 }}>{title}</span>
         <button onClick={toggleAccordion} style={{ marginLeft: "auto" }}>
           <img alt="" src={toggle ? unselectFAQ : selectFAQ} />

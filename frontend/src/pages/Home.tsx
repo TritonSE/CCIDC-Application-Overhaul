@@ -1,9 +1,9 @@
+import tseLogo from "../assets/TSE logo vector.svg";
 import certificate from "../assets/certifcate.svg";
 import homeCover from "../assets/home_cover.svg";
 import idcard from "../assets/idcard.svg";
 import stamp from "../assets/stamp.svg";
-import tseLogo from "../assets/TSE logo vector.svg";
-import { Button, Page, Pathway, FAQs } from "../components/index.ts";
+import { Button, FAQs, Page, Pathway } from "../components/index.ts";
 import styles from "../stylesheets/Home.module.css";
 
 export function Home() {
@@ -111,7 +111,7 @@ export function Home() {
 
       <footer className={styles.footer}>
         <div className={styles.tseLogo}>
-          <img src={tseLogo} style={{ width: "32px", height: "32px" }}></img>
+          <img src={tseLogo} style={{ width: "32px", height: "32px" }} alt="TSE Logo"></img>
         </div>
         <div className={styles.footerContent}>
           <p>
