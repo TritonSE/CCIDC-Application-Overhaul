@@ -2,7 +2,7 @@ import { FC, ReactNode, useEffect, useRef, useState } from "react";
 
 import selectFAQ from "../assets/selectFAQ.svg";
 import unselectFAQ from "../assets/unselectFAQ.svg";
-import styles from "../stylesheets/Home.module.css";
+import styles from "./FAQ.module.css";
 
 export type AccordionProps = {
   title: string;

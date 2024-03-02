@@ -153,82 +153,6 @@ h3 {
   line-height: 1.5em;
 }
 
-/* FAQ's Title, Contianer, and Components */
-
-.FaqsContainer {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  row-gap: 0.8rem;
-  margin-top: 1.5rem;
-  flex-grow: 1;
-}
-
-.faqBar {
-  display: flex;
-  flex-direction: row;
-  column-gap: 0.7rem;
-  align-items: center;
-}
-
-.faqTitle {
-  width: 1248px;
-  height: 65px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  --text-divider-gap: 1rem;
-  font-size: 28px;
-}
-
-.infoTitle {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.infoTitle h2 {
-  align-self: center;
-  margin-top: 0em;
-}
-
-.line {
-  content: "";
-  height: 1px;
-  background-color: #d8d8d8;
-}
-
-#answerList {
-  line-height: 1.5;
-}
-
-#pathwaysFAQ {
-  margin-top: 2.5rem;
-}
-/* Exapnd All Component */
-
-.expand {
-  display: flex;
-  width: 145px;
-  height: hug(40px);
-  padding: 8px, 48px, 8px, 16px;
-  border-radius: 4px;
-  border: 1px solid rgba(0, 0, 0, 1);
-  justify-content: center;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.expandAllPlus {
-  display: flex;
-  height: 40px;
-  width: 40px;
-  justify-content: center;
-  align-items: center;
-}
-
 /* Footer content */
 
 .footer {
@@ -256,11 +180,4 @@ a {
 
 .lightBlue {
   color: rgba(66, 139, 205, 1);
-}
-
-/* General Styling */
-button {
-  border: none;
-  background-color: transparent;
-  outline: none;
 }

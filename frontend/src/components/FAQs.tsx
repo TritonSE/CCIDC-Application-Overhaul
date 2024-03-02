@@ -3,7 +3,7 @@ import { useState } from "react";
 import minusIcon from "../assets/minusIcon.svg";
 import plusIcon from "../assets/plusIcon.svg";
 import { Accordion } from "../components/index.ts";
-import styles from "../stylesheets/Home.module.css";
+import styles from "./FAQ.module.css";
 
 export function FAQs() {
   const [expandAllCertificationInfo, setExpandAllCertificationInfo] = useState(false);
@@ -24,24 +24,18 @@ export function FAQs() {
 
       <div className={styles.FaqsContainer}>
         <div className={styles.infoTitle}>
-          <h2 className={styles.red}>Certification Information</h2>
+          <h3 className={styles.red}>Certification Information</h3>
           <button className={styles.expand} onClick={toggleExpandAllCertificationInfo}>
-            <span style={{ marginLeft: 20 }}>
+            <span className={styles.leftSpace}>
               {expandAllCertificationInfo ? "Collapse" : "Expand All"}
             </span>
-            <div className={styles.expandAllPlus}>
-              <img
-                src={expandAllCertificationInfo ? minusIcon : plusIcon}
-                style={{ height: "14px", width: "14px" }}
-                alt={expandAllCertificationInfo ? "1" : "+"}
-              ></img>
-            </div>
-            {expandAllCertificationInfo}
+            <img
+              src={expandAllCertificationInfo ? minusIcon : plusIcon}
+              alt={expandAllCertificationInfo ? "1" : "+"}
+            ></img>
           </button>
         </div>
-        <hr
-          style={{ border: "1px solid #d8d8d8", boxShadow: "0px 3px 4px 0px rgba(0, 0, 0, 0.15)" }}
-        ></hr>
+        <hr className={styles.lineShadow}></hr>
         <Accordion title="Why should I become a CID?" toggleAll={expandAllCertificationInfo}>
           <p>
             Certified Interior Designer (CID) is the exclusive legally recognized title for interior
@@ -59,14 +53,15 @@ export function FAQs() {
         >
           <p>
             To become a Certified Interior Designer (CID) in California, passing the IDEX@ Exam
-            tailored to the California Building COde (CBC) or Title 24 is mandatory. Applicants
-            should check the different pathways to ensure they meet CID requirements.
+            tailored to the California Building Code (CBC) or Title 24 is mandatory. Applicants
+            should check the different pathways to ensure they meet CID requirements. Overall,
+            applicants should:
           </p>
-          <ol className={styles.olist} id={styles.answerList}>
+          <ol className={styles.olist}>
             <li>Complete Online Application</li>
             <li>Sign Code of Ethics</li>
             <li>Provide Proof of Education</li>
-            <li>Provide Proof of Diversified interior design experience</li>
+            <li>Provide Proof of diversified interior design experience</li>
             <li>Provide a Photocopy of driver&apos;s license</li>
             <li>
               Pay with credit card or check to CCIDC for the: one-time-non-refundable application
@@ -84,10 +79,10 @@ export function FAQs() {
             <a href="https://ccidc.org/wp-login.php">
               <span className={styles.lightBlue}>login</span>
             </a>{" "}
-            to your portal for status updates after you submitted your application
+            to your portal for status updates after you submitted your application.
           </p>
         </Accordion>
-        <Accordion title="Who can refer themselves as CID" toggleAll={expandAllCertificationInfo}>
+        <Accordion title="Who can refer themselves as CID?" toggleAll={expandAllCertificationInfo}>
           {" "}
           <p>
             Only individuals who have fulfilled education, experience, and exam requirements and
@@ -96,25 +91,23 @@ export function FAQs() {
             &#34;unfair buisness practice&#34; under B&P Code Section 17200 for anyone to claim this
             designation without complying with{" "}
             <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=5800.&lawCode=BPC">
-              <span className={styles.lightBlue}>Section 5800.</span>
+              <span className={styles.lightBlue}>Section 5800</span>.
             </a>
           </p>
         </Accordion>
-        <Accordion title="When do I become CID" toggleAll={expandAllCertificationInfo}>
+        <Accordion title="When do I become CID?" toggleAll={expandAllCertificationInfo}>
           <p>Candidates are certified once the following have been completed:</p>
-          <ol style={{ marginLeft: 20, lineHeight: 1.5 }}>
+          <ol id={styles.indent}>
             <li>Bi-annual certification fees have been paid</li>
             <li>Certifcation number has been assigned</li>
-            <li>
-              Upon completion, CIDs will be mailed:
-              <ol type="a" style={{ marginLeft: 20 }}>
-                <li>Cid information Binder</li>
-                <li>CID Certificate</li>
-                <li>Verification Letter with CID #</li>
-                <li>CID ID-Card</li>
-                <li>Rubber or Degital Stamp (Only if order, approximately 8-12 weeks later)</li>
-              </ol>
-            </li>
+          </ol>
+          Upon completion, CIDs will be mailed:
+          <ol type="a" className={styles.leftSpace} id={styles.doubleIndent}>
+            <li>Cid information Binder</li>
+            <li>CID Certificate</li>
+            <li>Verification Letter with CID #</li>
+            <li>CID ID-Card</li>
+            <li>Rubber or Degital Stamp (Only if order, approximately 8-12 weeks later)</li>
           </ol>
         </Accordion>
         <Accordion
@@ -141,27 +134,22 @@ export function FAQs() {
           title="How will I be identified as a CID?"
           toggleAll={expandAllCertificationInfo}
         >
-          <ol type="a" style={{ marginLeft: 35, lineHeight: 1.5 }}>
-            <li>
-              Each CID should affix a stamp or wet signature to all drawings, speicifations, or
-              documents prepared for submission. All documents should be presented as interior
-              design documents. <span style={{ fontWeight: "bold" }}>NOT </span> architectural or
-              egineering ones.
-            </li>
-          </ol>
+          Each CID should affix a stamp or wet signature to all drawings, specifications, or
+          documents prepared for submission. All documents should be presented as interior design
+          documents, <strong>NOT</strong> architectural or egineering ones.
         </Accordion>
         <Accordion
-          title="How do I sign up for the next IDEX Exam"
+          title="How do I sign up for the next IDEX Exam?"
           toggleAll={expandAllCertificationInfo}
         >
           <p>
-            The IDEX® California is a certification exam designed for Calfornia, focusing on the
-            California Building Code (CBC), Title 24, ethics, buisness practices, and design
-            standards. The examination evaluates designers&apos; competence in various areas,
-            including Commercial and Residential California Codes and Regulations, Design Synthesis,
+            The IDEX® California is a certification exam designed for California, focusing on the
+            California Building Code (CBC), Title 24, ethics, business practices, and design
+            standards. The examination evaluates designers' competence in various areas, including
+            Commercial and Residential California Codes and Regulations, Design Synthesis,
             Schematics, Programming, Space Planning, Design Development, Working Drawings,
             Construction documents, Furniture and finish specifications, Lighting layout and
-            specifications, Contract documents, Contract administration, Buisness law, and Ethics.
+            specifications, Contract documents, Contract administration, Business law, and Ethics.
             Please refer to this website for more information about the exam and to{" "}
             <a href="https://www.idexprep.com/exam.html">
               <span className={styles.lightBlue}>sign up</span>.
@@ -169,27 +157,18 @@ export function FAQs() {
           </p>
         </Accordion>
         <div className={styles.infoTitle} id={styles.pathwaysFAQ}>
-          <h2 className={styles.red}>Pathways Information</h2>
+          <h3 className={styles.red}>Pathways Information</h3>
           <button className={styles.expand} onClick={toggleExpandAllPathwaysInfo}>
-            <span style={{ marginLeft: 20 }}>
+            <span className={styles.leftSpace}>
               {expandAllPathwaysInfo ? "Collapse" : "Expand All"}
             </span>
-            <div className={styles.expandAllPlus}>
-              <img
-                src={expandAllPathwaysInfo ? minusIcon : plusIcon}
-                style={{ height: "14px", width: "14px" }}
-                alt={expandAllPathwaysInfo ? "-" : "+"}
-              ></img>
-            </div>
-            {expandAllCertificationInfo}
+            <img
+              src={expandAllPathwaysInfo ? minusIcon : plusIcon}
+              alt={expandAllPathwaysInfo ? "-" : "+"}
+            ></img>
           </button>
         </div>
-        <hr
-          style={{
-            border: "1px solid #d8d8d8",
-            boxShadow: "0px 3px 4px 0px rgba(0, 0, 0, 0.15)",
-          }}
-        ></hr>
+        <hr className={styles.lineShadow}></hr>
 
         <Accordion
           title="How do I know which pathway is right for me?"
@@ -274,12 +253,12 @@ export function FAQs() {
           </ol>
         </Accordion>
         <Accordion title="Can international candidates apply?" toggleAll={expandAllPathwaysInfo}>
-          <ol type="a" style={{ marginLeft: 45, lineHeight: 1.5 }}>
+          <ol type="a" id={styles.indentLineHeight}>
             <li>
               All candidates who meet the qualifications are encouraged to become certified, as long
               as they provide
             </li>
-            <ol type="i" style={{ marginLeft: 25 }}>
+            <ol type="i" id={styles.indent}>
               <li>International Education from Accredited Source</li>
               <li>Accreditation by USDE International Equivalent accrediting agency</li>
               <li>Provide translated/verified transcripts</li>
