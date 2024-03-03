@@ -13,7 +13,7 @@ button {
   color: rgba(66, 139, 205, 1);
 }
 
-.olist {
+.FAQolist {
   margin-left: 1.5rem;
   line-height: 1.5;
 }
@@ -141,4 +141,8 @@ button {
 #doubleIndent {
   margin-left: 48px;
   line-height: 1.5;
+}
+
+.expandButton {
+  margin-left: auto;
 }

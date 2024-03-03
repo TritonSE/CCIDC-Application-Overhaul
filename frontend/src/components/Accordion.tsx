@@ -34,7 +34,7 @@ export const Accordion: FC<AccordionProps> = ({ question, children, toggleAll })
     <>
       <div className={styles.faqBar}>
         <span className={styles.question}>{question}</span>
-        <button onClick={toggleAccordion} style={{ marginLeft: "auto" }}>
+        <button onClick={toggleAccordion} className={styles.expandButton}>
           <img alt={toggle ? "-" : "+"} src={toggle ? unselectFAQ : selectFAQ} />
         </button>
       </div>

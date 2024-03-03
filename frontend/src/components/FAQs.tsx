@@ -1,9 +1,8 @@
 import { useState } from "react";
 
-import { Accordion } from "../components/index.ts";
-
 import minusIcon from "../assets/minusIcon.svg";
 import plusIcon from "../assets/plusIcon.svg";
+import { Accordion } from "../components/index.ts";
 
 import styles from "./FAQ.module.css";
 
@@ -59,7 +58,7 @@ export function FAQs() {
             should check the different pathways to ensure they meet CID requirements. Overall,
             applicants should:
           </p>
-          <ol className={styles.olist}>
+          <ol className={styles.FAQolist}>
             <li>Complete Online Application</li>
             <li>Sign Code of Ethics</li>
             <li>Provide Proof of Education</li>
@@ -244,7 +243,7 @@ export function FAQs() {
             <br></br>
             To submit proof of diversified design experience:
           </p>
-          <ol className={styles.olist}>
+          <ol className={styles.FAQolist}>
             <li>
               If <strong>self-employed</strong>, complete the Employment Verification Form,
               including federal tax returns or a verified letter from a CPA or Attorney for the
