@@ -111,7 +111,7 @@ export function Home() {
 
       <footer className={styles.footer}>
         <div className={styles.tseLogo}>
-          <img src={tseLogo} style={{ width: "32px", height: "32px" }} alt="TSE Logo"></img>
+          <img src={tseLogo} alt="TSE Logo"></img>
         </div>
         <div className={styles.footerContent}>
           <p>

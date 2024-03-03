@@ -173,6 +173,11 @@ a {
   width: 32px;
 }
 
+.tseLogo img {
+  height: 32px;
+  width: 32px;
+}
+
 .footerContent {
   margin-left: 5px; /* Adjust the margin as needed */
   margin-bottom: 12.5px;

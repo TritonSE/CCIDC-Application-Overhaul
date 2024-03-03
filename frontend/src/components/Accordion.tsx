@@ -40,9 +40,7 @@ export const Accordion: FC<AccordionProps> = ({ title, children, toggleAll }) =>
       <div style={{ height }} ref={contentRef}>
         {toggle && children}
       </div>
-      <hr
-        style={{ border: "1px solid #d8d8d8", boxShadow: "0px 3px 4px 0px rgba(0, 0, 0, 0.15)" }}
-      ></hr>
+      <hr className={styles.lineShadow}></hr>
     </>
   );
 };
