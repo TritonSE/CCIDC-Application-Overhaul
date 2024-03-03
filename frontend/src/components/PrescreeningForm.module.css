@@ -11,3 +11,38 @@
   text-align: center;
 }
 
+.body {
+  font: var(--font-body);
+}
+
+.question {
+  font: var(--font-heading2);
+}
+
+.centeredContainer {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 3em;
+}
+
+/* Style for the unchecked radio button */
+.radio-button {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #d9534f;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Style for the checked radio button */
+.radio-button:checked {
+  background-color: #d9534f;
+  background-clip: content-box;
+  padding: 4px;
+}
+
+
