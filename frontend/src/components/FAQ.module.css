@@ -76,6 +76,10 @@ button {
   font-size: 28px;
 }
 
+.question {
+  font-weight: 700;
+  margin-top: 10px;
+}
 .infoTitle {
   display: flex;
   align-items: center;

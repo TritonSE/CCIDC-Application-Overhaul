@@ -2,15 +2,16 @@ import { FC, ReactNode, useEffect, useRef, useState } from "react";
 
 import selectFAQ from "../assets/selectFAQ.svg";
 import unselectFAQ from "../assets/unselectFAQ.svg";
+
 import styles from "./FAQ.module.css";
 
 export type AccordionProps = {
-  title: string;
+  question: string;
   children?: ReactNode;
   toggleAll: boolean;
 };
 
-export const Accordion: FC<AccordionProps> = ({ title, children, toggleAll }) => {
+export const Accordion: FC<AccordionProps> = ({ question, children, toggleAll }) => {
   const [toggle, setIsOpen] = useState(toggleAll);
   const [height, setHeight] = useState(toggleAll || toggle ? "auto" : "0px");
   const contentRef = useRef<HTMLDivElement>(null);
@@ -32,9 +33,9 @@ export const Accordion: FC<AccordionProps> = ({ title, children, toggleAll }) =>
   return (
     <>
       <div className={styles.faqBar}>
-        <span style={{ fontWeight: 600, marginTop: 10 }}>{title}</span>
+        <span className={styles.question}>{question}</span>
         <button onClick={toggleAccordion} style={{ marginLeft: "auto" }}>
-          <img alt="" src={toggle ? unselectFAQ : selectFAQ} />
+          <img alt={toggle ? "-" : "+"} src={toggle ? unselectFAQ : selectFAQ} />
         </button>
       </div>
       <div style={{ height }} ref={contentRef}>

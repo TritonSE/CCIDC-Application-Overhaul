@@ -1,8 +1,10 @@
 import { useState } from "react";
 
+import { Accordion } from "../components/index.ts";
+
 import minusIcon from "../assets/minusIcon.svg";
 import plusIcon from "../assets/plusIcon.svg";
-import { Accordion } from "../components/index.ts";
+
 import styles from "./FAQ.module.css";
 
 export function FAQs() {
@@ -36,7 +38,7 @@ export function FAQs() {
           </button>
         </div>
         <hr className={styles.lineShadow}></hr>
-        <Accordion title="Why should I become a CID?" toggleAll={expandAllCertificationInfo}>
+        <Accordion question="Why should I become a CID?" toggleAll={expandAllCertificationInfo}>
           <p>
             Certified Interior Designer (CID) is the exclusive legally recognized title for interior
             designers in California. CIDs demonstrate their education, experience, and examination
@@ -48,7 +50,7 @@ export function FAQs() {
           </p>
         </Accordion>
         <Accordion
-          title="What are the requirements to become a CID?"
+          question="What are the requirements to become a CID?"
           toggleAll={expandAllCertificationInfo}
         >
           <p>
@@ -70,7 +72,7 @@ export function FAQs() {
           </ol>
         </Accordion>
         <Accordion
-          title="What happens after I submit my application packet?"
+          question="What happens after I submit my application packet?"
           toggleAll={expandAllCertificationInfo}
         >
           <p>
@@ -82,7 +84,10 @@ export function FAQs() {
             to your portal for status updates after you submitted your application.
           </p>
         </Accordion>
-        <Accordion title="Who can refer themselves as CID?" toggleAll={expandAllCertificationInfo}>
+        <Accordion
+          question="Who can refer themselves as CID?"
+          toggleAll={expandAllCertificationInfo}
+        >
           {" "}
           <p>
             Only individuals who have fulfilled education, experience, and exam requirements and
@@ -95,7 +100,7 @@ export function FAQs() {
             </a>
           </p>
         </Accordion>
-        <Accordion title="When do I become CID?" toggleAll={expandAllCertificationInfo}>
+        <Accordion question="When do I become CID?" toggleAll={expandAllCertificationInfo}>
           <p>Candidates are certified once the following have been completed:</p>
           <ol id={styles.indent}>
             <li>Bi-annual certification fees have been paid</li>
@@ -111,7 +116,7 @@ export function FAQs() {
           </ol>
         </Accordion>
         <Accordion
-          title="How much does it cost to be a CID?"
+          question="How much does it cost to be a CID?"
           toggleAll={expandAllCertificationInfo}
         >
           {" "}
@@ -131,7 +136,7 @@ export function FAQs() {
           </p>
         </Accordion>
         <Accordion
-          title="How will I be identified as a CID?"
+          question="How will I be identified as a CID?"
           toggleAll={expandAllCertificationInfo}
         >
           Each CID should affix a stamp or wet signature to all drawings, specifications, or
@@ -139,14 +144,14 @@ export function FAQs() {
           documents, <strong>NOT</strong> architectural or egineering ones.
         </Accordion>
         <Accordion
-          title="How do I sign up for the next IDEX Exam?"
+          question="How do I sign up for the next IDEX Exam?"
           toggleAll={expandAllCertificationInfo}
         >
           <p>
             The IDEX® California is a certification exam designed for California, focusing on the
             California Building Code (CBC), Title 24, ethics, business practices, and design
-            standards. The examination evaluates designers' competence in various areas, including
-            Commercial and Residential California Codes and Regulations, Design Synthesis,
+            standards. The examination evaluates designers&apos; competence in various areas,
+            including Commercial and Residential California Codes and Regulations, Design Synthesis,
             Schematics, Programming, Space Planning, Design Development, Working Drawings,
             Construction documents, Furniture and finish specifications, Lighting layout and
             specifications, Contract documents, Contract administration, Business law, and Ethics.
@@ -171,7 +176,7 @@ export function FAQs() {
         <hr className={styles.lineShadow}></hr>
 
         <Accordion
-          title="How do I know which pathway is right for me?"
+          question="How do I know which pathway is right for me?"
           toggleAll={expandAllPathwaysInfo}
         >
           <p>
@@ -181,7 +186,7 @@ export function FAQs() {
           </p>
         </Accordion>
         <Accordion
-          title="What is an accredited design program or educational institution?"
+          question="What is an accredited design program or educational institution?"
           toggleAll={expandAllPathwaysInfo}
         >
           <p>
@@ -190,7 +195,7 @@ export function FAQs() {
           </p>
         </Accordion>
         <Accordion
-          title="What are core units & how are they calculated?"
+          question="What are core units & how are they calculated?"
           toggleAll={expandAllPathwaysInfo}
         >
           {" "}
@@ -205,12 +210,12 @@ export function FAQs() {
           </p>
         </Accordion>
         <Accordion
-          title="I do not have a degree, will I qualify?"
+          question="I do not have a degree, will I qualify?"
           toggleAll={expandAllPathwaysInfo}
         >
           <p>Total core units determine eligibility, degree completion is NOT required.</p>
         </Accordion>
-        <Accordion title="How much education do I need?" toggleAll={expandAllPathwaysInfo}>
+        <Accordion question="How much education do I need?" toggleAll={expandAllPathwaysInfo}>
           <p>
             The minimum educational requirement is 40 semester/60 quarter core units from an
             accredited design program. Certification completion education requirements vary by path,
@@ -218,7 +223,7 @@ export function FAQs() {
           </p>
         </Accordion>
         <Accordion
-          title="What is diversified design experience & how is is submitted and calculated?"
+          question="What is diversified design experience & how is is submitted and calculated?"
           toggleAll={expandAllPathwaysInfo}
         >
           {" "}
@@ -252,7 +257,7 @@ export function FAQs() {
             </li>
           </ol>
         </Accordion>
-        <Accordion title="Can international candidates apply?" toggleAll={expandAllPathwaysInfo}>
+        <Accordion question="Can international candidates apply?" toggleAll={expandAllPathwaysInfo}>
           <ol type="a" id={styles.indentLineHeight}>
             <li>
               All candidates who meet the qualifications are encouraged to become certified, as long
