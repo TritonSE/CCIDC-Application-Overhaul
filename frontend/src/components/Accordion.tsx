@@ -1,4 +1,4 @@
-import { FC, ReactNode, useEffect, useRef, useState } from "react";
+import { FC, ReactNode, useEffect, useState } from "react";
 
 import selectFAQ from "../assets/selectFAQ.svg";
 import unselectFAQ from "../assets/unselectFAQ.svg";
@@ -13,7 +13,6 @@ export type AccordionProps = {
 
 export const Accordion: FC<AccordionProps> = ({ question, children, toggleAll }) => {
   const [toggle, setIsOpen] = useState(toggleAll);
-  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setIsOpen(toggleAll);
@@ -31,7 +30,7 @@ export const Accordion: FC<AccordionProps> = ({ question, children, toggleAll })
           <img alt={toggle ? "-" : "+"} src={toggle ? unselectFAQ : selectFAQ} />
         </button>
       </div>
-      <div ref={contentRef}>{toggle && children}</div>
+      <div>{toggle && children}</div>
       <hr className={styles.lineShadow}></hr>
     </>
   );

@@ -1,9 +1,8 @@
 import { useState } from "react";
 
-import { Accordion } from "../components/index.ts";
-
 import minusIcon from "../assets/minusIcon.svg";
 import plusIcon from "../assets/plusIcon.svg";
+import { Accordion } from "../components/index.ts";
 
 import styles from "./FAQ.module.css";
 
@@ -33,7 +32,7 @@ export function FAQs() {
             </span>
             <img
               src={expandAllCertificationInfo ? minusIcon : plusIcon}
-              alt={expandAllCertificationInfo ? "1" : "+"}
+              alt={expandAllCertificationInfo ? "-" : "+"}
             ></img>
           </button>
         </div>

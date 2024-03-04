@@ -2,7 +2,7 @@
   padding: 0.5rem 1rem;
   margin: 0;
   background: var(--color-ccidc-red);
-  color: #ffffff;
+  color: var(--color-text-secondary);
   border: none;
   border-radius: 0.25rem;
   cursor: pointer;
