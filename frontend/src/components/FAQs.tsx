@@ -59,7 +59,7 @@ export function FAQs() {
             should check the different pathways to ensure they meet CID requirements. Overall,
             applicants should:
           </p>
-          <ol className={styles.olist}>
+          <ol className={styles.FAQolist}>
             <li>Complete Online Application</li>
             <li>Sign Code of Ethics</li>
             <li>Provide Proof of Education</li>
@@ -120,11 +120,11 @@ export function FAQs() {
           toggleAll={expandAllCertificationInfo}
         >
           <p>There are generally two types of fees.</p>
-          <ul className={styles.FAQolist}>
+          <ul className={styles.FAQolist} id={styles.bulletPoint}>
             <li>
               Total Fees due with application (Includes Application Fee + IDEX Exam Fee + Testing
               Center Fee)<span className={styles.red}>*</span>:
-              <ul className={styles.FAQolist}>
+              <ul className={styles.FAQolist} id={styles.bulletPoint}>
                 <li>
                   Path 1 & Path 2: $700 Total<span className={styles.red}>*</span>
                 </li>
@@ -135,7 +135,7 @@ export function FAQs() {
             </li>
             <li>
               Total Bi-Annual Certification Fees<span className={styles.red}>*</span>
-              <ul className={styles.FAQolist}>
+              <ul className={styles.FAQolist} id={styles.bulletPoint}>
                 <li>Due After Passing Exam and Compliance Approval:</li>
                 <li>
                   ALL Candidates $275-$350<span className={styles.red}>***</span>
@@ -259,7 +259,7 @@ export function FAQs() {
             <br></br>
             To submit proof of diversified design experience:
           </p>
-          <ol className={styles.olist}>
+          <ol className={styles.FAQolist}>
             <li>
               If <strong>self-employed</strong>, complete the Employment Verification Form,
               including federal tax returns or a verified letter from a CPA or Attorney for the

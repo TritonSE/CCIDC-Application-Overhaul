@@ -18,11 +18,7 @@ button {
   line-height: 1.5;
 }
 
-.FAQolist ul {
-  list-style-type: disc;
-}
-
-.FAQolist li {
+#bulletPoint {
   list-style-type: disc;
 }
 
@@ -74,20 +70,6 @@ button {
   align-items: center;
 }
 
-.faqTitle {
-  width: 1248px;
-  height: 65px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  --text-divider-gap: 1rem;
-  font-size: 28px;
-}
-
-.question {
-  font-weight: 700;
-  margin-top: 10px;
-}
 .infoTitle {
   display: flex;
   align-items: center;
@@ -99,12 +81,6 @@ button {
 .infoTitle h3 {
   align-self: center;
   margin-top: 0em;
-}
-
-.line {
-  content: "";
-  height: 1px;
-  background-color: #d8d8d8;
 }
 
 #pathwaysFAQ {
@@ -149,8 +125,4 @@ button {
 #doubleIndent {
   margin-left: 48px;
   line-height: 1.5;
-}
-
-.expandButton {
-  margin-left: auto;
 }
