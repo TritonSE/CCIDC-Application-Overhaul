@@ -39,13 +39,13 @@ function TimelinePoint(props: TimelinePointProps) {
   );
 }
 
-type PathwayProps = { progress: 0 | 1 | 2 | 3 | 4 | 5 };
+type PathwayProps = { path: 1 | 2 | 3 | 4; progress: 0 | 1 | 2 | 3 | 4 | 5 };
 export function PathwayTimeline(props: PathwayProps) {
-  const { progress } = props;
+  const { path, progress } = props;
 
   return (
     <div className={styles.pathwayContainer}>
-      <h2 className={styles.timelineHeader}>Path {progress} Application</h2>
+      <h2 className={styles.timelineHeader}>Path {path} Application</h2>
       <p className={styles.timelineDescription}>
         You must complete all 5 steps in order for your application to be reviewed and to qualify
         for examination.

@@ -4,7 +4,7 @@ export function Candidates() {
   return (
     <>
       <h2>Candidates</h2>
-      <PathwayTimeline progress={2} />
+      <PathwayTimeline path={1} progress={2} />
     </>
   );
 }
