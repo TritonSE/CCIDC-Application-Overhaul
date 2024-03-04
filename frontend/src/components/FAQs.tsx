@@ -1,8 +1,9 @@
 import { useState } from "react";
 
+import { Accordion } from "../components/index.ts";
+
 import minusIcon from "../assets/minusIcon.svg";
 import plusIcon from "../assets/plusIcon.svg";
-import { Accordion } from "../components/index.ts";
 
 import styles from "./FAQ.module.css";
 
@@ -58,7 +59,7 @@ export function FAQs() {
             should check the different pathways to ensure they meet CID requirements. Overall,
             applicants should:
           </p>
-          <ol className={styles.FAQolist}>
+          <ol className={styles.olist}>
             <li>Complete Online Application</li>
             <li>Sign Code of Ethics</li>
             <li>Provide Proof of Education</li>
@@ -118,20 +119,35 @@ export function FAQs() {
           question="How much does it cost to be a CID?"
           toggleAll={expandAllCertificationInfo}
         >
-          {" "}
+          <p>There are generally two types of fees.</p>
+          <ul className={styles.FAQolist}>
+            <li>
+              Total Fees due with application (Includes Application Fee + IDEX Exam Fee + Testing
+              Center Fee)<span className={styles.red}>*</span>:
+              <ul className={styles.FAQolist}>
+                <li>
+                  Path 1 & Path 2: $700 Total<span className={styles.red}>*</span>
+                </li>
+                <li>
+                  Path 3 & Path 4: $600 Total<span className={styles.red}>*</span>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Total Bi-Annual Certification Fees<span className={styles.red}>*</span>
+              <ul className={styles.FAQolist}>
+                <li>Due After Passing Exam and Compliance Approval:</li>
+                <li>
+                  ALL Candidates $275-$350<span className={styles.red}>***</span>
+                </li>
+              </ul>
+            </li>
+          </ul>
           <p>
-            Certified Interior Designer (CID) is the exclusive legally recognizNOTE: There will be a
-            $50.00 charge for returned checks and for $25.00 Returned Credit Card transaction fees.
-            Total Fees with application (Includes Application Fee + IDEX Exam Fee + Testing Center
-            Fee)*:<br></br>Path 1 & Path 2: $700 Total* <br></br>Path 3 & Path 4: $600 Total*{" "}
-            <br></br>Total Bi-annual Certification Fees<br></br> Due after passing exam and
-            compliance approval:<br></br> All candidates $275-300ed title for interior designers in
-            California. CIDs demonstrate their education, experience, and examination expertise in
-            California, reducing legal risks and boosting client confidence. They are accredited for
-            professionalism, mandated to adhere to the{" "}
-            <a href="https://ccidc.org/code-of-ethics/CCIDC" style={{ textDecoration: "none" }}>
-              <span className={styles.lightBlue}>Code of Ethics and Conduct.</span>
-            </a>
+            <span className={styles.red}>*</span>Fee is nonrefundable<br></br>
+            <span className={styles.red}>***</span>Dependent on Option Selected <br></br>
+            <br></br>NOTE: There will be a $50.00 charge for returned checks and for $25.00 Returned
+            Credit Card transaction fees.
           </p>
         </Accordion>
         <Accordion
@@ -243,7 +259,7 @@ export function FAQs() {
             <br></br>
             To submit proof of diversified design experience:
           </p>
-          <ol className={styles.FAQolist}>
+          <ol className={styles.olist}>
             <li>
               If <strong>self-employed</strong>, complete the Employment Verification Form,
               including federal tax returns or a verified letter from a CPA or Attorney for the
