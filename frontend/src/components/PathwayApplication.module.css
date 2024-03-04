@@ -1,19 +1,25 @@
-.red {
-  color: var(--color-ccidc-red);
+.pathwayApplicationBase {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .applicationContainer {
-  width: 76rem;
-  height: 30rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 31rem;
+  width: 100%;
+  padding: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
 }
 
 .title {
   text-align: center;
-  font: var(--font-pathway);
-  padding-bottom: 3rem;
-  padding-top: 4rem;
+  font: var(--font-title);
+  padding-bottom: 2rem;
   line-height: 48px;
-  font-weight: 700;
   letter-spacing: 0.02em;
 }
 
@@ -21,6 +27,7 @@
   line-height: 1.5em;
   text-align: center;
   font-family: var(--font-nav);
+  width: 75rem;
 }
 
 .centeredContainer {
@@ -36,4 +43,8 @@
   justify-content: center;
   text-decoration: underline;
   text-align: center;
+}
+
+.red {
+  color: var(--color-ccidc-red);
 }
