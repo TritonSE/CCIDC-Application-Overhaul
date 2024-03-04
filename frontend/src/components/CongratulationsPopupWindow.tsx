@@ -1,0 +1,74 @@
+import React, { useRef } from "react";
+
+import checkMark from "../assets/checkMarkIcon.svg";
+import closeIcon from "../assets/closeIcon.svg";
+
+import { Button } from "./Button.tsx";
+import styles from "./CongratulationsPopupWindow.module.css";
+
+type CongratulationsPopupWindowProps = {
+  buttonText: string; // Define prop for button text
+  isOpen: boolean;
+  onClose: () => void;
+};
+
+const CongratulationsPopupWindow: React.FC<CongratulationsPopupWindowProps> = ({
+  buttonText,
+  isOpen,
+  onClose,
+}) => {
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+  const closePopupAndReturn = () => {
+    onClose();
+    window.location.href = "https://ccidc.org/";
+  };
+
+  const closePopup = (e: React.MouseEvent<HTMLElement>) => {
+    if (e.target !== e.currentTarget && e.target !== closeButtonRef.current) return;
+    closePopupAndReturn();
+  };
+
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "Enter" || event.key === " ") {
+      onClose();
+    }
+  };
+
+  return (
+    <div>
+      <Button onClick={onClose}>{buttonText}</Button>
+      {isOpen && (
+        <div
+          className={styles.popupCanvas}
+          onClick={closePopup}
+          onKeyDown={handleKeyPress}
+          role="button"
+          tabIndex={0}
+        >
+          <div className={styles.popupWindow}>
+            <button
+              className={styles.closeButtonContainer}
+              ref={closeButtonRef}
+              onClick={closePopupAndReturn}
+              aria-label="Close Popup"
+              tabIndex={0}
+              type="button"
+            >
+              <img src={closeIcon} alt="Close Popup" />
+            </button>
+            <img className={styles.checkMark} src={checkMark} alt="failed to load" />
+            <div className={styles.mainText}> Congratulations! </div>
+            <div className={styles.reviewText}>
+              Your application has been completed as is now under review with CCIDC.
+            </div>
+            <div className={styles.closeButton}>
+              <Button onClick={closePopupAndReturn}> Click here to return to Main Page</Button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+export default CongratulationsPopupWindow;
