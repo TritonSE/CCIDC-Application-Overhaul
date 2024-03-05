@@ -1,0 +1,13 @@
+.formSectionContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+.inputTitle {
+  font-size: 12px;
+  color: #6c6c6c;
+}
