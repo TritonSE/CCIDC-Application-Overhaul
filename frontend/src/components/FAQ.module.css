@@ -63,13 +63,6 @@ button {
   flex-grow: 1;
 }
 
-.faqBar {
-  display: flex;
-  flex-direction: row;
-  column-gap: 0.7rem;
-  align-items: center;
-}
-
 .infoTitle {
   display: flex;
   align-items: center;
