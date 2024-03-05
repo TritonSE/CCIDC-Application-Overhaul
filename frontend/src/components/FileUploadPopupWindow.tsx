@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import styles from "./FileUploadPopupWindow.module.css";
 import closeIcon from "../assets/closeIcon.svg";
 import fileUploadIcon from "../assets/fileUploadIcon.svg";
+import { Button } from "./Button.tsx";
 
 interface FileUploadPopupWindowProps {
   buttonText: string; // Define prop for button text
