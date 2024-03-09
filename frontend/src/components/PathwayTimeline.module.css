@@ -41,6 +41,7 @@
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+  z-index: 5;
 }
 .timelinePointIcon {
   display: flex;
@@ -71,6 +72,5 @@
   width: 700px;
   top: 14px;
   left: 64px;
-  z-index: -1;
   border: solid 2px var(--color-ccidc-red);
 }
