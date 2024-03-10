@@ -31,6 +31,7 @@
 }
 
 .sectionTitle {
+    display: flex;
     font-family: "Rubik";
     font-size: 18px;
     font-weight: 700;
@@ -75,4 +76,6 @@
     height: 40px;
     width: 80px;
     margin-left: 870px;
+    display: flex;
+    align-items: center;
 }
