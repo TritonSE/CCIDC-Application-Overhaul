@@ -1,11 +1,11 @@
+import leftArrow from "../assets/leftArrow.svg";
+import rightArrow from "../assets/rightArrow.svg";
 import deviceList from "../constants/devices.json"
 import genderList from "../constants/genders.json"
-import rightArrow from "../assets/rightArrow.svg";
-import leftArrow from "../assets/leftArrow.svg";
 
-import styles from "./Path2Page2.module.css";
+import styles from "./Path1.module.css";
 
-export function Path2Page1() {
+export function Path1Page1() {
     return (
         <>
           <div className="Apply-Page1">

@@ -58,3 +58,21 @@
     margin-right: 220px;
     padding-bottom: 30px;
 }
+
+.warningText {
+    color: #AD281F;
+    margin-left: 245px;
+    margin-top: 15px;
+    margin-bottom: 40px;
+}
+
+.add {
+    font-family: "Rubik";
+    font-size: 15px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 4px;
+    height: 40px;
+    width: 80px;
+    margin-left: 870px;
+}
