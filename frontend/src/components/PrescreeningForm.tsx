@@ -27,12 +27,15 @@ export function PrescreeningForm() {
         on your responses, we will automatically direct you into the appropriate pathway. View more
         information about the pathways here.
       </p>
+      
 
       <form onSubmit={handleSubmit}>
         <div>
           <p className={styles.question}>
             1. Please select the appropriate amount of experience you currently have.
           </p>
+
+          <br></br>
 
           <input type="radio" id="op11" name="question1" />
           <label htmlFor="op11">
@@ -52,6 +55,7 @@ export function PrescreeningForm() {
           <br></br>
 
           <input type="radio" id="op13" name="question1" />
+
           <label htmlFor="op13">
             I do not have 5 years of Diversified Design Experience or have 40+ Core Units and will
             not complete at least one of these two requirements within a year from today.
@@ -72,6 +76,8 @@ export function PrescreeningForm() {
             </ul>
           </p>
 
+          <br></br>
+
           <input type="radio" id="op21" name="question2" />
           <label htmlFor="op21">Yes</label>
 
@@ -84,6 +90,8 @@ export function PrescreeningForm() {
 
         <div>
           <p className={styles.question}>3. Do you mainly practice commercial design?</p>
+
+          <br></br>
 
           <input type="radio" id="op31" name="question3" />
           <label htmlFor="op31">Yes</label>
