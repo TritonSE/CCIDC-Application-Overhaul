@@ -38,25 +38,25 @@ export function PrescreeningForm() {
           <br></br>
 
           <input type="radio" id="op11" name="question1" />
-          <label htmlFor="op11">
+          <label htmlFor="op11" className={styles.label}>
             5+ years of Diversified Design Experience and/or 40+ Core Units
           </label>
 
-          <br></br>
+          
           <br></br>
 
           <input type="radio" id="op12" name="question1" />
-          <label htmlFor="op12">
+          <label htmlFor="op12" className={styles.label}>
             I do not have 5 years of Diversified Design Experience and/or 40+ Core Units but am in
             the process of completing one of these two and will do within a year from today.
           </label>
 
-          <br></br>
+          
           <br></br>
 
           <input type="radio" id="op13" name="question1" />
 
-          <label htmlFor="op13">
+          <label htmlFor="op13" className={styles.label}>
             I do not have 5 years of Diversified Design Experience or have 40+ Core Units and will
             not complete at least one of these two requirements within a year from today.
           </label>
@@ -79,13 +79,13 @@ export function PrescreeningForm() {
           <br></br>
 
           <input type="radio" id="op21" name="question2" />
-          <label htmlFor="op21">Yes</label>
+          <label htmlFor="op21" className={styles.label}>Yes</label>
 
-          <br></br>
+          
           <br></br>
 
           <input type="radio" id="op22" name="question2" />
-          <label htmlFor="op22">No</label>
+          <label htmlFor="op22" className={styles.label}>No</label>
         </div>
 
         <div>
@@ -94,13 +94,13 @@ export function PrescreeningForm() {
           <br></br>
 
           <input type="radio" id="op31" name="question3" />
-          <label htmlFor="op31">Yes</label>
+          <label htmlFor="op31" className={styles.label}>Yes</label>
 
-          <br></br>
+         
           <br></br>
 
           <input type="radio" id="op32" name="question3" />
-          <label htmlFor="op32">No</label>
+          <label htmlFor="op32" className={styles.label}>No</label>
         </div>
 
         <NavLink className={styles.centeredContainer} to={"/prescreening"}>
