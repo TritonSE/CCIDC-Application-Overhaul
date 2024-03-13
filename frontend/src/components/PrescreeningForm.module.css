@@ -12,7 +12,7 @@
 }
 
 .headingtwo {
-  font-weight: 250; 
+  font-weight: 250;
 }
 
 .question {
@@ -29,45 +29,44 @@
   padding-bottom: 3em;
 }
 
-input[type='radio'] {
-  -webkit-appearance:none;
-  width:20px;
-  height:20px;
-  border:3px solid var(--color-ccidc-red);
-  border-radius:50%;
-  outline:none;
+input[type="radio"] {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 3px solid var(--color-ccidc-red);
+  border-radius: 50%;
+  outline: none;
 }
-input[type='radio']:hover {
-  box-shadow:0 0 5px 0px var(--color-ccidc-red) inset;
+input[type="radio"]:hover {
+  box-shadow: 0 0 5px 0px var(--color-ccidc-red) inset;
 }
-input[type='radio']:before {
-  content:'';
-  display:block;
-  width:60%;
-  height:60%;
-  margin: 20% auto;    
-  border-radius:50%;    
+input[type="radio"]:before {
+  content: "";
+  display: block;
+  width: 60%;
+  height: 60%;
+  margin: 20% auto;
+  border-radius: 50%;
 }
-input[type='radio']:checked:before {
-  background:var(--color-ccidc-red);
+input[type="radio"]:checked:before {
+  background: var(--color-ccidc-red);
 }
 .label {
   display: flex;
   /* This will vertically align the text with the center of the radio button */
-  align-items: center; 
+  align-items: center;
   /* Adjust this value as needed to fine-tune the alignment */
-  line-height: 1.5; 
+  line-height: 1.5;
   margin-left: 30px;
   margin-top: -25px;
   font-weight: 250;
 }
 
-.label>p{margin-top: 0}
+.label > p {
+  margin-top: 0;
+}
 
 .center {
   display: flex;
   justify-self: center;
 }
-
-
-

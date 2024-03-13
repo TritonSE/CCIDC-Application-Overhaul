@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import styles from "./PrescreeningForm.module.css";
 import buttonStyle from "./Button.module.css";
-
+import styles from "./PrescreeningForm.module.css";
 import { Page } from "./index.ts";
 
-
 export function PrescreeningForm() {
-
   // State to manage the selected values for each question
   const [question1Value, setQuestion1Value] = useState("");
   const [question2Value, setQuestion2Value] = useState("");
@@ -17,7 +14,7 @@ export function PrescreeningForm() {
   const pathOne = "/path1";
   const pathTwo = "/path2";
   const pathThree = "/path3";
-  const pathFour= "/path4";
+  const pathFour = "/path4";
   const pathNQ = "/pathNQ";
 
   const navigate = useNavigate();
@@ -31,17 +28,25 @@ export function PrescreeningForm() {
     // Can modify this logic based on your requirements
     if (question1Value === "op12" && question2Value === "op22" && question3Value === "op32") {
       finalPath = pathOne;
-    }
-    else if (question1Value === "op11" && question2Value === "op22" && question3Value === "op32") {
+    } else if (
+      question1Value === "op11" &&
+      question2Value === "op22" &&
+      question3Value === "op32"
+    ) {
       finalPath = pathTwo;
-    }   
-    else if (question1Value === "op11" && question2Value === "op21" && question3Value === "op32") {
+    } else if (
+      question1Value === "op11" &&
+      question2Value === "op21" &&
+      question3Value === "op32"
+    ) {
       finalPath = pathThree;
-    }
-    else if (question1Value === "op11" && question2Value === "op21" && question3Value === "op31") {
+    } else if (
+      question1Value === "op11" &&
+      question2Value === "op21" &&
+      question3Value === "op31"
+    ) {
       finalPath = pathFour;
-    }
-    else {
+    } else {
       finalPath = pathNQ;
     }
 
@@ -58,7 +63,7 @@ export function PrescreeningForm() {
         on your responses, we will automatically direct you into the appropriate pathway. View more
         information about the pathways here.
       </p>
-      
+
       <form onSubmit={handleFormSubmit} id="form1">
         {/* Question 1 */}
         <div>
@@ -68,41 +73,60 @@ export function PrescreeningForm() {
 
           <br></br>
 
-          <input type="radio" id="op11" name="question1" 
-          checked={question1Value === "op11"} 
-          onChange={() => setQuestion1Value("op11")} />
+          <input
+            type="radio"
+            id="op11"
+            name="question1"
+            checked={question1Value === "op11"}
+            onChange={() => {
+              setQuestion1Value("op11");
+            }}
+          />
 
           <label htmlFor="op11" className={styles.label}>
-          <p>
-          5+ years of Diversified Design Experience <strong> and/or </strong> 40+ Core Units 
-          </p>
+            <p>
+              5+ years of Diversified Design Experience <strong> and/or </strong> 40+ Core Units
+            </p>
           </label>
-          
+
           <br></br>
 
-          <input type="radio" id="op12" name="question1" 
-          checked={question1Value === "op12"}
-          onChange={() => setQuestion1Value("op12")} />
+          <input
+            type="radio"
+            id="op12"
+            name="question1"
+            checked={question1Value === "op12"}
+            onChange={() => {
+              setQuestion1Value("op12");
+            }}
+          />
 
           <label htmlFor="op12" className={styles.label}>
-          <p>
-            I do not have 5 years of Diversified Design Experience <strong> and/or </strong> 40+ Core Units but am in
-            the process of completing <strong> one </strong> of these two and will do <strong> within a year </strong> from today.
-          </p>
+            <p>
+              I do not have 5 years of Diversified Design Experience <strong> and/or </strong> 40+
+              Core Units but am in the process of completing <strong> one </strong> of these two and
+              will do <strong> within a year </strong> from today.
+            </p>
           </label>
 
-          
           <br></br>
 
-          <input type="radio" id="op13" name="question1" 
-          checked={question1Value === "op13"}
-          onChange={() => setQuestion1Value("op13")} />
+          <input
+            type="radio"
+            id="op13"
+            name="question1"
+            checked={question1Value === "op13"}
+            onChange={() => {
+              setQuestion1Value("op13");
+            }}
+          />
 
           <label htmlFor="op13" className={styles.label}>
-          <p>
-            I do not have 5 years of Diversified Design Experience or have 40+ Core Units and 
-            <strong> will not complete </strong> at least one of these two requirements <strong> within a year </strong> from today.
-          </p>
+            <p>
+              I do not have 5 years of Diversified Design Experience or have 40+ Core Units and
+              <strong> will not complete </strong> at least one of these two requirements{" "}
+              <strong> within a year </strong> from today.
+            </p>
           </label>
         </div>
 
@@ -123,20 +147,35 @@ export function PrescreeningForm() {
 
           <br></br>
 
-          <input type="radio" id="op21" name="question2" 
-          checked={question2Value === "op21"}
-          onChange={() => setQuestion2Value("op21")} />
+          <input
+            type="radio"
+            id="op21"
+            name="question2"
+            checked={question2Value === "op21"}
+            onChange={() => {
+              setQuestion2Value("op21");
+            }}
+          />
 
-          <label htmlFor="op21" className={styles.label}>Yes</label>
+          <label htmlFor="op21" className={styles.label}>
+            Yes
+          </label>
 
-          
           <br></br>
 
-          <input type="radio" id="op22" name="question2"
-          checked={question2Value === "op22"}
-          onChange={() => setQuestion2Value("op22")} />
+          <input
+            type="radio"
+            id="op22"
+            name="question2"
+            checked={question2Value === "op22"}
+            onChange={() => {
+              setQuestion2Value("op22");
+            }}
+          />
 
-          <label htmlFor="op22" className={styles.label}>No</label>
+          <label htmlFor="op22" className={styles.label}>
+            No
+          </label>
         </div>
 
         {/* Question 3 */}
@@ -145,26 +184,41 @@ export function PrescreeningForm() {
 
           <br></br>
 
-          <input type="radio" id="op31" name="question3"
-          checked={question3Value === "op31"}
-          onChange={() => setQuestion3Value("op31")} />
+          <input
+            type="radio"
+            id="op31"
+            name="question3"
+            checked={question3Value === "op31"}
+            onChange={() => {
+              setQuestion3Value("op31");
+            }}
+          />
 
-          <label htmlFor="op31" className={styles.label}>Yes</label>
+          <label htmlFor="op31" className={styles.label}>
+            Yes
+          </label>
 
-         
           <br></br>
 
-          <input type="radio" id="op32" name="question3"
-          checked={question3Value === "op32"} 
-          onChange={() => setQuestion3Value("op32")} />
-          <label htmlFor="op32" className={styles.label}>No</label>
+          <input
+            type="radio"
+            id="op32"
+            name="question3"
+            checked={question3Value === "op32"}
+            onChange={() => {
+              setQuestion3Value("op32");
+            }}
+          />
+          <label htmlFor="op32" className={styles.label}>
+            No
+          </label>
         </div>
-
 
         <div className={styles.centeredContainer}>
-        <button className={buttonStyle.button} type="submit" form="form1" value="Submit">Submit</button>
+          <button className={buttonStyle.button} type="submit" form="form1" value="Submit">
+            Submit
+          </button>
         </div>
-        
       </form>
     </Page>
   );
