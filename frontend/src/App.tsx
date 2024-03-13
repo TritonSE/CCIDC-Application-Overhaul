@@ -1,6 +1,6 @@
 import { Outlet, Route, Routes } from "react-router-dom";
 
-import { NavBar } from "./components/index.ts";
+import { InfoForm, NavBar } from "./components/index.ts";
 import { Apply, Candidates } from "./pages/index.ts";
 
 function Layout() {
@@ -20,6 +20,7 @@ function App() {
           <Route index element={<Candidates />} />
           <Route path="apply" element={<Apply />} />
           <Route path="candidates" element={<Candidates />} />
+          <Route path="infoForm" element={<InfoForm />} />
         </Route>
       </Routes>
     </div>
