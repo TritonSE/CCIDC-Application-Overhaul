@@ -11,12 +11,16 @@
   text-align: center;
 }
 
-.body {
-  font: var(--font-body);
+.headingtwo {
+  font-weight: 250; 
 }
 
 .question {
   font: var(--font-heading2);
+}
+
+.ulprescreening {
+  padding-left: 1.25rem;
 }
 
 .centeredContainer {
@@ -49,10 +53,20 @@ input[type='radio']:checked:before {
 }
 .label {
   display: flex;
-  align-items: center; /* This will vertically align the text with the center of the radio button */
-  line-height: 1.5; /* Adjust this value as needed to fine-tune the alignment */
+  /* This will vertically align the text with the center of the radio button */
+  align-items: center; 
+  /* Adjust this value as needed to fine-tune the alignment */
+  line-height: 1.5; 
   margin-left: 30px;
   margin-top: -25px;
+  font-weight: 250;
+}
+
+.label>p{margin-top: 0}
+
+.center {
+  display: flex;
+  justify-self: center;
 }
 
 

@@ -34,13 +34,10 @@
   cursor: pointer;
 }
 
-ul {
-  list-style-type: none;
-}
-
 .navigation {
   display: flex;
   gap: 3rem;
+  list-style-type: none;
 }
 
 .navigation .legacyLink {
