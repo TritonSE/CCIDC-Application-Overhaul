@@ -66,3 +66,8 @@ button {
   cursor: pointer;
   display: block;
 }
+
+ol,
+ul {
+  margin-left: 1.5rem;
+}

@@ -1,0 +1,17 @@
+.red {
+  color: var(--color-ccidc-red);
+}
+
+.formContainer {
+  width: 80%;
+  margin: 3rem auto !important;
+}
+
+.applyFacts {
+  width: 80%;
+  margin: 3rem auto !important;
+}
+
+li::marker {
+  color: var(--color-ccidc-red);
+}
