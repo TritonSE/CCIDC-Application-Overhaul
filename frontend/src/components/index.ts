@@ -5,6 +5,7 @@ import { FormSection } from "./FormSection.tsx";
 import { InfoForm } from "./InfoForm.tsx";
 import { NavBar } from "./NavBar.tsx";
 import { Page } from "./Page.tsx";
+import { PageNavigator } from "./PageNavigator.tsx";
 import { Pathway } from "./Pathway.tsx";
 import { PathwayApplication } from "./PathwayApplication.tsx";
 import { PathwayTimeline } from "./PathwayTimeline.tsx";
@@ -22,4 +23,5 @@ export {
   PrescreeningForm,
   PathwayApplication,
   InfoForm,
+  PageNavigator,
 };

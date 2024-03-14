@@ -1,6 +1,9 @@
-import { Button } from "./Button";
-import { PageNavigator } from "./PageNavigator.tsx";
+// import { Button } from "./Button";
+import { useNavigate } from "react-router-dom";
+
 import styles from "./PathwayApplication.module.css";
+import { Button, InfoForm, PageNavigator, PathwayTimeline } from "./index.ts";
+// import { PageNavigator } from "./PageNavigator.tsx";
 
 export type PathApplicationProps = {
   pathName: string;
@@ -11,6 +14,12 @@ export const PathwayApplication: React.FC<PathApplicationProps> = ({
   pathName,
   children,
 }: PathApplicationProps) => {
+  const navigate = useNavigate();
+
+  const goToScreening = () => {
+    navigate("/prescreening");
+  };
+
   return (
     <div className={styles.pathwayApplicationBase}>
       <div className={styles.applicationContainer}>
@@ -18,7 +27,7 @@ export const PathwayApplication: React.FC<PathApplicationProps> = ({
 
         <div className={styles.pathContent}>{children}</div>
         <div className={styles.centeredContainer}>
-          <Button onClick={null}>Retake Prescreening Questions</Button>
+          <Button onClick={goToScreening}>Retake Prescreening Questions</Button>
         </div>
 
         <div className={styles.note}>
@@ -30,6 +39,10 @@ export const PathwayApplication: React.FC<PathApplicationProps> = ({
             sorting questionnaire. For further inquiries, please reach out to ccidc@ccidc.org
           </p>
         </div>
+      </div>
+      <div className={styles.formSections}>
+        <PathwayTimeline path={1} progress={0} />
+        <InfoForm />
       </div>
       <PageNavigator></PageNavigator>
     </div>

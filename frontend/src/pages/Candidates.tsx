@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 import certificate from "../assets/certifcate.svg";
 import homeCover from "../assets/homeCover.svg";
 import idCard from "../assets/idCard.svg";
@@ -7,6 +9,11 @@ import { Button, FAQs, Page, Pathway } from "../components/index.ts";
 import styles from "../stylesheets/Candidates.module.css";
 
 export function Candidates() {
+  const navigate = useNavigate();
+
+  const goToScreening = () => {
+    navigate("/prescreening");
+  };
   return (
     <Page>
       <h1 className={styles.title}>Become a Certified Interior Designer (CID)</h1>
@@ -56,7 +63,7 @@ export function Candidates() {
         standards.
       </p>
       <div className={styles.centeredContainer}>
-        <Button onClick={null}>Apply Now</Button>
+        <Button onClick={goToScreening}>Apply Now</Button>
       </div>
       <div className={styles.textDivider2}>
         <div className={styles.heading}>Pathways to Certification</div>
@@ -104,7 +111,7 @@ export function Candidates() {
       </div>
 
       <div className={styles.centeredContainer}>
-        <Button onClick={null}>Discover Your Ideal Pathway</Button>
+        <Button onClick={goToScreening}>Discover Your Ideal Pathway</Button>
       </div>
 
       <FAQs></FAQs>

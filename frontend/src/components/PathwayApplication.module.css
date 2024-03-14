@@ -13,6 +13,7 @@
   width: 100%;
   padding: 10px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+  background-color: var(--color-text-secondary);
 }
 
 .title {
@@ -47,4 +48,11 @@
 
 .red {
   color: var(--color-ccidc-red);
+}
+
+.formSections {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }

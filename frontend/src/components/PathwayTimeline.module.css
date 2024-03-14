@@ -8,6 +8,8 @@
   gap: 2rem;
   padding: 3rem;
   box-shadow: 0px 4px 4px 0px #00000040;
+  background-color: var(--color-text-secondary);
+  margin: 2px;
 }
 
 .timelineHeader {
@@ -32,8 +34,8 @@
   display: flex;
   position: relative;
   justify-content: space-between;
-  width: var(--timeline-width);
-  min-width: var(--timeline-width);
+  /* width: var(--timeline-width); */
+  /* min-width: var(--timeline-width); */
   overflow: hidden;
 }
 .timelinePoint {
