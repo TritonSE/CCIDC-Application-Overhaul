@@ -41,11 +41,16 @@ ul {
 .navigation {
   display: flex;
   gap: 3rem;
+  user-select: none;
 }
 
 .navigation .legacyLink {
   text-decoration: none;
   color: var(--color-text-primary);
+}
+
+.logInOutButton {
+  all: unset;
 }
 
 .navLink {
