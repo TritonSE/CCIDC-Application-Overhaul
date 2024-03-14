@@ -10,7 +10,7 @@ export function Candidates() {
   return (
     <Page>
       <h1 className={styles.title}>Become a Certified Interior Designer (CID)</h1>
-      <img alt="home cover" src={homeCover} />
+      <img className={styles.homeCover} alt="home cover" src={homeCover} />
       <div className={styles.textDivider2}>
         <div className={styles.heading}>CID Candidate Information</div>
       </div>
