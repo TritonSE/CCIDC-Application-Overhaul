@@ -19,8 +19,7 @@ export function NavBar() {
     login: "https://ccidc.org/wp-login.php",
   };
 
-  const authContext = useContext(AuthContext);
-  console.log(authContext);
+  const { isLoggedIn, login, logout } = useContext(AuthContext);
 
   return (
     <nav className={styles.navBar}>
@@ -64,18 +63,17 @@ export function NavBar() {
               Contact Us
             </a>
           </li>
-          <li>
-            <img src={cartIcon} className={styles.navIcon} alt="shop"></img>
-          </li>
+          {isLoggedIn && (
+            <li>
+              <img src={cartIcon} className={styles.navIcon} alt="shop"></img>
+            </li>
+          )}
+
           <li>
             <img src={searchIcon} className={styles.navIcon} alt="search"></img>
           </li>
 
-          <li>
-            <a className={styles.legacyLink} href={destinations.login}>
-              Login
-            </a>
-          </li>
+          <li>{isLoggedIn ? <a onClick={logout}>Logout</a> : <a onClick={login}>Login</a>}</li>
           <li>
             <NavLink className={styles.navLink} to={"/apply"}>
               <Button onClick={null}>Apply</Button>

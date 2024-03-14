@@ -41,6 +41,7 @@ ul {
 .navigation {
   display: flex;
   gap: 3rem;
+  user-select: none;
 }
 
 .navigation .legacyLink {
