@@ -1,7 +1,7 @@
 import { Outlet, Route, Routes } from "react-router-dom";
 
-import { NavBar } from "./components/index.ts";
-import { Apply, Candidates } from "./pages/index.ts";
+import { NavBar, PrescreeningForm } from "./components/index.ts";
+import { Candidates } from "./pages/index.ts";
 
 function Layout() {
   return (
@@ -18,8 +18,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Candidates />} />
-          <Route path="apply" element={<Apply />} />
           <Route path="candidates" element={<Candidates />} />
+          <Route path="prescreening" element={<PrescreeningForm />} />
         </Route>
       </Routes>
     </div>
