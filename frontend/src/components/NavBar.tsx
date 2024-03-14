@@ -1,8 +1,10 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 
 import cartIcon from "../assets/cart.svg";
 import logo from "../assets/logo.svg";
 import searchIcon from "../assets/search.svg";
+import { AuthContext } from "../contexts/AuthContext.tsx";
 
 import styles from "./NavBar.module.css";
 import { Button } from "./index.ts";
@@ -16,6 +18,9 @@ export function NavBar() {
     contactUs: "https://ccidc.org/contact-ccidc/",
     login: "https://ccidc.org/wp-login.php",
   };
+
+  const authContext = useContext(AuthContext);
+  console.log(authContext);
 
   return (
     <nav className={styles.navBar}>
