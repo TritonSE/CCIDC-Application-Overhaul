@@ -7,6 +7,7 @@ import { Page } from "./Page.tsx";
 import { Pathway } from "./Pathway.tsx";
 import { PathwayApplication } from "./PathwayApplication.tsx";
 import { PathwayTimeline } from "./PathwayTimeline.tsx";
+import { PrescreeningForm } from "./PrescreeningForm.tsx";
 
 export {
   Page,
@@ -17,5 +18,6 @@ export {
   Pathway,
   FAQs,
   PathwayTimeline,
+  PrescreeningForm,
   PathwayApplication,
 };

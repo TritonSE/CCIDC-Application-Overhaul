@@ -11,20 +11,11 @@
   --color-red-secondary: #ce2e21;
   --font-title: normal bold 2rem "Rubik", sans-serif;
   --font-heading: normal bold 1.5rem "Rubik", sans-serif;
+  --font-heading2: normal 1.5rem "Rubik", sans-serif;
   --font-label: normal bold 1rem "Rubik", sans-serif;
   --font-body: normal 400 1rem "Rubik", sans-serif;
   --font-title-medium: 700 1.75rem "Rubik";
   --font-nav: "Roboto", sans-serif;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-*:focus-visible {
-  outline: var(--color-accent) solid medium;
 }
 
 * {
