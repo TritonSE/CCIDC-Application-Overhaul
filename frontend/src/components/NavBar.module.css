@@ -49,6 +49,10 @@ ul {
   color: var(--color-text-primary);
 }
 
+.logInOutButton {
+  all: unset;
+}
+
 .navLink {
   text-decoration: none;
   color: var(--color-text-primary);

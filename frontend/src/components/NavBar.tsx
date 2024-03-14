@@ -73,7 +73,17 @@ export function NavBar() {
             <img src={searchIcon} className={styles.navIcon} alt="search"></img>
           </li>
 
-          <li>{isLoggedIn ? <a onClick={logout}>Logout</a> : <a onClick={login}>Login</a>}</li>
+          <li>
+            {isLoggedIn ? (
+              <button className={styles.logInOutButton} onClick={logout}>
+                Logout
+              </button>
+            ) : (
+              <button className={styles.logInOutButton} onClick={login}>
+                Login
+              </button>
+            )}
+          </li>
           <li>
             <NavLink className={styles.navLink} to={"/apply"}>
               <Button onClick={null}>Apply</Button>
