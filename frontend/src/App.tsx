@@ -20,6 +20,7 @@ function App() {
           <Route index element={<Candidates />} />
           <Route path="apply" element={<Apply />} />
           <Route path="candidates" element={<Candidates />} />
+          <Route path="thankYou" element={<ThankyouForApplying />} />
         </Route>
       </Routes>
     </div>
