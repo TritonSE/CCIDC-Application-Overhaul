@@ -48,3 +48,11 @@
 .red {
   color: var(--color-ccidc-red);
 }
+
+.backArrow img:hover {
+  content: url("../assets/toggledBackArrow.svg");
+}
+
+.arrow img:hover {
+  content: url("../assets/search.svg");
+}

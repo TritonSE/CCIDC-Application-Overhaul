@@ -25,10 +25,14 @@ export const PageNavigator = () => {
   return (
     <div className={styles.pageNavigator}>
       <button onClick={back}>
-        <img src={backArrow} id={styles.backArrow}></img>
+        <div className={styles.backArrow}>
+          <img src={backArrow} id={styles.backArrow}></img>
+        </div>
       </button>
       <button onClick={next}>
-        <img src={arrow} id={styles.arrow}></img>
+        <div className={styles.arrow}>
+          <img src={arrow} id={styles.arrow}></img>
+        </div>
       </button>
     </div>
   );
