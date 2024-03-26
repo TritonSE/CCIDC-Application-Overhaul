@@ -4,7 +4,7 @@ import { Button } from "../components/Button";
 export function ThankyouForApplying() {
   return (
     <div className={styles.thankYouContainer}>
-      <div className={styles.title}>Thank you for Applying!</div>
+      <h1 className={styles.title}>Thank you for Applying!</h1>
 
       <div className={styles.message}>
         Your application seems to be missing a necessary component. Please review the requirements

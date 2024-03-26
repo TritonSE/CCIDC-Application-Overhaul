@@ -9,8 +9,8 @@
 }
 
 .title {
-  text-align: center;
   font: var(--font-title);
+  text-align: center;
   padding-bottom: 2rem;
   line-height: 48px;
   letter-spacing: 0.02em;
