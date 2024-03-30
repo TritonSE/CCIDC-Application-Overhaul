@@ -1,4 +1,4 @@
-import styles from "../stylesheets/ThankyouForApplying.module.css";
+import styles from "./ThankyouForApplying.module.css";
 
 import { Page } from "../components/index.ts";
 
