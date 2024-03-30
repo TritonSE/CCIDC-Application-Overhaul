@@ -1,6 +1,6 @@
 import styles from "../stylesheets/ThankyouForApplying.module.css";
 
-import { Button, Page } from "../components/index.ts";
+import { Page } from "../components/index.ts";
 
 export function ThankyouForApplying() {
   return (
@@ -18,8 +18,9 @@ export function ThankyouForApplying() {
         </a>{" "}
         and reapply when you have met the requirements for at least path one.{" "}
       </p>
+
       <div className={styles.centeredContainer}>
-        <Button onClick={null}>Return to Main Page</Button>
+        <button className={styles.button}>Return to Main Page</button>
       </div>
     </Page>
   );
