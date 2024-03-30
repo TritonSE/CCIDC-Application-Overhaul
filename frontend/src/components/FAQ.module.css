@@ -1,0 +1,121 @@
+/* General Styling */
+.heading {
+  font: var(--font-heading);
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  outline: none;
+}
+
+.lightBlue {
+  color: rgba(66, 139, 205, 1);
+}
+
+.FAQolist {
+  margin-left: 1.5rem;
+  line-height: 1.5;
+}
+
+#bulletPoint {
+  list-style-type: disc;
+}
+
+.textDivider2 {
+  display: flex;
+  align-items: center;
+  --text-divider-gap: 1rem;
+}
+
+.textDivider2::before {
+  content: "";
+  height: 1px;
+  background-color: var(--color-shadow);
+  flex-grow: 1;
+  margin-right: var(--text-divider-gap);
+}
+.textDivider2::after {
+  content: "";
+  height: 1px;
+  background-color: var(--color-shadow);
+  flex-grow: 1;
+  margin-left: var(--text-divider-gap);
+}
+
+.red {
+  color: var(--color-ccidc-red);
+}
+
+.lineShadow {
+  border: 1px solid var(--color-shadow);
+  box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.15);
+}
+
+/* FAQ's Title, Contianer, and Components */
+
+.FaqsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  row-gap: 0.8rem;
+  margin-top: 1.5rem;
+  flex-grow: 1;
+}
+
+.infoTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.infoTitle h3 {
+  align-self: center;
+  margin-top: 0em;
+}
+
+#pathwaysFAQ {
+  margin-top: 3rem;
+}
+/* Exapnd All Component */
+
+.expand {
+  display: flex;
+  width: 145px;
+  height: 40px;
+  padding: 8px, 48px, 8px, 16px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 1);
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.expand img {
+  height: 14px;
+  width: 14px;
+  margin-right: 20px;
+}
+
+.leftSpace {
+  margin-left: 20px;
+  line-height: 1.5;
+}
+
+#indentLineHeight {
+  margin-top: 1rem;
+  margin-left: 45px;
+  line-height: 1.5;
+}
+
+#indent {
+  margin-left: 25px;
+  line-height: 1.5;
+}
+
+#doubleIndent {
+  margin-left: 48px;
+  line-height: 1.5;
+}

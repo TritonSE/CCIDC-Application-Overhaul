@@ -1,0 +1,28 @@
+.pathwayContainer {
+  width: 38rem;
+  height: 20rem;
+  border-radius: 10px;
+  border: 1px solid var(--color-ccidc-red);
+  padding: 3.5rem 3rem;
+  box-shadow: 4px 4px 4px #00000015;
+}
+
+.pathName {
+  margin-top: 0;
+  margin-left: 0;
+}
+
+.pathwayText {
+  width: auto;
+  height: 5.5rem;
+  margin: 1rem 0rem;
+  line-height: 1.5em;
+}
+
+.red {
+  color: var(--color-ccidc-red);
+}
+
+.olist {
+  margin-left: 1.5rem;
+}

@@ -18,8 +18,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<ThankyouForApplying />} />
-          <Route path="candidates" element={<Candidates />} />
           <Route path="apply" element={<Apply />} />
+          <Route path="candidates" element={<Candidates />} />
         </Route>
       </Routes>
     </div>

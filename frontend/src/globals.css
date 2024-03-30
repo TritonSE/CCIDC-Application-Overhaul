@@ -10,8 +10,46 @@
   --font-heading: normal bold 1.5rem "Rubik", sans-serif;
   --font-label: normal bold 1rem "Rubik", sans-serif;
   --font-body: normal 400 1rem "Rubik", sans-serif;
+  --font-title-medium: 700 1.75rem "Rubik";
 }
 
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
+}
+
+*:focus-visible {
+  outline: var(--color-accent) solid medium;
+}
+
+html,
+body {
+  font: var(--font-body);
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 2em;
+}
+
+p,
+a {
+  margin-top: 1em;
+  line-height: 1.5em;
+}
+
+button {
+  border: none;
+  font: var(--font-body);
+  text-align: center;
+  cursor: pointer;
+  display: block;
 }

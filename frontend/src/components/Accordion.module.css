@@ -1,0 +1,20 @@
+.faqBar {
+  display: flex;
+  flex-direction: row;
+  column-gap: 0.7rem;
+  align-items: center;
+}
+
+.question {
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.expandButton {
+  margin-left: auto;
+}
+
+.lineShadow {
+  border: 1px solid var(--color-shadow);
+  box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.15);
+}
