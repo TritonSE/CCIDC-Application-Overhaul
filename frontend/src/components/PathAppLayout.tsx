@@ -1,13 +1,13 @@
-import styles from "./PathwayApplication.module.css";
+import styles from "./PathAppLayout.module.css";
 import { Button } from "./Button";
 import { PageNavigator } from "./PageNavigator.tsx";
 
-export type PathApplicationProps = {
+export type PathAppLayoutProps = {
   pathName: string;
   children: React.ReactNode;
 };
 
-export const PathwayApplication: React.FC<PathApplicationProps> = ({ pathName, children }) => {
+export const PathAppLayout: React.FC<PathAppLayoutProps> = ({ pathName, children }) => {
   return (
     <div className={styles.pathwayApplicationBase}>
       <div className={styles.applicationContainer}>
