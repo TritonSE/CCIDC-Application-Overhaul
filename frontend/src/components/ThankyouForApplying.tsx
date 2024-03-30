@@ -20,7 +20,9 @@ export function ThankyouForApplying() {
       </p>
 
       <div className={styles.centeredContainer}>
-        <button className={styles.button}>Return to Main Page</button>
+        <a href="https://ccidc.org/">
+          <button className={styles.button}>Return to Main Page</button>
+        </a>
       </div>
     </Page>
   );
