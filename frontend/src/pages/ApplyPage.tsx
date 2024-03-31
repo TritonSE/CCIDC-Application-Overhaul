@@ -1,4 +1,4 @@
-import { Page, PathAppLayout } from "../components/index.ts";
+import { PathAppLayout } from "../components/index.ts";
 
 export function ApplyPage() {
   return (

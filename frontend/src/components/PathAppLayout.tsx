@@ -1,6 +1,11 @@
 import styles from "./PathAppLayout.module.css";
-import { Button } from "./Button";
-import { PageNavigator } from "./PageNavigator.tsx";
+import { Button, PageNavigator, Page, PathwayTimeline } from "./index.ts";
+import arrow from "../assets/arrow.svg";
+import toggledArrow from "../assets/search.svg";
+import backArrow from "../assets/backArrow.svg";
+import toggledBackArrow from "../assets/toggledBackArrow.svg";
+
+import { useState } from "react";
 
 export type PathAppLayoutProps = {
   pathName: string;
@@ -8,6 +13,22 @@ export type PathAppLayoutProps = {
 };
 
 export const PathAppLayout: React.FC<PathAppLayoutProps> = ({ pathName, children }) => {
+  const [pageNum, setPageNum] = useState(0);
+
+  const next = () => {
+    if (pageNum < 5) {
+      setPageNum(pageNum + 1);
+    }
+  };
+
+  const back = () => {
+    if (pageNum == 1) {
+      // Prescreening Questions
+    } else if (pageNum > 0) {
+      setPageNum(pageNum - 1);
+    }
+  };
+
   return (
     <div className={styles.pathwayApplicationBase}>
       <div className={styles.applicationContainer}>
@@ -28,7 +49,20 @@ export const PathAppLayout: React.FC<PathAppLayoutProps> = ({ pathName, children
           </p>
         </div>
       </div>
-      <PageNavigator></PageNavigator>
+
+      <PathwayTimeline path={1} progress={0}></PathwayTimeline>
+      <div className={styles.pageNavigator}>
+        <button onClick={back}>
+          <div className={styles.backArrow}>
+            <img src={backArrow} id={styles.backArrow}></img>
+          </div>
+        </button>
+        <button onClick={next}>
+          <div className={styles.arrow}>
+            <img src={arrow} id={styles.arrow}></img>
+          </div>
+        </button>
+      </div>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "/stylesheets/Page.module.css";
+import styles from "./Page.module.css";
 
 export type PageProps = {
   children: React.ReactNode;
