@@ -2,10 +2,12 @@
   padding: 0.7rem 1rem;
   margin: 0;
   background: var(--color-ccidc-red);
-  color: var(--color-text-secondary);
+  color: #ffffff;
   border: none;
   border-radius: 0.25rem;
   cursor: pointer;
   outline: none;
-  font: var(--font-body);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
