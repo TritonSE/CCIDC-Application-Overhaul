@@ -1,9 +1,7 @@
 import styles from "./PathAppLayout.module.css";
 import { Button, PathwayTimeline, Page } from "./index.ts";
 import arrow from "../assets/arrow.svg";
-import toggledArrow from "../assets/search.svg";
 import backArrow from "../assets/backArrow.svg";
-import toggledBackArrow from "../assets/toggledBackArrow.svg";
 
 import { useState } from "react";
 
