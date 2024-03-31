@@ -1,12 +1,10 @@
 import { useState } from "react";
-
 import CongratulationsPopupWindow from "../components/CongratulationsPopupWindow";
 
 function TestCongratulations() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const openPopup = () => {
-    console.log("here");
     setIsPopupOpen(true);
   };
 
@@ -16,11 +14,7 @@ function TestCongratulations() {
 
   return (
     <div>
-      <CongratulationsPopupWindow
-        buttonText="Open Popup"
-        isOpen={isPopupOpen}
-        onClose={closePopup}
-      />
+      <CongratulationsPopupWindow isOpen={isPopupOpen} onClose={closePopup} />
       <img
         src="https://www.iconpacks.net/icons/3/free-red-arrow-right-icon-11366-thumb.png"
         alt="Click Me"

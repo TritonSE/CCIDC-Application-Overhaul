@@ -39,10 +39,6 @@
   cursor: pointer;
 }
 
-.closeButton:hover {
-  cursor: pointer;
-}
-
 .checkMark {
   margin-bottom: 2px;
   width: 200px;

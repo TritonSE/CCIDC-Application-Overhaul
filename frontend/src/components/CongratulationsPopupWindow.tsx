@@ -7,13 +7,11 @@ import { Button } from "./Button.tsx";
 import styles from "./CongratulationsPopupWindow.module.css";
 
 type CongratulationsPopupWindowProps = {
-  buttonText: string; // Define prop for button text
   isOpen: boolean;
   onClose: () => void;
 };
 
 const CongratulationsPopupWindow: React.FC<CongratulationsPopupWindowProps> = ({
-  buttonText,
   isOpen,
   onClose,
 }) => {
@@ -37,7 +35,6 @@ const CongratulationsPopupWindow: React.FC<CongratulationsPopupWindowProps> = ({
 
   return (
     <div>
-      <Button onClick={onClose}>{buttonText}</Button>
       {isOpen && (
         <div
           className={styles.popupCanvas}
@@ -57,12 +54,12 @@ const CongratulationsPopupWindow: React.FC<CongratulationsPopupWindowProps> = ({
             >
               <img src={closeIcon} alt="Close Popup" />
             </button>
-            <img className={styles.checkMark} src={checkMark} alt="failed to load" />
-            <div className={styles.mainText}> Congratulations! </div>
-            <div className={styles.reviewText}>
+            <img className={styles.checkMark} src={checkMark} alt="Green Checkmark" />
+            <p className={styles.mainText}> Congratulations! </p>
+            <p className={styles.reviewText}>
               Your application has been completed as is now under review with CCIDC.
-            </div>
-            <div className={styles.closeButton}>
+            </p>
+            <div>
               <Button onClick={closePopupAndReturn}> Click here to return to Main Page</Button>
             </div>
           </div>
