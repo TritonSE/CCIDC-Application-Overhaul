@@ -1,0 +1,76 @@
+:root {
+  --timeline-width: 830px;
+}
+
+.pathwayContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 3rem;
+  box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.timelineHeader {
+  text-align: center;
+  font: var(--font-title-medium);
+  margin: 0;
+  padding: 0;
+}
+
+.timelineDescription {
+  text-align: center;
+  font: var(--font-body);
+  margin: 0;
+  padding: 0;
+}
+
+.timelineContainer {
+  display: flex;
+  justify-content: center;
+}
+.timeline {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  width: var(--timeline-width);
+  min-width: var(--timeline-width);
+  overflow: hidden;
+}
+.timelinePoint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 5;
+}
+.timelinePointIcon {
+  display: flex;
+  justify-content: center;
+  width: 30px;
+  aspect-ratio: 1/1;
+}
+.timelinePointIcon img.uncompleted {
+  width: 20px;
+}
+.timelinePointDescription {
+  text-align: center;
+  max-width: 9rem;
+  font-family: "Rubik";
+  font-size: 0.875rem;
+  font-weight: 300;
+  text-align: center;
+}
+
+.timelinePointDescription.uncompleted {
+  color: #b4b4b4;
+}
+
+.timelineLine {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  width: 700px;
+  top: 14px;
+  left: 64px;
+  border: solid 2px var(--color-ccidc-red);
+}
