@@ -13,19 +13,17 @@ export type PathAppLayoutProps = {
 };
 
 export const PathAppLayout: React.FC<PathAppLayoutProps> = ({ pathName, children }) => {
-  const [pageNum, setPageNum] = useState(0);
+  const [pageNum, setPageNum] = useState<0 | 1 | 2 | 3 | 4 | 5>(0);
 
   const next = () => {
     if (pageNum < 5) {
-      setPageNum(pageNum + 1);
+      setPageNum((prevPageNum) => (prevPageNum + 1) as 0 | 1 | 2 | 3 | 4 | 5);
     }
   };
 
   const back = () => {
-    if (pageNum == 1) {
-      // Prescreening Questions
-    } else if (pageNum > 0) {
-      setPageNum(pageNum - 1);
+    if (pageNum > 0) {
+      setPageNum((prevPageNum) => (prevPageNum - 1) as 0 | 1 | 2 | 3 | 4 | 5);
     }
   };
 
@@ -50,7 +48,7 @@ export const PathAppLayout: React.FC<PathAppLayoutProps> = ({ pathName, children
         </div>
       </div>
 
-      <PathwayTimeline path={1} progress={0}></PathwayTimeline>
+      <PathwayTimeline path={1} progress={pageNum}></PathwayTimeline>
       <div className={styles.pageNavigator}>
         <button onClick={back}>
           <div className={styles.backArrow}>
