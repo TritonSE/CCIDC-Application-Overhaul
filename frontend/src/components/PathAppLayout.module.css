@@ -50,27 +50,27 @@
 }
 
 .backArrow img:hover {
-  content: url("../assets/toggledBackArrow.svg");
+  content: url("../assets/backArrowHovered.svg");
 }
 
 .arrow img:hover {
-  content: url("../assets/toggledArrow.svg");
+  content: url("../assets/arrowHovered.svg");
 }
 
-.pageNavigator {
+.navigationContainer {
   height: 6rem;
-  width: 90%;
+  width: 926px;
   padding: 10px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
 }
 
-#arrow {
+.arrow {
   margin-right: 5rem;
 }
 
-#backArrow {
+.backArrow {
   margin-left: 5rem;
 }
 
