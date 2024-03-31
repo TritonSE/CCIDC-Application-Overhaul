@@ -1,5 +1,5 @@
 import styles from "./PathAppLayout.module.css";
-import { Button, PageNavigator, Page, PathwayTimeline } from "./index.ts";
+import { Button, PathwayTimeline } from "./index.ts";
 import arrow from "../assets/arrow.svg";
 import toggledArrow from "../assets/search.svg";
 import backArrow from "../assets/backArrow.svg";
