@@ -9,7 +9,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 31rem;
   width: 100%;
   padding: 10px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
@@ -24,10 +23,9 @@
 }
 
 .pathContent {
-  line-height: 1.5em;
   text-align: center;
-  font-family: var(--font-nav);
-  width: 75rem;
+  font-family: var(--font-body);
+  width: 75em;
 }
 
 .centeredContainer {
@@ -43,6 +41,7 @@
   justify-content: center;
   text-decoration: underline;
   text-align: center;
+  padding-bottom: 4em;
 }
 
 .red {
