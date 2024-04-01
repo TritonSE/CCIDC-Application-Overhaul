@@ -97,15 +97,11 @@ export const PathAppLayout: React.FC<PathAppLayoutProps> = ({ path }: PathAppLay
         <PathwayTimeline path={path} progress={pageNum}></PathwayTimeline>
 
         <div className={styles.navigationContainer}>
-          <button onClick={back}>
-            <div className={styles.backArrow}>
-              <img src={backArrow} id={styles.backArrow} alt="backArrow"></img>
-            </div>
+          <button onClick={back} className={styles.backArrow}>
+            <img src={backArrow} id={styles.backArrow} alt="backArrow"></img>
           </button>
-          <button onClick={next}>
-            <div className={styles.arrow}>
-              <img src={arrow} id={styles.arrow} alt="arrow"></img>
-            </div>
+          <button onClick={next} className={styles.arrow}>
+            <img src={arrow} id={styles.arrow} alt="arrow"></img>
           </button>
         </div>
       </div>
