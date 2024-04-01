@@ -1,15 +1,16 @@
-import styles from "./PathAppLayout.module.css";
-import { Button, PathwayTimeline, Page } from "./index.ts";
+import { useState } from "react";
+
 import arrow from "../assets/arrow.svg";
 import backArrow from "../assets/backArrow.svg";
 
-import { useState } from "react";
+import styles from "./PathAppLayout.module.css";
+import { Button, Page, PathwayTimeline } from "./index.ts";
 
 export type PathAppLayoutProps = {
   path: 1 | 2 | 3 | 4;
 };
 
-export const PathAppLayout: React.FC<PathAppLayoutProps> = ({ path }) => {
+export const PathAppLayout: React.FC<PathAppLayoutProps> = ({ path }: PathAppLayoutProps) => {
   const [pageNum, setPageNum] = useState<0 | 1 | 2 | 3 | 4 | 5>(0);
 
   const next = () => {
@@ -24,7 +25,7 @@ export const PathAppLayout: React.FC<PathAppLayoutProps> = ({ path }) => {
     }
   };
 
-  let path_descriptions = {
+  const path_descriptions = {
     1: (
       <p>
         Path 1 is for Applicants who meet minimum education or experience-only requirements but who
@@ -98,12 +99,12 @@ export const PathAppLayout: React.FC<PathAppLayoutProps> = ({ path }) => {
         <div className={styles.navigationContainer}>
           <button onClick={back}>
             <div className={styles.backArrow}>
-              <img src={backArrow} id={styles.backArrow}></img>
+              <img src={backArrow} id={styles.backArrow} alt="backArrow"></img>
             </div>
           </button>
           <button onClick={next}>
             <div className={styles.arrow}>
-              <img src={arrow} id={styles.arrow}></img>
+              <img src={arrow} id={styles.arrow} alt="arrow"></img>
             </div>
           </button>
         </div>

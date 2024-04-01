@@ -1,7 +1,7 @@
 import { Outlet, Route, Routes } from "react-router-dom";
 
 import { NavBar } from "./components/index.ts";
-import { Apply, Candidates, ApplyPage } from "./pages/index.ts";
+import { Apply, ApplyPage, Candidates } from "./pages/index.ts";
 
 function Layout() {
   return (

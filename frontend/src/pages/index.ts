@@ -1,5 +1,5 @@
 import { Apply } from "./Apply.tsx";
-import { Candidates } from "./Candidates.tsx";
 import { ApplyPage } from "./ApplyPage.tsx";
+import { Candidates } from "./Candidates.tsx";
 
-export { Candidates, Apply, ApplyPage };
+export { Apply, ApplyPage, Candidates };
