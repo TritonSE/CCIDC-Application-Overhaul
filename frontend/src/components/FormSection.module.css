@@ -17,7 +17,24 @@ h3 {
   color: #6c6c6c;
 }
 
+::placeholder {
+  color: var(--color-accent);
+  opacity: 1; /* Firefox */
+}
+
 .inputText {
+  width: 100%;
+  padding: 8px 48px 8px 16px;
+  margin-top: 4px;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--color-text-primary);
+  font: var(--font-body);
+  border: 1px solid var(--color-shadow);
+  border-radius: 5px;
+}
+
+/* .inputTextSelected {
   width: 100%;
   padding: 8px 48px 8px 16px;
   margin-top: 4px;
@@ -27,7 +44,7 @@ h3 {
   font: var(--font-body);
   border: 1px solid var(--color-shadow);
   border-radius: 5px;
-}
+} */
 
 select.inputText {
   /* Arrow */
@@ -36,6 +53,7 @@ select.inputText {
   background-repeat: no-repeat;
   background-position: right top 50%;
   cursor: pointer;
+  /* color: var(--color-accent); */
 }
 .selectInput {
   border: 0;
@@ -44,4 +62,12 @@ select.inputText {
   -webkit-appearance: none;
   appearance: none;
   padding-left: 5px;
+}
+
+.optionDefault {
+  color: var(--color-accent);
+}
+
+.optionSelected {
+  color: var(--color-text-primary);
 }

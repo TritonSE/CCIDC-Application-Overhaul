@@ -95,22 +95,26 @@ export function InfoForm() {
               inputTitle: "Email Address",
               defaultMessage: "Enter Email Address",
               inputType: "text",
+              required: true,
             },
             {
               inputTitle: "Confirm Email Address",
               defaultMessage: "Enter Email Address",
               inputType: "text",
+              required: true,
             },
             {
               inputTitle: "Phone Device Type",
               defaultMessage: "Select One",
               inputType: "dropdown",
               dropdownOptions: ["mobile", "cell", "work"],
+              required: true,
             },
             {
               inputTitle: "Phone Number",
               defaultMessage: "Enter Phone Number",
               inputType: "text",
+              required: true,
             },
           ]}
         />
@@ -124,31 +128,37 @@ export function InfoForm() {
               inputTitle: "Address",
               defaultMessage: "Enter Address",
               inputType: "text",
+              required: true,
             },
             {
               inputTitle: "City",
               defaultMessage: "Enter City",
               inputType: "text",
+              required: true,
             },
             {
               inputTitle: "State",
               defaultMessage: "Enter State",
               inputType: "text",
+              required: true,
             },
             {
               inputTitle: "Zip Code",
               defaultMessage: "Enter Zip Code",
               inputType: "text",
+              required: true,
             },
             {
               inputTitle: "County",
               defaultMessage: "Enter County",
               inputType: "text",
+              required: true,
             },
             {
               inputTitle: "Country",
               defaultMessage: "Enter Country",
               inputType: "text",
+              required: true,
             },
           ]}
         />

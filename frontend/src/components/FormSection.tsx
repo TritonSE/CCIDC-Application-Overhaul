@@ -7,6 +7,7 @@ export type FormInput = {
   defaultMessage: string;
   inputType: "text" | "dropdown" | "checkbox"; // Add other input types as needed
   dropdownOptions?: string[];
+  required?: boolean;
 };
 
 export type FormSectionProps = {
@@ -27,16 +28,20 @@ export const FormSection: React.FC<FormSectionProps> = ({ sectionName, formInput
               <input
                 type="text"
                 className={styles.inputText}
-                defaultValue={formInput.defaultMessage}
+                placeholder={formInput.defaultMessage}
               />
             )}
             {formInput.inputType === "dropdown" && formInput.dropdownOptions && (
               <select className={styles.inputText} id="drop">
-                <option value="none" selected disabled hidden>
+                <option value="none" className={styles.optionDefault} selected disabled hidden>
                   Select One
                 </option>
                 {formInput.dropdownOptions.map((dropOption, dropIndex) => (
-                  <option key={dropIndex} value={dropOption}>
+                  <option
+                    key={dropIndex}
+                    value={dropOption}
+                    className={dropOption ? styles.optionSelected : styles.optionDefault}
+                  >
                     {dropOption}
                   </option>
                 ))}
