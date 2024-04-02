@@ -11,7 +11,7 @@ type CongratulationsPopupWindowProps = {
   onClose: () => void;
 };
 
-const CongratulationsPopupWindow: React.FC<CongratulationsPopupWindowProps> = ({
+export const CongratulationsPopupWindow: React.FC<CongratulationsPopupWindowProps> = ({
   isOpen,
   onClose,
 }) => {
@@ -29,7 +29,7 @@ const CongratulationsPopupWindow: React.FC<CongratulationsPopupWindowProps> = ({
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.key === "Enter" || event.key === " ") {
-      onClose();
+      closePopupAndReturn();
     }
   };
 
@@ -60,7 +60,7 @@ const CongratulationsPopupWindow: React.FC<CongratulationsPopupWindowProps> = ({
               Your application has been completed as is now under review with CCIDC.
             </p>
             <div>
-              <Button onClick={closePopupAndReturn}> Click here to return to Main Page</Button>
+              <Button onClick={closePopupAndReturn}>Click here to return to Main Page</Button>
             </div>
           </div>
         </div>
@@ -68,4 +68,3 @@ const CongratulationsPopupWindow: React.FC<CongratulationsPopupWindowProps> = ({
     </div>
   );
 };
-export default CongratulationsPopupWindow;

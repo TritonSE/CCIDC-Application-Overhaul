@@ -127,5 +127,3 @@ export function Candidates() {
     </Page>
   );
 }
-
-export default Candidates;

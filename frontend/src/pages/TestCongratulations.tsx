@@ -1,7 +1,11 @@
-import { useState } from "react";
-import CongratulationsPopupWindow from "../components/CongratulationsPopupWindow";
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 
-function TestCongratulations() {
+import { useState } from "react";
+
+import { CongratulationsPopupWindow } from "../components";
+
+export function TestCongratulations() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const openPopup = () => {
@@ -24,5 +28,3 @@ function TestCongratulations() {
     </div>
   );
 }
-
-export default TestCongratulations;

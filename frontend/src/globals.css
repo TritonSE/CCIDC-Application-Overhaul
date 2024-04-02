@@ -4,22 +4,16 @@
   --color-background: var(--color-ccidc-white);
   --color-text-primary: #000000;
   --color-text-secondary: #ffffff;
-<<<<<<< HEAD
   --color-text-neutral-grey: #484848;
   --color-accent: #b4b4b4;
   --color-error: #fc3030;
   --color-red-secondary: #ce2e21;
-=======
-  --color-accent: #b4b4b4;
   --color-shadow: #d8d8d8;
->>>>>>> main
   --font-title: normal bold 2rem "Rubik", sans-serif;
   --font-heading: normal bold 1.5rem "Rubik", sans-serif;
   --font-label: normal bold 1rem "Rubik", sans-serif;
   --font-body: normal 400 1rem "Rubik", sans-serif;
-<<<<<<< HEAD
   --font-nav: "Roboto", sans-serif;
-=======
   --font-title-medium: 700 1.75rem "Rubik";
 }
 
@@ -31,7 +25,6 @@
 
 *:focus-visible {
   outline: var(--color-accent) solid medium;
->>>>>>> main
 }
 
 html,
