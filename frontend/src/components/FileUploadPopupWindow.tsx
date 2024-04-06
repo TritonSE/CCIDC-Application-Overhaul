@@ -3,10 +3,17 @@ import styles from "./FileUploadPopupWindow.module.css";
 import closeIcon from "../assets/closeIcon.svg";
 import fileUploadIcon from "../assets/fileUploadIcon.svg";
 import { Button } from "./Button.tsx";
+import { google } from 'googleapis';
+import * as fs from 'fs';
+import * as path from 'path';
 
 interface FileUploadPopupWindowProps {
   buttonText: string; // Define prop for button text
 }
+
+
+
+
 const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonText }) => {
   const [isOpen, setIsOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -52,17 +59,32 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTex
     // Handle the file reading logic here
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
-
     if (files) {
-      // Limit the number of selected files to 10
-      const filesToUpload = [...selectedFiles].slice(0, 10);
-      filesToUpload.push(...files);
-      setSelectedFiles(filesToUpload.slice(0, 10));
-
-      console.log(filesToUpload);
-      // Handle the file reading logic here
+      const filesToUpload = Array.from(files).slice(0, 10);
+      setSelectedFiles(filesToUpload);
+  
+      for (const file of filesToUpload) {
+        const formData = new FormData();
+        formData.append('files', file);
+  
+        try {
+          const response = await fetch('http://localhost:3001/file/upload', {
+            method: 'POST',
+            body: formData, // FormData object will be used here directly
+          });
+  
+          if (!response.ok) {
+            throw new Error('Server responded with a non-200 status code');
+          }
+  
+          const data = await response.json();
+          console.log('File uploaded successfully:', data);
+        } catch (error) {
+          console.error('Error uploading file:', error);
+        }
+      }
     }
   };
 
