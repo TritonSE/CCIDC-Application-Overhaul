@@ -2,7 +2,7 @@ import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import express from "express";
 
-import fileRoutes from "./src/routes/fileRoutes";
+import fileRoutes from "./src/routes/driveRoutes.ts"; // Assuming the converted file is driveRoutes.js
 import loginRoutes from "./src/routes/loginRoutes";
 
 dotenv.config();
