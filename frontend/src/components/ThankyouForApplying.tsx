@@ -1,6 +1,6 @@
-import styles from "./ThankyouForApplying.module.css";
-
 import { Page } from "../components/index.ts";
+
+import styles from "./ThankyouForApplying.module.css";
 
 export function ThankyouForApplying() {
   return (
