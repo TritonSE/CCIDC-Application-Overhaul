@@ -23,8 +23,8 @@
   color: rgba(66, 139, 205, 1);
 }
 
-.button {
-  padding: 1.25rem 2rem;
+.button2 {
+  padding: 1.25rem 2rem !important;
   margin: 0;
   background: var(--color-ccidc-red);
   color: var(--color-text-secondary);

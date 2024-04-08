@@ -1,4 +1,4 @@
-import { Page } from "../components/index.ts";
+import { Button, Page } from "../components/index.ts";
 
 import styles from "./ThankyouForApplying.module.css";
 
@@ -21,7 +21,9 @@ export function ThankyouForApplying() {
 
       <div className={styles.centeredContainer}>
         <a href="https://ccidc.org/">
-          <button className={styles.button}>Return to Main Page</button>
+          <Button onClick={undefined} additionalStyle={styles.button2}>
+            Return to Main Page
+          </Button>
         </a>
       </div>
     </Page>
