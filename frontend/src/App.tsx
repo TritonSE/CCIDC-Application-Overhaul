@@ -17,9 +17,10 @@ function App() {
     <div className="app-container">
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<ThankyouForApplying />} />
+          <Route index element={<Candidates />} />
           <Route path="apply" element={<Apply />} />
           <Route path="candidates" element={<Candidates />} />
+          <Route path="ThankyouForApplying" element={<ThankyouForApplying />} />
           <Route path="TestCongratulations" element={<TestCongratulations />} />
         </Route>
       </Routes>

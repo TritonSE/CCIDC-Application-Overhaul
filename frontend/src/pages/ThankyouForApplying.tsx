@@ -1,5 +1,4 @@
 import { Button, Page } from "../components/index.ts";
-
 import styles from "../stylesheets/ThankyouForApplying.module.css";
 
 export function ThankyouForApplying() {
