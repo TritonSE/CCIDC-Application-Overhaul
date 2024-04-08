@@ -19,7 +19,7 @@ export function NavBar() {
     login: "https://ccidc.org/wp-login.php",
   };
 
-  const { isLoggedIn, login, logout } = useContext(AuthContext);
+  const { isLoggedIn, logout } = useContext(AuthContext);
 
   return (
     <nav className={styles.navBar}>
@@ -79,9 +79,9 @@ export function NavBar() {
                 Logout
               </button>
             ) : (
-              <button className={styles.logInOutButton} onClick={login}>
+              <NavLink className={styles.logInOutButton} to={"/login"}>
                 Login
-              </button>
+              </NavLink>
             )}
           </li>
           <li>
