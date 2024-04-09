@@ -40,13 +40,13 @@
 }
 
 .note {
-  display: flex;
-  justify-content: center;
+  display: inline;
   text-decoration: underline;
   text-decoration-color: var(--color-ccidc-red);
   text-align: center;
   padding-bottom: 5em;
   font-size: 1.75em;
+  color: var(--color-ccidc-red);
 }
 
 .red {
