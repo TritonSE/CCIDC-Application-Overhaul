@@ -78,7 +78,9 @@ export const PathAppLayout: React.FC<PathAppLayoutProps> = ({ path }: PathAppLay
 
         <div className={styles.pathContent}>{path_descriptions[path]}</div>
         <div className={styles.centeredContainer}>
-          <Button onClick={null}>Retake Prescreening Questions</Button>
+          <Button onClick={undefined} additionalStyle={styles.button2}>
+            Retake Prescreening Questionnaire
+          </Button>
         </div>
 
         <div className={styles.note}>
@@ -88,7 +90,9 @@ export const PathAppLayout: React.FC<PathAppLayoutProps> = ({ path }: PathAppLay
             the
             <br></br>
             sorting questionnaire. For further inquiries, please reach out to{" "}
-            <strong>ccidc@ccidc.org</strong>
+            <a href="mailto:ccidc@ccidc.org" className={styles.red}>
+              <strong>ccidc@ccidc.org</strong>
+            </a>
           </p>
         </div>
       </div>
