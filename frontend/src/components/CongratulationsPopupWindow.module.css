@@ -95,3 +95,15 @@
   display: flex;
   align-items: center; /* Aligns vertically */
 }
+
+.deleteText {
+  color: blue;
+  font-style: italic;
+  text-decoration: underline;
+  font-size: 13px;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+.fileName {
+  display: inline-block;
+}
