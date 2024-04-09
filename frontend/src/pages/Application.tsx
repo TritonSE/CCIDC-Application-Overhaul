@@ -2,26 +2,25 @@ import { useState } from "react";
 
 import arrow from "../assets/arrow.svg";
 import backArrow from "../assets/backArrow.svg";
+import { Button, PathwayTimeline } from "../components/index.ts";
+import styles from "../stylesheets/Application.module.css";
 
-import styles from "./PathAppLayout.module.css";
-import { Button, PathwayTimeline } from "./index.ts";
-
-export type PathAppLayoutProps = {
+export type ApplicationProps = {
   path: 1 | 2 | 3 | 4;
 };
 
-export const PathAppLayout: React.FC<PathAppLayoutProps> = ({ path }: PathAppLayoutProps) => {
+export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationProps) => {
   const [pageNum, setPageNum] = useState<0 | 1 | 2 | 3 | 4 | 5>(0);
 
   const next = () => {
     if (pageNum < 5) {
-      setPageNum((pageNum) => (pageNum + 1) as 0 | 1 | 2 | 3 | 4 | 5);
+      setPageNum((newPageNum) => (newPageNum + 1) as 0 | 1 | 2 | 3 | 4 | 5);
     }
   };
 
   const back = () => {
     if (pageNum > 0) {
-      setPageNum((pageNum) => (pageNum - 1) as 0 | 1 | 2 | 3 | 4 | 5);
+      setPageNum((newPageNum) => (newPageNum - 1) as 0 | 1 | 2 | 3 | 4 | 5);
     }
   };
 
