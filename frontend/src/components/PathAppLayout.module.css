@@ -16,16 +16,19 @@
 
 .title {
   text-align: center;
-  font: var(--font-title);
-  padding-bottom: 2rem;
+  padding-bottom: 4rem;
   line-height: 48px;
   letter-spacing: 0.02em;
+  font-size: 3em;
 }
 
 .pathContent {
   text-align: center;
-  font-family: var(--font-body);
-  width: 75em;
+  line-height: 2em;
+  margin-left: 10em;
+  margin-right: 10em;
+  font-size: 1.75em;
+  padding-bottom: 2em;
 }
 
 .centeredContainer {
@@ -42,6 +45,7 @@
   text-decoration: underline;
   text-align: center;
   padding-bottom: 4em;
+  font-size: 1.75em;
 }
 
 .red {
