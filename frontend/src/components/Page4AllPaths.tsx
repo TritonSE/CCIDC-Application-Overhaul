@@ -66,9 +66,11 @@ export function Page4AllPaths() {
               CCIDC RULES & REGULATIONS
             </a>
           </p>
-          <p className={styles.note}>
-            Click here to acknowledge you have read and understood the rules and regulation
-          </p>
+
+          <input className={styles.select} type="checkbox" />
+          <label htmlFor="select" className={styles.checkboxLabel}>
+            Click here to ack nowledge you have read and understood the rules and regulations
+          </label>
 
           <hr className={styles.line} />
 

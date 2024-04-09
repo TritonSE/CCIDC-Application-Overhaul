@@ -96,3 +96,27 @@
   display: flex;
   margin-left: 250px;
 }
+
+input[type="checkbox"].select {
+  margin-left: 0;
+  visibility: hidden;
+}
+
+input[type="checkbox"].select + label::before {
+  content: "";
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  border: 2px solid var(--color-ccidc-red);
+  border-radius: 5px;
+  background-color: white;
+  margin-right: 1em;
+}
+
+input[type="checkbox"].select:checked + label::before {
+  background-color: var(--color-ccidc-red);
+}
+
+.checkboxLabel {
+  margin-left: 230px;
+}
