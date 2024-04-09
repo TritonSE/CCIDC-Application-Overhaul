@@ -15,13 +15,13 @@ export const PathAppLayout: React.FC<PathAppLayoutProps> = ({ path }: PathAppLay
 
   const next = () => {
     if (pageNum < 5) {
-      setPageNum((prevPageNum) => (prevPageNum + 1) as 0 | 1 | 2 | 3 | 4 | 5);
+      setPageNum((pageNum) => (pageNum + 1) as 0 | 1 | 2 | 3 | 4 | 5);
     }
   };
 
   const back = () => {
     if (pageNum > 0) {
-      setPageNum((prevPageNum) => (prevPageNum - 1) as 0 | 1 | 2 | 3 | 4 | 5);
+      setPageNum((pageNum) => (pageNum - 1) as 0 | 1 | 2 | 3 | 4 | 5);
     }
   };
 

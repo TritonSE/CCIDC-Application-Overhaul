@@ -1,12 +1,12 @@
 :root {
-  --timeline-width: 830px;
+  --timeline-width: 70%;
 }
 
 .pathwayContainer {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
-  padding: 3rem;
+  gap: 5em;
+  padding: 5em;
   box-shadow: 0px 4px 4px 0px #00000040;
 }
 
@@ -15,6 +15,7 @@
   font: var(--font-title-medium);
   margin: 0;
   padding: 0;
+  font-size: 2.5em;
 }
 
 .timelineDescription {
@@ -22,6 +23,7 @@
   font: var(--font-body);
   margin: 0;
   padding: 0;
+  font-size: 2em;
 }
 
 .timelineContainer {
@@ -56,7 +58,7 @@
   text-align: center;
   max-width: 9rem;
   font-family: "Rubik";
-  font-size: 0.875rem;
+  font-size: 1.5rem;
   font-weight: 300;
   text-align: center;
 }
@@ -67,10 +69,10 @@
 
 .timelineLine {
   position: absolute;
+  left: 60px;
+  right: 60px;
+  top: 15px;
   margin: 0;
   padding: 0;
-  width: 700px;
-  top: 14px;
-  left: 64px;
-  border: solid 2px var(--color-ccidc-red);
+  border-top: 3px solid var(--color-ccidc-red);
 }
