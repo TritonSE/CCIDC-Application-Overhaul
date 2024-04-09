@@ -81,7 +81,7 @@ export function InfoForm() {
               inputTitle: "Gender",
               defaultMessage: "Select One",
               inputType: "dropdown",
-              dropdownOptions: ["female", "male", "non-binary", "transgender", "Prefer not to say"],
+              dropdownOptions: ["Female", "Male", "Other", "Prefer not to say"],
             },
           ]}
         />
@@ -92,26 +92,26 @@ export function InfoForm() {
           sectionName="Contact Information"
           formInputs={[
             {
-              inputTitle: "Email Address",
+              inputTitle: "Email Address *",
               defaultMessage: "Enter Email Address",
               inputType: "text",
               required: true,
             },
             {
-              inputTitle: "Confirm Email Address",
+              inputTitle: "Confirm Email Address *",
               defaultMessage: "Enter Email Address",
               inputType: "text",
               required: true,
             },
             {
-              inputTitle: "Phone Device Type",
+              inputTitle: "Phone Device Type *",
               defaultMessage: "Select One",
               inputType: "dropdown",
-              dropdownOptions: ["mobile", "cell", "work"],
+              dropdownOptions: ["Cell", "Home", "Office"],
               required: true,
             },
             {
-              inputTitle: "Phone Number",
+              inputTitle: "Phone Number *",
               defaultMessage: "Enter Phone Number",
               inputType: "text",
               required: true,
@@ -125,37 +125,37 @@ export function InfoForm() {
           sectionName="Mailing Address"
           formInputs={[
             {
-              inputTitle: "Address",
+              inputTitle: "Address *",
               defaultMessage: "Enter Address",
               inputType: "text",
               required: true,
             },
             {
-              inputTitle: "City",
+              inputTitle: "City *",
               defaultMessage: "Enter City",
               inputType: "text",
               required: true,
             },
             {
-              inputTitle: "State",
+              inputTitle: "State *",
               defaultMessage: "Enter State",
               inputType: "text",
               required: true,
             },
             {
-              inputTitle: "Zip Code",
+              inputTitle: "Zip Code *",
               defaultMessage: "Enter Zip Code",
               inputType: "text",
               required: true,
             },
             {
-              inputTitle: "County",
+              inputTitle: "County *",
               defaultMessage: "Enter County",
               inputType: "text",
               required: true,
             },
             {
-              inputTitle: "Country",
+              inputTitle: "Country *",
               defaultMessage: "Enter Country",
               inputType: "text",
               required: true,
