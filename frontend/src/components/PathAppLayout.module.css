@@ -11,6 +11,7 @@
   align-items: center;
   width: 100%;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+  margin-bottom: 0.5rem;
 }
 
 .title {
@@ -47,6 +48,10 @@
   color: var(--color-ccidc-red);
 }
 
+.formContainer {
+  width: 80%;
+}
+
 .backArrow img:hover {
   content: url("../assets/backArrowHovered.svg");
 }
@@ -57,7 +62,6 @@
 
 .navigationContainer {
   height: 6rem;
-  width: 926px;
   padding: 10px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -72,7 +76,7 @@
   margin-left: 5rem;
 }
 
-button img {
+.navigationContainer img {
   margin-top: 1rem;
 }
 

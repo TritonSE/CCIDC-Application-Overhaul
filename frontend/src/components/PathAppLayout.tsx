@@ -4,7 +4,7 @@ import arrow from "../assets/arrow.svg";
 import backArrow from "../assets/backArrow.svg";
 
 import styles from "./PathAppLayout.module.css";
-import { Button, Page, PathwayTimeline } from "./index.ts";
+import { Button, PathwayTimeline } from "./index.ts";
 
 export type PathAppLayoutProps = {
   path: 1 | 2 | 3 | 4;
@@ -72,28 +72,28 @@ export const PathAppLayout: React.FC<PathAppLayoutProps> = ({ path }: PathAppLay
   };
 
   return (
-    <Page>
-      <div className={styles.pathwayApplicationBase}>
-        <div className={styles.applicationContainer}>
-          <h1 className={styles.title}>Path {path} Application</h1>
+    <div className={styles.pathwayApplicationBase}>
+      <div className={styles.applicationContainer}>
+        <h1 className={styles.title}>Path {path} Application</h1>
 
-          <div className={styles.pathContent}>{path_descriptions[path]}</div>
-          <div className={styles.centeredContainer}>
-            <Button onClick={null}>Retake Prescreening Questions</Button>
-          </div>
-
-          <div className={styles.note}>
-            <p className={styles.red}>
-              {" "}
-              If you would like to be sorted into a different pathway, please click above to retake
-              the
-              <br></br>
-              sorting questionnaire. For further inquiries, please reach out to{" "}
-              <strong>ccidc@ccidc.org</strong>
-            </p>
-          </div>
+        <div className={styles.pathContent}>{path_descriptions[path]}</div>
+        <div className={styles.centeredContainer}>
+          <Button onClick={null}>Retake Prescreening Questions</Button>
         </div>
 
+        <div className={styles.note}>
+          <p className={styles.red}>
+            {" "}
+            If you would like to be sorted into a different pathway, please click above to retake
+            the
+            <br></br>
+            sorting questionnaire. For further inquiries, please reach out to{" "}
+            <strong>ccidc@ccidc.org</strong>
+          </p>
+        </div>
+      </div>
+
+      <div className={styles.formContainer}>
         <PathwayTimeline path={path} progress={pageNum}></PathwayTimeline>
 
         <div className={styles.navigationContainer}>
@@ -105,6 +105,6 @@ export const PathAppLayout: React.FC<PathAppLayoutProps> = ({ path }: PathAppLay
           </button>
         </div>
       </div>
-    </Page>
+    </div>
   );
 };
