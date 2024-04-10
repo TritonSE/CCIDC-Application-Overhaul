@@ -27,7 +27,10 @@
 .timelineContainer {
   display: flex;
   justify-content: center;
+  margin-left: 10em;
+  margin-right: 10em;
 }
+
 .timeline {
   display: flex;
   position: relative;
@@ -73,4 +76,23 @@
   top: 14px;
   left: 64px;
   border: solid 2px var(--color-ccidc-red);
+}
+
+@media screen and (max-width: 1000px) {
+  :root {
+    --timeline-width: 100%;
+  }
+
+  .timelineContainer {
+    justify-content: flex-start;
+    margin-left: 0;
+    margin-right: 0;
+    overflow-x: auto;
+  }
+
+  .timeline {
+    justify-content: flex-start;
+    width: auto;
+    min-width: auto;
+  }
 }

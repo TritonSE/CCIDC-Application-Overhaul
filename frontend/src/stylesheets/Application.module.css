@@ -24,7 +24,8 @@
 .pathContent {
   text-align: center;
   font-family: var(--font-body);
-  width: 75em;
+  margin-left: 10em;
+  margin-right: 10em;
 }
 
 .centeredContainer {
