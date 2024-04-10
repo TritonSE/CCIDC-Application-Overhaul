@@ -5,6 +5,7 @@ export function Candidates() {
     <>
       <h2>Candidates</h2>
       <FileUploadPopupWindow buttonText="Upload Files" />
+      <FileUploadPopupWindow buttonText="Upload Files2" />
     </>
   );
 }
