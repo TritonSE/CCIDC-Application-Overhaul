@@ -77,9 +77,7 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
 
         <div className={styles.pathContent}>{path_descriptions[path]}</div>
         <div className={styles.centeredContainer}>
-          <Button onClick={undefined} additionalStyle={styles.button2}>
-            Retake Prescreening Questionnaire
-          </Button>
+          <Button onClick={undefined}>Retake Prescreening Questionnaire</Button>
         </div>
 
         <p className={styles.note}>

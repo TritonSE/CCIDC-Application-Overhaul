@@ -16,36 +16,31 @@
 
 .title {
   text-align: center;
-  padding-bottom: 4rem;
-  line-height: 48px;
-  letter-spacing: 0.02em;
-  font-size: 3em;
+  font: var(--font-title);
+  padding-bottom: 0.5em;
+  margin-top: 2.5em;
 }
 
 .pathContent {
   text-align: center;
-  line-height: 2em;
-  margin-left: 10em;
-  margin-right: 10em;
-  font-size: 1.75em;
-  padding-bottom: 2em;
+  font-family: var(--font-body);
+  width: 75em;
 }
 
 .centeredContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-bottom: 3em;
+  padding-bottom: 2em;
   padding-top: 3em;
 }
 
 .note {
   display: inline;
+  justify-content: center;
   text-decoration: underline;
-  text-decoration-color: var(--color-ccidc-red);
   text-align: center;
-  padding-bottom: 5em;
-  font-size: 1.75em;
+  padding-bottom: 4em;
   color: var(--color-ccidc-red);
 }
 
@@ -66,6 +61,7 @@
 }
 
 .navigationContainer {
+  height: 6rem;
   padding: 10px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -73,24 +69,13 @@
 }
 
 .arrow {
-  margin-right: 10rem;
+  margin-right: 5rem;
 }
 
 .backArrow {
-  margin-left: 10rem;
+  margin-left: 5rem;
 }
 
 .navigationContainer img {
-  width: 150%;
-}
-
-/* General Styling */
-button {
-  background: none;
-  display: flex;
-}
-
-.button2 {
-  padding: 1em;
-  font-size: 1.5em;
+  margin-top: 1rem;
 }
