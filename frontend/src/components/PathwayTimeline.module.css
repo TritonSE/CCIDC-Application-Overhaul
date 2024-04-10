@@ -95,4 +95,9 @@
     width: auto;
     min-width: auto;
   }
+
+  .timelineLine {
+    width: 525px;
+    right: 64px;
+  }
 }
