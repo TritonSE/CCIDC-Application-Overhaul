@@ -6,7 +6,7 @@ import { Apply, Candidates, TestCongratulations, ThankyouForApplying } from "./p
 function Layout() {
   return (
     <>
-      <NavBar></NavBar>
+      <NavBar />
       <Outlet />
     </>
   );

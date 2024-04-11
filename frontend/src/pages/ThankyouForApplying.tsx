@@ -9,21 +9,21 @@ export function ThankyouForApplying() {
       <p className={styles.message}>
         Your application seems to be missing a necessary component. Please review the requirements
         for each pathway{" "}
-        <a
-          href="https://ccidc.org/becoming-a-certified-interior-designer/"
-          className={styles.lightBlue}
-        >
+        <a href="/" className={styles.lightBlue}>
           here
         </a>{" "}
         and reapply when you have met the requirements for at least path one.{" "}
       </p>
 
       <div className={styles.centeredContainer}>
-        <a href="https://ccidc.org/">
-          <Button onClick={undefined} additionalStyle={styles.button2}>
-            Return to Main Page
-          </Button>
-        </a>
+        <Button
+          onClick={() => {
+            window.location.href = "https://ccidc.org/";
+          }}
+          additionalStyle={styles.button2}
+        >
+          Return to Main Page
+        </Button>
       </div>
     </Page>
   );

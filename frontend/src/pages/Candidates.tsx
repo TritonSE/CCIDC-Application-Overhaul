@@ -107,7 +107,7 @@ export function Candidates() {
         <Button onClick={undefined}>Discover Your Ideal Pathway</Button>
       </div>
 
-      <FAQs></FAQs>
+      <FAQs />
 
       <footer className={styles.footer}>
         <div className={styles.tseLogo}>

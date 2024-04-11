@@ -24,7 +24,7 @@
 }
 
 .button2 {
-  padding: 1.25rem 2rem !important;
+  padding: 1.25rem 2rem;
   margin: 0;
   background: var(--color-ccidc-red);
   color: var(--color-text-secondary);
