@@ -62,4 +62,27 @@ router.post('/upload', upload.array('files', 10), async (req: Request, res: Resp
     res.send(results.filter(result => result !== null));
 });
 
+router.delete('/delete/:fileId', async (req: Request, res: Response) => {
+    const { fileId } = req.params;
+    if (!fileId) {
+        return res.status(400).send('File ID is required');
+    }
+
+    try {
+        const drive = await authenticateServiceAccount(); // Ensure this is defined or imported
+        const response = await drive.files.delete({ fileId: fileId });
+
+        if (response.status === 204) {
+            console.log('File deleted successfully');
+            res.send('File deleted successfully');
+        } else {
+            console.log('Unexpected response status:', response.status);
+            res.status(500).send('Failed to delete the file with status code: ' + response.status);
+        }
+    } catch (error) {
+        console.error('The API returned an error: ' + error);
+        res.status(500).send('Error deleting file: ' + error);
+    }
+});
+
 export default router;
