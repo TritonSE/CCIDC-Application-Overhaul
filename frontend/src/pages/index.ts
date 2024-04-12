@@ -1,5 +1,6 @@
 import { Application } from "./Application.tsx";
 import { Candidates } from "./Candidates.tsx";
+import { FileTesting } from "./FileTesting.tsx";
 import { Login } from "./Login.tsx";
 import { PrescreeningForm } from "./PrescreeningForm.tsx";
 import { RedirectTo404 } from "./RedirectTo404.tsx";
@@ -13,4 +14,5 @@ export {
   Login,
   RedirectTo404,
   TestModals,
+  FileTesting,
 };
