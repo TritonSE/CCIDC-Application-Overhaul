@@ -16,6 +16,7 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTex
   const fileInputRef = useRef<HTMLInputElement>(null);
   const closeButtonRef = useRef<HTMLImageElement>(null);
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+  const [fileIds, setFileIds] = useState<string[]>([]);
 
   const openPopup = () => {
     setIsOpen(true);
@@ -99,7 +100,9 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTex
           }
 
           const data = await response.json();
-          console.log("File uploaded successfully:", data);
+          //console.log("File uploaded successfully:", data);
+          console.log(data);
+          setFileIds((prevIds) => [...prevIds, data[0].fileId]);
         } catch (error) {
           console.error("Error uploading file:", error);
         }
@@ -115,11 +118,10 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTex
   };
 
   function handleDeleteFile(index: number): void {
+    console.log(fileIds[index]);
     const updatedFiles = [...selectedFiles];
     updatedFiles.splice(index, 1);
     setSelectedFiles(updatedFiles);
-
-    console.log("deleted");
   }
 
   return (
