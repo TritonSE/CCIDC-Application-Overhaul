@@ -3,16 +3,13 @@ import styles from "./FileUploadPopupWindow.module.css";
 import closeIcon from "../assets/closeIcon.svg";
 import fileUploadIcon from "../assets/fileUploadIcon.svg";
 import { Button } from "./Button.tsx";
-import { google } from 'googleapis';
-import * as fs from 'fs';
-import * as path from 'path';
+import { google } from "googleapis";
+import * as fs from "fs";
+import * as path from "path";
 
 interface FileUploadPopupWindowProps {
   buttonText: string; // Define prop for button text
 }
-
-
-
 
 const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonText }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,7 +39,7 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTex
     e.currentTarget.classList.remove(styles.dragOver);
   };
 
-  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+  const handleDrop = async (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
     // Remove the visual indication when a file is dropped
@@ -53,38 +50,61 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTex
     // Limit the number of selected files to 10
     const filesToUpload = [...selectedFiles].slice(0, 10);
     filesToUpload.push(...files);
-    setSelectedFiles(filesToUpload.slice(0, 10));
+    setSelectedFiles((prevFiles) => [...prevFiles, ...filesToUpload.slice(0, 10)]);
 
     console.log(filesToUpload);
-    // Handle the file reading logic here
+
+    for (const file of filesToUpload) {
+      const formData = new FormData();
+      formData.append("files", file);
+
+      try {
+        const response = await fetch("http://localhost:3001/file/upload", {
+          method: "POST",
+          body: formData, // FormData object will be used here directly
+        });
+
+        if (!response.ok) {
+          throw new Error("Server responded with a non-200 status code");
+        }
+
+        const data = await response.json();
+        console.log("File uploaded successfully:", data);
+      } catch (error) {
+        console.error("Error uploading file:", error);
+      }
+    }
+    closePopup;
   };
 
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (files) {
       const filesToUpload = Array.from(files).slice(0, 10);
-      setSelectedFiles(filesToUpload);
-  
+
+      setSelectedFiles((prevFiles) => [...prevFiles, ...filesToUpload]);
+
       for (const file of filesToUpload) {
         const formData = new FormData();
-        formData.append('files', file);
-  
+        formData.append("files", file);
+
         try {
-          const response = await fetch('http://localhost:3001/file/upload', {
-            method: 'POST',
+          const response = await fetch("http://localhost:3001/file/upload", {
+            method: "POST",
             body: formData, // FormData object will be used here directly
           });
-  
+
           if (!response.ok) {
-            throw new Error('Server responded with a non-200 status code');
+            throw new Error("Server responded with a non-200 status code");
           }
-  
+
           const data = await response.json();
-          console.log('File uploaded successfully:', data);
+          console.log("File uploaded successfully:", data);
         } catch (error) {
-          console.error('Error uploading file:', error);
+          console.error("Error uploading file:", error);
         }
       }
+      closePopup;
     }
   };
 
@@ -93,6 +113,14 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTex
       fileInputRef.current.click();
     }
   };
+
+  function handleDeleteFile(index: number): void {
+    const updatedFiles = [...selectedFiles];
+    updatedFiles.splice(index, 1);
+    setSelectedFiles(updatedFiles);
+
+    console.log("deleted");
+  }
 
   return (
     <div>
@@ -136,15 +164,16 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTex
           </div>
         </div>
       )}
-      <div className="uploaded-files-container">
-        <div>Uploaded: </div>
-        {selectedFiles.length > 0 && (
-          <ul className={styles.fileList}>
-            {selectedFiles.map((file) => (
-              <li key={file.name}>{file.name}</li>
-            ))}
-          </ul>
-        )}
+      <div className={styles.uploadedFilesWrapper}>
+        {selectedFiles.length > 0 &&
+          selectedFiles.map((file, index) => (
+            <div key={file.name} className={styles.fileBox}>
+              <div className={styles.fileName}>{file.name} has been successfully uploaded</div>
+              <div className={styles.removeButton} onClick={() => handleDeleteFile(index)}>
+                x
+              </div>
+            </div>
+          ))}
       </div>
     </div>
   );

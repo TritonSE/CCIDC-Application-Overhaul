@@ -8,6 +8,7 @@ import styles from "../stylesheets/Candidates.module.css";
 
 export function Candidates() {
   return (
+<<<<<<< HEAD
     <Page>
       <h1 className={styles.title}>Become a Certified Interior Designer (CID)</h1>
       <img alt="home cover" src={homeCover} />
@@ -125,5 +126,12 @@ export function Candidates() {
 
       <div className="tag"></div>
     </Page>
+=======
+    <>
+      <h2>Candidates</h2>
+      <FileUploadPopupWindow buttonText="Upload Files" />
+      <FileUploadPopupWindow buttonText="Upload Files2" />
+    </>
+>>>>>>> 63d328593d8543e60f93c619344d2ef786af84f5
   );
 }
