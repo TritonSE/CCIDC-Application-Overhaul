@@ -1,7 +1,7 @@
 import { Outlet, Route, Routes } from "react-router-dom";
 
 import { NavBar } from "./components/index.ts";
-import { Apply, Candidates, TestCongratulations } from "./pages/index.ts";
+import { Apply, Candidates, TestCongratulations, FileTesting } from "./pages/index.ts";
 
 function Layout() {
   return (
@@ -21,6 +21,7 @@ function App() {
           <Route path="apply" element={<Apply />} />
           <Route path="candidates" element={<Candidates />} />
           <Route path="TestCongratulations" element={<TestCongratulations />} />
+          <Route path="FileTesting" element={<FileTesting />} />
         </Route>
       </Routes>
     </div>
