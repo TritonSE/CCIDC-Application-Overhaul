@@ -1,12 +1,14 @@
 import express from "express";
-import fileRoute from './src/routes/driveRoutes.ts'; // Assuming the converted file is driveRoutes.js
+import fileRoutes from "./src/routes/fileRoutes";
+// const fileRoutes = require("./src/routes/fileRoutes.ts");
 
-const PORT = process.env.PORT || 3001;
+const PORT: string | number = process.env.PORT ?? 3001;
 
 const app = express();
 
-app.use('/file', fileRoute);
 app.use(express.json());
+
+app.use("/file", fileRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
