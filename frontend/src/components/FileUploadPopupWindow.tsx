@@ -69,7 +69,7 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTex
 
         const data = await response.json();
         console.log("File uploaded successfully:", data);
-        setFileIds((fileIds) => [...fileIds, data[0].fileId])
+        setFileIds((fileIds) => [...fileIds, data[0].fileId]);
         setUploadedCount((prevCount) => prevCount + 1);
       } catch (error) {
         console.error("Error uploading file:", error);
@@ -105,7 +105,7 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTex
           const data = await response.json();
           console.log("File uploaded successfully:", data);
           setUploadedCount((prevCount) => prevCount + 1);
-          setFileIds((fileIds) => [...fileIds, data[0].fileId])
+          setFileIds((fileIds) => [...fileIds, data[0].fileId]);
         } catch (error) {
           console.error("Error uploading file:", error);
         }
@@ -187,13 +187,14 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTex
               </div>
             </div>
 
-            {/* Progress bar */}
-            <div className={styles.progressBarContainer}>
-              <div
-                className={styles.progressBar}
-                style={{ width: `${(uploadedCount / totalFilesCount) * 100}%` }}
-              />
-            </div>
+            {totalFilesCount > 0 && (
+              <div className={styles.progressBarContainer}>
+                <div
+                  className={styles.progressBar}
+                  style={{ width: `${(uploadedCount / totalFilesCount) * 100}%` }}
+                />
+              </div>
+            )}
           </div>
         </div>
       )}
