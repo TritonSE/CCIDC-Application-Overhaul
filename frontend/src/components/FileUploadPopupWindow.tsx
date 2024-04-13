@@ -17,6 +17,8 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTex
   const closeButtonRef = useRef<HTMLImageElement>(null);
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [fileIds, setFileIds] = useState<string[]>([]);
+  const [uploadedCount, setUploadedCount] = useState(0);
+  const [totalFilesCount, setTotalFilesCount] = useState(0);
 
   const openPopup = () => {
     setIsOpen(true);
@@ -43,16 +45,14 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTex
   const handleDrop = async (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    // Remove the visual indication when a file is dropped
     e.currentTarget.classList.remove(styles.dragOver);
-    // Access the dropped files
     const files = e.dataTransfer.files;
 
-    // Limit the number of selected files to 10
     const filesToUpload = [...selectedFiles].slice(0, 10);
     filesToUpload.push(...files);
     setSelectedFiles((prevFiles) => [...prevFiles, ...filesToUpload.slice(0, 10)]);
 
+    setTotalFilesCount(filesToUpload.length);
     for (const file of filesToUpload) {
       const formData = new FormData();
       formData.append("files", file);
@@ -60,7 +60,7 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTex
       try {
         const response = await fetch("http://localhost:3001/file/upload", {
           method: "POST",
-          body: formData, // FormData object will be used here directly
+          body: formData,
         });
 
         if (!response.ok) {
@@ -68,13 +68,15 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTex
         }
 
         const data = await response.json();
-        setFileIds((prevIds) => [...prevIds, data[0].fileId]);
         console.log("File uploaded successfully:", data);
+        setUploadedCount((prevCount) => prevCount + 1);
       } catch (error) {
         console.error("Error uploading file:", error);
       }
     }
-    closePopup;
+    if (uploadedCount === totalFilesCount) {
+      setIsOpen(false);
+    }
   };
 
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -84,6 +86,7 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTex
 
       setSelectedFiles((prevFiles) => [...prevFiles, ...filesToUpload]);
 
+      setTotalFilesCount(filesToUpload.length);
       for (const file of filesToUpload) {
         const formData = new FormData();
         formData.append("files", file);
@@ -91,7 +94,7 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTex
         try {
           const response = await fetch("http://localhost:3001/file/upload", {
             method: "POST",
-            body: formData, // FormData object will be used here directly
+            body: formData,
           });
 
           if (!response.ok) {
@@ -99,12 +102,15 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTex
           }
 
           const data = await response.json();
-          setFileIds((prevIds) => [...prevIds, data[0].fileId]);
+          console.log("File uploaded successfully:", data);
+          setUploadedCount((prevCount) => prevCount + 1);
         } catch (error) {
           console.error("Error uploading file:", error);
         }
       }
-      closePopup;
+    }
+    if (uploadedCount === totalFilesCount) {
+      setIsOpen(false);
     }
   };
 
@@ -118,23 +124,23 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTex
     const fileId = fileIds[index];
 
     // Send a DELETE request to the server
-    fetch(`http://localhost:3001/file/delete/${fileId}`, { method: 'DELETE' })
-      .then(response => {
-          if (response.ok) {
-              const updatedFileIds = fileIds.filter((id) => id != fileId)
-              setFileIds(updatedFileIds)
-              console.log('File deleted successfully');
-              // Update the local state to reflect the deletion
-              const updatedFiles = [...selectedFiles];
-              updatedFiles.splice(index, 1);
-              setSelectedFiles(updatedFiles);
-          } else {
-              console.error('Failed to delete the file');
-              response.text().then(text => console.error(text));
-          }
+    fetch(`http://localhost:3001/file/delete/${fileId}`, { method: "DELETE" })
+      .then((response) => {
+        if (response.ok) {
+          const updatedFileIds = fileIds.filter((id) => id != fileId);
+          setFileIds(updatedFileIds);
+          console.log("File deleted successfully");
+          // Update the local state to reflect the deletion
+          const updatedFiles = [...selectedFiles];
+          updatedFiles.splice(index, 1);
+          setSelectedFiles(updatedFiles);
+        } else {
+          console.error("Failed to delete the file");
+          response.text().then((text) => console.error(text));
+        }
       })
-      .catch(error => {
-          console.error('Error deleting file:', error);
+      .catch((error) => {
+        console.error("Error deleting file:", error);
       });
   }
 
@@ -142,7 +148,7 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTex
     <div>
       <button onClick={openPopup}>{buttonText}</button>
       {isOpen && (
-        <div className={styles.popupCanvas} onClick={closePopup}>
+        <div className={styles.popupCanvas}>
           <div className={styles.popupWindow}>
             <div className={styles.closeButtonContainer}>
               <img
@@ -150,6 +156,7 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTex
                 onClick={closePopup}
                 ref={closeButtonRef}
                 src={closeIcon}
+                alt="Close"
               />
             </div>
 
@@ -162,7 +169,7 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTex
               onDrop={handleDrop}
             >
               <div className={styles.dragAndDropInstructions}>
-                <img src={fileUploadIcon} />
+                <img src={fileUploadIcon} alt="File Upload" />
                 <p className={styles.subtext}> Drag and drop your files here</p>
                 <p className={styles.subtext}> or </p>
                 <p className={styles.browseFiles} onClick={handleUploadClick}>
@@ -177,9 +184,18 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTex
                 />
               </div>
             </div>
+
+            {/* Progress bar */}
+            <div className={styles.progressBarContainer}>
+              <div
+                className={styles.progressBar}
+                style={{ width: `${(uploadedCount / totalFilesCount) * 100}%` }}
+              />
+            </div>
           </div>
         </div>
       )}
+
       <div className={styles.uploadedFilesWrapper}>
         {selectedFiles.length > 0 &&
           selectedFiles.map((file, index) => (
