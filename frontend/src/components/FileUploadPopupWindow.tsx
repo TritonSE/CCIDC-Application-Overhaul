@@ -2,16 +2,8 @@ import React, { useRef, useState } from "react";
 import styles from "./FileUploadPopupWindow.module.css";
 import closeIcon from "../assets/closeIcon.svg";
 import fileUploadIcon from "../assets/fileUploadIcon.svg";
-import { Button } from "./Button.tsx";
-import { google } from "googleapis";
-import * as fs from "fs";
-import * as path from "path";
 
-interface FileUploadPopupWindowProps {
-  buttonText: string; // Define prop for button text
-}
-
-const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonText }) => {
+const FileUploadPopupWindow: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const closeButtonRef = useRef<HTMLImageElement>(null);
@@ -22,10 +14,11 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTex
 
   const openPopup = () => {
     setIsOpen(true);
+    setTotalFilesCount(0);
+    setUploadedCount(0);
   };
 
   const closePopup = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    // close if clicking outside of popup or on close button
     if (e.target !== e.currentTarget && e.target !== closeButtonRef.current) return;
     setIsOpen(false);
   };
@@ -125,14 +118,12 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTex
   function handleDeleteFile(index: number): void {
     const fileId = fileIds[index];
 
-    // Send a DELETE request to the server
     fetch(`http://localhost:3001/file/delete/${fileId}`, { method: "DELETE" })
       .then((response) => {
         if (response.ok) {
           const updatedFileIds = fileIds.filter((id) => id != fileId);
           setFileIds(updatedFileIds);
           console.log("File deleted successfully");
-          // Update the local state to reflect the deletion
           const updatedFiles = [...selectedFiles];
           updatedFiles.splice(index, 1);
           setSelectedFiles(updatedFiles);
@@ -147,8 +138,8 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTex
   }
 
   return (
-    <div>
-      <button onClick={openPopup}>{buttonText}</button>
+    <>
+      <button onClick={openPopup}>File Upload</button>
       {isOpen && (
         <div className={styles.popupCanvas}>
           <div className={styles.popupWindow}>
@@ -210,7 +201,8 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTex
             </div>
           ))}
       </div>
-    </div>
+    </>
   );
 };
+
 export default FileUploadPopupWindow;
