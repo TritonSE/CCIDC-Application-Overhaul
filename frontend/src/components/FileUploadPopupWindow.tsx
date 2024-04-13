@@ -53,8 +53,6 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTex
     filesToUpload.push(...files);
     setSelectedFiles((prevFiles) => [...prevFiles, ...filesToUpload.slice(0, 10)]);
 
-    console.log(filesToUpload);
-
     for (const file of filesToUpload) {
       const formData = new FormData();
       formData.append("files", file);
@@ -70,6 +68,7 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTex
         }
 
         const data = await response.json();
+        setFileIds((prevIds) => [...prevIds, data[0].fileId]);
         console.log("File uploaded successfully:", data);
       } catch (error) {
         console.error("Error uploading file:", error);
@@ -100,8 +99,6 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTex
           }
 
           const data = await response.json();
-          //console.log("File uploaded successfully:", data);
-          console.log(data);
           setFileIds((prevIds) => [...prevIds, data[0].fileId]);
         } catch (error) {
           console.error("Error uploading file:", error);
@@ -118,10 +115,27 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTex
   };
 
   function handleDeleteFile(index: number): void {
-    console.log(fileIds[index]);
-    const updatedFiles = [...selectedFiles];
-    updatedFiles.splice(index, 1);
-    setSelectedFiles(updatedFiles);
+    const fileId = fileIds[index];
+
+    // Send a DELETE request to the server
+    fetch(`http://localhost:3001/file/delete/${fileId}`, { method: 'DELETE' })
+      .then(response => {
+          if (response.ok) {
+              const updatedFileIds = fileIds.filter((id) => id != fileId)
+              setFileIds(updatedFileIds)
+              console.log('File deleted successfully');
+              // Update the local state to reflect the deletion
+              const updatedFiles = [...selectedFiles];
+              updatedFiles.splice(index, 1);
+              setSelectedFiles(updatedFiles);
+          } else {
+              console.error('Failed to delete the file');
+              response.text().then(text => console.error(text));
+          }
+      })
+      .catch(error => {
+          console.error('Error deleting file:', error);
+      });
   }
 
   return (
