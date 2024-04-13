@@ -69,6 +69,7 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTex
 
         const data = await response.json();
         console.log("File uploaded successfully:", data);
+        setFileIds((fileIds) => [...fileIds, data[0].fileId])
         setUploadedCount((prevCount) => prevCount + 1);
       } catch (error) {
         console.error("Error uploading file:", error);
@@ -104,6 +105,7 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTex
           const data = await response.json();
           console.log("File uploaded successfully:", data);
           setUploadedCount((prevCount) => prevCount + 1);
+          setFileIds((fileIds) => [...fileIds, data[0].fileId])
         } catch (error) {
           console.error("Error uploading file:", error);
         }
