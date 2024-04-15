@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
-import buttonStyle from "./Button.module.css";
-import styles from "./PrescreeningForm.module.css";
-import { Page } from "./index.ts";
+import buttonStyle from "../components/Button.module.css";
+import styles from "../stylesheets/PrescreeningForm.module.css";
+import { Page } from "../components/index.ts";
 
 export function PrescreeningForm() {
   // State to manage the selected values for each question
@@ -50,28 +50,26 @@ export function PrescreeningForm() {
       finalPath = pathNQ;
     }
 
-    // setFinalPath(finalPath);
-
     navigate(finalPath);
   };
 
   return (
     <Page>
       <h1 className={styles.title}>Prescreening Questions</h1>
-      <p className={styles.headingtwo}>
+      <p className={styles.body}>
         Please answer the following questions about your experience as an Interior Designer. Based
         on your responses, we will automatically direct you into the appropriate pathway. View more
-        information about the pathways here.
+        information about the pathways <Link to="/" className={styles.blueLink}>here.</Link>
       </p>
 
       <form onSubmit={handleFormSubmit} id="form1">
         {/* Question 1 */}
-        <div>
+        <div className="QuestionOne">
           <p className={styles.question}>
             1. Please select the appropriate amount of experience you currently have.
           </p>
 
-          <br></br>
+          <br />
 
           <input
             type="radio"
@@ -89,7 +87,7 @@ export function PrescreeningForm() {
             </p>
           </label>
 
-          <br></br>
+          <br />
 
           <input
             type="radio"
@@ -109,7 +107,7 @@ export function PrescreeningForm() {
             </p>
           </label>
 
-          <br></br>
+          <br />
 
           <input
             type="radio"
@@ -130,8 +128,10 @@ export function PrescreeningForm() {
           </label>
         </div>
 
+        <br />
+
         {/* Question 2 */}
-        <div>
+        <div className="QuestionTwo">
           <p className={styles.question}>
             2. If you have passed any of the following qualifying National Interior Design Exams,
             please indicate so
@@ -145,7 +145,7 @@ export function PrescreeningForm() {
             </ul>
           </p>
 
-          <br></br>
+          <br />
 
           <input
             type="radio"
@@ -161,7 +161,7 @@ export function PrescreeningForm() {
             Yes
           </label>
 
-          <br></br>
+          <br />
 
           <input
             type="radio"
@@ -178,11 +178,13 @@ export function PrescreeningForm() {
           </label>
         </div>
 
+        <br />
+
         {/* Question 3 */}
-        <div>
+        <div className="QuestionThree">
           <p className={styles.question}>3. Do you mainly practice commercial design?</p>
 
-          <br></br>
+          <br />
 
           <input
             type="radio"
@@ -198,7 +200,7 @@ export function PrescreeningForm() {
             Yes
           </label>
 
-          <br></br>
+          <br />
 
           <input
             type="radio"
@@ -216,7 +218,7 @@ export function PrescreeningForm() {
 
         <div className={styles.centeredContainer}>
           <button className={buttonStyle.button} type="submit" form="form1" value="Submit">
-            Submit
+            Continue
           </button>
         </div>
       </form>
@@ -224,4 +226,4 @@ export function PrescreeningForm() {
   );
 }
 
-export default PrescreeningForm;
+

@@ -70,3 +70,7 @@ input[type="radio"]:checked:before {
   display: flex;
   justify-self: center;
 }
+
+.blueLink {
+  color: blue; 
+}
