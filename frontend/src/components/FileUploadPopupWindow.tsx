@@ -1,7 +1,9 @@
 import React, { useRef, useState } from "react";
-import styles from "./FileUploadPopupWindow.module.css";
+
 import closeIcon from "../assets/closeIcon.svg";
 import fileUploadIcon from "../assets/fileUploadIcon.svg";
+
+import styles from "./FileUploadPopupWindow.module.css";
 
 const FileUploadPopupWindow: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,7 +20,7 @@ const FileUploadPopupWindow: React.FC = () => {
     setUploadedCount(0);
   };
 
-  const closePopup = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+  const closePopup = (e: React.MouseEvent<HTMLElement>) => {
     if (e.target !== e.currentTarget && e.target !== closeButtonRef.current) return;
     setIsOpen(false);
   };
@@ -121,7 +123,7 @@ const FileUploadPopupWindow: React.FC = () => {
     fetch(`http://localhost:3001/file/delete/${fileId}`, { method: "DELETE" })
       .then((response) => {
         if (response.ok) {
-          const updatedFileIds = fileIds.filter((id) => id != fileId);
+          const updatedFileIds = fileIds.filter((id) => id !== fileId);
           setFileIds(updatedFileIds);
           console.log("File deleted successfully");
           const updatedFiles = [...selectedFiles];
@@ -129,7 +131,9 @@ const FileUploadPopupWindow: React.FC = () => {
           setSelectedFiles(updatedFiles);
         } else {
           console.error("Failed to delete the file");
-          response.text().then((text) => console.error(text));
+          response.text().then((text) => {
+            console.error(text);
+          });
         }
       })
       .catch((error) => {
@@ -203,7 +207,12 @@ const FileUploadPopupWindow: React.FC = () => {
               <div className={styles.fileName}>
                 {selectedFiles[index].name} has been successfully uploaded
               </div>
-              <div className={styles.removeButton} onClick={() => handleDeleteFile(index)}>
+              <div
+                className={styles.removeButton}
+                onClick={() => {
+                  handleDeleteFile(index);
+                }}
+              >
                 x
               </div>
             </div>
