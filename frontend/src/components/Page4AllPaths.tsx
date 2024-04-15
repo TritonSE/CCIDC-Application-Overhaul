@@ -68,8 +68,9 @@ export function Page4AllPaths() {
           </p>
 
           <input className={styles.select} type="checkbox" />
+
           <label htmlFor="select" className={styles.checkboxLabel}>
-            Click here to ack nowledge you have read and understood the rules and regulations
+            Click here to acknowledge you have read and understood the rules and regulations
           </label>
 
           <hr className={styles.line} />

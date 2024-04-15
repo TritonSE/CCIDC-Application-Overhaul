@@ -105,10 +105,10 @@ input[type="checkbox"].select {
 input[type="checkbox"].select + label::before {
   content: "";
   display: inline-block;
-  width: 1.5em;
-  height: 1.5em;
+  width: 1em;
+  height: 1em;
   border: 2px solid var(--color-ccidc-red);
-  border-radius: 5px;
+  border-radius: 2px;
   background-color: white;
   margin-right: 1em;
 }
@@ -118,5 +118,7 @@ input[type="checkbox"].select:checked + label::before {
 }
 
 .checkboxLabel {
-  margin-left: 230px;
+  margin-left: 245px;
+  display: flex;
+  align-items: center;
 }
