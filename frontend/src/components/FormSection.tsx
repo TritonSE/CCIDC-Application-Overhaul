@@ -1,5 +1,7 @@
 import React, { ReactNode } from "react";
 
+import plus from "../assets/plusIcon.svg";
+
 import styles from "./FormSection.module.css"; // Import CSS styles for Pathway component
 
 export type FormInput = {
@@ -13,13 +15,25 @@ export type FormInput = {
 export type FormSectionProps = {
   sectionName: string;
   formInputs: FormInput[];
+  add?: boolean;
   children?: ReactNode;
 };
 
-export const FormSection: React.FC<FormSectionProps> = ({ sectionName, formInputs }) => {
+export const FormSection: React.FC<FormSectionProps> = ({ sectionName, formInputs, add }) => {
   return (
     <div>
-      <h3 className={styles.sectionName}>{sectionName}</h3>
+      {add ? (
+        <div className={styles.nameWithAdd}>
+          <h3 className={styles.sectionName}>{sectionName}</h3>
+          <button className={styles.add}>
+            <span>Add</span>
+            <img src={plus} alt="buttonpng" height="14px" />
+          </button>
+        </div>
+      ) : (
+        <h3 className={styles.sectionName}>{sectionName}</h3>
+      )}
+
       <div className={styles.formSectionContainer}>
         {formInputs.map((formInput, index) => (
           <div className={styles.inputBox} key={index}>

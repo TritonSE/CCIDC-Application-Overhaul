@@ -1,7 +1,7 @@
-import styles from "./InfoForm.module.css";
+import styles from "./Step1.module.css";
 import { FormSection } from "./index.ts";
 
-export function InfoForm() {
+export function Step1() {
   return (
     <div className={styles.formContainer}>
       <p className={styles.applyFacts}>

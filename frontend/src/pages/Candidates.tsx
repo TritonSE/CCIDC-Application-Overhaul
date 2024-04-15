@@ -56,7 +56,7 @@ export function Candidates() {
         standards.
       </p>
       <div className={styles.centeredContainer}>
-        <Button onClick={null}>Apply Now</Button>
+        <Button onClick={undefined}>Apply Now</Button>
       </div>
       <div className={styles.textDivider2}>
         <div className={styles.heading}>Pathways to Certification</div>
@@ -104,7 +104,7 @@ export function Candidates() {
       </div>
 
       <div className={styles.centeredContainer}>
-        <Button onClick={null}>Discover Your Ideal Pathway</Button>
+        <Button onClick={undefined}>Discover Your Ideal Pathway</Button>
       </div>
 
       <FAQs></FAQs>

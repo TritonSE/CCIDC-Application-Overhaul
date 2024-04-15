@@ -1,7 +1,7 @@
 import { Outlet, Route, Routes } from "react-router-dom";
 
-import { InfoForm, NavBar } from "./components/index.ts";
-import { Apply, Candidates } from "./pages/index.ts";
+import { NavBar, Step1 } from "./components";
+import { Apply, Candidates, TestCongratulations } from "./pages/index.ts";
 
 function Layout() {
   return (
@@ -20,7 +20,8 @@ function App() {
           <Route index element={<Candidates />} />
           <Route path="apply" element={<Apply />} />
           <Route path="candidates" element={<Candidates />} />
-          <Route path="infoForm" element={<InfoForm />} />
+          <Route path="step1" element={<Step1 />} />
+          <Route path="TestCongratulations" element={<TestCongratulations />} />
         </Route>
       </Routes>
     </div>

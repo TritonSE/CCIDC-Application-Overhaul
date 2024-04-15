@@ -1,0 +1,54 @@
+.red {
+  color: var(--color-ccidc-red);
+}
+
+.formContainer {
+  /* width: 100%;
+  margin: 3rem 10rem !important; */
+  background-color: var(--color-text-secondary);
+}
+
+.formSection {
+  margin: 3rem auto !important;
+  width: 80%;
+}
+
+.applyFacts {
+  width: 80%;
+  margin: 3rem auto !important;
+}
+.listText {
+  color: black;
+  margin: 0;
+}
+
+.bulletPoint {
+  list-style-type: disc;
+  color: var(--color-ccidc-red);
+}
+
+.warningText {
+  color: #ad281f;
+  margin: 3rem 10rem !important;
+}
+
+.upload {
+  font-family: "Rubik";
+  font-size: 15px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 4px;
+  height: 48px;
+  width: 290px;
+  text-align: left;
+  align-items: center;
+  display: flex;
+  margin-top: 2rem;
+  padding: 16px;
+  justify-content: space-between;
+}
+
+.uploadButton {
+  width: 24px;
+  height: 24px;
+}

@@ -4,7 +4,8 @@
   column-gap: 4rem;
 }
 
-h3 {
+.sectionName {
+  margin: 0;
   font-size: 18px !important;
 }
 
@@ -70,4 +71,27 @@ select.inputText {
 
 .optionSelected {
   color: var(--color-text-primary);
+}
+
+.nameWithAdd {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nameWithAdd h2 {
+  align-self: center;
+}
+
+.add {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 4px;
+  height: 40px;
+  width: 94px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  padding: 8px 16px 8px 16px;
 }
