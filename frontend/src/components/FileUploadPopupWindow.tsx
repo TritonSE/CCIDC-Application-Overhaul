@@ -189,18 +189,19 @@ const FileUploadPopupWindow: React.FC = () => {
           </div>
         </div>
       )}
-
-      <div className={styles.uploadedFilesWrapper}>
-        {selectedFiles.length > 0 &&
-          selectedFiles.map((file, index) => (
-            <div key={file.name} className={styles.fileBox}>
-              <div className={styles.fileName}>{file.name} has been successfully uploaded</div>
-              <div className={styles.removeButton} onClick={() => handleDeleteFile(index)}>
-                x
+      {uploadedCount === totalFilesCount && (
+        <div className={styles.uploadedFilesWrapper}>
+          {selectedFiles.length > 0 &&
+            selectedFiles.map((file, index) => (
+              <div key={file.name} className={styles.fileBox}>
+                <div className={styles.fileName}>{file.name} has been successfully uploaded</div>
+                <div className={styles.removeButton} onClick={() => handleDeleteFile(index)}>
+                  x
+                </div>
               </div>
-            </div>
-          ))}
-      </div>
+            ))}
+        </div>
+      )}
     </>
   );
 };
