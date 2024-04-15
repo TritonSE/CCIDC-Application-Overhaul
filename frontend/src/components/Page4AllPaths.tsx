@@ -1,6 +1,14 @@
 import styles from "./Page4AllPaths.module.css";
 
+import { useState } from "react";
+
 export function Page4AllPaths() {
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+  };
+
   return (
     <>
       <div className={styles.page4Form}>
@@ -67,7 +75,13 @@ export function Page4AllPaths() {
             </a>
           </p>
 
-          <input className={styles.select} type="checkbox" />
+          <input
+            className={styles.select}
+            type="checkbox"
+            id="select"
+            checked={isChecked}
+            onChange={handleCheckboxChange}
+          />
 
           <label htmlFor="select" className={styles.checkboxLabel}>
             Click here to acknowledge you have read and understood the rules and regulations

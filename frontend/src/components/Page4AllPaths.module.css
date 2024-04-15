@@ -102,6 +102,10 @@ input[type="checkbox"].select {
   visibility: hidden;
 }
 
+input[type="checkbox"]:hover {
+  box-shadow: 0 0 5px 0px var(--color-ccidc-red) inset;
+}
+
 input[type="checkbox"].select + label::before {
   content: "";
   display: inline-block;
