@@ -155,28 +155,35 @@ const FileUploadPopupWindow: React.FC = () => {
 
             <div className={styles.title}> Upload Files </div>
             <div className={styles.subtext}> Add your relevant files here. </div>
-            <div
-              className={styles.dragAndDropArea}
-              onDragOver={handleDragOver}
-              onDragLeave={handleDragLeave}
-              onDrop={handleDrop}
-            >
-              <div className={styles.dragAndDropInstructions}>
-                <img src={fileUploadIcon} alt="File Upload" />
-                <p className={styles.subtext}> Drag and drop your files here</p>
-                <p className={styles.subtext}> or </p>
-                <p className={styles.browseFiles} onClick={handleUploadClick}>
-                  browse files
-                </p>
-                <input
-                  type="file"
-                  ref={fileInputRef}
-                  style={{ display: "none" }}
-                  multiple
-                  onChange={handleChange}
-                />
+            {uploadedCount === 0 && (
+              <div
+                className={styles.dragAndDropArea}
+                onDragOver={handleDragOver}
+                onDragLeave={handleDragLeave}
+                onDrop={handleDrop}
+              >
+                <div className={styles.dragAndDropInstructions}>
+                  <img src={fileUploadIcon} alt="File Upload" />
+                  <p className={styles.subtext}> Drag and drop your files here</p>
+                  <p className={styles.subtext}> or </p>
+                  <p className={styles.browseFiles} onClick={handleUploadClick}>
+                    browse files
+                  </p>
+                  <input
+                    type="file"
+                    ref={fileInputRef}
+                    style={{ display: "none" }}
+                    multiple
+                    onChange={handleChange}
+                  />
+                </div>
               </div>
-            </div>
+            )}
+            {uploadedCount > 0 && (
+              <div className={styles.dragAndDropArea}>
+                <p className={styles.subtext}>Files being uploaded...</p>
+              </div>
+            )}
 
             {totalFilesCount > 0 && (
               <div className={styles.progressBarContainer}>
@@ -189,17 +196,18 @@ const FileUploadPopupWindow: React.FC = () => {
           </div>
         </div>
       )}
-      {uploadedCount === totalFilesCount && (
+      {uploadedCount > 0 && (
         <div className={styles.uploadedFilesWrapper}>
-          {selectedFiles.length > 0 &&
-            selectedFiles.map((file, index) => (
-              <div key={file.name} className={styles.fileBox}>
-                <div className={styles.fileName}>{file.name} has been successfully uploaded</div>
-                <div className={styles.removeButton} onClick={() => handleDeleteFile(index)}>
-                  x
-                </div>
+          {fileIds.map((fileId, index) => (
+            <div key={fileId} className={styles.fileBox}>
+              <div className={styles.fileName}>
+                {selectedFiles[index].name} has been successfully uploaded
               </div>
-            ))}
+              <div className={styles.removeButton} onClick={() => handleDeleteFile(index)}>
+                x
+              </div>
+            </div>
+          ))}
         </div>
       )}
     </>
