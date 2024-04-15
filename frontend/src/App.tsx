@@ -1,12 +1,18 @@
 import { Outlet, Route, Routes } from "react-router-dom";
 
 import { NavBar } from "./components/index.ts";
-import { Application, Apply, Candidates, TestCongratulations } from "./pages/index.ts";
+import {
+  Application,
+  Apply,
+  Candidates,
+  TestCongratulations,
+  ThankyouForApplying,
+} from "./pages/index.ts";
 
 function Layout() {
   return (
     <>
-      <NavBar></NavBar>
+      <NavBar />
       <Outlet />
     </>
   );
@@ -24,6 +30,7 @@ function App() {
           <Route path="path4" element={<Application path={4} />} />
           <Route path="apply" element={<Apply />} />
           <Route path="candidates" element={<Candidates />} />
+          <Route path="ThankyouForApplying" element={<ThankyouForApplying />} />
           <Route path="TestCongratulations" element={<TestCongratulations />} />
         </Route>
       </Routes>
