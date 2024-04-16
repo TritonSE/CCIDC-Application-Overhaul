@@ -70,6 +70,15 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
     ),
   };
 
+  const applicationSteps = {
+    0: <div></div>,
+    1: <div></div>,
+    2: <div></div>,
+    3: <Page4AllPaths></Page4AllPaths>,
+    4: <div></div>,
+    5: <div></div>,
+  };
+
   return (
     <div className={styles.pathwayApplicationBase}>
       <div className={styles.applicationContainer}>
@@ -93,9 +102,7 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
 
       <div className={styles.formContainer}>
         <PathwayTimeline path={path} progress={pageNum}></PathwayTimeline>
-
-        <Page4AllPaths></Page4AllPaths>
-
+        <div>{applicationSteps[pageNum]}</div>
         <div className={styles.navigationContainer}>
           <button onClick={back} className={styles.backArrow}>
             <img src={backArrow} id={styles.backArrow} alt="backArrow"></img>
