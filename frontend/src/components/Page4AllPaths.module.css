@@ -1,5 +1,6 @@
 .page4Form {
   background-color: white;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
 }
 
 .formRow {
@@ -16,8 +17,9 @@
   font-size: 18px;
   font-weight: 700;
   margin-left: 100px;
-  margin-top: 40px;
+  margin-top: 1em;
   margin-bottom: 30px;
+  padding-top: 2em;
 }
 
 .label {
@@ -45,6 +47,11 @@
 
 .line {
   border: 0.5px solid #d8d8d8;
+  margin-top: 30px;
+}
+
+.bottomLine {
+  border: 0.5px solid rgba(216, 216, 216, 0.25);
   margin-top: 30px;
 }
 

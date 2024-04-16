@@ -15,7 +15,7 @@ export function Page4AllPaths() {
     <>
       <div className={styles.page4Form}>
         <form>
-          <br></br>
+          {/* <br></br> */}
           <h2 className={styles.sectionTitle}>Additional Information</h2>
 
           <div className={styles.formRow}>
@@ -114,7 +114,7 @@ export function Page4AllPaths() {
             Upload Signed Code of Ethics
           </Button>
 
-          <br></br>
+          <hr className={styles.bottomLine} />
         </form>
       </div>
     </>
