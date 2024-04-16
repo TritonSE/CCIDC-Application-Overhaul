@@ -1,12 +1,20 @@
-import { useContext, FormEvent } from "react";
+import { useContext, FormEvent, useEffect } from "react";
 import styles from "./Login.module.css";
 import { AuthContext } from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export function Login() {
-  const { login } = useContext(AuthContext);
+  const { isLoggedIn, login } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  // Redirect once logged in
+  useEffect(() => {
+    if (isLoggedIn) navigate("/apply");
+  }, [isLoggedIn]);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
     const target = event?.target as HTMLFormElement | null;
 
     if (!target || target?.length < 2) {
@@ -22,14 +30,9 @@ export function Login() {
       return;
     }
 
-    try {
-      if (!login) throw new Error("Invalid AuthContext login");
-      const result = await login(username, password);
-      alert("Sucess! " + JSON.stringify(result));
-      // TODO: save to cookies/ local storage, then redirect
-    } catch (error) {
-      alert(error);
-    }
+    const result = await login(username, password);
+
+    if (!result) alert("login failed!");
   }
 
   return (
