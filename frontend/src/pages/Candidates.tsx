@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 import certificate from "../assets/certifcate.svg";
 import homeCover from "../assets/homeCover.svg";
 import idCard from "../assets/idCard.svg";
@@ -5,7 +7,6 @@ import stamp from "../assets/stamp.svg";
 import tseLogo from "../assets/tseLogoVector.svg";
 import { Button, FAQs, Page, Pathway } from "../components/index.ts";
 import styles from "../stylesheets/Candidates.module.css";
-import { NavLink } from "react-router-dom";
 
 export function Candidates() {
   return (
@@ -57,9 +58,9 @@ export function Candidates() {
         standards.
       </p>
       <div className={styles.centeredContainer}>
-      <NavLink className={styles.navLink} to={"/prescreening"}>
-              <Button onClick={null}>Apply Now</Button>
-      </NavLink>
+        <NavLink className={styles.navLink} to={"/prescreening"}>
+          <Button onClick={null}>Apply Now</Button>
+        </NavLink>
       </div>
       <div className={styles.textDivider2}>
         <div className={styles.heading}>Pathways to Certification</div>
@@ -107,11 +108,9 @@ export function Candidates() {
       </div>
 
       <div className={styles.centeredContainer}>
-
-      <NavLink className={styles.navLink} to={"/prescreening"}>
-              <Button onClick={null}>Discover Your Ideal Pathway</Button>
-      </NavLink>
-
+        <NavLink className={styles.navLink} to={"/prescreening"}>
+          <Button onClick={null}>Discover Your Ideal Pathway</Button>
+        </NavLink>
       </div>
 
       <FAQs />

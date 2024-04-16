@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import buttonStyle from "../components/Button.module.css";
-import styles from "../stylesheets/PrescreeningForm.module.css";
 import { Page } from "../components/index.ts";
+import styles from "../stylesheets/PrescreeningForm.module.css";
 
 export function PrescreeningForm() {
   // State to manage the selected values for each question
@@ -26,6 +26,10 @@ export function PrescreeningForm() {
 
     // Use the selected values to determine the finalPath
     // Can modify this logic based on your requirements
+    if (question1Value === "" || question2Value === "" || question3Value === "") {
+      return;
+    }
+
     if (question1Value === "op12" && question2Value === "op22" && question3Value === "op32") {
       finalPath = pathOne;
     } else if (
@@ -59,7 +63,10 @@ export function PrescreeningForm() {
       <p className={styles.body}>
         Please answer the following questions about your experience as an Interior Designer. Based
         on your responses, we will automatically direct you into the appropriate pathway. View more
-        information about the pathways <Link to="/" className={styles.blueLink}>here.</Link>
+        information about the pathways{" "}
+        <Link to="/" className={styles.blueLink}>
+          here.
+        </Link>
       </p>
 
       <form onSubmit={handleFormSubmit} id="form1">
@@ -225,5 +232,3 @@ export function PrescreeningForm() {
     </Page>
   );
 }
-
-
