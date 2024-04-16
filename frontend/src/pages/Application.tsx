@@ -74,7 +74,7 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
     0: <div></div>,
     1: <div></div>,
     2: <div></div>,
-    3: <Page4AllPaths></Page4AllPaths>,
+    3: <Page4AllPaths />,
     4: <div></div>,
     5: <div></div>,
   };
