@@ -5,8 +5,8 @@
 .formRow {
   display: flex;
   justify-content: space-between;
-  margin-left: 245px;
-  margin-right: 245px;
+  margin-left: 100px;
+  margin-right: 100px;
   padding-bottom: 30px;
 }
 
@@ -15,7 +15,7 @@
   font-family: "Rubik";
   font-size: 18px;
   font-weight: 700;
-  margin-left: 245px;
+  margin-left: 100px;
   margin-top: 40px;
   margin-bottom: 30px;
 }
@@ -49,38 +49,18 @@
 }
 
 .note {
-  margin-left: 245px;
+  margin-left: 100px;
 }
 
 .lightBlue {
   color: var(--color-ccidc-blue);
 }
-.buttonRow {
-  display: flex;
-  justify-content: space-between;
-  margin-left: 220px;
-  margin-right: 220px;
-  padding-bottom: 30px;
-}
 
 .warningText {
   color: #ad281f;
-  margin-left: 245px;
+  margin-left: 100px;
   margin-top: 15px;
   margin-bottom: 40px;
-}
-
-.add {
-  font-family: "Rubik";
-  font-size: 15px;
-  background-color: white;
-  border: 1px solid black;
-  border-radius: 4px;
-  height: 40px;
-  width: 80px;
-  margin-left: 870px;
-  display: flex;
-  align-items: center;
 }
 
 .upload {
@@ -95,12 +75,13 @@
   text-align: left;
   align-items: center;
   display: flex;
-  margin-left: 245px;
+  margin-left: 100px;
   background-image: url("../assets/uploadIcon.svg");
   background-repeat: no-repeat, repeat;
   background-position:
     right 2em top 50%,
     0 0;
+  margin-bottom: 2em;
 }
 
 input[type="checkbox"].select {
@@ -130,7 +111,7 @@ input[type="checkbox"].select:checked + label::before {
 }
 
 .checkboxLabel {
-  margin-left: 245px;
+  margin-left: 100px;
   display: flex;
   align-items: center;
 }

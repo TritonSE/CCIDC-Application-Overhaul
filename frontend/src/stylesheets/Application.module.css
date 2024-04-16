@@ -1,0 +1,82 @@
+.pathwayApplicationBase {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.applicationContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+  margin-bottom: 0.5rem;
+}
+
+.title {
+  text-align: center;
+  font: var(--font-title);
+  padding-bottom: 0.5em;
+  margin-top: 2.5em;
+}
+
+.pathContent {
+  text-align: center;
+  font-family: var(--font-body);
+  margin-left: 10em;
+  margin-right: 10em;
+}
+
+.centeredContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 2em;
+  padding-top: 3em;
+}
+
+.note {
+  display: inline;
+  justify-content: center;
+  text-decoration: underline;
+  text-align: center;
+  padding-bottom: 4em;
+  color: var(--color-ccidc-red);
+}
+
+.red {
+  color: var(--color-ccidc-red);
+}
+
+.formContainer {
+  width: 80%;
+}
+
+.backArrow img:hover {
+  content: url("../assets/backArrowHovered.svg");
+}
+
+.arrow img:hover {
+  content: url("../assets/arrowHovered.svg");
+}
+
+.navigationContainer {
+  height: 6rem;
+  padding: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+}
+
+.arrow {
+  margin-right: 5rem;
+}
+
+.backArrow {
+  margin-left: 5rem;
+}
+
+.navigationContainer img {
+  margin-top: 1rem;
+}

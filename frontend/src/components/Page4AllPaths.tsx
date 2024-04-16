@@ -15,6 +15,7 @@ export function Page4AllPaths() {
     <>
       <div className={styles.page4Form}>
         <form>
+          <br></br>
           <h2 className={styles.sectionTitle}>Additional Information</h2>
 
           <div className={styles.formRow}>
