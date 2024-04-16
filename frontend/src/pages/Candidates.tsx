@@ -107,12 +107,14 @@ export function Candidates() {
       </div>
 
       <div className={styles.centeredContainer}>
+
       <NavLink className={styles.navLink} to={"/prescreening"}>
               <Button onClick={null}>Discover Your Ideal Pathway</Button>
       </NavLink>
+
       </div>
 
-      <FAQs></FAQs>
+      <FAQs />
 
       <footer className={styles.footer}>
         <div className={styles.tseLogo}>
