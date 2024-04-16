@@ -119,10 +119,22 @@ input[type="checkbox"].select + label::before {
 
 input[type="checkbox"].select:checked + label::before {
   background-color: var(--color-ccidc-red);
+  content: "\2713";
+  color: white;
 }
 
 .checkboxLabel {
   margin-left: 245px;
   display: flex;
   align-items: center;
+}
+
+#selectedValue {
+  padding: 10px;
+  appearance: none;
+  background-image: url("../assets/dropDownIcon.svg");
+  background-repeat: no-repeat, repeat;
+  background-position:
+    right 0.7em top 50%,
+    0 0;
 }

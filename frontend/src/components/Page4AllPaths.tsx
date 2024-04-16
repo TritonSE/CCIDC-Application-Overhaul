@@ -53,7 +53,12 @@ export function Page4AllPaths() {
           <div className={styles.formRow}>
             <label className={styles.label}>
               Have you ever been convicted of a Felony?
-              <input className={styles.input} type="text" name="crimeHistory" />
+              <select className={styles.input} id={styles.selectedValue} name="criminalHistory">
+                <option value="" disabled selected>
+                  Select one
+                </option>
+                <option>Yes</option>;<option>No</option>;<option></option>
+              </select>
             </label>
 
             <label className={styles.label}>
