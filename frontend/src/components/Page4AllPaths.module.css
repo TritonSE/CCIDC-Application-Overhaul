@@ -11,6 +11,13 @@
   padding-bottom: 30px;
 }
 
+@media (max-width: 1250px) {
+  .formRow {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 .sectionTitle {
   display: flex;
   font-family: "Rubik";
