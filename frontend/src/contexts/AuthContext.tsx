@@ -5,6 +5,7 @@ type AuthState = {
   login: (username: string, password: string) => Promise<boolean> | undefined;
   verifyLogin: () => Promise<boolean> | undefined;
   logout: () => void | undefined;
+  getUserAuth: () => Object | undefined;
 };
 
 const initialState: AuthState = {
@@ -12,6 +13,7 @@ const initialState: AuthState = {
   login: () => undefined,
   verifyLogin: () => undefined,
   logout: () => undefined,
+  getUserAuth: () => undefined,
 };
 
 export const AuthContext = createContext<AuthState>(initialState);
@@ -20,12 +22,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   async function verifyLogin() {
-    const userAuth = localStorage.getItem("userAuth");
-    if (!userAuth) return false;
+    const { token } = getUserAuth();
 
-    const { token } = JSON.parse(userAuth);
     if (!token) return false;
-    
+
     // Assume token valid until cors error fixed
     return true;
 
@@ -87,6 +87,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setIsLoggedIn(false);
   }
 
+  function getUserAuth() {
+    const userAuth = localStorage.getItem("userAuth");
+    return userAuth ? JSON.parse(userAuth) : {};
+  }
+
   // set isLoggedIn on page load
   useEffect(() => {
     async function setLoginState() {
@@ -101,6 +106,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     verifyLogin,
     login,
     logout,
+    getUserAuth,
   };
 
   return <AuthContext.Provider value={authValue}>{children}</AuthContext.Provider>;
