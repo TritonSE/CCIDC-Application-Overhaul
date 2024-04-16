@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import arrow from "../assets/arrow.svg";
 import backArrow from "../assets/backArrow.svg";
-import { Button, PathwayTimeline, Page4AllPaths } from "../components/index.ts";
+import { Button, Page4AllPaths, PathwayTimeline } from "../components/index.ts";
 import styles from "../stylesheets/Application.module.css";
 
 export type ApplicationProps = {

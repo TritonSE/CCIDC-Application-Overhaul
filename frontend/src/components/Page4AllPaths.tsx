@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 import { Button } from "./Button.tsx";
-
 import styles from "./Page4AllPaths.module.css";
 
 export function Page4AllPaths() {
@@ -88,6 +87,7 @@ export function Page4AllPaths() {
             id="select"
             checked={isChecked}
             onChange={handleCheckboxChange}
+            required
           />
 
           <label htmlFor="select" className={styles.checkboxLabel}>

@@ -6,7 +6,7 @@ import {
   Apply,
   Candidates,
   TestCongratulations,
-  TestPage4,
+  // TestPage4,
   ThankyouForApplying,
 } from "./pages/index.ts";
 
@@ -25,7 +25,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           {/* <Route index element={<TestPage4 />} /> */}
-          <Route index element={<Application path={4} />} />
+          <Route index element={<Application path={1} />} />
           {/* <Route index element={<Candidates />} /> */}
           <Route path="path1" element={<Application path={1} />} />
           <Route path="path2" element={<Application path={2} />} />
