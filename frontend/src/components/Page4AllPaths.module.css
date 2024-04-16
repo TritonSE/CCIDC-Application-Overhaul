@@ -87,14 +87,20 @@
   font-family: "Rubik";
   font-size: 15px;
   background-color: white;
+  color: black;
   border: 1px solid black;
   border-radius: 4px;
   height: 40px;
-  width: 300px;
+  width: 285px;
   text-align: left;
   align-items: center;
   display: flex;
-  margin-left: 250px;
+  margin-left: 245px;
+  background-image: url("../assets/uploadIcon.svg");
+  background-repeat: no-repeat, repeat;
+  background-position:
+    right 2em top 50%,
+    0 0;
 }
 
 input[type="checkbox"].select {

@@ -1,6 +1,8 @@
-import styles from "./Page4AllPaths.module.css";
-
 import { useState } from "react";
+
+import { Button } from "./Button.tsx";
+
+import styles from "./Page4AllPaths.module.css";
 
 export function Page4AllPaths() {
   const [isChecked, setIsChecked] = useState(false);
@@ -104,6 +106,14 @@ export function Page4AllPaths() {
               CCIDC CODE OF ETHICS
             </a>
           </p>
+
+          <br></br>
+
+          <Button onClick={undefined} additionalStyle={styles.upload}>
+            Upload Signed Code of Ethics
+          </Button>
+
+          <br></br>
         </form>
       </div>
     </>
