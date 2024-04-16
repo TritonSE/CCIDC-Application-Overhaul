@@ -185,7 +185,9 @@ const FileUploadPopupWindow: React.FC = () => {
             )}
             {uploadedCount > 0 && (
               <div className={styles.dragAndDropArea}>
-                <p className={styles.subtext}>Files being uploaded...</p>
+                <p className={styles.subtext}>
+                  Uploaded {uploadedCount} of {totalFilesCount}
+                </p>
               </div>
             )}
 
