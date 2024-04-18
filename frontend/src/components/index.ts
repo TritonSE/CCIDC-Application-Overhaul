@@ -1,5 +1,3 @@
-import { PrescreeningForm } from "../pages/PrescreeningForm.tsx";
-
 import { Accordion } from "./Accordion.tsx";
 import { Button } from "./Button.tsx";
 import { CongratulationsPopupWindow } from "./CongratulationsPopupWindow.tsx";
@@ -18,5 +16,4 @@ export {
   FAQs,
   PathwayTimeline,
   CongratulationsPopupWindow,
-  PrescreeningForm,
 };

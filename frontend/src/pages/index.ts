@@ -4,11 +4,4 @@ import { PrescreeningForm } from "./PrescreeningForm.tsx";
 import { TestCongratulations } from "./TestCongratulations.tsx";
 import { ThankyouForApplying } from "./ThankyouForApplying.tsx";
 
-export {
-  Application,
-  Apply,
-  Candidates,
-  TestCongratulations,
-  ThankyouForApplying,
-  PrescreeningForm,
-};
+export { Application, Candidates, TestCongratulations, ThankyouForApplying, PrescreeningForm };

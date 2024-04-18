@@ -15,7 +15,7 @@ export function PrescreeningForm() {
   const pathTwo = "/path2";
   const pathThree = "/path3";
   const pathFour = "/path4";
-  const pathNQ = "/pathNQ";
+  const pathNQ = "/ThankyouForApplying";
 
   const navigate = useNavigate();
 
@@ -66,7 +66,8 @@ export function PrescreeningForm() {
         information about the pathways{" "}
         <Link to="/" className={styles.blueLink}>
           here.
-        </Link>
+        </Link>{" "}
+        <strong> All questions are required.</strong>
       </p>
 
       <form onSubmit={handleFormSubmit} id="form1">
