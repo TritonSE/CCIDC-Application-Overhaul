@@ -20,7 +20,7 @@
 }
 
 .ulprescreening {
-  padding-left: 1.25rem;
+  padding-left: 3rem;
 }
 
 .centeredContainer {
@@ -59,7 +59,6 @@ input[type="radio"]:checked:before {
   line-height: 1.5;
   margin-left: 30px;
   margin-top: -25px;
-  font-weight: 250;
 }
 
 .label > p {
