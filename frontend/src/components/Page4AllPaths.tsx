@@ -19,58 +19,93 @@ export function Page4AllPaths() {
           <div className={styles.formRow}>
             <label className={styles.label}>
               Certified/Registered/Licensed in any other Jurisdiction
-              <input className={styles.input} type="text" name="license" />
+              <input
+                className={styles.input}
+                type="text"
+                name="license"
+                placeholder="Certified/Registered/Licensed in any other Jurisdiction"
+              />
             </label>
 
             <label className={styles.label}>
+              Certified/Registered/License Number
+              <input
+                className={styles.input}
+                type="text"
+                name="licenseNumber"
+                placeholder="Certified/Registered/License Number"
+              />
+            </label>
+          </div>
+
+          <div className={styles.formRow}>
+            <label className={styles.label}>
               Name of State/Jurisdiction
-              <input className={styles.input} type="text" name="state" />
+              <input
+                className={styles.input}
+                type="text"
+                name="state"
+                placeholder="Name of State/Jurisdictionn"
+              />
+            </label>
+
+            <label className={styles.label}>
+              Date Certified/Registered/License Expires
+              <input
+                className={styles.input}
+                type="text"
+                name="license"
+                placeholder="Date Certified/Registered/License Expires"
+              />
             </label>
           </div>
 
           <div className={styles.formRow}>
             <label className={styles.label}>
               Certification Exam
-              <input className={styles.input} type="text" name="certificationExam" />
-            </label>
-            <label className={styles.label}>
-              Date of Certification Exam
-              <input className={styles.input} type="text" name="dateOfCertificationExam" />
-            </label>
-          </div>
-
-          <div className={styles.formRow}>
-            <label className={styles.label}>
-              Certified/Registered/License Number
-              <input className={styles.input} type="text" name="licenseNumber" />
+              <input
+                className={styles.input}
+                type="text"
+                name="certificationExam"
+                placeholder="Certification Exam"
+              />
             </label>
 
-            <label className={styles.label}>
-              Date Certified/Registered/License Expires
-              <input className={styles.input} type="text" name="license" />
-            </label>
-          </div>
-
-          <div className={styles.formRow}>
             <label className={styles.label}>
               Have you ever been convicted of a Felony?
-              <select className={styles.input} id={styles.selectedValue} name="criminalHistory">
-                <option value="" disabled selected>
-                  Select one
-                </option>
-                <option>Yes</option>;<option>No</option>;<option></option>
-              </select>
+              <Button onClick={undefined} additionalStyle={styles.dropDown}>
+                Select One
+              </Button>
+            </label>
+          </div>
+
+          <div className={styles.formRow}>
+            <label className={styles.label}>
+              Date of Certification Exam
+              <input
+                className={styles.input}
+                type="text"
+                name="dateOfCertificationExam"
+                placeholder="Date of Certification Exam"
+              />
             </label>
 
             <label className={styles.label}>
               If yes, please explain
-              <input className={styles.input} type="text" name="explanation" />
+              <input
+                className={styles.input}
+                type="text"
+                name="explanation"
+                placeholder="Please explain here"
+              />
             </label>
           </div>
 
           <hr className={styles.line} />
 
-          <h2 className={styles.sectionTitle}>Rules & Regulations</h2>
+          <h2 className={styles.sectionTitle}>
+            Rules & Regulations<span className={styles.red}>*</span>
+          </h2>
           <p className={styles.note}>
             Please read the{" "}
             <a
@@ -96,7 +131,9 @@ export function Page4AllPaths() {
 
           <hr className={styles.line} />
 
-          <h2 className={styles.sectionTitle}>Code of Ethics</h2>
+          <h2 className={styles.sectionTitle}>
+            Code of Ethics<span className={styles.red}>*</span>
+          </h2>
           <p className={styles.note}>
             Please read and sign the{" "}
             <a
