@@ -16,6 +16,8 @@ import { PathwayTimeline } from "./PathwayTimeline.tsx";
 import { Step1 } from "./Step1.tsx";
 import { Step2 } from "./Step2.tsx";
 import { Step4 } from "./Step4.tsx";
+import { WorkExperienceForm } from "./WorkExperienceForm.tsx"
+import { Step3 } from "./Step3.tsx"
 
 export {
   Page,
@@ -34,4 +36,6 @@ export {
   ConfirmSubmissionModal,
   CongratulationsModal,
   RequirementsNotMetModal,
+  WorkExperienceForm,
+  Step3,
 };
