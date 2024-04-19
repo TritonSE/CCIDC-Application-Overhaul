@@ -3,6 +3,7 @@ import React, { createContext, useEffect, useState } from "react";
 type AuthState = {
   isLoggedIn: boolean;
   login: (username: string, password: string) => Promise<boolean> | undefined;
+  serverLogin: () => Promise<boolean> | undefined;
   verifyLogin: () => Promise<boolean> | undefined;
   logout: () => void | undefined;
   getUserAuth: () => Object | undefined;
@@ -14,6 +15,7 @@ const initialState: AuthState = {
   verifyLogin: () => undefined,
   logout: () => undefined,
   getUserAuth: () => undefined,
+  serverLogin: () => undefined,
 };
 
 export const AuthContext = createContext<AuthState>(initialState);
@@ -44,6 +46,26 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       return response.ok;
     } catch (error) {
       console.log(error);
+      return false;
+    }
+  }
+
+  async function serverLogin() {
+    const serverURL = "http://localhost:3001";
+    const endpoint = "/login";
+    const URL = `${serverURL}${endpoint}`;
+
+    try {
+      console.log(URL);
+      const response = await fetch(URL);
+      console.log(response);
+      if (!response.ok) return false;
+
+      const result = await response.json();
+      console.log(result);
+      return true;
+    } catch (e) {
+      console.log(e);
       return false;
     }
   }
@@ -107,6 +129,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     login,
     logout,
     getUserAuth,
+    serverLogin,
   };
 
   return <AuthContext.Provider value={authValue}>{children}</AuthContext.Provider>;
