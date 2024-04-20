@@ -3,10 +3,12 @@ import React, { createContext, useEffect, useState } from "react";
 type AuthState = {
   isLoggedIn: boolean;
   login: (username: string, password: string) => Promise<boolean> | undefined;
-  serverLogin: () => Promise<boolean> | undefined;
   verifyLogin: () => Promise<boolean> | undefined;
   logout: () => void | undefined;
   getUserAuth: () => Object | undefined;
+
+  serverLogin: (username: string, password: string) => Promise<boolean> | undefined;
+  serverVerify: () => Promise<boolean> | undefined;
 };
 
 const initialState: AuthState = {
@@ -16,6 +18,7 @@ const initialState: AuthState = {
   logout: () => undefined,
   getUserAuth: () => undefined,
   serverLogin: () => undefined,
+  serverVerify: () => undefined,
 };
 
 export const AuthContext = createContext<AuthState>(initialState);
@@ -50,20 +53,43 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }
 
-  async function serverLogin() {
+  async function serverLogin(username: string, password: string) {
     const serverURL = "http://localhost:3001";
     const endpoint = "/login";
     const URL = `${serverURL}${endpoint}`;
 
     try {
-      console.log(URL);
-      const response = await fetch(URL);
-      console.log(response);
-      if (!response.ok) return false;
+      const response = await fetch(URL, {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username,
+          password,
+        }),
+      });
 
-      const result = await response.json();
-      console.log(result);
-      return true;
+      return response.ok;
+    } catch (e) {
+      console.log(e);
+      return false;
+    }
+  }
+  
+  async function serverVerify() {
+    const serverURL = "http://localhost:3001";
+    const endpoint = "/validate";
+    const URL = `${serverURL}${endpoint}`;
+
+    try {
+      const response = await fetch(URL, {
+        method: "GET",
+        credentials: "include",
+      });
+
+      return response.ok;
     } catch (e) {
       console.log(e);
       return false;
@@ -130,6 +156,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     logout,
     getUserAuth,
     serverLogin,
+    serverVerify,
   };
 
   return <AuthContext.Provider value={authValue}>{children}</AuthContext.Provider>;
