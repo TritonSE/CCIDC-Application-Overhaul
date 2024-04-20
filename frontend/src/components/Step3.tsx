@@ -1,6 +1,8 @@
 import styles from "./Step3.module.css";
 import { WorkExperienceForm } from "./index.ts";
 import { Button } from "./Button.tsx";
+import { Link } from "react-router-dom";
+
 
 export function Step3() {
   return (
@@ -151,14 +153,28 @@ export function Step3() {
           ]}
           
         />
-        <p className={styles.note}>
-        i. IF YOU ARE SELF-EMPLOYED – Complete the _______ and include Tax Returns that claims yourself as an Interior Designer in the occupation section going back the amount of years you are claiming experience for or letter from a CPA or Attorney.
-        </p>
-        <p className={styles.note}>
-        ii. IF YOU ARE NOT SELF-EMPLOYED – Fill out the ________ must be signed by Candidate and Employer.
+
+        <p>
+        i. IF YOU ARE SELF-EMPLOYED – Complete the{" "} 
+
+        <Link to="https://ccidc.org/wp-content/uploads/2023/05/Work-Verification-Form.pdf" className={styles.blueLink}>
+          Employment Verification Form
+        </Link>{" "}
+
+        and include Tax Returns that claims yourself as an Interior Designer in the occupation section going back the amount of years you are claiming experience for or letter from a CPA or Attorney.
         </p>
 
-        <Button onClick={undefined} additionalStyle={styles.uploadTwo}>
+        <p>
+        ii. IF YOU ARE NOT SELF-EMPLOYED – Fill out the{" "}
+
+        <Link to="https://ccidc.org/wp-content/uploads/2023/05/Work-Verification-Form.pdf" className={styles.blueLink}>
+          Employment Verification Form
+        </Link>{" "}
+        
+        must be signed by Candidate and Employer.
+        </p>
+
+        <Button onClick={undefined} additionalStyle={styles.upload}>
             Upload Employment Verification Form
         </Button>
 
