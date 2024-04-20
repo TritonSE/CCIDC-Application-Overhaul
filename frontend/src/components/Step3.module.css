@@ -36,16 +36,23 @@
     font-family: "Rubik";
     font-size: 15px;
     background-color: white;
+    color: black;
     border: 1px solid black;
     border-radius: 4px;
     height: 48px;
-    width: 290px;
+    width: 338px;
     text-align: left;
     align-items: center;
     display: flex;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     padding: 16px;
     justify-content: space-between;
+    background-image: url("../assets/uploadIcon.svg");
+    background-repeat: no-repeat, repeat;
+    background-position:
+      right 1em top 50%,
+      0 0;
+    margin-bottom: 2em;
   }
   
   .uploadButton {
@@ -53,24 +60,7 @@
     height: 24px;
   }
 
-  .uploadTwo {
-    font-family: "Rubik";
-    font-size: 15px;
-    background-color: white;
-    color: black;
-    border: 1px solid black;
-    border-radius: 4px;
-    height: 40px;
-    width: 285px;
-    text-align: left;
-    align-items: center;
-    display: flex;
-    margin-left: 100px;
-    background-image: url("../assets/uploadIcon.svg");
-    background-repeat: no-repeat, repeat;
-    background-position:
-      right 2em top 50%,
-      0 0;
-    margin-bottom: 2em;
+  .blueLink {
+    color: blue;
   }
   
