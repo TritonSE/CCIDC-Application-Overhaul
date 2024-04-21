@@ -46,7 +46,7 @@ export function Login() {
           <br />
           <label htmlFor="password">Password:</label>
           <br />
-          <input id="password" />
+          <input id="password" type="password" />
           <br />
           <input type="submit" value="Submit" />
         </form>

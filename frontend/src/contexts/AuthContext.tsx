@@ -27,7 +27,7 @@ export const AuthContext = createContext<AuthState>(initialState);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userEmail, setUserEmail] = useState(undefined);
+  const [userEmail, setUserEmail] = useState("");
 
   async function login(username: string, password: string) {
     try {
@@ -88,10 +88,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }
 
+  // source: https://stackoverflow.com/questions/5142337/read-a-javascript-cookie-by-name
+  function getCookie(name: string) {
+    const cookiestring = RegExp(name + "=[^;]+").exec(document.cookie);
+    return decodeURIComponent(!!cookiestring ? cookiestring.toString().replace(/^[^=]+./, "") : "");
+  }
+
   async function setCurrentState() {
     const loggedIn = await verifyLogin();
 
     setIsLoggedIn(loggedIn);
+    setUserEmail(getCookie("email"));
   }
 
   // set auth values on page load
