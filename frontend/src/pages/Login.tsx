@@ -4,7 +4,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 export function Login() {
-  const { isLoggedIn, login, serverLogin, serverVerify } = useContext(AuthContext);
+  const { isLoggedIn, login, verifyLogin } = useContext(AuthContext);
   const navigate = useNavigate();
 
   // Redirect once logged in
@@ -30,7 +30,7 @@ export function Login() {
       return;
     }
 
-    const result = await serverLogin(username, password);
+    const result = await login(username, password);
 
     if (!result) alert("login failed!");
   }
@@ -50,7 +50,7 @@ export function Login() {
           <br />
           <input type="submit" value="Submit" />
         </form>
-        <button onClick={serverVerify}>VERIFY</button>
+        <button onClick={verifyLogin}>VERIFY</button>
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ const corsOptions = {
   credentials: true,
 };
 
-// needed to allow preflight request for /login endpoint
+// needed to allow preflight request for /login and /logout endpoint
 router.options("/login", cors(corsOptions));
 
 router.post("/login", cors(corsOptions), async (req: Request, res: Response) => {
@@ -51,8 +51,16 @@ router.post("/login", cors(corsOptions), async (req: Request, res: Response) => 
     return res.status(403).json({ error: "Unable to login with given credentials" });
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ error: "login failed" });
+    return res.status(500).json({ error: "Login failed" });
   }
+});
+
+router.post("/logout", cors(corsOptions), (req: Request, res: Response) => {
+  res.clearCookie("token");
+  res.clearCookie("email");
+  res.clearCookie("nicename");
+  res.clearCookie("displayName");
+  res.status(200).send({ message: "Logout succeeded" });
 });
 
 router.get("/validate", cors(corsOptions), async (req: Request, res: Response) => {

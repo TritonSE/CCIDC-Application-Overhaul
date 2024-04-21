@@ -2,63 +2,36 @@ import React, { createContext, useEffect, useState } from "react";
 
 type AuthState = {
   isLoggedIn: boolean;
+  userEmail: string | undefined;
   login: (username: string, password: string) => Promise<boolean> | undefined;
   verifyLogin: () => Promise<boolean> | undefined;
-  logout: () => void | undefined;
-  getUserAuth: () => Object | undefined;
-
-  serverLogin: (username: string, password: string) => Promise<boolean> | undefined;
-  serverVerify: () => Promise<boolean> | undefined;
+  logout: () => Promise<boolean> | undefined;
 };
 
 const initialState: AuthState = {
   isLoggedIn: false,
+  userEmail: undefined,
   login: () => undefined,
   verifyLogin: () => undefined,
   logout: () => undefined,
-  getUserAuth: () => undefined,
-  serverLogin: () => undefined,
-  serverVerify: () => undefined,
+};
+
+const SERVER_URL = "http://localhost:3001";
+const ENDPOINTS = {
+  LOGIN: "/login",
+  LOGOUT: "/logout",
+  VALIDATE: "/validate",
 };
 
 export const AuthContext = createContext<AuthState>(initialState);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userEmail, setUserEmail] = useState(undefined);
 
-  async function verifyLogin() {
-    const { token } = getUserAuth();
-
-    if (!token) return false;
-
-    // Assume token valid until cors error fixed
-    return true;
-
-    const baseUrl = "https://ccidc.org";
-    const endpoint = "/wp-json/jwt-auth/v1/token/validate";
-    const URL = `${baseUrl}${endpoint}`;
-
+  async function login(username: string, password: string) {
     try {
-      const response = await fetch(URL, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      return response.ok;
-    } catch (error) {
-      console.log(error);
-      return false;
-    }
-  }
-
-  async function serverLogin(username: string, password: string) {
-    const serverURL = "http://localhost:3001";
-    const endpoint = "/login";
-    const URL = `${serverURL}${endpoint}`;
-
-    try {
+      const URL = `${SERVER_URL}${ENDPOINTS.LOGIN}`;
       const response = await fetch(URL, {
         method: "POST",
         credentials: "include",
@@ -71,19 +44,39 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         }),
       });
 
-      return response.ok;
+      if (response.ok) {
+        setCurrentState();
+        return true;
+      }
+
+      return false;
     } catch (e) {
-      console.log(e);
       return false;
     }
   }
-  
-  async function serverVerify() {
-    const serverURL = "http://localhost:3001";
-    const endpoint = "/validate";
-    const URL = `${serverURL}${endpoint}`;
 
+  async function logout() {
     try {
+      const URL = `${SERVER_URL}${ENDPOINTS.LOGOUT}`;
+      const response = await fetch(URL, {
+        method: "POST",
+        credentials: "include",
+      });
+
+      if (response.ok) {
+        setCurrentState();
+        return true;
+      }
+
+      return false;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  async function verifyLogin() {
+    try {
+      const URL = `${SERVER_URL}${ENDPOINTS.VALIDATE}`;
       const response = await fetch(URL, {
         method: "GET",
         credentials: "include",
@@ -91,72 +84,27 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       return response.ok;
     } catch (e) {
-      console.log(e);
       return false;
     }
   }
 
-  async function login(username: string, password: string) {
-    const baseUrl = "https://ccidc.org";
-    const endpoint = "/wp-json/jwt-auth/v1/token";
-    const params = new URLSearchParams({
-      username,
-      password,
-    });
-    const URL = `${baseUrl}${endpoint}?${params}`;
+  async function setCurrentState() {
+    const loggedIn = await verifyLogin();
 
-    try {
-      const response = await fetch(URL, {
-        method: "POST",
-      });
-
-      if (!response.ok) return false;
-
-      const result = await response.json();
-
-      const userAuth = {
-        token: result?.token,
-        email: result?.user_email,
-        nicename: result?.user_nicename,
-        displayName: result?.user_display_name,
-      };
-
-      localStorage.setItem("userAuth", JSON.stringify(userAuth));
-      setIsLoggedIn(true);
-
-      return true;
-    } catch (error) {
-      return false;
-    }
+    setIsLoggedIn(loggedIn);
   }
 
-  function logout() {
-    localStorage.removeItem("userAuth");
-    setIsLoggedIn(false);
-  }
-
-  function getUserAuth() {
-    const userAuth = localStorage.getItem("userAuth");
-    return userAuth ? JSON.parse(userAuth) : {};
-  }
-
-  // set isLoggedIn on page load
+  // set auth values on page load
   useEffect(() => {
-    async function setLoginState() {
-      setIsLoggedIn(await verifyLogin());
-    }
-
-    setLoginState();
+    setCurrentState();
   }, []);
 
   const authValue = {
     isLoggedIn,
+    userEmail,
     verifyLogin,
     login,
     logout,
-    getUserAuth,
-    serverLogin,
-    serverVerify,
   };
 
   return <AuthContext.Provider value={authValue}>{children}</AuthContext.Provider>;
