@@ -6,9 +6,9 @@ import {
   Application,
   Apply,
   Candidates,
+  Login,
   TestCongratulations,
   ThankyouForApplying,
-  Login,
 } from "./pages/index.ts";
 
 function Layout() {
