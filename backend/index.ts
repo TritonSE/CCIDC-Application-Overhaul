@@ -1,5 +1,5 @@
-import express from "express";
 import cookieParser from "cookie-parser";
+import express from "express";
 
 import fileRoutes from "./src/routes/fileRoutes";
 // const fileRoutes = require("./src/routes/fileRoutes.ts");

@@ -75,7 +75,7 @@ export function NavBar() {
 
           <li>
             {isLoggedIn ? (
-              <button className={styles.logInOutButton} onClick={logout}>
+              <button className={styles.logInOutButton} onClick={() => void logout()}>
                 Logout
               </button>
             ) : (

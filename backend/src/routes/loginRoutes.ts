@@ -1,5 +1,5 @@
-import express, { Request, Response, Router } from "express";
 import cors from "cors";
+import express, { Request, Response, Router } from "express";
 
 const router: Router = express.Router();
 const corsOptions = {
@@ -7,53 +7,70 @@ const corsOptions = {
   credentials: true,
 };
 
-// needed to allow preflight request for /login and /logout endpoint
-router.options("/login", cors(corsOptions));
+type LoginBody = {
+  username: string;
+  password: string;
+};
 
-router.post("/login", cors(corsOptions), async (req: Request, res: Response) => {
-  const username = req?.body?.username;
-  const password = req?.body?.password;
+type WordpressLoginResponse = {
+  token: string;
+  user_display_name: string;
+  user_email: string;
+  user_nicename: string;
+};
 
-  if (!username || !password) {
-    return res.status(403).json({ error: "Missing username or password" });
+class LoginError extends Error {
+  status?: number;
+  error?: string;
+
+  constructor(status?: number, message?: string) {
+    super(message);
+    this.status = status;
   }
+}
 
-  const baseUrl = "https://ccidc.org";
-  const endpoint = "/wp-json/jwt-auth/v1/token";
-  const params = new URLSearchParams({
-    username,
-    password,
-  });
-  const URL = `${baseUrl}${endpoint}?${params}`;
+router.options("/login", cors(corsOptions)); // allows preflight request for /login endpoint
 
-  try {
-    const response = await fetch(URL, {
-      method: "POST",
+router.post(
+  "/login",
+  cors(corsOptions),
+  (req: Request<object, object, LoginBody>, res: Response) => {
+    const baseUrl = "https://ccidc.org";
+    const endpoint = "/wp-json/jwt-auth/v1/token";
+    const params = new URLSearchParams({
+      username: req?.body?.username,
+      password: req?.body?.password,
     });
+    const URL = `${baseUrl}${endpoint}?${params.toString()}`;
 
-    if (response.ok) {
-      const result = await response.json();
+    fetch(URL, {
+      method: "POST",
+    })
+      .then((response) => {
+        if (!response.ok) throw new LoginError(403, "Unable to login with given credentials");
 
-      // overide url encoding on cookies
-      const e = (v: string) => v;
+        return response.json();
+      })
+      .then((data: WordpressLoginResponse) => {
+        const e = (v: string) => v; // overide url encoding when setting cookies
 
-      // TODO: verify token here before setting cookie?
-      res.cookie("token", result.token, { httpOnly: true, secure: true, encode: e });
-      res.cookie("email", result.user_email, { secure: true, encode: e });
-      res.cookie("nicename", result.user_nicename, { secure: true, encode: e });
-      res.cookie("displayName", result.user_display_name, { secure: true, encode: e });
-
-      return res.status(200).json({
-        message: "Login succeeded",
+        res.cookie("token", data.token, { httpOnly: true, secure: true, encode: e });
+        res.cookie("email", data.user_email, { secure: true, encode: e });
+        res.cookie("nicename", data.user_nicename, { secure: true, encode: e });
+        res.cookie("displayName", data.user_display_name, { secure: true, encode: e });
+        res.status(200).json({
+          message: "Login succeeded",
+        });
+      })
+      .catch((error) => {
+        const loginError = error as LoginError;
+        const status = loginError?.status ?? 500;
+        const message =
+          loginError?.message && loginError?.message !== "" ? loginError?.message : "Login failed";
+        res.status(status).json({ message });
       });
-    }
-
-    return res.status(403).json({ error: "Unable to login with given credentials" });
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({ error: "Login failed" });
-  }
-});
+  },
+);
 
 router.post("/logout", cors(corsOptions), (req: Request, res: Response) => {
   res.clearCookie("token");
@@ -63,34 +80,34 @@ router.post("/logout", cors(corsOptions), (req: Request, res: Response) => {
   res.status(200).send({ message: "Logout succeeded" });
 });
 
-router.get("/validate", cors(corsOptions), async (req: Request, res: Response) => {
-  const cookies = req.cookies;
-  const token = cookies && "token" in cookies ? cookies["token"] : null;
-  if (!token) {
-    return res.status(403).json({ error: "No token set in cookies" });
-  }
+router.get("/validate", cors(corsOptions), (req: Request, res: Response) => {
+  const cookies: Record<string, string> | undefined = req.cookies;
+  const token = cookies && "token" in cookies ? cookies.token : null;
 
   const baseUrl = "https://ccidc.org";
   const endpoint = "/wp-json/jwt-auth/v1/token/validate";
   const URL = `${baseUrl}${endpoint}`;
 
-  try {
-    const response = await fetch(URL, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+  fetch(URL, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => {
+      if (!response.ok) throw new LoginError(403, "Unable to verify the given token");
+
+      res.status(200).json({ message: "Token verification succeeded" });
+    })
+    .catch((error) => {
+      const loginError = error as LoginError;
+      const status = loginError?.status ?? 500;
+      const message =
+        loginError?.message && loginError?.message !== ""
+          ? loginError?.message
+          : "Token verification failed";
+      res.status(status).json({ message });
     });
-
-    if (response.ok) {
-      return res.status(200).json({ message: "Token verification succeeded" });
-    }
-
-    return res.status(403).json({ error: "Unable to verify with given token" });
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({ error: "Token verification failed" });
-  }
 });
 
 export default router;

@@ -1,10 +1,12 @@
-import { useContext, FormEvent, useEffect } from "react";
-import styles from "./Login.module.css";
-import { AuthContext } from "../contexts/AuthContext";
+import { FormEvent, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { AuthContext } from "../contexts/AuthContext";
+
+import styles from "./Login.module.css";
+
 export function Login() {
-  const { isLoggedIn, login, verifyLogin } = useContext(AuthContext);
+  const { isLoggedIn, login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   // Redirect once logged in
@@ -12,7 +14,7 @@ export function Login() {
     if (isLoggedIn) navigate("/apply");
   }, [isLoggedIn]);
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const target = event?.target as HTMLFormElement | null;
@@ -25,14 +27,24 @@ export function Login() {
     const username = (target.elements[0] as HTMLInputElement | undefined)?.value;
     const password = (target.elements[1] as HTMLInputElement | undefined)?.value;
 
-    if (!username || !username.length || !password || !password.length) {
+    if (!username?.length || !password?.length) {
       alert("Username and password are required!");
       return;
     }
 
-    const result = await login(username, password);
+    const loginPromise = login(username, password);
 
-    if (!result) alert("login failed!");
+    if (loginPromise instanceof Promise) {
+      loginPromise
+        .then((result) => {
+          if (!result) alert("Login Failed");
+        })
+        .catch(() => {
+          alert("Login Failed");
+        });
+    } else {
+      alert("Login Failed");
+    }
   }
 
   return (
@@ -50,7 +62,6 @@ export function Login() {
           <br />
           <input type="submit" value="Submit" />
         </form>
-        <button onClick={verifyLogin}>VERIFY</button>
       </div>
     </div>
   );
