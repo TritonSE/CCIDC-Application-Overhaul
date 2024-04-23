@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import arrow from "../assets/arrow.svg";
 import backArrow from "../assets/backArrow.svg";
-import { Button, Page4AllPaths, PathwayTimeline } from "../components/index.ts";
+import { Button, Step4, PathwayTimeline } from "../components/index.ts";
 import styles from "../stylesheets/Application.module.css";
 
 export type ApplicationProps = {
@@ -74,7 +74,7 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
     0: <div></div>,
     1: <div></div>,
     2: <div></div>,
-    3: <Page4AllPaths />,
+    3: <Step4 />,
     4: <div></div>,
     5: <div></div>,
   };

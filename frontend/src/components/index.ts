@@ -5,7 +5,7 @@ import { Dropdown } from "./Dropdown.tsx";
 import { FAQs } from "./FAQs.tsx";
 import { NavBar } from "./NavBar.tsx";
 import { Page } from "./Page.tsx";
-import { Page4AllPaths } from "./Page4AllPaths.tsx";
+import { Step4 } from "./Step4.tsx";
 import { Pathway } from "./Pathway.tsx";
 import { PathwayTimeline } from "./PathwayTimeline.tsx";
 
@@ -18,6 +18,6 @@ export {
   FAQs,
   PathwayTimeline,
   CongratulationsPopupWindow,
-  Page4AllPaths,
+  Step4,
   Dropdown,
 };

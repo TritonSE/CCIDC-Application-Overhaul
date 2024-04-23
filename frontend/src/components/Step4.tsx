@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 import { Button, Dropdown } from "./index.ts";
-import styles from "./Page4AllPaths.module.css";
+import styles from "./Step4.module.css";
 
-export function Page4AllPaths() {
+export function Step4() {
   const [isChecked, setIsChecked] = useState(false);
 
   const handleCheckboxChange = () => {
@@ -133,7 +133,7 @@ export function Page4AllPaths() {
             Code of Ethics<span className={styles.red}>*</span>
           </h2>
           <p className={styles.note}>
-            Please read and sign the{" "}
+            Please read the{" "}
             <a
               className={styles.lightBlue}
               href="https://ccidc.org/wp-content/uploads/2023/05/CCIDC-CODE-OF-ETHICS-2023.pdf"

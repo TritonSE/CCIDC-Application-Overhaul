@@ -6,7 +6,6 @@ import {
   Apply,
   Candidates,
   TestCongratulations,
-  // TestPage4,
   ThankyouForApplying,
 } from "./pages/index.ts";
 
@@ -24,7 +23,6 @@ function App() {
     <div className="app-container">
       <Routes>
         <Route path="/" element={<Layout />}>
-          {/* <Route index element={<TestPage4 />} /> */}
           <Route index element={<Application path={1} />} />
           {/* <Route index element={<Candidates />} /> */}
           <Route path="path1" element={<Application path={1} />} />
