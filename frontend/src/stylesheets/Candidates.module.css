@@ -186,3 +186,8 @@ a {
 .lightBlue {
   color: rgba(66, 139, 205, 1);
 }
+
+.navLink {
+  text-decoration: none;
+  color: var(--color-text-primary);
+}
