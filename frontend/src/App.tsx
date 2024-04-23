@@ -3,8 +3,8 @@ import { Outlet, Route, Routes } from "react-router-dom";
 import { NavBar } from "./components/index.ts";
 import {
   Application,
-  Apply,
   Candidates,
+  PrescreeningForm,
   TestCongratulations,
   ThankyouForApplying,
 } from "./pages/index.ts";
@@ -28,8 +28,8 @@ function App() {
           <Route path="path2" element={<Application path={2} />} />
           <Route path="path3" element={<Application path={3} />} />
           <Route path="path4" element={<Application path={4} />} />
-          <Route path="apply" element={<Apply />} />
           <Route path="candidates" element={<Candidates />} />
+          <Route path="prescreening" element={<PrescreeningForm />} />
           <Route path="ThankyouForApplying" element={<ThankyouForApplying />} />
           <Route path="TestCongratulations" element={<TestCongratulations />} />
         </Route>

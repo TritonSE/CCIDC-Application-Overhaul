@@ -72,8 +72,8 @@ export function NavBar() {
             </a>
           </li>
           <li>
-            <NavLink className={styles.navLink} to={"/apply"}>
-              <Button onClick={undefined}>Apply</Button>
+            <NavLink className={styles.navLink} to={"/prescreening"}>
+              <Button onClick={null}>Apply</Button>
             </NavLink>
           </li>
         </ul>
