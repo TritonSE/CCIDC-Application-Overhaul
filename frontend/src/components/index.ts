@@ -1,6 +1,7 @@
 import { Accordion } from "./Accordion.tsx";
 import { Button } from "./Button.tsx";
 import { CongratulationsPopupWindow } from "./CongratulationsPopupWindow.tsx";
+import { Dropdown } from "./Dropdown.tsx";
 import { FAQs } from "./FAQs.tsx";
 import { NavBar } from "./NavBar.tsx";
 import { Page } from "./Page.tsx";
@@ -18,4 +19,5 @@ export {
   PathwayTimeline,
   CongratulationsPopupWindow,
   Page4AllPaths,
+  Dropdown,
 };

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Button } from "./Button.tsx";
+import { Button, Dropdown } from "./index.ts";
 import styles from "./Page4AllPaths.module.css";
 
 export function Page4AllPaths() {
@@ -73,9 +73,7 @@ export function Page4AllPaths() {
 
             <label className={styles.label}>
               Have you ever been convicted of a Felony?
-              <Button onClick={undefined} additionalStyle={styles.dropDown}>
-                Select One
-              </Button>
+              <Dropdown options={["Yes", "No"]}></Dropdown>
             </label>
           </div>
 
