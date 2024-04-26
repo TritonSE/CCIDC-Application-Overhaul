@@ -1,9 +1,10 @@
-import styles from "./Step1.module.css";
-import { FormSection } from "./index.ts";
+import styles from "./Steps.module.css";
+import genders from "../constants/genders.json";
+import devices from "../constants/devices.json";
 
 export function Step1() {
   return (
-    <div className={styles.formContainer}>
+    <form id="step1-form" className={styles.formContainer}>
       <p className={styles.applyFacts}>
         <strong>Important Facts For Applicants BEFORE YOU APPLY:</strong>
         <ul>
@@ -52,117 +53,202 @@ export function Step1() {
         </ul>
       </p>
       <hr />
-
       <div className={styles.formSection}>
-        <FormSection
-          sectionName="Personal Information"
-          formInputs={[
-            {
-              inputTitle: "First Name",
-              defaultMessage: "Enter First Name Here",
-              inputType: "text",
-            },
-            {
-              inputTitle: "Middle Name",
-              defaultMessage: "Enter Middle Name Here",
-              inputType: "text",
-            },
-            {
-              inputTitle: "Last Name",
-              defaultMessage: "Enter Last Name Here",
-              inputType: "text",
-            },
-            {
-              inputTitle: "Maiden/Other Name Used",
-              defaultMessage: "Enter 2nd Last Name Here",
-              inputType: "text",
-            },
-            {
-              inputTitle: "Gender",
-              defaultMessage: "Select One",
-              inputType: "dropdown",
-              dropdownOptions: ["Female", "Male", "Other", "Prefer not to say"],
-            },
-          ]}
-        />
+        <div className={styles.titleContainer}>
+          <h2 className={styles.sectionName}>
+            Personal Information<span className={styles.boldRed}>*</span>
+          </h2>
+        </div>
+        <div className={styles.formSectionContainer}>
+          <div className={styles.inputBox}>
+            <label className={styles.inputTitle}>
+              First Name<span className={styles.boldRed}>*</span>
+              <input
+                className={styles.inputText}
+                type="text"
+                placeholder="Enter First Name Here"
+                required
+              />
+            </label>
+          </div>
+          <div className={styles.inputBox}>
+            <label className={styles.inputTitle}>
+              Middle Name<span className={styles.boldRed}>*</span>
+              <input
+                className={styles.inputText}
+                type="text"
+                placeholder="Enter Middle Name Here"
+                required
+              />
+            </label>
+          </div>
+          <div className={styles.inputBox}>
+            <label className={styles.inputTitle}>
+              Last Name<span className={styles.boldRed}>*</span>
+              <input
+                className={styles.inputText}
+                type="text"
+                placeholder="Enter Last Name Here"
+                required
+              />
+            </label>
+          </div>
+          <div className={styles.inputBox}>
+            <label className={styles.inputTitle}>
+              Maiden/Other Name Used<span className={styles.boldRed}>*</span>
+              <input
+                className={styles.inputText}
+                type="text"
+                placeholder="Enter 2nd Last Name Here"
+                required
+              />
+            </label>
+          </div>
+          <div className={styles.inputBox}>
+            <label className={styles.inputTitle}>
+              Gender<span className={styles.boldRed}>*</span>
+              <select className={styles.inputText} id="drop" required>
+                <option value="" className={styles.optionDefault} selected disabled>
+                  Select One
+                </option>
+                {genders.map((dropOption, dropIndex) => (
+                  <option
+                    key={dropIndex}
+                    value={dropOption}
+                    className={dropOption ? styles.optionSelected : styles.optionDefault}
+                  >
+                    {dropOption}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+        </div>
       </div>
       <hr />
       <div className={styles.formSection}>
-        <FormSection
-          sectionName="Contact Information"
-          formInputs={[
-            {
-              inputTitle: "Email Address *",
-              defaultMessage: "Enter Email Address",
-              inputType: "text",
-              required: true,
-            },
-            {
-              inputTitle: "Confirm Email Address *",
-              defaultMessage: "Enter Email Address",
-              inputType: "text",
-              required: true,
-            },
-            {
-              inputTitle: "Phone Device Type *",
-              defaultMessage: "Select One",
-              inputType: "dropdown",
-              dropdownOptions: ["Cell", "Home", "Office"],
-              required: true,
-            },
-            {
-              inputTitle: "Phone Number *",
-              defaultMessage: "Enter Phone Number",
-              inputType: "text",
-              required: true,
-            },
-          ]}
-        />
+        <div className={styles.titleContainer}>
+          <h2 className={styles.sectionName}>
+            Contact Information<span className={styles.boldRed}>*</span>
+          </h2>
+        </div>
+        <div className={styles.formSectionContainer}>
+          <div className={styles.inputBox}>
+            <label className={styles.inputTitle}>
+              Email Address<span className={styles.boldRed}>*</span>
+              <input
+                className={styles.inputText}
+                type="text"
+                placeholder="Enter Email Address"
+                required
+              />
+            </label>
+          </div>
+          <div className={styles.inputBox}>
+            <label className={styles.inputTitle}>
+              Phone Type<span className={styles.boldRed}>*</span>
+              <select className={styles.inputText} id="drop" required>
+                <option value="" className={styles.optionDefault} selected disabled>
+                  Select Phone Type
+                </option>
+                {devices.map((dropOption, dropIndex) => (
+                  <option
+                    key={dropIndex}
+                    value={dropOption}
+                    className={dropOption ? styles.optionSelected : styles.optionDefault}
+                  >
+                    {dropOption}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+          <div className={styles.inputBox}>
+            <label className={styles.inputTitle}>
+              Confirm Email Address<span className={styles.boldRed}>*</span>
+              <input
+                className={styles.inputText}
+                type="text"
+                placeholder="Enter Email Address"
+                required
+              />
+            </label>
+          </div>
+          <div className={styles.inputBox}>
+            <label className={styles.inputTitle}>
+              Phone Number<span className={styles.boldRed}>*</span>
+              <input
+                className={styles.inputText}
+                type="text"
+                placeholder="Enter Phone Number"
+                required
+              />
+            </label>
+          </div>
+        </div>
       </div>
       <hr />
       <div className={styles.formSection}>
-        <FormSection
-          sectionName="Mailing Address"
-          formInputs={[
-            {
-              inputTitle: "Address *",
-              defaultMessage: "Enter Address",
-              inputType: "text",
-              required: true,
-            },
-            {
-              inputTitle: "City *",
-              defaultMessage: "Enter City",
-              inputType: "text",
-              required: true,
-            },
-            {
-              inputTitle: "State *",
-              defaultMessage: "Enter State",
-              inputType: "text",
-              required: true,
-            },
-            {
-              inputTitle: "Zip Code *",
-              defaultMessage: "Enter Zip Code",
-              inputType: "text",
-              required: true,
-            },
-            {
-              inputTitle: "County *",
-              defaultMessage: "Enter County",
-              inputType: "text",
-              required: true,
-            },
-            {
-              inputTitle: "Country *",
-              defaultMessage: "Enter Country",
-              inputType: "text",
-              required: true,
-            },
-          ]}
-        />
+        <div className={styles.titleContainer}>
+          <h2 className={styles.sectionName}>
+            Mailing Address<span className={styles.boldRed}>*</span>
+          </h2>
+        </div>
+        <div className={styles.formSectionContainer}>
+          <div className={styles.inputBox}>
+            <label className={styles.inputTitle}>
+              Address<span className={styles.boldRed}>*</span>
+              <input
+                className={styles.inputText}
+                type="text"
+                placeholder="Enter Address"
+                required
+              />
+            </label>
+          </div>
+          <div className={styles.inputBox}>
+            <label className={styles.inputTitle}>
+              City<span className={styles.boldRed}>*</span>
+              <input className={styles.inputText} type="text" placeholder="Enter City" required />
+            </label>
+          </div>
+          <div className={styles.inputBox}>
+            <label className={styles.inputTitle}>
+              State<span className={styles.boldRed}>*</span>
+              <input className={styles.inputText} type="text" placeholder="Enter State" required />
+            </label>
+          </div>
+          <div className={styles.inputBox}>
+            <label className={styles.inputTitle}>
+              Zip<span className={styles.boldRed}>*</span>
+              <input
+                className={styles.inputText}
+                type="text"
+                placeholder="Enter Zip Code"
+                required
+              />
+            </label>
+          </div>
+          <div className={styles.inputBox}>
+            <label className={styles.inputTitle}>
+              County<span className={styles.boldRed}>*</span>
+              <input className={styles.inputText} type="text" placeholder="Enter County" required />
+            </label>
+          </div>
+          <div className={styles.inputBox}>
+            <label className={styles.inputTitle}>
+              Country<span className={styles.boldRed}>*</span>
+              <input
+                className={styles.inputText}
+                type="text"
+                placeholder="Enter Country"
+                required
+              />
+            </label>
+          </div>
+        </div>
       </div>
-    </div>
+      <hr />
+    </form>
   );
 }

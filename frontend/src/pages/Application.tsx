@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import arrow from "../assets/arrow.svg";
 import backArrow from "../assets/backArrow.svg";
-import { Button, PathwayTimeline } from "../components/index.ts";
+import { Button, PathwayTimeline, Step1, Step2 } from "../components/index.ts";
 import styles from "../stylesheets/Application.module.css";
 
 export type ApplicationProps = {
@@ -70,6 +70,15 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
     ),
   };
 
+  const applicationSteps = {
+    0: <Step1 />,
+    1: <Step2 pathNumber={path} />,
+    2: <div></div>,
+    3: <div></div>,
+    4: <div></div>,
+    5: <div></div>,
+  };
+
   return (
     <div className={styles.pathwayApplicationBase}>
       <div className={styles.applicationContainer}>
@@ -93,7 +102,7 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
 
       <div className={styles.formContainer}>
         <PathwayTimeline path={path} progress={pageNum}></PathwayTimeline>
-
+        <div>{applicationSteps[pageNum]}</div>
         <div className={styles.navigationContainer}>
           <button onClick={back} className={styles.backArrow}>
             <img src={backArrow} id={styles.backArrow} alt="backArrow"></img>
