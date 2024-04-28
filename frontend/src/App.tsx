@@ -5,7 +5,6 @@ import {
   Application,
   Candidates,
   PrescreeningForm,
-  TestCongratulations,
   ThankyouForApplying,
   TestComponents,
 } from "./pages/index.ts";
@@ -31,10 +30,9 @@ function App() {
           <Route path="path4" element={<Application path={4} />} />
           <Route path="candidates" element={<Candidates />} />
           <Route path="prescreening" element={<PrescreeningForm />} />
-          <Route path="ThankyouForApplying" element={<ThankyouForApplying />} />
-          <Route path="TestCongratulations" element={<TestCongratulations />} />
+          <Route path="ThankYouForApplying" element={<ThankyouForApplying />} />
         </Route>
-        <Route path="TestComponents" element={<TestComponents />} />
+        <Route path="test-components" element={<TestComponents />} />
       </Routes>
     </div>
   );
