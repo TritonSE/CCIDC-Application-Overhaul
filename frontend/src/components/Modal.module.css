@@ -21,11 +21,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.75rem;
   width: 696px;
-  height: 538px;
   padding: 2rem;
-
   background-color: var(--color-background);
   border-radius: 0.5rem;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.28);
@@ -41,6 +38,8 @@
   margin-left: auto;
   background-color: transparent;
   border: none;
+}
+.closeButtonContainer img {
   cursor: pointer;
 }
 
@@ -48,6 +47,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1.5rem;
 }
 
 .modalImage {
@@ -69,13 +69,13 @@
 
 .mainText {
   color: #000;
-
+  padding: 0;
+  margin: 0;
   text-align: center;
   font-family: Rubik;
   font-size: 32px;
   font-style: normal;
   font-weight: 700;
-  margin-bottom: 20px;
   letter-spacing: 0.64px;
 }
 
@@ -99,4 +99,16 @@
 
 .boldText {
   font-weight: 700;
+}
+
+.modalLink {
+  padding: 0;
+  margin: 0;
+  color: var(--color-ccidc-red);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.linkBlue {
+  color: #2a61bb;
 }

@@ -6,7 +6,7 @@ import {
   Candidates,
   PrescreeningForm,
   ThankyouForApplying,
-  TestComponents,
+  TestModals,
 } from "./pages/index.ts";
 
 function Layout() {
@@ -32,7 +32,7 @@ function App() {
           <Route path="prescreening" element={<PrescreeningForm />} />
           <Route path="ThankYouForApplying" element={<ThankyouForApplying />} />
         </Route>
-        <Route path="test-components" element={<TestComponents />} />
+        <Route path="test-modals" element={<TestModals />} />
       </Routes>
     </div>
   );

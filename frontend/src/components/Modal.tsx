@@ -1,7 +1,11 @@
 import React, { useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import checkMark from "../assets/checkMarkIcon.svg";
 import closeIcon from "../assets/closeIcon.svg";
+import errorAlert from "../assets/errorAlert.svg";
+import warningHand from "../assets/warningHand.svg";
+import questionMark from "../assets/questionMark.svg";
 import { Button } from "./Button.tsx";
 
 import styles from "./Modal.module.css";
@@ -69,9 +73,77 @@ export function CongratulationsModal(props: ModalProps) {
         <p className={styles.reviewText}>
           Your application has been completed as is now under review with CCIDC.
         </p>
-        <div>
-          <Button onClick={returnToMainPage}>Click here to return to Main Page</Button>
-        </div>
+        <Button onClick={returnToMainPage}>Click here to return to Main Page</Button>
+      </div>
+    </Modal>
+  );
+}
+
+export function RequirementsNotMetModal(props: ModalProps) {
+  const navigate = useNavigate();
+  return (
+    <Modal {...props}>
+      <div className={styles.modalChildren}>
+        <img className={styles.modalImage} src={errorAlert} alt="Error Alert" />
+        <p className={styles.mainText}> Requirements Not Met </p>
+        <p className={styles.reviewText}>
+          Your application seems to be missing a necessary component. Please review the requirements
+          for each pathway{" "}
+          <a
+            onClick={() => navigate("/candidates")}
+            className={styles.modalLink + " " + styles.linkBlue}
+          >
+            here
+          </a>{" "}
+          and reapply when you have met the requirements for at least path one.
+        </p>
+        {/* TODO: route to correct page */}
+        <Button onClick={undefined}>Retake Prescreening Questions</Button>
+      </div>
+    </Modal>
+  );
+}
+
+interface CompleteInOneSittingModalProps extends ModalProps {
+  path: 1 | 2 | 3 | 4;
+}
+
+export function CompleteInOneSittingModal(props: CompleteInOneSittingModalProps) {
+  const { path, ...modalProps } = props;
+  return (
+    <Modal {...modalProps}>
+      <div className={styles.modalChildren}>
+        <img className={styles.modalImage} src={warningHand} alt="Warning Hand" />
+        <p className={styles.mainText}>Hi, Path {path} Application</p>
+        <p className={styles.reviewText}>
+          Before you start, please note that this application form must be completed in one sitting.
+          Your details will <b>NOT</b> be saved as you go on.
+        </p>
+        <Button onClick={modalProps.onClose}>Continue to Application</Button>
+        {/* TODO: route to correct page */}
+        <a href={"https://ccidc.org/"} className={styles.modalLink}>
+          Go back to Applicant Status Page
+        </a>
+      </div>
+    </Modal>
+  );
+}
+
+interface ConfirmSubmissionModal extends ModalProps {
+  onSubmit: () => void;
+}
+export function ConfirmSubmissionModal(props: ConfirmSubmissionModal) {
+  const { onClose, onSubmit } = props;
+
+  return (
+    <Modal {...props}>
+      <div className={styles.modalChildren}>
+        <img className={styles.modalImage} src={questionMark} alt="Question Mark" />
+        <p className={styles.mainText}>Ready to submit?</p>
+        <Button onClick={onSubmit}>Submit Application Now</Button>
+        <a onClick={onClose} className={styles.modalLink}>
+          Keep Reviewing Your Application
+        </a>
       </div>
     </Modal>
   );

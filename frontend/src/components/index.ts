@@ -5,7 +5,12 @@ import { NavBar } from "./NavBar.tsx";
 import { Page } from "./Page.tsx";
 import { Pathway } from "./Pathway.tsx";
 import { PathwayTimeline } from "./PathwayTimeline.tsx";
-import { CongratulationsModal } from "./Modal.tsx";
+import {
+  CongratulationsModal,
+  RequirementsNotMetModal,
+  CompleteInOneSittingModal,
+  ConfirmSubmissionModal,
+} from "./Modal.tsx";
 
 export {
   Page,
@@ -15,5 +20,8 @@ export {
   Pathway,
   FAQs,
   PathwayTimeline,
-  CongratulationsModal
+  CongratulationsModal,
+  RequirementsNotMetModal,
+  CompleteInOneSittingModal,
+  ConfirmSubmissionModal,
 };
