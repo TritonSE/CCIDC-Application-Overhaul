@@ -6,6 +6,7 @@ import { NavBar } from "./NavBar.tsx";
 import { Page } from "./Page.tsx";
 import { Pathway } from "./Pathway.tsx";
 import { PathwayTimeline } from "./PathwayTimeline.tsx";
+import { CongratulationsModal } from "./Modal.tsx";
 
 export {
   Page,
@@ -16,4 +17,5 @@ export {
   FAQs,
   PathwayTimeline,
   CongratulationsPopupWindow,
+  CongratulationsModal
 };
