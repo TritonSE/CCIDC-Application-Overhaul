@@ -53,10 +53,10 @@
   font-family: "Rubik";
   font-size: 16px;
   font-weight: 200;
+  text-indent: 1em;
 }
 
 .input::placeholder {
-  text-indent: 1em;
   color: var(--color-ccidc-placeholder);
 }
 
@@ -110,36 +110,36 @@
   margin-bottom: 2em;
 }
 
-input[type="checkbox"].select {
-  margin-left: 0;
-  visibility: hidden;
+.checkBox {
+  display: flex;
+  align-items: center;
+  margin-top: 2em;
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin-left: 7.5em;
+  width: 2em;
+  height: 2em;
+  border: 2px solid var(--color-ccidc-red);
+  border-radius: 5px;
+  background-color: white;
 }
 
 input[type="checkbox"]:hover {
   box-shadow: 0 0 5px 0px var(--color-ccidc-red) inset;
 }
 
-input[type="checkbox"].select + label::before {
-  content: "";
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  border: 2px solid var(--color-ccidc-red);
-  border-radius: 2px;
-  background-color: white;
-  margin-right: 1em;
-}
-
-input[type="checkbox"].select:checked + label::before {
-  background-color: var(--color-ccidc-red);
-  content: "\2713";
-  color: white;
+input[type="checkbox"]:checked {
+  background-image: url("../assets/checkedBox.svg");
 }
 
 .checkboxLabel {
-  margin-left: 100px;
-  display: flex;
-  align-items: center;
+  position: static;
+  margin-left: 15px;
+  top: 100px;
 }
 
 #selectedValue {
