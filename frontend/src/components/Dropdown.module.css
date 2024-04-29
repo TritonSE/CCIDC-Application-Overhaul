@@ -45,3 +45,9 @@
 .dpItem:hover {
   background-color: #ebebeb;
 }
+
+@media (max-width: 1250px) {
+  .dropDown {
+    width: 330px;
+  }
+}
