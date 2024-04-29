@@ -107,6 +107,7 @@
   color: var(--color-ccidc-red);
   text-decoration: underline;
   cursor: pointer;
+  display: inline;
 }
 
 .linkBlue {

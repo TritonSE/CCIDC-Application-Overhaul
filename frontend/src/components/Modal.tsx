@@ -1,13 +1,13 @@
-import React, { useRef, useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 import checkMark from "../assets/checkMarkIcon.svg";
 import closeIcon from "../assets/closeIcon.svg";
 import errorAlert from "../assets/errorAlert.svg";
-import warningHand from "../assets/warningHand.svg";
 import questionMark from "../assets/questionMark.svg";
-import { Button } from "./Button.tsx";
+import warningHand from "../assets/warningHand.svg";
 
+import { Button } from "./Button.tsx";
 import styles from "./Modal.module.css";
 
 type ModalProps = { isOpen: boolean; onClose: () => void; children?: React.ReactNode };
@@ -21,7 +21,7 @@ export function Modal(props: ModalProps) {
   const canvasRef = useRef<HTMLDivElement>(null);
 
   function handleMouseClick(e: React.MouseEvent<HTMLElement>) {
-    if (e.target == canvasRef.current || e.target == closeButtonRef.current) {
+    if (e.target === canvasRef.current || e.target === closeButtonRef.current) {
       onClose();
     }
   }
@@ -29,7 +29,7 @@ export function Modal(props: ModalProps) {
   useEffect(() => {
     // Focus the container div automatically to listen for "Escape" key press
     if (drawerRef && isOpen) {
-      if (drawerRef && drawerRef.current) drawerRef.current.focus();
+      if (drawerRef?.current) drawerRef.current.focus();
     }
   }, [drawerRef, isOpen]);
 
@@ -41,9 +41,16 @@ export function Modal(props: ModalProps) {
   }
 
   return (
-    <div className={styles.modalDrawer} ref={drawerRef} onKeyDown={handleKeyPress} tabIndex={-1}>
+    <div
+      className={styles.modalDrawer}
+      ref={drawerRef}
+      onKeyDown={handleKeyPress}
+      onClick={handleMouseClick}
+      tabIndex={-1}
+      role="presentation"
+    >
       {isOpen && (
-        <div className={styles.popupCanvas} ref={canvasRef} onClick={handleMouseClick}>
+        <div className={styles.popupCanvas} ref={canvasRef}>
           <div className={styles.popupWindow} ref={modalWindowRef}>
             <button
               className={styles.closeButtonContainer}
@@ -89,12 +96,14 @@ export function RequirementsNotMetModal(props: ModalProps) {
         <p className={styles.reviewText}>
           Your application seems to be missing a necessary component. Please review the requirements
           for each pathway{" "}
-          <a
-            onClick={() => navigate("/candidates")}
+          <button
+            onClick={() => {
+              navigate("/candidates");
+            }}
             className={styles.modalLink + " " + styles.linkBlue}
           >
             here
-          </a>{" "}
+          </button>{" "}
           and reapply when you have met the requirements for at least path one.
         </p>
         {/* TODO: route to correct page */}
@@ -104,9 +113,9 @@ export function RequirementsNotMetModal(props: ModalProps) {
   );
 }
 
-interface CompleteInOneSittingModalProps extends ModalProps {
+type CompleteInOneSittingModalProps = {
   path: 1 | 2 | 3 | 4;
-}
+} & ModalProps;
 
 export function CompleteInOneSittingModal(props: CompleteInOneSittingModalProps) {
   const { path, ...modalProps } = props;
@@ -129,9 +138,9 @@ export function CompleteInOneSittingModal(props: CompleteInOneSittingModalProps)
   );
 }
 
-interface ConfirmSubmissionModal extends ModalProps {
+type ConfirmSubmissionModal = {
   onSubmit: () => void;
-}
+} & ModalProps;
 export function ConfirmSubmissionModal(props: ConfirmSubmissionModal) {
   const { onClose, onSubmit } = props;
 
@@ -141,9 +150,9 @@ export function ConfirmSubmissionModal(props: ConfirmSubmissionModal) {
         <img className={styles.modalImage} src={questionMark} alt="Question Mark" />
         <p className={styles.mainText}>Ready to submit?</p>
         <Button onClick={onSubmit}>Submit Application Now</Button>
-        <a onClick={onClose} className={styles.modalLink}>
+        <button onClick={onClose} className={styles.modalLink}>
           Keep Reviewing Your Application
-        </a>
+        </button>
       </div>
     </Modal>
   );

@@ -5,8 +5,8 @@ import {
   Application,
   Candidates,
   PrescreeningForm,
-  ThankyouForApplying,
   TestModals,
+  ThankyouForApplying,
 } from "./pages/index.ts";
 
 function Layout() {
