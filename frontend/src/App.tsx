@@ -6,6 +6,7 @@ import {
   Application,
   Apply,
   Candidates,
+  PrescreeningForm,
   Login,
   TestCongratulations,
   ThankyouForApplying,
@@ -33,6 +34,7 @@ function App() {
             <Route path="path4" element={<Application path={4} />} />
             <Route path="apply" element={<Apply />} />
             <Route path="candidates" element={<Candidates />} />
+            <Route path="prescreening" element={<PrescreeningForm />} />
             <Route path="ThankyouForApplying" element={<ThankyouForApplying />} />
             <Route path="TestCongratulations" element={<TestCongratulations />} />
           </Route>
