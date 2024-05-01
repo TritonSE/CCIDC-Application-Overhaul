@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useState } from "react";
 
 type AuthState = {
   isLoggedIn: boolean;
+  isLoading: boolean;
   userEmail: string | undefined;
   login: (username: string, password: string) => Promise<boolean> | undefined;
   verifyLogin: () => Promise<boolean> | undefined;
@@ -10,6 +11,7 @@ type AuthState = {
 
 const initialState: AuthState = {
   isLoggedIn: false,
+  isLoading: true,
   userEmail: undefined,
   login: () => undefined,
   verifyLogin: () => undefined,
@@ -28,6 +30,7 @@ export const AuthContext = createContext<AuthState>(initialState);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userEmail, setUserEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   async function verifyLogin() {
     try {
@@ -54,6 +57,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     setIsLoggedIn(loggedIn);
     setUserEmail(getCookie("email"));
+    setIsLoading(false);
   }
 
   // set auth values on page load
@@ -62,6 +66,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   async function login(username: string, password: string) {
+    setIsLoading(true);
     try {
       const URL = `${SERVER_URL}${ENDPOINTS.LOGIN}`;
       const response = await fetch(URL, {
@@ -79,11 +84,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       void setCurrentState();
       return response.ok;
     } catch (e) {
+      setIsLoading(false);
       return false;
     }
   }
 
   async function logout() {
+    setIsLoading(true);
     try {
       const URL = `${SERVER_URL}${ENDPOINTS.LOGOUT}`;
       const response = await fetch(URL, {
@@ -94,6 +101,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       void setCurrentState();
       return response.ok;
     } catch (e) {
+      setIsLoading(false);
       return false;
     }
   }
@@ -101,6 +109,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const authValue = {
     isLoggedIn,
     userEmail,
+    isLoading,
     verifyLogin,
     login,
     logout,

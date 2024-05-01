@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import arrow from "../assets/arrow.svg";
 import backArrow from "../assets/backArrow.svg";
 import { Button, PathwayTimeline } from "../components/index.ts";
+import { AuthContext } from "../contexts/AuthContext.tsx";
 import styles from "../stylesheets/Application.module.css";
 
 export type ApplicationProps = {
@@ -11,6 +13,15 @@ export type ApplicationProps = {
 
 export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationProps) => {
   const [pageNum, setPageNum] = useState<0 | 1 | 2 | 3 | 4 | 5>(0);
+  const { isLoggedIn, isLoading } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  // Redirect to login page if not logged in
+  useEffect(() => {
+    if (!isLoggedIn && !isLoading) {
+      navigate("/login");
+    }
+  }, [isLoggedIn, isLoading]);
 
   const next = () => {
     if (pageNum < 5) {
