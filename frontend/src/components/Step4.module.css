@@ -11,10 +11,11 @@
   padding-bottom: 30px;
 }
 
-@media (max-width: 1250px) {
+@media (max-width: 1300px) {
   .formRow {
     display: flex;
     flex-direction: column;
+    align-items: center;
   }
   .formRow .input {
     width: 330px;

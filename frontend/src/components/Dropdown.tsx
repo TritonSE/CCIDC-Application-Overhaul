@@ -2,9 +2,15 @@ import { useState } from "react";
 
 import styles from "./Dropdown.module.css";
 
-export function Dropdown(props: { options: string[] }) {
+export function Dropdown(props: { options: string[]; onSelect: (value: string) => void }) {
   const [selected, setSelected] = useState("Select One");
   const [isActive, setIsActive] = useState(false);
+
+  const handleOptionClick = (option: string) => {
+    setSelected(option);
+    setIsActive(false);
+    props.onSelect(option); // Call the onSelect callback with the selected option
+  };
 
   return (
     <>
@@ -27,8 +33,7 @@ export function Dropdown(props: { options: string[] }) {
             {props.options.map((option, index) => (
               <div
                 onClick={() => {
-                  setSelected(option);
-                  setIsActive(false);
+                  handleOptionClick(option);
                 }}
                 className={styles.dpItem}
                 role="button"

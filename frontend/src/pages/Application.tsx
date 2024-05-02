@@ -16,11 +16,27 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
     if (pageNum < 5) {
       setPageNum((newPageNum) => (newPageNum + 1) as 0 | 1 | 2 | 3 | 4 | 5);
     }
+
+    if (pageNum == 5) {
+      // toggle Congratulations Modal
+    }
   };
 
   const back = () => {
     if (pageNum > 0) {
       setPageNum((newPageNum) => (newPageNum - 1) as 0 | 1 | 2 | 3 | 4 | 5);
+    }
+  };
+
+  // Tests dummy forms
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const form = event.target as HTMLFormElement;
+    if (!form.checkValidity()) {
+      return;
+    } else {
+      next();
     }
   };
 
@@ -71,12 +87,28 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
   };
 
   const applicationSteps = {
-    0: <div></div>,
-    1: <div></div>,
-    2: <div></div>,
-    3: <Step4 />,
-    4: <div></div>,
-    5: <div></div>,
+    0: (
+      <form id="step1-form" onSubmit={onSubmit}>
+        <div />
+      </form>
+    ),
+    1: (
+      <form id="step2-form" onSubmit={onSubmit}>
+        <div />
+      </form>
+    ),
+    2: (
+      <form id="step3-form" onSubmit={onSubmit}>
+        <div />
+      </form>
+    ),
+    3: <Step4 next={next} />,
+    4: (
+      <form id="step5-form" onSubmit={onSubmit}>
+        <div />
+      </form>
+    ),
+    5: <div className={styles.congratulationsModal}></div>,
   };
 
   return (
@@ -104,10 +136,10 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
         <PathwayTimeline path={path} progress={pageNum}></PathwayTimeline>
         <div>{applicationSteps[pageNum]}</div>
         <div className={styles.navigationContainer}>
-          <button onClick={back} className={styles.backArrow}>
+          <button onClick={back} id="a" className={styles.backArrow}>
             <img src={backArrow} id={styles.backArrow} alt="backArrow"></img>
           </button>
-          <button onClick={next} className={styles.arrow}>
+          <button type="submit" form={`step${pageNum + 1}-form`} className={styles.arrow}>
             <img src={arrow} id={styles.arrow} alt="arrow"></img>
           </button>
         </div>
