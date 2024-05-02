@@ -1,9 +1,12 @@
 import cors from "cors";
 import express, { Request, Response, Router } from "express";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const router: Router = express.Router();
 const corsOptions = {
-  origin: ["http://localhost:5173", "https://ccidc.org/"],
+  origin: JSON.parse(process.env.LOGIN_ORIGINS ?? "[]"),
   credentials: true,
 };
 
@@ -35,8 +38,8 @@ router.post(
   "/login",
   cors(corsOptions),
   (req: Request<object, object, LoginBody>, res: Response) => {
-    const baseUrl = "https://ccidc.org";
-    const endpoint = "/wp-json/jwt-auth/v1/token";
+    const baseUrl = process.env.WP_API_BASE_URL;
+    const endpoint = process.env.WP_API_LOGIN_ENDPOINT;
     const params = new URLSearchParams({
       username: req?.body?.username,
       password: req?.body?.password,
@@ -83,9 +86,8 @@ router.post("/logout", cors(corsOptions), (req: Request, res: Response) => {
 router.get("/validate", cors(corsOptions), (req: Request, res: Response) => {
   const cookies: Record<string, string> | undefined = req.cookies;
   const token = cookies && "token" in cookies ? cookies.token : null;
-
-  const baseUrl = "https://ccidc.org";
-  const endpoint = "/wp-json/jwt-auth/v1/token/validate";
+  const baseUrl = process.env.WP_API_BASE_URL;
+  const endpoint = process.env.WP_API_VALIDATE_ENDPOINT;
   const URL = `${baseUrl}${endpoint}`;
 
   fetch(URL, {

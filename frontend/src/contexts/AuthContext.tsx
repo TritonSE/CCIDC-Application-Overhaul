@@ -18,11 +18,11 @@ const initialState: AuthState = {
   logout: () => undefined,
 };
 
-const SERVER_URL = "http://localhost:3001";
+const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 const ENDPOINTS = {
-  LOGIN: "/login",
-  LOGOUT: "/logout",
-  VALIDATE: "/validate",
+  LOGIN: import.meta.env.VITE_SERVER_LOGIN_ENDPOINT,
+  LOGOUT: import.meta.env.VITE_SERVER_LOGOUT_ENDPOINT,
+  VALIDATE: import.meta.env.VITE_SERVER_VALIDATE_ENDPOINT,
 };
 
 export const AuthContext = createContext<AuthState>(initialState);
@@ -46,7 +46,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }
 
-  // source: https://stackoverflow.com/questions/5142337/read-a-javascript-cookie-by-name
+  // source: https://stackoverflow.com/a/11767598
   function getCookie(name: string) {
     const cookiestring = RegExp(name + "=[^;]+").exec(document.cookie);
     return decodeURIComponent(cookiestring ? cookiestring.toString().replace(/^[^=]+./, "") : "");

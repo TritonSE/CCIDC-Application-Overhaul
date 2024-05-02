@@ -1,11 +1,14 @@
 import cookieParser from "cookie-parser";
 import express from "express";
+import dotenv from "dotenv";
 
 import fileRoutes from "./src/routes/fileRoutes";
-// const fileRoutes = require("./src/routes/fileRoutes.ts");
 import loginRoutes from "./src/routes/loginRoutes";
 
-const PORT: string | number = process.env.PORT ?? 3001;
+dotenv.config();
+
+// use port 3000 unless there exists a preconfigured port
+const PORT: string | number = process.env.PORT ?? 3000;
 
 const app = express();
 
