@@ -1,12 +1,12 @@
 import cors from "cors";
-import express, { Request, Response, Router } from "express";
 import dotenv from "dotenv";
+import express, { Request, Response, Router } from "express";
 
 dotenv.config();
 
 const router: Router = express.Router();
 const corsOptions = {
-  origin: JSON.parse(process.env.LOGIN_ORIGINS ?? "[]"),
+  origin: JSON.parse(process.env.LOGIN_ORIGINS ?? "[]") as string[],
   credentials: true,
 };
 

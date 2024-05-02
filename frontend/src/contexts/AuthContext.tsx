@@ -18,11 +18,11 @@ const initialState: AuthState = {
   logout: () => undefined,
 };
 
-const SERVER_URL = import.meta.env.VITE_SERVER_URL;
+const SERVER_URL = import.meta.env.VITE_SERVER_URL as string;
 const ENDPOINTS = {
-  LOGIN: import.meta.env.VITE_SERVER_LOGIN_ENDPOINT,
-  LOGOUT: import.meta.env.VITE_SERVER_LOGOUT_ENDPOINT,
-  VALIDATE: import.meta.env.VITE_SERVER_VALIDATE_ENDPOINT,
+  LOGIN: import.meta.env.VITE_SERVER_LOGIN_ENDPOINT as string,
+  LOGOUT: import.meta.env.VITE_SERVER_LOGOUT_ENDPOINT as string,
+  VALIDATE: import.meta.env.VITE_SERVER_VALIDATE_ENDPOINT as string,
 };
 
 export const AuthContext = createContext<AuthState>(initialState);
