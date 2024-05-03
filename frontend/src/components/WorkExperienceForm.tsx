@@ -19,7 +19,11 @@ export type FormSectionProps = {
   children?: ReactNode;
 };
 
-export const WorkExperienceForm: React.FC<FormSectionProps> = ({ sectionName, formInputs, add }) => {
+export const WorkExperienceForm: React.FC<FormSectionProps> = ({
+  sectionName,
+  formInputs,
+  add,
+}) => {
   return (
     <div>
       {add ? (
