@@ -15,12 +15,14 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
   const next = () => {
     if (pageNum < 5) {
       setPageNum((newPageNum) => (newPageNum + 1) as 0 | 1 | 2 | 3 | 4 | 5);
+      window.scrollTo({ top: 0, behavior: "instant" });
     }
   };
 
   const back = () => {
     if (pageNum > 0) {
       setPageNum((newPageNum) => (newPageNum - 1) as 0 | 1 | 2 | 3 | 4 | 5);
+      window.scrollTo({ top: 0, behavior: "instant" });
     }
   };
 
@@ -71,8 +73,8 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
   };
 
   const applicationSteps = {
-    0: <Step1 />,
-    1: <Step2 pathNumber={path} />,
+    0: <Step1 onSubmit={next} />,
+    1: <Step2 pathNumber={path} onSubmit={next} />,
     2: <div></div>,
     3: <div></div>,
     4: <div></div>,
@@ -81,24 +83,27 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
 
   return (
     <div className={styles.pathwayApplicationBase}>
-      <div className={styles.applicationContainer}>
-        <h1 className={styles.title}>Path {path} Application</h1>
+      {pageNum === 0 && (
+        <div className={styles.applicationContainer}>
+          <h1 className={styles.title}>Path {path} Application</h1>
 
-        <div className={styles.pathContent}>{path_descriptions[path]}</div>
-        <div className={styles.centeredContainer}>
-          <Button onClick={undefined}>Retake Prescreening Questionnaire</Button>
+          <div className={styles.pathContent}>{path_descriptions[path]}</div>
+          <div className={styles.centeredContainer}>
+            <Button onClick={undefined}>Retake Prescreening Questionnaire</Button>
+          </div>
+
+          <p className={styles.note}>
+            {" "}
+            If you would like to be sorted into a different pathway, please click above to retake
+            the
+            <br></br>
+            sorting questionnaire. For further inquiries, please reach out to{" "}
+            <a href="mailto:ccidc@ccidc.org" className={styles.red}>
+              <strong>ccidc@ccidc.org</strong>
+            </a>
+          </p>
         </div>
-
-        <p className={styles.note}>
-          {" "}
-          If you would like to be sorted into a different pathway, please click above to retake the
-          <br></br>
-          sorting questionnaire. For further inquiries, please reach out to{" "}
-          <a href="mailto:ccidc@ccidc.org" className={styles.red}>
-            <strong>ccidc@ccidc.org</strong>
-          </a>
-        </p>
-      </div>
+      )}
 
       <div className={styles.formContainer}>
         <PathwayTimeline path={path} progress={pageNum}></PathwayTimeline>
@@ -107,7 +112,12 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
           <button onClick={back} className={styles.backArrow}>
             <img src={backArrow} id={styles.backArrow} alt="backArrow"></img>
           </button>
-          <button onClick={next} className={styles.arrow}>
+          <button
+            type="submit"
+            form={`step${pageNum + 1}-form`}
+            onSubmit={next}
+            className={styles.arrow}
+          >
             <img src={arrow} id={styles.arrow} alt="arrow"></img>
           </button>
         </div>

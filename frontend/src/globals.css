@@ -25,18 +25,10 @@
   padding: 0;
 }
 
-*:focus-visible {
-  outline: var(--color-accent) solid medium;
-}
-
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-
-*:focus-visible {
-  outline: var(--color-accent) solid medium;
 }
 
 html,
@@ -68,9 +60,4 @@ button {
   text-align: center;
   cursor: pointer;
   display: block;
-}
-
-ol,
-ul {
-  margin-left: 1.5rem;
 }

@@ -24,11 +24,19 @@
   color: var(--color-ccidc-red);
 }
 
-.warningText {
+.warningMessage {
   color: #ad281f;
   margin-top: 2rem;
   display: flex;
   align-items: center;
+}
+
+.warningText {
+  margin-top: 0 !important;
+}
+
+.addressText {
+  margin-top: 1em;
 }
 
 .upload {
@@ -89,6 +97,11 @@
   font: var(--font-body);
   border: 1px solid var(--color-shadow);
   border-radius: 5px;
+}
+
+.inputText:focus-visible {
+  border: #782420 solid 1px;
+  outline: none;
 }
 
 select.inputText {
@@ -152,6 +165,10 @@ select.inputText {
   color: var(--color-accent);
 }
 
+.deleteButton:hover .deleteText {
+  color: var(--color-ccidc-red);
+}
+
 .deleteButton {
   width: 73px;
   display: flex;
@@ -159,13 +176,24 @@ select.inputText {
   justify-content: space-between;
 }
 
-.deleteButton img {
+.deleteButton .greyDelete {
   height: 18px;
   width: 16px !important;
 }
 
-.deleteButton:hover .deleteText {
-  color: var(--color-ccidc-red);
+.deleteButton .redDelete {
+  display: none;
+}
+
+.deleteButton:hover .greyDelete,
+.deleteButton:active .greyDelete {
+  display: none;
+}
+.deleteButton:hover .redDelete,
+.deleteButton:active .redDelete {
+  display: block;
+  height: 18px;
+  width: 16px !important;
 }
 
 hr {
@@ -191,4 +219,9 @@ hr {
 
 .subSection {
   margin-top: 2rem;
+}
+
+ol,
+ul {
+  margin-left: 1.5rem;
 }

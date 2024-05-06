@@ -1,11 +1,21 @@
-import styles from "./Steps.module.css";
-import genders from "../constants/genders.json";
 import devices from "../constants/devices.json";
+import genders from "../constants/genders.json";
 
-export function Step1() {
+import styles from "./Steps.module.css";
+
+type Step1Props = {
+  onSubmit: () => void;
+};
+
+export function Step1({ onSubmit }: Step1Props) {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    onSubmit();
+  };
+
   return (
-    <form id="step1-form" className={styles.formContainer}>
-      <p className={styles.applyFacts}>
+    <form id="step1-form" onSubmit={handleSubmit} className={styles.formContainer}>
+      <div className={styles.applyFacts}>
         <strong>Important Facts For Applicants BEFORE YOU APPLY:</strong>
         <ul>
           <li className={styles.bulletPoint}>
@@ -51,7 +61,7 @@ export function Step1() {
             </p>
           </li>
         </ul>
-      </p>
+      </div>
       <hr />
       <div className={styles.formSection}>
         <div className={styles.titleContainer}>
@@ -73,12 +83,11 @@ export function Step1() {
           </div>
           <div className={styles.inputBox}>
             <label className={styles.inputTitle}>
-              Middle Name<span className={styles.boldRed}>*</span>
+              Middle Name
               <input
                 className={styles.inputText}
                 type="text"
                 placeholder="Enter Middle Name Here"
-                required
               />
             </label>
           </div>
@@ -95,20 +104,19 @@ export function Step1() {
           </div>
           <div className={styles.inputBox}>
             <label className={styles.inputTitle}>
-              Maiden/Other Name Used<span className={styles.boldRed}>*</span>
+              Maiden/Other Name Used
               <input
                 className={styles.inputText}
                 type="text"
                 placeholder="Enter 2nd Last Name Here"
-                required
               />
             </label>
           </div>
           <div className={styles.inputBox}>
             <label className={styles.inputTitle}>
               Gender<span className={styles.boldRed}>*</span>
-              <select className={styles.inputText} id="drop" required>
-                <option value="" className={styles.optionDefault} selected disabled>
+              <select className={styles.inputText} id="drop" defaultValue={"default"} required>
+                <option value="default" className={styles.optionDefault} disabled>
                   Select One
                 </option>
                 {genders.map((dropOption, dropIndex) => (
@@ -147,8 +155,8 @@ export function Step1() {
           <div className={styles.inputBox}>
             <label className={styles.inputTitle}>
               Phone Type<span className={styles.boldRed}>*</span>
-              <select className={styles.inputText} id="drop" required>
-                <option value="" className={styles.optionDefault} selected disabled>
+              <select className={styles.inputText} defaultValue={"default"} id="drop" required>
+                <option value="default" className={styles.optionDefault} disabled>
                   Select Phone Type
                 </option>
                 {devices.map((dropOption, dropIndex) => (

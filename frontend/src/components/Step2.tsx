@@ -1,9 +1,10 @@
 import { useState } from "react";
 
 import caretDown from "../assets/caretdown.svg";
+import caretUp from "../assets/caretup.svg";
 import deleteIcon from "../assets/deleteIcon.svg";
-import deleteIconHovered from "../assets/red-delete.svg";
 import plus from "../assets/plusIcon.svg";
+import deleteIconHovered from "../assets/red-delete.svg";
 import upload from "../assets/upload.svg";
 import courseList from "../constants/courses.json";
 import examList from "../constants/exams.json";
@@ -13,8 +14,6 @@ import styles from "./Steps.module.css";
 function SchoolSection({ pathNumber }: { pathNumber: number }) {
   const [schools, setSchools] = useState([{ id: 1 }]);
   const [showAddress, setShowAddress] = useState(false);
-
-  const [hovered, setHovered] = useState(false);
 
   const addSchool = () => {
     setSchools((prevSchools) => [...prevSchools, { id: prevSchools.length + 1 }]);
@@ -37,146 +36,152 @@ function SchoolSection({ pathNumber }: { pathNumber: number }) {
           <h2 className={styles.sectionName}>
             Schools{isRequired && <span className={styles.boldRed}>*</span>}
           </h2>
-          <button className={styles.add} onClick={addSchool}>
+          <button type="button" className={styles.add} onClick={addSchool}>
             <span>Add</span>
             <img src={plus} alt="buttonpng" height="14px" />
           </button>
         </div>
-        {schools.map((school, index) => (
-          <div className={styles.subSection} key={school.id}>
-            <div className={styles.titleContainer}>
-              <h3 className={styles.subTitle}>{"School " + school.id}</h3>
-              <button
-                className={styles.deleteButton}
-                onMouseEnter={() => {
-                  setHovered(true);
-                }}
-                onMouseLeave={() => {
-                  setHovered(false);
-                }}
-                onClick={() => {
-                  deleteSchool(school.id);
-                }}
-              >
-                <img src={hovered ? deleteIconHovered : deleteIcon} alt="deletepng" />
-                <span className={styles.deleteText}>Delete</span>
-              </button>
-            </div>
+        {schools
+          .slice()
+          .reverse()
+          .map((school, index) => (
+            <div className={styles.subSection} key={school.id}>
+              <div className={styles.titleContainer}>
+                <h3 className={styles.subTitle}>{"School " + school.id}</h3>
+                {school.id > 1 && (
+                  <button
+                    className={styles.deleteButton}
+                    onClick={() => {
+                      deleteSchool(school.id);
+                    }}
+                  >
+                    <img
+                      src={deleteIconHovered}
+                      className={styles.redDelete}
+                      alt="delete-icon-hovered"
+                    />
+                    <img src={deleteIcon} className={styles.greyDelete} alt="delete-icon" />
+                    <span className={styles.deleteText}>Delete</span>
+                  </button>
+                )}
+              </div>
 
-            <div className={styles.formSectionContainer}>
-              <div className={styles.inputBox}>
-                <label className={styles.inputTitle}>
-                  Name of School Attended
-                  {isRequired && <span className={styles.boldRed}>*</span>}
-                  <input
-                    className={styles.inputText}
-                    type="text"
-                    name={`school_${index}`}
-                    placeholder="Enter School Name"
-                    required={isRequired}
-                  />
-                </label>
-              </div>
-              <div className={styles.inputBox}>
-                <label className={styles.inputTitle}>
-                  School City
-                  {isRequired && <span className={styles.boldRed}>*</span>}
-                  <input
-                    className={styles.inputText}
-                    type="text"
-                    name={`city_${index}`}
-                    placeholder="Enter City"
-                    required={isRequired}
-                  />
-                </label>
-              </div>
-              <div className={styles.inputBox}>
-                <label className={styles.inputTitle}>
-                  School State
-                  {isRequired && <span className={styles.boldRed}>*</span>}
-                  <input
-                    className={styles.inputText}
-                    type="text"
-                    name={`state${index}`}
-                    placeholder="Enter State"
-                    required={isRequired}
-                  />
-                </label>
-              </div>
-              <div className={styles.inputBox}>
-                <label className={styles.inputTitle}>
-                  School Country
-                  {isRequired && <span className={styles.boldRed}>*</span>}
-                  <input
-                    className={styles.inputText}
-                    type="text"
-                    name={`country${index}`}
-                    placeholder="Enter Country"
-                    required={isRequired}
-                  />
-                </label>
-              </div>
-              <div className={styles.inputBox}>
-                <label className={styles.inputTitle}>
-                  Core Units Completed
-                  {isRequired && <span className={styles.boldRed}>*</span>}
-                  <input
-                    className={styles.inputText}
-                    type="text"
-                    name={`coreUnits${index}`}
-                    placeholder="Enter Number Here"
-                    required={isRequired}
-                  />
-                </label>
-              </div>
-              <div className={styles.inputBox}>
-                <label className={styles.inputTitle}>
-                  Degree Received
-                  {isRequired && <span className={styles.boldRed}>*</span>}
-                  <input
-                    className={styles.inputText}
-                    type="text"
-                    name={`degree${index}`}
-                    placeholder="Enter Degree Name"
-                    required={isRequired}
-                  />
-                </label>
-              </div>
-              <div className={styles.inputBox}>
-                <label className={styles.inputTitle}>
-                  Month/Year Started Attending
-                  {isRequired && <span className={styles.boldRed}>*</span>}
-                  <input
-                    className={styles.inputText}
-                    type="text"
-                    name={`startDate${index}`}
-                    placeholder="mm/yyyy"
-                    required={isRequired}
-                  />
-                </label>
-              </div>
-              <div className={styles.inputBox}>
-                <label className={styles.inputTitle}>
-                  Month/Year Stopped Attending/Completed
-                  {isRequired && <span className={styles.boldRed}>*</span>}
-                  <input
-                    className={styles.inputText}
-                    type="text"
-                    name={`endDate${index}`}
-                    placeholder="mm/yyyy"
-                    required={isRequired}
-                  />
-                </label>
+              <div className={styles.formSectionContainer}>
+                <div className={styles.inputBox}>
+                  <label className={styles.inputTitle}>
+                    Name of School Attended
+                    {isRequired && <span className={styles.boldRed}>*</span>}
+                    <input
+                      className={styles.inputText}
+                      type="text"
+                      name={`school_${index}`}
+                      placeholder="Enter School Name"
+                      required={isRequired}
+                    />
+                  </label>
+                </div>
+                <div className={styles.inputBox}>
+                  <label className={styles.inputTitle}>
+                    School City
+                    {isRequired && <span className={styles.boldRed}>*</span>}
+                    <input
+                      className={styles.inputText}
+                      type="text"
+                      name={`city_${index}`}
+                      placeholder="Enter City"
+                      required={isRequired}
+                    />
+                  </label>
+                </div>
+                <div className={styles.inputBox}>
+                  <label className={styles.inputTitle}>
+                    School State
+                    {isRequired && <span className={styles.boldRed}>*</span>}
+                    <input
+                      className={styles.inputText}
+                      type="text"
+                      name={`state${index}`}
+                      placeholder="Enter State"
+                      required={isRequired}
+                    />
+                  </label>
+                </div>
+                <div className={styles.inputBox}>
+                  <label className={styles.inputTitle}>
+                    School Country
+                    {isRequired && <span className={styles.boldRed}>*</span>}
+                    <input
+                      className={styles.inputText}
+                      type="text"
+                      name={`country${index}`}
+                      placeholder="Enter Country"
+                      required={isRequired}
+                    />
+                  </label>
+                </div>
+                <div className={styles.inputBox}>
+                  <label className={styles.inputTitle}>
+                    Core Units Completed
+                    {isRequired && <span className={styles.boldRed}>*</span>}
+                    <input
+                      className={styles.inputText}
+                      type="number"
+                      name={`coreUnits${index}`}
+                      placeholder="Enter Number Here"
+                      required={isRequired}
+                    />
+                  </label>
+                </div>
+                <div className={styles.inputBox}>
+                  <label className={styles.inputTitle}>
+                    Degree Received
+                    {isRequired && <span className={styles.boldRed}>*</span>}
+                    <input
+                      className={styles.inputText}
+                      type="text"
+                      name={`degree${index}`}
+                      placeholder="Enter Degree Name"
+                      required={isRequired}
+                    />
+                  </label>
+                </div>
+                <div className={styles.inputBox}>
+                  <label className={styles.inputTitle}>
+                    Month/Year Started Attending
+                    {isRequired && <span className={styles.boldRed}>*</span>}
+                    <input
+                      className={styles.inputText}
+                      type="text"
+                      name={`startDate${index}`}
+                      placeholder="mm/yyyy"
+                      required={isRequired}
+                    />
+                  </label>
+                </div>
+                <div className={styles.inputBox}>
+                  <label className={styles.inputTitle}>
+                    Month/Year Stopped Attending/Completed
+                    {isRequired && <span className={styles.boldRed}>*</span>}
+                    <input
+                      className={styles.inputText}
+                      type="text"
+                      name={`endDate${index}`}
+                      placeholder="mm/yyyy"
+                      required={isRequired}
+                    />
+                  </label>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
         <hr className={styles.break} />
-        <div className={styles.warningText}>
-          *All transcripts must be <b>&nbsp;official</b>, they may be mailed or emailed directly
-          from your school or educational institution
-          <button onClick={toggleAddress}>
-            <img src={caretDown} alt="caret-icon" />
+        <div className={styles.warningMessage}>
+          <p className={styles.warningText}>
+            *All transcripts must be <b>&nbsp;official</b>, they may be mailed or emailed directly
+            from your school or educational institution
+          </p>
+          <button type="button" onClick={toggleAddress}>
+            <img src={showAddress ? caretUp : caretDown} alt="caret-icon" />
           </button>
         </div>
         {showAddress && (
@@ -199,7 +204,6 @@ function SchoolSection({ pathNumber }: { pathNumber: number }) {
 
 function ProfessionalAssociationSection() {
   const [associations, setAssociations] = useState([{ id: 1 }]);
-  const [hovered, setHovered] = useState(false);
 
   const addAssociation = () => {
     setAssociations((prevAssociations) => [
@@ -219,58 +223,60 @@ function ProfessionalAssociationSection() {
       <div className={styles.formSection}>
         <div className={styles.titleContainer}>
           <h2 className={styles.sectionName}>Professional Association Memberships</h2>
-          <button className={styles.add} onClick={addAssociation}>
+          <button type="button" className={styles.add} onClick={addAssociation}>
             <span>Add</span>
             <img src={plus} alt="buttonpng" height="14px" />
           </button>
         </div>
-        {associations.map((association, index) => (
-          <div className={styles.subSection} key={association.id}>
-            <div className={styles.titleContainer}>
-              <h3 className={styles.subTitle}>{"Membership " + association.id}</h3>
-              <button
-                className={styles.deleteButton}
-                onMouseEnter={() => {
-                  setHovered(true);
-                }}
-                onMouseLeave={() => {
-                  setHovered(false);
-                }}
-                onClick={() => {
-                  deleteAssociation(association.id);
-                }}
-              >
-                <img src={hovered ? deleteIconHovered : deleteIcon} alt="deletepng" />
-                <span className={styles.deleteText}>Delete</span>
-              </button>
-            </div>
+        {associations
+          .slice()
+          .reverse()
+          .map((association, index) => (
+            <div className={styles.subSection} key={association.id}>
+              <div className={styles.titleContainer}>
+                <h3 className={styles.subTitle}>{"Membership " + association.id}</h3>
+                <button
+                  className={styles.deleteButton}
+                  onClick={() => {
+                    deleteAssociation(association.id);
+                  }}
+                >
+                  <img
+                    src={deleteIconHovered}
+                    className={styles.redDelete}
+                    alt="delete-icon-hovered"
+                  />
+                  <img src={deleteIcon} className={styles.greyDelete} alt="delete-icon" />{" "}
+                  <span className={styles.deleteText}>Delete</span>
+                </button>
+              </div>
 
-            <div className={styles.formSectionContainer}>
-              <div className={styles.inputBox}>
-                <label className={styles.inputTitle}>
-                  Professional Association Membership
-                  <input
-                    className={styles.inputText}
-                    type="text"
-                    name={`email_${index}`}
-                    placeholder="Enter your Membership"
-                  />
-                </label>
-              </div>
-              <div className={styles.inputBox}>
-                <label className={styles.inputTitle}>
-                  Membership Level
-                  <input
-                    className={styles.inputText}
-                    type="text"
-                    name={`memLevel_${index}`}
-                    placeholder="Enter Membership Level"
-                  />
-                </label>
+              <div className={styles.formSectionContainer}>
+                <div className={styles.inputBox}>
+                  <label className={styles.inputTitle}>
+                    Professional Association Membership
+                    <input
+                      className={styles.inputText}
+                      type="text"
+                      name={`email_${index}`}
+                      placeholder="Enter your Membership"
+                    />
+                  </label>
+                </div>
+                <div className={styles.inputBox}>
+                  <label className={styles.inputTitle}>
+                    Membership Level
+                    <input
+                      className={styles.inputText}
+                      type="text"
+                      name={`memLevel_${index}`}
+                      placeholder="Enter Membership Level"
+                    />
+                  </label>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
       <hr />
     </div>
@@ -290,8 +296,8 @@ function NationalExamSection() {
           <div className={styles.inputBox}>
             <label className={styles.inputTitle}>
               National Exam<span className={styles.boldRed}>*</span>
-              <select className={styles.inputText} id="drop" required>
-                <option value="" className={styles.optionDefault} selected disabled>
+              <select className={styles.inputText} defaultValue={"default"} id="examDrop" required>
+                <option value="default" className={styles.optionDefault} disabled>
                   Select the Appropriate Exam
                 </option>
                 {examList.map((dropOption, dropIndex) => (
@@ -309,7 +315,13 @@ function NationalExamSection() {
           <div className={styles.inputBox}>
             <label className={styles.inputTitle}>
               Date of National Exam<span className={styles.boldRed}>*</span>
-              <input className={styles.inputText} type="text" placeholder="mm/dd/yyyy" required />
+              <input
+                className={styles.inputText}
+                type="text"
+                placeholder="mm/dd/yyyy"
+                pattern="^(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])/(19|20)\d{2}$"
+                required
+              />
             </label>
           </div>
           <div className={styles.inputBox}>
@@ -336,7 +348,6 @@ function NationalExamSection() {
 
 function ICCCourses() {
   const [courses, setCourses] = useState([{ id: 1 }]);
-  const [hovered, setHovered] = useState(false);
 
   const addCourse = () => {
     setCourses((prevCourses) => [...prevCourses, { id: prevCourses.length + 1 }]);
@@ -353,82 +364,91 @@ function ICCCourses() {
           <h2 className={styles.sectionName}>
             ICC Courses<span className={styles.boldRed}>*</span>
           </h2>
-          <button className={styles.add} onClick={addCourse}>
+          <button type="button" className={styles.add} onClick={addCourse}>
             <span>Add</span>
             <img src={plus} alt="buttonpng" height="14px" />
           </button>
         </div>
-        {courses.map((course, index) => (
-          <div className={styles.subSection} key={course.id}>
-            <div className={styles.titleContainer}>
-              <h3 className={styles.subTitle}>{"Course " + course.id}</h3>
-              <button
-                className={styles.deleteButton}
-                onMouseEnter={() => {
-                  setHovered(true);
-                }}
-                onMouseLeave={() => {
-                  setHovered(false);
-                }}
-                onClick={() => {
-                  deleteCourse(course.id);
-                }}
-              >
-                <img src={hovered ? deleteIconHovered : deleteIcon} alt="deletepng" />
-                <span className={styles.deleteText}>Delete</span>
+        {courses
+          .slice()
+          .reverse()
+          .map((course, index) => (
+            <div className={styles.subSection} key={course.id}>
+              <div className={styles.titleContainer}>
+                <h3 className={styles.subTitle}>{"Course " + course.id}</h3>
+                {course.id > 1 && (
+                  <button
+                    className={styles.deleteButton}
+                    onClick={() => {
+                      deleteCourse(course.id);
+                    }}
+                  >
+                    <img
+                      src={deleteIconHovered}
+                      className={styles.redDelete}
+                      alt="delete-icon-hovered"
+                    />
+                    <img src={deleteIcon} className={styles.greyDelete} alt="delete-icon" />{" "}
+                    <span className={styles.deleteText}>Delete</span>
+                  </button>
+                )}
+              </div>
+              <div className={styles.formSectionContainer}>
+                <div className={styles.inputBox}>
+                  <label className={styles.inputTitle}>
+                    Courses<span className={styles.boldRed}>*</span>
+                    <select
+                      className={styles.inputText}
+                      defaultValue={"default"}
+                      id="courseDrop"
+                      required
+                    >
+                      <option value="default" className={styles.optionDefault} disabled>
+                        Select One
+                      </option>
+                      {courseList.map((dropOption, dropIndex) => (
+                        <option
+                          key={dropIndex}
+                          value={dropOption}
+                          className={dropOption ? styles.optionSelected : styles.optionDefault}
+                        >
+                          {dropOption}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                </div>
+                <div className={styles.inputBox}>
+                  <label className={styles.inputTitle}>
+                    Professional Association Membership<span className={styles.boldRed}>*</span>
+                    <input
+                      className={styles.inputText}
+                      type="text"
+                      name={`email_${index}`}
+                      placeholder="Enter your Membership"
+                      required
+                    />
+                  </label>
+                </div>
+                <div className={styles.inputBox}>
+                  <label className={styles.inputTitle}>
+                    Certificate Number<span className={styles.boldRed}>*</span>
+                    <input
+                      className={styles.inputText}
+                      type="text"
+                      name={`certNun${index}`}
+                      placeholder="Enter Certificate Number"
+                      required
+                    />
+                  </label>
+                </div>
+              </div>
+              <button className={styles.upload}>
+                Upload Proof of Course Completion
+                <img src={upload} className={styles.uploadButton} alt="buttonpng" />
               </button>
             </div>
-            <div className={styles.formSectionContainer}>
-              <div className={styles.inputBox}>
-                <label className={styles.inputTitle}>
-                  Courses<span className={styles.boldRed}>*</span>
-                  <select className={styles.inputText} id="drop" required>
-                    <option value="" className={styles.optionDefault} selected disabled>
-                      Select One
-                    </option>
-                    {courseList.map((dropOption, dropIndex) => (
-                      <option
-                        key={dropIndex}
-                        value={dropOption}
-                        className={dropOption ? styles.optionSelected : styles.optionDefault}
-                      >
-                        {dropOption}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-              </div>
-              <div className={styles.inputBox}>
-                <label className={styles.inputTitle}>
-                  Professional Association Membership<span className={styles.boldRed}>*</span>
-                  <input
-                    className={styles.inputText}
-                    type="text"
-                    name={`email_${index}`}
-                    placeholder="Enter your Membership"
-                    required
-                  />
-                </label>
-              </div>
-              <div className={styles.inputBox}>
-                <label className={styles.inputTitle}>
-                  Certificate Number<span className={styles.boldRed}>*</span>
-                  <input
-                    className={styles.inputText}
-                    type="text"
-                    name={`certNun${index}`}
-                    placeholder="Enter Certificate Number"
-                    required
-                  />
-                </label>
-              </div>
-            </div>
-            <button className={styles.upload}>
-              Upload Proof of Course Completion
-              <img src={upload} className={styles.uploadButton} alt="buttonpng" />
-            </button>
-          </div>
-        ))}
+          ))}
       </div>
       <hr />
     </div>
@@ -436,10 +456,16 @@ function ICCCourses() {
 }
 type Step2Props = {
   pathNumber: number;
+  onSubmit: () => void;
 };
 
-export function Step2({ pathNumber }: Step2Props) {
+export function Step2({ pathNumber, onSubmit }: Step2Props) {
   let content;
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    onSubmit();
+  };
 
   if (pathNumber === 1 || pathNumber === 2) {
     content = <ProfessionalAssociationSection></ProfessionalAssociationSection>;
@@ -460,7 +486,7 @@ export function Step2({ pathNumber }: Step2Props) {
     );
   }
   return (
-    <form id="step2-form" className={styles.formContainer}>
+    <form id="step2-form" className={styles.formContainer} onSubmit={handleSubmit}>
       <SchoolSection pathNumber={pathNumber}></SchoolSection>
       {content}
     </form>

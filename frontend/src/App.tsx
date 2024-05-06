@@ -1,6 +1,6 @@
 import { Outlet, Route, Routes } from "react-router-dom";
 
-import { NavBar, Step1 } from "./components";
+import { NavBar } from "./components";
 import {
   Application,
   Candidates,
@@ -31,7 +31,6 @@ function App() {
           <Route path="candidates" element={<Candidates />} />
           <Route path="prescreening" element={<PrescreeningForm />} />
           <Route path="ThankyouForApplying" element={<ThankyouForApplying />} />
-          <Route path="step1" element={<Step1 />} />
           <Route path="TestCongratulations" element={<TestCongratulations />} />
         </Route>
       </Routes>
