@@ -16,26 +16,31 @@ export function Modal(props: ModalProps) {
   const { isOpen, onClose, children } = props;
 
   const drawerRef = useRef<HTMLDivElement>(null);
-  const closeButtonRef = useRef<HTMLImageElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const closeButtonImageRef = useRef<HTMLImageElement>(null);
   const modalWindowRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLDivElement>(null);
 
   function handleMouseClick(e: React.MouseEvent<HTMLElement>) {
-    if (e.target === canvasRef.current || e.target === closeButtonRef.current) {
+    if (e.target === canvasRef.current || e.target === closeButtonImageRef.current) {
       onClose();
     }
   }
 
   useEffect(() => {
-    // Focus the container div automatically to listen for "Escape" key press
+    // focus the container div automatically to listen for "Escape" key press
     if (drawerRef && isOpen) {
       if (drawerRef?.current) drawerRef.current.focus();
     }
   }, [drawerRef, isOpen]);
 
   function handleKeyPress(event: React.KeyboardEvent<HTMLDivElement>) {
-    // Close modal when user clicks "Escape" key
+    // close modal when user clicks "Escape" key
     if (event.key === "Escape") {
+      onClose();
+    }
+    // close modal on when user clicks "Enter" with close button selected
+    if (event.key === "Enter" && event.target === closeButtonRef.current) {
       onClose();
     }
   }
@@ -54,11 +59,12 @@ export function Modal(props: ModalProps) {
           <div className={styles.popupWindow} ref={modalWindowRef}>
             <button
               className={styles.closeButtonContainer}
+              ref={closeButtonRef}
               aria-label="Close Popup"
               tabIndex={0}
               type="button"
             >
-              <img src={closeIcon} alt="Close Popup" ref={closeButtonRef} />
+              <img src={closeIcon} alt="Close Popup" ref={closeButtonImageRef} />
             </button>
             {children}
           </div>
@@ -86,10 +92,19 @@ export function CongratulationsModal(props: ModalProps) {
   );
 }
 
-export function RequirementsNotMetModal(props: ModalProps) {
+type RequirementsNotMetModalProps = {
+  clearForm: () => void;
+} & ModalProps;
+
+export function RequirementsNotMetModal(props: RequirementsNotMetModalProps) {
+  const { clearForm, ...modalProps } = props;
   const navigate = useNavigate();
+  function onRetake() {
+    clearForm();
+    modalProps.onClose();
+  }
   return (
-    <Modal {...props}>
+    <Modal {...modalProps}>
       <div className={styles.modalChildren}>
         <img className={styles.modalImage} src={errorAlert} alt="Error Alert" />
         <p className={styles.mainText}> Requirements Not Met </p>
@@ -107,7 +122,7 @@ export function RequirementsNotMetModal(props: ModalProps) {
           and reapply when you have met the requirements for at least path one.
         </p>
         {/* TODO: route to correct page */}
-        <Button onClick={undefined}>Retake Prescreening Questions</Button>
+        <Button onClick={onRetake}>Retake Prescreening Questions</Button>
       </div>
     </Modal>
   );

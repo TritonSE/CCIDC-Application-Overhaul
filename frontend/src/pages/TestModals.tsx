@@ -39,6 +39,7 @@ export function TestModals() {
         onClose={() => {
           setIsRequirementsNotMetModalOpen(false);
         }}
+        clearForm={() => undefined}
       ></RequirementsNotMetModal>
       <button
         onClick={() => {
