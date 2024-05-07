@@ -2,7 +2,12 @@ import { useState } from "react";
 
 import arrow from "../assets/arrow.svg";
 import backArrow from "../assets/backArrow.svg";
-import { Button, CompleteInOneSittingModal, PathwayTimeline } from "../components/index.ts";
+import {
+  Button,
+  CompleteInOneSittingModal,
+  ConfirmSubmissionModal,
+  PathwayTimeline,
+} from "../components/index.ts";
 import styles from "../stylesheets/Application.module.css";
 
 export type ApplicationProps = {
@@ -12,10 +17,15 @@ export type ApplicationProps = {
 export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationProps) => {
   const [pageNum, setPageNum] = useState<0 | 1 | 2 | 3 | 4 | 5>(0);
   const [isCompleteInOneSittingModalOpen, setIsCompleteInOneSittingModalOpen] = useState(true);
+  const [confirmSubmissionModalOpen, setConfirmSubmissionModalOpen] = useState(false);
 
   const next = () => {
     if (pageNum < 5) {
       setPageNum((newPageNum) => (newPageNum + 1) as 0 | 1 | 2 | 3 | 4 | 5);
+    }
+
+    if (pageNum === 5) {
+      setConfirmSubmissionModalOpen(true);
     }
   };
 
@@ -80,6 +90,13 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
           setIsCompleteInOneSittingModalOpen(false);
         }}
       />
+      <ConfirmSubmissionModal
+        isOpen={confirmSubmissionModalOpen}
+        onClose={() => setConfirmSubmissionModalOpen(false)}
+        onSubmit={function (): void {
+          throw new Error("Function not implemented.");
+        }}
+      ></ConfirmSubmissionModal>
       <div className={styles.applicationContainer}>
         <h1 className={styles.title}>Path {path} Application</h1>
 
