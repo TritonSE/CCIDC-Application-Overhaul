@@ -17,7 +17,7 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
       setPageNum((newPageNum) => (newPageNum + 1) as 0 | 1 | 2 | 3 | 4 | 5);
     }
 
-    if (pageNum == 5) {
+    if (pageNum === 5) {
       // toggle Congratulations Modal
     }
   };

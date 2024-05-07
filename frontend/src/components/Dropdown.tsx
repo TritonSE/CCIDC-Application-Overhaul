@@ -2,14 +2,18 @@ import { useState } from "react";
 
 import styles from "./Dropdown.module.css";
 
-export function Dropdown(props: { options: string[]; onSelect: (value: string) => void }) {
+export function Dropdown(props: {
+  options: string[];
+  onSelect: (value: string) => void;
+  required?: boolean;
+}) {
   const [selected, setSelected] = useState("Select One");
   const [isActive, setIsActive] = useState(false);
 
   const handleOptionClick = (option: string) => {
     setSelected(option);
     setIsActive(false);
-    props.onSelect(option); // Call the onSelect callback with the selected option
+    props.onSelect(option);
   };
 
   return (
