@@ -82,8 +82,8 @@
   color: #6c6c6c;
 }
 
-::placeholder {
-  color: var(--color-accent);
+input::placeholder {
+  color: var(--color-accent) !important;
   opacity: 1; /* Firefox */
 }
 

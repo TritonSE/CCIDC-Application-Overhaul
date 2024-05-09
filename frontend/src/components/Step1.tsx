@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import devices from "../constants/devices.json";
 import genders from "../constants/genders.json";
 
@@ -8,6 +10,18 @@ type Step1Props = {
 };
 
 export function Step1({ onSubmit }: Step1Props) {
+  const [email, setEmail] = useState<string>("");
+  const [confirmEmail, setConfirmEmail] = useState<string>("");
+
+  const handleConfirmEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setConfirmEmail(e.target.value);
+    e.target.setCustomValidity(""); // Reset custom validity on input change
+  };
+
+  const handleInvalid = (event: React.InvalidEvent<HTMLInputElement>) => {
+    event.target.setCustomValidity("Email addresses do not match");
+  };
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     onSubmit();
@@ -20,7 +34,7 @@ export function Step1({ onSubmit }: Step1Props) {
         <ul>
           <li className={styles.bulletPoint}>
             <p className={styles.listText}>
-              <strong className={styles.red}>
+              <strong className={styles.boldRed}>
                 Do NOT submit an application until ready to begin sitting for the IDEX California®
                 Examination.
               </strong>
@@ -115,7 +129,12 @@ export function Step1({ onSubmit }: Step1Props) {
           <div className={styles.inputBox}>
             <label className={styles.inputTitle}>
               Gender<span className={styles.boldRed}>*</span>
-              <select className={styles.inputText} id="drop" defaultValue={"default"} required>
+              <select
+                className={styles.inputText}
+                id="genderDrop"
+                defaultValue={"default"}
+                required
+              >
                 <option value="default" className={styles.optionDefault} disabled>
                   Select One
                 </option>
@@ -146,7 +165,12 @@ export function Step1({ onSubmit }: Step1Props) {
               Email Address<span className={styles.boldRed}>*</span>
               <input
                 className={styles.inputText}
-                type="text"
+                type="email"
+                name="email"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
                 placeholder="Enter Email Address"
                 required
               />
@@ -155,7 +179,7 @@ export function Step1({ onSubmit }: Step1Props) {
           <div className={styles.inputBox}>
             <label className={styles.inputTitle}>
               Phone Type<span className={styles.boldRed}>*</span>
-              <select className={styles.inputText} defaultValue={"default"} id="drop" required>
+              <select className={styles.inputText} defaultValue={"default"} id="phoneDrop" required>
                 <option value="default" className={styles.optionDefault} disabled>
                   Select Phone Type
                 </option>
@@ -176,8 +200,13 @@ export function Step1({ onSubmit }: Step1Props) {
               Confirm Email Address<span className={styles.boldRed}>*</span>
               <input
                 className={styles.inputText}
-                type="text"
+                type="email"
+                name="confirmEmail"
                 placeholder="Enter Email Address"
+                value={confirmEmail}
+                onInvalid={handleInvalid}
+                onChange={handleConfirmEmailChange}
+                pattern={email}
                 required
               />
             </label>
@@ -187,8 +216,9 @@ export function Step1({ onSubmit }: Step1Props) {
               Phone Number<span className={styles.boldRed}>*</span>
               <input
                 className={styles.inputText}
-                type="text"
+                type="tel"
                 placeholder="Enter Phone Number"
+                pattern="[0-9]{10}"
                 required
               />
             </label>
@@ -228,19 +258,14 @@ export function Step1({ onSubmit }: Step1Props) {
           </div>
           <div className={styles.inputBox}>
             <label className={styles.inputTitle}>
-              Zip<span className={styles.boldRed}>*</span>
-              <input
-                className={styles.inputText}
-                type="text"
-                placeholder="Enter Zip Code"
-                required
-              />
+              Zip
+              <input className={styles.inputText} type="number" placeholder="Enter Zip Code" />
             </label>
           </div>
           <div className={styles.inputBox}>
             <label className={styles.inputTitle}>
-              County<span className={styles.boldRed}>*</span>
-              <input className={styles.inputText} type="text" placeholder="Enter County" required />
+              County
+              <input className={styles.inputText} type="text" placeholder="Enter County" />
             </label>
           </div>
           <div className={styles.inputBox}>

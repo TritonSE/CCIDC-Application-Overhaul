@@ -50,6 +50,7 @@ function SchoolSection({ pathNumber }: { pathNumber: number }) {
                 <h3 className={styles.subTitle}>{"School " + school.id}</h3>
                 {school.id > 1 && (
                   <button
+                    type="button"
                     className={styles.deleteButton}
                     onClick={() => {
                       deleteSchool(school.id);
@@ -154,6 +155,7 @@ function SchoolSection({ pathNumber }: { pathNumber: number }) {
                       type="text"
                       name={`startDate${index}`}
                       placeholder="mm/yyyy"
+                      pattern="^(0[1-9]|1[0-2])/(19|20)\d{2}$"
                       required={isRequired}
                     />
                   </label>
@@ -167,6 +169,7 @@ function SchoolSection({ pathNumber }: { pathNumber: number }) {
                       type="text"
                       name={`endDate${index}`}
                       placeholder="mm/yyyy"
+                      pattern="^(0[1-9]|1[0-2])/(19|20)\d{2}$"
                       required={isRequired}
                     />
                   </label>
@@ -236,6 +239,7 @@ function ProfessionalAssociationSection() {
               <div className={styles.titleContainer}>
                 <h3 className={styles.subTitle}>{"Membership " + association.id}</h3>
                 <button
+                  type="button"
                   className={styles.deleteButton}
                   onClick={() => {
                     deleteAssociation(association.id);
@@ -317,6 +321,7 @@ function NationalExamSection() {
               Date of National Exam<span className={styles.boldRed}>*</span>
               <input
                 className={styles.inputText}
+                name="exam-date"
                 type="text"
                 placeholder="mm/dd/yyyy"
                 pattern="^(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])/(19|20)\d{2}$"
@@ -329,6 +334,7 @@ function NationalExamSection() {
               Certificate Number<span className={styles.boldRed}>*</span>
               <input
                 className={styles.inputText}
+                name="certificate-number"
                 type="text"
                 placeholder="Enter Certificate Number"
                 required
@@ -336,7 +342,7 @@ function NationalExamSection() {
             </label>
           </div>
         </div>
-        <button className={styles.upload}>
+        <button type="button" className={styles.upload}>
           Upload Proof of National Exam
           <img src={upload} className={styles.uploadButton} alt="buttonpng" />
         </button>
@@ -378,6 +384,7 @@ function ICCCourses() {
                 <h3 className={styles.subTitle}>{"Course " + course.id}</h3>
                 {course.id > 1 && (
                   <button
+                    type="button"
                     className={styles.deleteButton}
                     onClick={() => {
                       deleteCourse(course.id);
@@ -400,7 +407,7 @@ function ICCCourses() {
                     <select
                       className={styles.inputText}
                       defaultValue={"default"}
-                      id="courseDrop"
+                      id={`courseDrop${course.id}`}
                       required
                     >
                       <option value="default" className={styles.optionDefault} disabled>
@@ -420,30 +427,19 @@ function ICCCourses() {
                 </div>
                 <div className={styles.inputBox}>
                   <label className={styles.inputTitle}>
-                    Professional Association Membership<span className={styles.boldRed}>*</span>
+                    Date of Completion<span className={styles.boldRed}>*</span>
                     <input
                       className={styles.inputText}
                       type="text"
-                      name={`email_${index}`}
-                      placeholder="Enter your Membership"
-                      required
-                    />
-                  </label>
-                </div>
-                <div className={styles.inputBox}>
-                  <label className={styles.inputTitle}>
-                    Certificate Number<span className={styles.boldRed}>*</span>
-                    <input
-                      className={styles.inputText}
-                      type="text"
-                      name={`certNun${index}`}
-                      placeholder="Enter Certificate Number"
+                      name={`complete_${index}`}
+                      placeholder="mm/dd/yyyy"
+                      pattern="^(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])/(19|20)\d{2}$"
                       required
                     />
                   </label>
                 </div>
               </div>
-              <button className={styles.upload}>
+              <button type="button" className={styles.upload}>
                 Upload Proof of Course Completion
                 <img src={upload} className={styles.uploadButton} alt="buttonpng" />
               </button>
@@ -467,28 +463,25 @@ export function Step2({ pathNumber, onSubmit }: Step2Props) {
     onSubmit();
   };
 
-  if (pathNumber === 1 || pathNumber === 2) {
-    content = <ProfessionalAssociationSection></ProfessionalAssociationSection>;
-  } else if (pathNumber === 3) {
+  if (pathNumber === 3) {
     content = (
       <>
-        <NationalExamSection></NationalExamSection>
-        <ProfessionalAssociationSection></ProfessionalAssociationSection>
+        <NationalExamSection />
       </>
     );
   } else if (pathNumber === 4) {
     content = (
       <>
-        <NationalExamSection></NationalExamSection>
-        <ICCCourses></ICCCourses>
-        <ProfessionalAssociationSection></ProfessionalAssociationSection>
+        <NationalExamSection />
+        <ICCCourses />
       </>
     );
   }
   return (
     <form id="step2-form" className={styles.formContainer} onSubmit={handleSubmit}>
-      <SchoolSection pathNumber={pathNumber}></SchoolSection>
+      <SchoolSection pathNumber={pathNumber} />
       {content}
+      <ProfessionalAssociationSection />
     </form>
   );
 }
