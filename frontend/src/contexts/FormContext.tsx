@@ -1,10 +1,10 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, { ReactNode, createContext, useState } from "react";
 
-interface FormProviderProps {
+type FormProviderProps = {
   children: ReactNode;
-}
+};
 
-interface SchoolsAttended {
+type SchoolsAttended = {
   schoolName: string;
   schoolCity: string;
   schoolState: string;
@@ -13,24 +13,24 @@ interface SchoolsAttended {
   degreeReceived: string;
   dateStarted: string;
   dateStopped: string;
-}
-interface ProfessionalMemberships {
+};
+type ProfessionalMemberships = {
   membershipName: string;
   membershipLevel: string;
-}
-interface ICCCourses {
+};
+type ICCCourses = {
   courseName: string;
   courseCompleteDate: string;
-}
-interface NationalExams {
+};
+type NationalExams = {
   examName: string;
   examDate: string;
-  certificateNumer: string;
-}
+  certificateNumber: string;
+};
 
-interface WorkExperience {
+type WorkExperience = {
   designExperience: string;
-  numHours: string;
+  numHours: number;
   superviserName: string;
   superviserPhoneNum: string;
   superviserEmail: string;
@@ -42,9 +42,9 @@ interface WorkExperience {
   companyCountry: string;
   hireDate: string;
   lastDateWorked: string;
-}
+};
 
-interface FormData {
+type FormData = {
   firstName: string;
   lastName: string;
   middleName: string;
@@ -65,8 +65,8 @@ interface FormData {
   currCompanyProfession: string;
   currCompanySpecialization: string;
 
-  totalHours: string;
-  totalYears: string;
+  totalHours: number;
+  totalYears: number;
 
   certifiedJurisdiction: string;
   jurisdictionName: string;
@@ -82,12 +82,12 @@ interface FormData {
   ICCCourses: ICCCourses[];
   NationalExams: NationalExams[];
   WorkExperience: WorkExperience[];
-}
+};
 
-interface FormContextType {
+type FormContextType = {
   formData: FormData;
   setFormData: React.Dispatch<React.SetStateAction<FormData>>;
-}
+};
 
 const initialFormData: FormData = {
   firstName: "",
@@ -110,8 +110,8 @@ const initialFormData: FormData = {
   currCompanyProfession: "",
   currCompanySpecialization: "",
 
-  totalHours: "",
-  totalYears: "",
+  totalHours: 0,
+  totalYears: 0,
 
   certifiedJurisdiction: "",
   jurisdictionName: "",
@@ -129,12 +129,12 @@ const initialFormData: FormData = {
   WorkExperience: [],
 };
 
-const FormContext = createContext<FormContextType>({
+const initialState: FormContextType = {
   formData: initialFormData,
-  setFormData: () => {},
-});
+  setFormData: () => undefined,
+};
 
-export const useFormContext = () => useContext(FormContext);
+export const FormContext = createContext<FormContextType>(initialState);
 
 export const FormProvider: React.FC<FormProviderProps> = ({ children }) => {
   const [formData, setFormData] = useState<FormData>(initialFormData);
