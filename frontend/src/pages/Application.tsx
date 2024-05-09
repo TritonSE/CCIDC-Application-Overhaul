@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import arrow from "../assets/arrow.svg";
 import backArrow from "../assets/backArrow.svg";
-import { Button, PathwayTimeline, Step3 } from "../components/index.ts";
+import { Button, PathwayTimeline, Step3, Step4 } from "../components/index.ts";
 import styles from "../stylesheets/Application.module.css";
 
 export type ApplicationProps = {
@@ -16,6 +16,10 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
     if (pageNum < 5) {
       setPageNum((newPageNum) => (newPageNum + 1) as 0 | 1 | 2 | 3 | 4 | 5);
     }
+
+    if (pageNum === 5) {
+      // toggle Congratulations Modal
+    }
   };
 
   const back = () => {
@@ -24,6 +28,9 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
     }
   };
 
+
+  // Tests dummy forms
+  
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -92,7 +99,11 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
         <div />
       </form>
     ),
-    2: <Step3 next={next} />,
+    2: (
+      <form id="step3-form" onSubmit={onSubmit}>
+        <div />
+      </form>
+    ),
     3: (
       <form id="step4-form" onSubmit={onSubmit}>
         <div />
