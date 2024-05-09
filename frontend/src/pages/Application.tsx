@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import arrow from "../assets/arrow.svg";
 import backArrow from "../assets/backArrow.svg";
-import { Button, PathwayTimeline, Step1, Step2 } from "../components/index.ts";
+import { Button, PathwayTimeline, Step1, Step2, Step4 } from "../components/index.ts";
 import styles from "../stylesheets/Application.module.css";
 
 export type ApplicationProps = {
@@ -17,12 +17,27 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
       setPageNum((newPageNum) => (newPageNum + 1) as 0 | 1 | 2 | 3 | 4 | 5);
       window.scrollTo({ top: 0, behavior: "instant" });
     }
+
+    if (pageNum === 5) {
+      // toggle Congratulations Modal
+    }
   };
 
   const back = () => {
     if (pageNum > 0) {
       setPageNum((newPageNum) => (newPageNum - 1) as 0 | 1 | 2 | 3 | 4 | 5);
-      window.scrollTo({ top: 0, behavior: "instant" });
+    }
+  };
+
+  // Tests dummy forms
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const form = event.target as HTMLFormElement;
+    if (!form.checkValidity()) {
+      return;
+    } else {
+      next();
     }
   };
 
@@ -75,10 +90,18 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
   const applicationSteps = {
     0: <Step1 onSubmit={next} />,
     1: <Step2 pathNumber={path} onSubmit={next} />,
-    2: <div></div>,
-    3: <div></div>,
-    4: <div></div>,
-    5: <div></div>,
+    2: (
+      <form id="step3-form" onSubmit={onSubmit}>
+        <div />
+      </form>
+    ),
+    3: <Step4 next={next} />,
+    4: (
+      <form id="step5-form" onSubmit={onSubmit}>
+        <div />
+      </form>
+    ),
+    5: <div className={styles.congratulationsModal}></div>,
   };
 
   return (
@@ -109,7 +132,7 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
         <PathwayTimeline path={path} progress={pageNum}></PathwayTimeline>
         <div>{applicationSteps[pageNum]}</div>
         <div className={styles.navigationContainer}>
-          <button onClick={back} className={styles.backArrow}>
+          <button onClick={back} id="a" className={styles.backArrow}>
             <img src={backArrow} id={styles.backArrow} alt="backArrow"></img>
           </button>
           <button
