@@ -28,9 +28,8 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
     }
   };
 
-
   // Tests dummy forms
-  
+
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -99,16 +98,8 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
         <div />
       </form>
     ),
-    2: (
-      <form id="step3-form" onSubmit={onSubmit}>
-        <div />
-      </form>
-    ),
-    3: (
-      <form id="step4-form" onSubmit={onSubmit}>
-        <div />
-      </form>
-    ),
+    2: <Step3 next={next} />,
+    3: <Step4 next={next} />,
     4: (
       <form id="step5-form" onSubmit={onSubmit}>
         <div />

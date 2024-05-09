@@ -8,8 +8,8 @@ import { Page } from "./Page.tsx";
 import { Pathway } from "./Pathway.tsx";
 import { PathwayTimeline } from "./PathwayTimeline.tsx";
 import { Step3 } from "./Step3.tsx";
-import { WorkExperienceForm } from "./WorkExperienceForm.tsx";
 import { Step4 } from "./Step4.tsx";
+import { WorkExperienceForm } from "./WorkExperienceForm.tsx";
 
 export {
   Page,
