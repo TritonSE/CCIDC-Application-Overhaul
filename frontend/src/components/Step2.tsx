@@ -10,6 +10,7 @@ import courseList from "../constants/courses.json";
 import examList from "../constants/exams.json";
 
 import styles from "./Steps.module.css";
+import { Dropdown } from "./index.ts";
 
 function SchoolSection({ pathNumber }: { pathNumber: number }) {
   const [schools, setSchools] = useState([{ id: 1 }]);
@@ -288,6 +289,12 @@ function ProfessionalAssociationSection() {
 }
 
 function NationalExamSection() {
+  const [exam, setExam] = useState("");
+
+  const handleExamSelect = (option: string) => {
+    setExam(option);
+  };
+
   return (
     <div>
       <div className={styles.formSection}>
@@ -298,22 +305,17 @@ function NationalExamSection() {
         </div>
         <div className={styles.formSectionContainer}>
           <div className={styles.inputBox}>
-            <label className={styles.inputTitle}>
+            <label htmlFor="dropDown" className={`${styles.inputTitle} ${styles.felonyLabel}`}>
               National Exam<span className={styles.boldRed}>*</span>
-              <select className={styles.inputText} defaultValue={"default"} id="examDrop" required>
-                <option value="default" className={styles.optionDefault} disabled>
-                  Select the Appropriate Exam
-                </option>
-                {examList.map((dropOption, dropIndex) => (
-                  <option
-                    key={dropIndex}
-                    value={dropOption}
-                    className={dropOption ? styles.optionSelected : styles.optionDefault}
-                  >
-                    {dropOption}
-                  </option>
-                ))}
-              </select>
+              <Dropdown options={examList} onSelect={handleExamSelect}></Dropdown>
+              <input
+                className={styles.customDropDown}
+                type="text"
+                id="dropDown"
+                name="dropDown"
+                value={exam}
+                required
+              ></input>
             </label>
           </div>
           <div className={styles.inputBox}>
@@ -354,6 +356,11 @@ function NationalExamSection() {
 
 function ICCCourses() {
   const [courses, setCourses] = useState([{ id: 1 }]);
+  const [courseSelect, setCourseSelect] = useState("");
+
+  const handleCourseSelect = (option: string) => {
+    setCourseSelect(option);
+  };
 
   const addCourse = () => {
     setCourses((prevCourses) => [...prevCourses, { id: prevCourses.length + 1 }]);
@@ -402,6 +409,25 @@ function ICCCourses() {
               </div>
               <div className={styles.formSectionContainer}>
                 <div className={styles.inputBox}>
+                  <label
+                    htmlFor="dropDown"
+                    className={`${styles.inputTitle} ${styles.felonyLabel}`}
+                  >
+                    Courses
+                    <span className={styles.boldRed}>*</span>
+                    <Dropdown options={courseList} onSelect={handleCourseSelect}></Dropdown>
+                    {/* Add if dropDown Required */}
+                    <input
+                      className={styles.customDropDown}
+                      type="text"
+                      id="dropDown"
+                      name="dropDown"
+                      value={courseSelect}
+                      required
+                    ></input>
+                  </label>
+                </div>
+                {/* <div className={styles.inputBox}>
                   <label className={styles.inputTitle}>
                     Courses<span className={styles.boldRed}>*</span>
                     <select
@@ -424,7 +450,7 @@ function ICCCourses() {
                       ))}
                     </select>
                   </label>
-                </div>
+                </div> */}
                 <div className={styles.inputBox}>
                   <label className={styles.inputTitle}>
                     Date of Completion<span className={styles.boldRed}>*</span>

@@ -12,6 +12,7 @@
   background-position:
     right 0.7em top 50%,
     0 0;
+  max-width: 28rem;
 }
 
 .dpContent {

@@ -4,6 +4,7 @@ import devices from "../constants/devices.json";
 import genders from "../constants/genders.json";
 
 import styles from "./Steps.module.css";
+import { Dropdown } from "./index.ts";
 
 type Step1Props = {
   onSubmit: () => void;
@@ -12,6 +13,16 @@ type Step1Props = {
 export function Step1({ onSubmit }: Step1Props) {
   const [email, setEmail] = useState<string>("");
   const [confirmEmail, setConfirmEmail] = useState<string>("");
+  const [gender, setGender] = useState("");
+  const [phone, setPhone] = useState("");
+
+  const handleGenderSelect = (option: string) => {
+    setGender(option);
+  };
+
+  const handlePhoneSelect = (option: string) => {
+    setPhone(option);
+  };
 
   const handleConfirmEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setConfirmEmail(e.target.value);
@@ -127,27 +138,17 @@ export function Step1({ onSubmit }: Step1Props) {
             </label>
           </div>
           <div className={styles.inputBox}>
-            <label className={styles.inputTitle}>
+            <label htmlFor="dropDown" className={`${styles.inputTitle} ${styles.dropdownLabel}`}>
               Gender<span className={styles.boldRed}>*</span>
-              <select
-                className={styles.inputText}
-                id="genderDrop"
-                defaultValue={"default"}
+              <Dropdown options={genders} onSelect={handleGenderSelect}></Dropdown>
+              <input
+                className={styles.customDropDown}
+                type="text"
+                id="dropDown"
+                name="dropDown"
+                value={gender}
                 required
-              >
-                <option value="default" className={styles.optionDefault} disabled>
-                  Select One
-                </option>
-                {genders.map((dropOption, dropIndex) => (
-                  <option
-                    key={dropIndex}
-                    value={dropOption}
-                    className={dropOption ? styles.optionSelected : styles.optionDefault}
-                  >
-                    {dropOption}
-                  </option>
-                ))}
-              </select>
+              ></input>
             </label>
           </div>
         </div>
@@ -177,22 +178,17 @@ export function Step1({ onSubmit }: Step1Props) {
             </label>
           </div>
           <div className={styles.inputBox}>
-            <label className={styles.inputTitle}>
+            <label htmlFor="dropDown" className={`${styles.inputTitle} ${styles.felonyLabel}`}>
               Phone Type<span className={styles.boldRed}>*</span>
-              <select className={styles.inputText} defaultValue={"default"} id="phoneDrop" required>
-                <option value="default" className={styles.optionDefault} disabled>
-                  Select Phone Type
-                </option>
-                {devices.map((dropOption, dropIndex) => (
-                  <option
-                    key={dropIndex}
-                    value={dropOption}
-                    className={dropOption ? styles.optionSelected : styles.optionDefault}
-                  >
-                    {dropOption}
-                  </option>
-                ))}
-              </select>
+              <Dropdown options={devices} onSelect={handlePhoneSelect}></Dropdown>
+              <input
+                className={styles.customDropDown}
+                type="text"
+                id="dropDown"
+                name="dropDown"
+                value={phone}
+                required
+              ></input>
             </label>
           </div>
           <div className={styles.inputBox}>
