@@ -23,8 +23,7 @@ function App() {
     <div className="app-container">
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Application path={1} />} />
-          {/* <Route index element={<Candidates />} /> */}
+          <Route index element={<Candidates />} />
           <Route path="path1" element={<Application path={1} />} />
           <Route path="path2" element={<Application path={2} />} />
           <Route path="path3" element={<Application path={3} />} />

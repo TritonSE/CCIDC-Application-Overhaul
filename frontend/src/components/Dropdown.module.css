@@ -4,7 +4,7 @@
   font-size: 16px;
   color: var(--color-ccidc-placeholder);
   height: 40px;
-  width: 460px;
+
   border-radius: 4px;
   border: 1px solid #d8d8d8;
   background-image: url("../assets/dropDownIcon.svg");
@@ -44,10 +44,4 @@
 
 .dpItem:hover {
   background-color: #ebebeb;
-}
-
-@media (max-width: 1250px) {
-  .dropDown {
-    width: 330px;
-  }
 }
