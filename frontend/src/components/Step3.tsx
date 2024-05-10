@@ -196,6 +196,7 @@ export const Step3: React.FC<StepProps> = ({ next }: StepProps) => {
               Upload Employment Verification Form
             </Button>
           </div>
+          <hr />
         </div>
       </form>
     </>
