@@ -1,52 +1,41 @@
 .red {
-    color: var(--color-ccidc-red);
-  }
-  
-  .formContainer {
-    /* width: 100%;
-      margin: 3rem 10rem !important; */
-    background-color: var(--color-text-secondary);
-  }
-  
-  .formSection {
-    margin: 3rem auto !important;
-    width: 80%;
-  }
-
-
-  
-  .paymentportalbutton {
-    font-family: "Rubik";
-    font-size: 15px;
-    background-color: white;
-    color: var(--color-ccidc-red);
-    border: 1px solid var(--color-ccidc-red);
-    /* border-radius: 4px;
-    height: 48px;
-    width: 338px;
-    text-align: left; */
-    align-items: center;
-    display: flex;
-    /* margin-top: 1.5rem;
-    padding: 16px; */
-    /* justify-content: space-between; */
-    justify-content: center;
-    /* margin-bottom: 2em; */
-  }
-
-  .center-grid {
-    display: grid;
-    place-items: center;
-    height: 200px; /* Example height or as needed */
-    border: 1px solid #ccc; /* Optional: For visibility */
+  color: var(--color-ccidc-red);
 }
-  
-  .uploadButton {
-    width: 24px;
-    height: 24px;
-  }
-  
-  .blueLink {
-    color: blue;
-  }
-  
+
+.formContainer {
+  /* width: 100%;
+      margin: 3rem 10rem !important; */
+  background-color: var(--color-text-secondary);
+}
+
+.formSection {
+  margin: 3rem auto !important;
+  width: 80%;
+}
+
+.paymentportalbutton {
+  font-family: "Rubik";
+  font-size: 15px;
+  background-color: white;
+  color: var(--color-ccidc-red);
+  border: 1px solid var(--color-ccidc-red);
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.centerButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px; /* Adjust margin as needed */
+}
+
+.uploadButton {
+  width: 24px;
+  height: 24px;
+}
+
+.blueLink {
+  color: blue;
+}
