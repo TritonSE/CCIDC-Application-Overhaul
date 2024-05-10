@@ -1,0 +1,80 @@
+.red {
+  color: var(--color-ccidc-red);
+}
+
+.formContainer {
+  /* width: 100%;
+    margin: 3rem 10rem !important; */
+  background-color: var(--color-text-secondary);
+}
+
+.formSection {
+  margin: 3rem auto !important;
+  width: 80%;
+}
+
+.applyFacts {
+  width: 80%;
+  margin: 3rem auto !important;
+}
+.listText {
+  color: black;
+  margin: 0;
+}
+
+.bulletPoint {
+  list-style-type: disc;
+  color: var(--color-ccidc-red);
+}
+
+.warningText {
+  color: #ad281f;
+  margin: 3rem 10rem !important;
+}
+
+.red {
+  color: var(--color-ccidc-red);
+}
+
+.sectionTitle {
+  display: flex;
+  font-family: "Rubik";
+  font-size: 18px;
+  font-weight: 700;
+  margin-left: 100px;
+  margin-top: 0.25em;
+  margin-bottom: 30px;
+  padding-top: 2em;
+}
+
+.upload {
+  font-family: "Rubik";
+  font-size: 15px;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  border-radius: 4px;
+  height: 48px;
+  width: 338px;
+  text-align: left;
+  align-items: center;
+  display: flex;
+  margin-top: 1.5rem;
+  padding: 16px;
+  justify-content: space-between;
+  background-image: url("../assets/uploadIcon.svg");
+  background-repeat: no-repeat, repeat;
+  background-position:
+    right 1em top 50%,
+    0 0;
+  margin-bottom: 2em;
+}
+
+.uploadButton {
+  width: 24px;
+  height: 24px;
+}
+
+.blueLink {
+  color: blue;
+}
