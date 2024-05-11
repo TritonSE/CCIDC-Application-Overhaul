@@ -1,11 +1,13 @@
 import React, { useRef, useState } from "react";
-
 import closeIcon from "../assets/closeIcon.svg";
 import fileUploadIcon from "../assets/fileUploadIcon.svg";
-
 import styles from "./FileUploadPopupWindow.module.css";
 
-const FileUploadPopupWindow: React.FC = () => {
+interface FileUploadPopupWindowProps {
+  onFilesUploaded: (count: number) => void; // Callback function to communicate the number of uploaded files
+}
+
+const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ onFilesUploaded }) => {
   const [isOpen, setIsOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const closeButtonRef = useRef<HTMLImageElement>(null);
@@ -51,7 +53,7 @@ const FileUploadPopupWindow: React.FC = () => {
     for (const file of filesToUpload) {
       const formData = new FormData();
       formData.append("files", file);
-
+      formData.append("folderName", "testing");
       try {
         const response = await fetch("http://localhost:3001/file/upload", {
           method: "POST",
@@ -66,6 +68,7 @@ const FileUploadPopupWindow: React.FC = () => {
         console.log("File uploaded successfully:", data);
         setFileIds((fileIds) => [...fileIds, data[0].fileId]);
         setUploadedCount((prevCount) => prevCount + 1);
+        onFilesUploaded(uploadedCount + 1); // Call the callback function to update the count
       } catch (error) {
         console.error("Error uploading file:", error);
       }
@@ -86,6 +89,7 @@ const FileUploadPopupWindow: React.FC = () => {
       for (const file of filesToUpload) {
         const formData = new FormData();
         formData.append("files", file);
+        formData.append("folderName", "testing");
 
         try {
           const response = await fetch("http://localhost:3001/file/upload", {
@@ -101,6 +105,7 @@ const FileUploadPopupWindow: React.FC = () => {
           console.log("File uploaded successfully:", data);
           setUploadedCount((prevCount) => prevCount + 1);
           setFileIds((fileIds) => [...fileIds, data[0].fileId]);
+          onFilesUploaded(uploadedCount + 1); // Call the callback function to update the count
         } catch (error) {
           console.error("Error uploading file:", error);
         }
@@ -120,7 +125,7 @@ const FileUploadPopupWindow: React.FC = () => {
   function handleDeleteFile(index: number): void {
     const fileId = fileIds[index];
 
-    fetch(`http://localhost:3001/file/delete/${fileId}`, { method: "DELETE" })
+    fetch(`http://localhost:3001/file/delete/file/${fileId}`, { method: "DELETE" })
       .then((response) => {
         if (response.ok) {
           const updatedFileIds = fileIds.filter((id) => id !== fileId);
@@ -129,6 +134,7 @@ const FileUploadPopupWindow: React.FC = () => {
           const updatedFiles = [...selectedFiles];
           updatedFiles.splice(index, 1);
           setSelectedFiles(updatedFiles);
+          onFilesUploaded(uploadedCount - 1);
         } else {
           console.error("Failed to delete the file");
           response.text().then((text) => {

@@ -4,6 +4,7 @@ import FileUploadPopupWindow from "../components/FileUploadPopupWindow.tsx";
 
 export function FileTesting() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [uploadedFilesCount, setUploadedFilesCount] = useState(0);
 
   const openPopup = () => {
     setIsPopupOpen(true);
@@ -17,7 +18,9 @@ export function FileTesting() {
         File Upload
       </button>
 
-      {isPopupOpen && <FileUploadPopupWindow />}
+      {isPopupOpen && <FileUploadPopupWindow onFilesUploaded={setUploadedFilesCount} />}
+
+      <p>Number of files uploaded: {uploadedFilesCount}</p>
     </>
   );
 }
