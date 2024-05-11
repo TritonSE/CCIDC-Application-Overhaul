@@ -140,7 +140,7 @@ export const Step4: React.FC<StepProps> = ({ next }: StepProps) => {
                   type="text"
                   id="dropDown"
                   name="dropDown"
-                  value={selectedFelonyCharge}
+                  defaultValue={selectedFelonyCharge}
                   required
                 ></input>
               </label>

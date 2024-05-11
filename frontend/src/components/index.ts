@@ -7,9 +7,9 @@ import { NavBar } from "./NavBar.tsx";
 import { Page } from "./Page.tsx";
 import { Pathway } from "./Pathway.tsx";
 import { PathwayTimeline } from "./PathwayTimeline.tsx";
-import { Step4 } from "./Step4.tsx";
 import { Step1 } from "./Step1.tsx";
 import { Step2 } from "./Step2.tsx";
+import { Step4 } from "./Step4.tsx";
 
 export {
   Page,

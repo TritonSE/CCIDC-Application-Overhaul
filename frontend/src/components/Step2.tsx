@@ -76,7 +76,7 @@ function SchoolSection({ pathNumber }: { pathNumber: number }) {
                     <input
                       className={styles.inputText}
                       type="text"
-                      name={`school_${index}`}
+                      name={`school${index}`}
                       placeholder="Enter School Name"
                       required={isRequired}
                     />
@@ -89,7 +89,7 @@ function SchoolSection({ pathNumber }: { pathNumber: number }) {
                     <input
                       className={styles.inputText}
                       type="text"
-                      name={`city_${index}`}
+                      name={`city${index}`}
                       placeholder="Enter City"
                       required={isRequired}
                     />
@@ -263,7 +263,7 @@ function ProfessionalAssociationSection() {
                     <input
                       className={styles.inputText}
                       type="text"
-                      name={`email_${index}`}
+                      name={`email${index}`}
                       placeholder="Enter your Membership"
                     />
                   </label>
@@ -274,7 +274,7 @@ function ProfessionalAssociationSection() {
                     <input
                       className={styles.inputText}
                       type="text"
-                      name={`memLevel_${index}`}
+                      name={`memLevel${index}`}
                       placeholder="Enter Membership Level"
                     />
                   </label>
@@ -305,15 +305,18 @@ function NationalExamSection() {
         </div>
         <div className={styles.formSectionContainer}>
           <div className={styles.inputBox}>
-            <label htmlFor="dropDown" className={`${styles.inputTitle} ${styles.felonyLabel}`}>
+            <label
+              htmlFor="nationalExam"
+              className={`${styles.inputTitle} ${styles.dropdownLabel}`}
+            >
               National Exam<span className={styles.boldRed}>*</span>
               <Dropdown options={examList} onSelect={handleExamSelect}></Dropdown>
               <input
                 className={styles.customDropDown}
                 type="text"
-                id="dropDown"
-                name="dropDown"
-                value={exam}
+                id="nationalExam"
+                name="nationalExam"
+                defaultValue={exam}
                 required
               ></input>
             </label>
@@ -410,8 +413,8 @@ function ICCCourses() {
               <div className={styles.formSectionContainer}>
                 <div className={styles.inputBox}>
                   <label
-                    htmlFor="dropDown"
-                    className={`${styles.inputTitle} ${styles.felonyLabel}`}
+                    htmlFor={`iccCourse${index}`}
+                    className={`${styles.inputTitle} ${styles.dropdownLabel}`}
                   >
                     Courses
                     <span className={styles.boldRed}>*</span>
@@ -420,44 +423,20 @@ function ICCCourses() {
                     <input
                       className={styles.customDropDown}
                       type="text"
-                      id="dropDown"
-                      name="dropDown"
-                      value={courseSelect}
+                      id={`iccCourse${index}`}
+                      name={`iccCourse${index}`}
+                      defaultValue={courseSelect}
                       required
                     ></input>
                   </label>
                 </div>
-                {/* <div className={styles.inputBox}>
-                  <label className={styles.inputTitle}>
-                    Courses<span className={styles.boldRed}>*</span>
-                    <select
-                      className={styles.inputText}
-                      defaultValue={"default"}
-                      id={`courseDrop${course.id}`}
-                      required
-                    >
-                      <option value="default" className={styles.optionDefault} disabled>
-                        Select One
-                      </option>
-                      {courseList.map((dropOption, dropIndex) => (
-                        <option
-                          key={dropIndex}
-                          value={dropOption}
-                          className={dropOption ? styles.optionSelected : styles.optionDefault}
-                        >
-                          {dropOption}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
-                </div> */}
                 <div className={styles.inputBox}>
                   <label className={styles.inputTitle}>
                     Date of Completion<span className={styles.boldRed}>*</span>
                     <input
                       className={styles.inputText}
                       type="text"
-                      name={`complete_${index}`}
+                      name={`iccComplete${index}`}
                       placeholder="mm/dd/yyyy"
                       pattern="^(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])/(19|20)\d{2}$"
                       required

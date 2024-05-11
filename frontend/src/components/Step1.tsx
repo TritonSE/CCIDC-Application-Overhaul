@@ -14,14 +14,14 @@ export function Step1({ onSubmit }: Step1Props) {
   const [email, setEmail] = useState<string>("");
   const [confirmEmail, setConfirmEmail] = useState<string>("");
   const [gender, setGender] = useState("");
-  const [phone, setPhone] = useState("");
+  const [phoneType, setPhoneType] = useState("");
 
   const handleGenderSelect = (option: string) => {
     setGender(option);
   };
 
   const handlePhoneSelect = (option: string) => {
-    setPhone(option);
+    setPhoneType(option);
   };
 
   const handleConfirmEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -102,6 +102,7 @@ export function Step1({ onSubmit }: Step1Props) {
                 className={styles.inputText}
                 type="text"
                 placeholder="Enter First Name Here"
+                name="firstName"
                 required
               />
             </label>
@@ -113,6 +114,7 @@ export function Step1({ onSubmit }: Step1Props) {
                 className={styles.inputText}
                 type="text"
                 placeholder="Enter Middle Name Here"
+                name="middleName"
               />
             </label>
           </div>
@@ -123,6 +125,7 @@ export function Step1({ onSubmit }: Step1Props) {
                 className={styles.inputText}
                 type="text"
                 placeholder="Enter Last Name Here"
+                name="lastName"
                 required
               />
             </label>
@@ -134,19 +137,20 @@ export function Step1({ onSubmit }: Step1Props) {
                 className={styles.inputText}
                 type="text"
                 placeholder="Enter 2nd Last Name Here"
+                name="maidenName"
               />
             </label>
           </div>
           <div className={styles.inputBox}>
-            <label htmlFor="dropDown" className={`${styles.inputTitle} ${styles.dropdownLabel}`}>
+            <label htmlFor="gender" className={`${styles.inputTitle} ${styles.dropdownLabel}`}>
               Gender<span className={styles.boldRed}>*</span>
               <Dropdown options={genders} onSelect={handleGenderSelect}></Dropdown>
               <input
                 className={styles.customDropDown}
                 type="text"
-                id="dropDown"
-                name="dropDown"
-                value={gender}
+                id="gender"
+                name="gender"
+                defaultValue={gender}
                 required
               ></input>
             </label>
@@ -173,20 +177,21 @@ export function Step1({ onSubmit }: Step1Props) {
                   setEmail(e.target.value);
                 }}
                 placeholder="Enter Email Address"
+                autoComplete="email"
                 required
               />
             </label>
           </div>
           <div className={styles.inputBox}>
-            <label htmlFor="dropDown" className={`${styles.inputTitle} ${styles.felonyLabel}`}>
+            <label htmlFor="phoneType" className={`${styles.inputTitle} ${styles.dropdownLabel}`}>
               Phone Type<span className={styles.boldRed}>*</span>
               <Dropdown options={devices} onSelect={handlePhoneSelect}></Dropdown>
               <input
                 className={styles.customDropDown}
                 type="text"
-                id="dropDown"
-                name="dropDown"
-                value={phone}
+                id="phoneType"
+                name="phoneType"
+                defaultValue={phoneType}
                 required
               ></input>
             </label>
@@ -214,8 +219,10 @@ export function Step1({ onSubmit }: Step1Props) {
                 className={styles.inputText}
                 type="tel"
                 placeholder="Enter Phone Number"
-                pattern="[0-9]{10}"
+                pattern="^\d+$"
+                autoComplete="tel"
                 required
+                name="phone"
               />
             </label>
           </div>
@@ -237,31 +244,33 @@ export function Step1({ onSubmit }: Step1Props) {
                 type="text"
                 placeholder="Enter Address"
                 required
+                name="address"
+                autoComplete="street-address"
               />
             </label>
           </div>
           <div className={styles.inputBox}>
             <label className={styles.inputTitle}>
               City<span className={styles.boldRed}>*</span>
-              <input className={styles.inputText} type="text" placeholder="Enter City" required />
+              <input
+                className={styles.inputText}
+                type="text"
+                placeholder="Enter City"
+                name="city"
+                required
+              />
             </label>
           </div>
           <div className={styles.inputBox}>
             <label className={styles.inputTitle}>
               State<span className={styles.boldRed}>*</span>
-              <input className={styles.inputText} type="text" placeholder="Enter State" required />
-            </label>
-          </div>
-          <div className={styles.inputBox}>
-            <label className={styles.inputTitle}>
-              Zip
-              <input className={styles.inputText} type="number" placeholder="Enter Zip Code" />
-            </label>
-          </div>
-          <div className={styles.inputBox}>
-            <label className={styles.inputTitle}>
-              County
-              <input className={styles.inputText} type="text" placeholder="Enter County" />
+              <input
+                className={styles.inputText}
+                type="text"
+                placeholder="Enter State"
+                name="state"
+                required
+              />
             </label>
           </div>
           <div className={styles.inputBox}>
@@ -271,7 +280,31 @@ export function Step1({ onSubmit }: Step1Props) {
                 className={styles.inputText}
                 type="text"
                 placeholder="Enter Country"
+                name="country"
                 required
+                autoComplete="country"
+              />
+            </label>
+          </div>
+          <div className={styles.inputBox}>
+            <label className={styles.inputTitle}>
+              County
+              <input
+                className={styles.inputText}
+                type="text"
+                placeholder="Enter County"
+                name="county"
+              />
+            </label>
+          </div>
+          <div className={styles.inputBox}>
+            <label className={styles.inputTitle}>
+              Zip
+              <input
+                className={styles.inputText}
+                type="text"
+                placeholder="Enter Zip Code"
+                name="zip"
               />
             </label>
           </div>
