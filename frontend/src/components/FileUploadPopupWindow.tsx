@@ -43,9 +43,9 @@ const FileUploadPopupWindow: React.FC = () => {
     e.currentTarget.classList.remove(styles.dragOver);
     const files = e.dataTransfer.files;
 
-    const filesToUpload = [...selectedFiles].slice(0, 10);
+    const filesToUpload = [...selectedFiles].slice(0, 1);
     filesToUpload.push(...files);
-    setSelectedFiles((prevFiles) => [...prevFiles, ...filesToUpload.slice(0, 10)]);
+    setSelectedFiles((prevFiles) => [...prevFiles, ...filesToUpload.slice(0, 1)]);
 
     setTotalFilesCount(filesToUpload.length);
     for (const file of filesToUpload) {
@@ -78,7 +78,7 @@ const FileUploadPopupWindow: React.FC = () => {
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (files) {
-      const filesToUpload = Array.from(files).slice(0, 10);
+      const filesToUpload = Array.from(files).slice(0, 1);
 
       setSelectedFiles((prevFiles) => [...prevFiles, ...filesToUpload]);
 
