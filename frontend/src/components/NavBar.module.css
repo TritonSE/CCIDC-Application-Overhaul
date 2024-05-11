@@ -3,6 +3,7 @@
   top: 0;
   left: 0;
   width: 100%;
+  min-width: fit-content;
   display: flex;
   align-items: center;
   z-index: 6;
@@ -38,11 +39,16 @@
   display: flex;
   gap: 3rem;
   list-style-type: none;
+  user-select: none;
 }
 
 .navigation .legacyLink {
   text-decoration: none;
   color: var(--color-text-primary);
+}
+
+.logInOutButton {
+  all: unset;
 }
 
 .navLink {
