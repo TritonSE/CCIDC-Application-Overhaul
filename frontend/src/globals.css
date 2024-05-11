@@ -1,6 +1,8 @@
 :root {
   --color-ccidc-white: #f9f9f9;
   --color-ccidc-red: #ad281f;
+  --color-ccidc-blue: #428bcd;
+  --color-ccidc-placeholder: #b4b4b4;
   --color-background: var(--color-ccidc-white);
   --color-text-primary: #000000;
   --color-text-secondary: #ffffff;

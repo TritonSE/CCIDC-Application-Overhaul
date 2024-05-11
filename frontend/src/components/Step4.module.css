@@ -1,0 +1,190 @@
+.formContainer {
+  background-color: var(--color-text-secondary);
+  box-shadow: 0px 0px 4px 0px #00000040;
+}
+
+.formSection {
+  margin: 0 auto !important;
+  padding-bottom: 50px;
+  width: 80%;
+}
+
+.applyFacts {
+  width: 80%;
+  margin: 0 auto !important;
+  padding: 50px 0;
+}
+
+.bulletPoint {
+  list-style-type: disc;
+  color: var(--color-ccidc-red);
+}
+
+.warningMessage {
+  color: #ad281f;
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.warningText {
+  margin-top: 0 !important;
+}
+
+.addressText {
+  margin-top: 1em;
+}
+
+.upload {
+  font-family: "Rubik";
+  font-size: 15px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 4px;
+  height: 48px;
+  text-align: left;
+  align-items: center;
+  display: flex;
+  margin-top: 1rem;
+  padding: 16px;
+  justify-content: space-between;
+  column-gap: 8px;
+}
+
+.uploadButton {
+  width: 24px;
+  height: 24px;
+}
+
+/* form section styling*/
+
+.formSectionContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 4rem;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.inputBox {
+  margin-top: 1rem;
+}
+
+.inputTitle {
+  font-size: 12px;
+  color: #6c6c6c;
+}
+
+::placeholder {
+  color: var(--color-accent);
+  opacity: 1; /* Firefox */
+}
+
+.inputText {
+  width: 100%;
+  padding: 8px 48px 8px 16px;
+  margin-top: 4px;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--color-text-primary);
+  font: var(--font-body);
+  border: 1px solid var(--color-shadow);
+  border-radius: 5px;
+}
+
+.inputText:focus-visible {
+  border: #782420 solid 1px;
+  outline: none;
+}
+
+select.inputText {
+  appearance: none;
+  background-image: url("../assets/dropArrow.svg");
+  background-repeat: no-repeat;
+  background-position: right top 50%;
+  cursor: pointer;
+}
+.selectInput {
+  border: 0;
+  vertical-align: middle;
+  background: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+  padding-left: 5px;
+}
+
+.optionDefault {
+  color: var(--color-accent);
+}
+
+.optionSelected {
+  color: var(--color-text-primary);
+}
+
+.titleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.titleContainer h2 {
+  align-self: center;
+}
+
+hr {
+  border: 1px solid var(--color-shadow);
+}
+
+.boldRed {
+  color: var(--color-ccidc-red);
+}
+
+.lightBlue {
+  color: var(--color-ccidc-blue);
+}
+
+input[type="checkbox"] {
+  width: 1.5em;
+  height: 1.5em;
+  accent-color: var(--color-ccidc-red);
+  outline: 4px auto var(--color-ccidc-red);
+  border-radius: 5px;
+}
+
+input[type="checkbox"]:hover {
+  box-shadow: 0 0 5px 0px var(--color-ccidc-red) inset;
+}
+
+.checkboxLabel {
+  display: block;
+  white-space: nowrap;
+  margin: 10px 0;
+}
+
+.checkboxLabel input {
+  vertical-align: middle;
+  top: 2px;
+}
+.checkboxLabel span {
+  display: inline-block;
+  white-space: normal;
+  vertical-align: top;
+  position: relative;
+  left: 15px;
+}
+/* Add if DropDown required. Hides default input, still shows Required warning */
+
+.felonyLabel {
+  position: relative;
+}
+.customDropDown {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  /* Forcefully hide */
+  opacity: 0;
+  pointer-events: none;
+}
