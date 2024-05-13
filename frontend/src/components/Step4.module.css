@@ -34,7 +34,7 @@
 }
 
 .label {
-  display: flex;
+  display: inline;
   flex-direction: column;
   align-items: left;
   font-family: "Rubik";
@@ -160,8 +160,9 @@ input[type="checkbox"]:checked {
 /* Add if DropDown required. Hides default input, still shows Required warning */
 
 .customDropDown {
-  position: relative;
-  bottom: 20px;
+  position: absolute;
+  top: 1052px;
+  right: 590px;
   /* Forcefully hide */
   opacity: 0;
   pointer-events: none;

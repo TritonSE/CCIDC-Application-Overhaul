@@ -57,18 +57,18 @@ export const Step4: React.FC<StepProps> = ({ next }: StepProps) => {
               />
             </label>
 
-            <label htmlFor="licenseNumber" className={styles.label}>
-              Certified/Registered/License Number
+            <label htmlFor="certificationExam" className={styles.label}>
+              Certification Exam
               <input
                 className={styles.input}
                 type="text"
-                name="licenseNumber"
-                id="licenseNumber"
-                value={licenseNumber}
+                name="certificationExam"
+                id="certificationExam"
+                value={certificationExam}
                 onChange={(e) => {
-                  setLicenseNumber(e.target.value);
+                  setCertificationExam(e.target.value);
                 }}
-                placeholder="Enter Certified/Registered/License Number"
+                placeholder="Enter Certification Exam"
               />
             </label>
           </div>
@@ -90,67 +90,34 @@ export const Step4: React.FC<StepProps> = ({ next }: StepProps) => {
               />
             </label>
 
-            <label htmlFor="licenseExpiration" className={styles.label}>
-              Date Certified/Registered/License Expires
-              <input
-                className={styles.input}
-                type="text"
-                name="licenseExpiration"
-                id="licenseExpiration"
-                value={licenseExpiration}
-                onChange={(e) => {
-                  setLicenseExpiration(e.target.value);
-                }}
-                placeholder="Enter Date Certified/Registered/License Expires"
-              />
-            </label>
-          </div>
-
-          <div className={styles.formRow}>
-            <label htmlFor="certificationExam" className={styles.label}>
-              Certification Exam
-              <input
-                className={styles.input}
-                type="text"
-                name="certificationExam"
-                id="certificationExam"
-                value={certificationExam}
-                onChange={(e) => {
-                  setCertificationExam(e.target.value);
-                }}
-                placeholder="Enter Certification Exam"
-              />
-            </label>
-
             <label htmlFor="dropDown" className={styles.label}>
-              Have you ever been convicted of a Felony?
+              Have you ever been convicted of a Felony?<span className={styles.red}>*</span>
               <Dropdown options={["Yes", "No"]} onSelect={handleSelect}></Dropdown>
               {/* Add if dropDown Required */}
-              {/* <input
+              <input
                 className={styles.customDropDown}
                 type="text"
                 id="dropDown"
                 name="dropDown"
                 value={selectedFelonyCharge}
                 required
-              ></input> */}
+              ></input>
             </label>
           </div>
 
           <div className={styles.formRow}>
-            <label htmlFor="dateOfCertificationExam" className={styles.label}>
-              Date of Certification Exam
+            <label htmlFor="licenseNumber" className={styles.label}>
+              Certified/Registered/License Number
               <input
                 className={styles.input}
                 type="text"
-                name="dateOfCertificationExam"
-                placeholder="mm/dd/yyyy"
-                id="dateOfCertificationExam"
-                pattern="\d{2}-\d{2}-\d{4}"
-                value={dateOfCertificationExam}
+                name="licenseNumber"
+                id="licenseNumber"
+                value={licenseNumber}
                 onChange={(e) => {
-                  setDateOfCertificationExam(e.target.value);
+                  setLicenseNumber(e.target.value);
                 }}
+                placeholder="Enter Certified/Registered/License Number"
               />
             </label>
 
@@ -166,6 +133,24 @@ export const Step4: React.FC<StepProps> = ({ next }: StepProps) => {
                 onChange={(e) => {
                   setExplanation(e.target.value);
                 }}
+              />
+            </label>
+          </div>
+
+          <div className={styles.formRow}>
+            <label htmlFor="licenseExpiration" className={styles.label}>
+              Date Certified/Registered/License Expires
+              <input
+                className={styles.input}
+                type="text"
+                name="licenseExpiration"
+                id="licenseExpiration"
+                pattern="\d{2}-\d{2}-\d{4}"
+                value={licenseExpiration}
+                onChange={(e) => {
+                  setLicenseExpiration(e.target.value);
+                }}
+                placeholder="mm/dd/yyyy"
               />
             </label>
           </div>
