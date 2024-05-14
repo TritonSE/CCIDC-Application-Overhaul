@@ -49,20 +49,55 @@ export function Login() {
   }
 
   return (
-    <div className={styles.loginContainer}>
-      <div className={styles.login}>
-        <h2 className={styles.loginHeader}>CCIDC Login</h2>
-        <form onSubmit={handleSubmit} className={styles.loginForm}>
-          <label htmlFor="username">Username:</label>
-          <br />
-          <input id="username" />
-          <br />
-          <label htmlFor="password">Password:</label>
-          <br />
-          <input id="password" type="password" />
-          <br />
-          <input type="submit" value="Submit" />
-        </form>
+    <div className={styles.loginPage}>
+      <div className={`${styles.loginPageSection} ${styles.loginSection}`}>
+        <div className={styles.sectionContent}>
+          <h2 className={styles.loginSectionHeader}>Login</h2>
+          <form onSubmit={handleSubmit} className={styles.loginForm}>
+            <div>
+              <label className={styles.loginFormLabel} htmlFor="username">
+                Username or Email Address
+              </label>
+              <input required className={styles.loginFormInput} id="username" />
+            </div>
+            <div>
+              <label className={styles.loginFormLabel} htmlFor="password">
+                Password
+              </label>
+              <input required className={styles.loginFormInput} id="password" type="password" />
+            </div>
+            <input className={styles.loginFormSubmit} type="submit" value="Log in" />
+            <a
+              className={`${styles.loginFormLink} ${styles.forgotPassword}`}
+              href="https://ccidc.org/wp-login.php?action=lostpassword"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Forgot your password?
+            </a>
+            <a
+              className={styles.loginFormLink}
+              href="https://ccidc.org/ccidc-privacy-policy/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              CCIDC Privacy Policy
+            </a>
+          </form>
+        </div>
+      </div>
+      <div className={`${styles.loginPageSection} ${styles.signUpSection}`}>
+        <div className={styles.sectionContent}>
+          <h2 className={styles.signUpSectionHeader}>Don&apos;t have an account yet?</h2>
+          <a
+            className={styles.signUpButton}
+            href="https://ccidc.org/register/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Sign Up Here
+          </a>
+        </div>
       </div>
     </div>
   );
