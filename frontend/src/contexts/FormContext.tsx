@@ -131,7 +131,12 @@ const initialFormData: FormData = {
 
 const initialState: FormContextType = {
   formData: initialFormData,
-  setFormData: () => undefined,
+  setFormData: (newFormData) => {
+    return {
+      ...initialFormData, // keeps unchanged values
+      ...newFormData, // updates changed values
+    };
+  },
 };
 
 export const FormContext = createContext<FormContextType>(initialState);

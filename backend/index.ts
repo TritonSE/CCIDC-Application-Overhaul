@@ -1,7 +1,7 @@
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import express from "express";
-import mongoose from "mongoose";
+// import mongoose from "mongoose";
 
 import fileRoutes from "./src/routes/fileRoutes";
 import loginRoutes from "./src/routes/loginRoutes";
