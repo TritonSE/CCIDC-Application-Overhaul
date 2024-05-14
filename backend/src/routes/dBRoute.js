@@ -101,3 +101,48 @@ app.post("/submit-form", (req, res) => {
 });
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+/* 
+import React, { useContext } from 'react';
+import { FormContext } from './FormContext'; // Import FormContext
+
+const SubmitFormButton = () => {
+  const { formData } = useContext(FormContext); // Access formData from FormContext
+
+  const submitFormData = () => {
+    // Convert the formData object to JSON
+    const jsonData = JSON.stringify(formData);
+
+    // Make a POST request to the backend endpoint
+    fetch('/submit-form', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: jsonData
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Form data saved successfully:', data);
+      // Handle success (e.g., show a success message to the user)
+    })
+    .catch(error => {
+      console.error('Error saving form data:', error);
+      // Handle error (e.g., show an error message to the user)
+    });
+  };
+
+  return (
+    <button onClick={submitFormData}>Submit Form</button>
+  );
+};
+
+export default SubmitFormButton;
+
+
+*/
