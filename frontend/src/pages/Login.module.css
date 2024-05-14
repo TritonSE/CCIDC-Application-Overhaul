@@ -81,6 +81,11 @@
   width: 100%;
 }
 
+.loginFormSubmit.loading {
+  background-color: var(--color-ccidc-placeholder);
+  cursor: default;
+}
+
 .loginFormLink {
   margin: 0;
   text-align: center;
@@ -89,6 +94,11 @@
 
 .loginFormLink.forgotPassword {
   color: var(--color-ccidc-red);
+}
+
+.loginError {
+  color: var(--color-error);
+  font-size: 0.75rem;
 }
 
 .signUpSectionHeader {
