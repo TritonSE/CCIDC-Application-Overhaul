@@ -1,26 +1,30 @@
-import { useState } from "react";
-
+import React, { useState, useEffect } from "react";
 import FileUploadPopupWindow from "../components/FileUploadPopupWindow.tsx";
 
 export function FileTesting() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [uploadedFilesCount, setUploadedFilesCount] = useState(0);
+  const [areFilesUploaded, setAreFilesUploaded] = useState(false);
 
   const openPopup = () => {
     setIsPopupOpen(true);
   };
 
+  useEffect(() => {
+    console.log("Files uploaded:", areFilesUploaded);
+  }, [areFilesUploaded]);
+
+  const handleUploadedFiles = (areFilesUploaded: boolean) => {
+    setAreFilesUploaded(areFilesUploaded);
+  };
+
   return (
     <>
       <h2>File Testing</h2>
-
       <button onClick={openPopup} style={{ display: isPopupOpen ? "none" : "block" }}>
         File Upload
       </button>
-
-      {isPopupOpen && <FileUploadPopupWindow onFilesUploaded={setUploadedFilesCount} />}
-
-      <p>Number of files uploaded: {uploadedFilesCount}</p>
+      {isPopupOpen && <FileUploadPopupWindow areFilesUploaded={handleUploadedFiles} />}
+      <p>Files uploaded: {areFilesUploaded.toString()}</p>
     </>
   );
 }
