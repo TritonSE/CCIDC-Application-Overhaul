@@ -4,6 +4,7 @@ import fileUploadIcon from "../assets/fileUploadIcon.svg";
 import styles from "./FileUploadPopupWindow.module.css";
 import spinnerImage from "../assets/spinner.png";
 import checkMark from "../assets/fileUploadCheckmark.svg";
+import fileIcon from "../assets/fileIcon.svg";
 
 interface FileUploadPopupWindowProps {
   areFilesUploaded: (value: boolean) => void; // Indicates whether files are uploaded
@@ -234,6 +235,7 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({
           {fileIds.map((fileId, index) => (
             <div key={fileId} className={styles.fileBox}>
               <div className={styles.fileName}>
+                <img className={styles.fileIconDisplay} src={fileIcon} />
                 {selectedFiles[index].name} has been successfully uploaded
               </div>
               <div
