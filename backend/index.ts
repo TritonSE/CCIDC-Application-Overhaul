@@ -1,7 +1,7 @@
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import express from "express";
-// import mongoose from "mongoose";
+import mysql from "mysql";
 
 import fileRoutes from "./src/routes/fileRoutes";
 import loginRoutes from "./src/routes/loginRoutes";
@@ -10,7 +10,6 @@ import mongoCreds from "./src/mongoCreds.json";
 
 dotenv.config();
 
-const mysql = require("mysql");
 const app = express();
 
 const db = mysql.createConnection({
