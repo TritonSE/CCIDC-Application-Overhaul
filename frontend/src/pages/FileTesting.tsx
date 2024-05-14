@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import FileUploadPopupWindow from "../components/FileUploadPopupWindow.tsx";
 
 export function FileTesting() {
