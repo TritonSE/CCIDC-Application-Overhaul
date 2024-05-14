@@ -10,33 +10,22 @@ import mongoCreds from "./src/mongoCreds.json";
 
 dotenv.config();
 
+const mysql = require("mysql");
 const app = express();
 
-const uri = `mongodb://${mongoCreds.username}:${encodeURIComponent(mongoCreds.password)}@${
-  mongoCreds.host
-}/${mongoCreds.database}`;
-
-mongoose.connect(uri);
-
-const connection = mongoose.connection;
-
-// Event listeners for MongoDB connection
-connection.on("error", (err) => {
-  console.error("MongoDB connection error:", err);
+const db = mysql.createConnection({
+  host: mongoCreds.host,
+  user: mongoCreds.username,
+  password: mongoCreds.password,
+  database: mongoCreds.database,
 });
 
-connection.on("connected", () => {
-  console.log("MongoDB connected successfully");
-});
-
-connection.on("disconnected", () => {
-  console.log("MongoDB disconnected");
-});
-
-// Close MongoDB connection when Node process exits
-process.on("SIGINT", async () => {
-  await mongoose.connection.close();
-  process.exit(0);
+// Connect to the database
+db.connect((err: any) => {
+  if (err) {
+    throw err;
+  }
+  console.log("Connected to the database");
 });
 
 app.use(express.json());
