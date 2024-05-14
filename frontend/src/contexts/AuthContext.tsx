@@ -39,8 +39,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         method: "GET",
         credentials: "include",
       });
-
-      return response.ok;
+      const result = await response.json();
+      return Boolean(result?.isValid);
     } catch (e) {
       return false;
     }
