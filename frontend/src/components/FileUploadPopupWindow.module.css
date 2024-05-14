@@ -123,6 +123,9 @@
 
 .fileName {
   margin-right: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .removeButton {
@@ -187,4 +190,10 @@
 .checkMark {
   height: 50px;
   width: 50px;
+}
+
+.fileIconDisplay {
+  height: 23px;
+  width: 23px;
+  margin-right: 10px;
 }
