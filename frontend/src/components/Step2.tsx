@@ -12,7 +12,13 @@ import examList from "../constants/exams.json";
 import styles from "./Steps.module.css";
 import { Dropdown } from "./index.ts";
 
-function SchoolSection({ pathNumber }: { pathNumber: number }) {
+type setInputType = React.Dispatch<React.SetStateAction<string>>;
+
+export type StepProps = {
+  next: () => void;
+};
+
+function SchoolSection({ pathNumber, schoolInput, setSchoolInput, cityInput, setCityInput, stateInput, setStateInput, countryInput, setCountryInput, unitsInput, setUnitsInput, degreeInput, setDegreeInput, schoolStartInput, setSchoolStartInput, schoolEndInput, setSchoolEndInput }: { pathNumber: number,  schoolInput:string, setSchoolInput:setInputType, cityInput:string, setCityInput:setInputType, stateInput:string, setStateInput:setInputType, countryInput:string, setCountryInput:setInputType, unitsInput:string, setUnitsInput:setInputType, degreeInput:string, setDegreeInput:setInputType, schoolStartInput:string, setSchoolStartInput:setInputType, schoolEndInput:string, setSchoolEndInput:setInputType}) {
   const [schools, setSchools] = useState([{ id: 1 }]);
   const [showAddress, setShowAddress] = useState(false);
 
@@ -79,6 +85,10 @@ function SchoolSection({ pathNumber }: { pathNumber: number }) {
                       name={`school${index}`}
                       placeholder="Enter School Name"
                       required={isRequired}
+                      value={schoolInput}
+                        onChange={(e) => {
+                          setSchoolInput(e.target.value);
+                      }}
                     />
                   </label>
                 </div>
@@ -92,6 +102,10 @@ function SchoolSection({ pathNumber }: { pathNumber: number }) {
                       name={`city${index}`}
                       placeholder="Enter City"
                       required={isRequired}
+                      value={cityInput}
+                        onChange={(e) => {
+                          setCityInput(e.target.value);
+                      }}
                     />
                   </label>
                 </div>
@@ -105,6 +119,10 @@ function SchoolSection({ pathNumber }: { pathNumber: number }) {
                       name={`state${index}`}
                       placeholder="Enter State"
                       required={isRequired}
+                      value={stateInput}
+                        onChange={(e) => {
+                          setStateInput(e.target.value);
+                      }}
                     />
                   </label>
                 </div>
@@ -118,6 +136,10 @@ function SchoolSection({ pathNumber }: { pathNumber: number }) {
                       name={`country${index}`}
                       placeholder="Enter Country"
                       required={isRequired}
+                      value={countryInput}
+                        onChange={(e) => {
+                          setCountryInput(e.target.value);
+                      }}
                     />
                   </label>
                 </div>
@@ -131,6 +153,10 @@ function SchoolSection({ pathNumber }: { pathNumber: number }) {
                       name={`coreUnits${index}`}
                       placeholder="Enter Number Here"
                       required={isRequired}
+                      value={unitsInput}
+                        onChange={(e) => {
+                          setUnitsInput(e.target.value);
+                      }}
                     />
                   </label>
                 </div>
@@ -144,6 +170,10 @@ function SchoolSection({ pathNumber }: { pathNumber: number }) {
                       name={`degree${index}`}
                       placeholder="Enter Degree Name"
                       required={isRequired}
+                      value={degreeInput}
+                        onChange={(e) => {
+                          setDegreeInput(e.target.value);
+                      }}
                     />
                   </label>
                 </div>
@@ -158,6 +188,10 @@ function SchoolSection({ pathNumber }: { pathNumber: number }) {
                       placeholder="mm/yyyy"
                       pattern="^(0[1-9]|1[0-2])/(19|20)\d{2}$"
                       required={isRequired}
+                      value={schoolStartInput}
+                        onChange={(e) => {
+                          setSchoolStartInput(e.target.value);
+                      }}
                     />
                   </label>
                 </div>
@@ -172,6 +206,10 @@ function SchoolSection({ pathNumber }: { pathNumber: number }) {
                       placeholder="mm/yyyy"
                       pattern="^(0[1-9]|1[0-2])/(19|20)\d{2}$"
                       required={isRequired}
+                      value={schoolEndInput}
+                        onChange={(e) => {
+                          setSchoolEndInput(e.target.value);
+                      }}
                     />
                   </label>
                 </div>
@@ -206,7 +244,7 @@ function SchoolSection({ pathNumber }: { pathNumber: number }) {
   );
 }
 
-function ProfessionalAssociationSection() {
+function ProfessionalAssociationSection( {membershipInput, setMembershipInput, memLevelInput, setMemLevelInput}: {membershipInput:string, setMembershipInput:setInputType, memLevelInput: string, setMemLevelInput: setInputType} ) {
   const [associations, setAssociations] = useState([{ id: 1 }]);
 
   const addAssociation = () => {
@@ -265,6 +303,10 @@ function ProfessionalAssociationSection() {
                       type="text"
                       name={`email${index}`}
                       placeholder="Enter your Membership"
+                      value={membershipInput}
+                        onChange={(e) => {
+                          setMembershipInput(e.target.value);
+                      }}
                     />
                   </label>
                 </div>
@@ -276,6 +318,10 @@ function ProfessionalAssociationSection() {
                       type="text"
                       name={`memLevel${index}`}
                       placeholder="Enter Membership Level"
+                      value={memLevelInput}
+                        onChange={(e) => {
+                          setMemLevelInput(e.target.value);
+                      }}
                     />
                   </label>
                 </div>
@@ -288,11 +334,10 @@ function ProfessionalAssociationSection() {
   );
 }
 
-function NationalExamSection() {
-  const [exam, setExam] = useState("");
+function NationalExamSection({ examInput, setExamInput, examDateInput, setExamDateInput, certNumInput, setCertNumInput }: { examInput: string, setExamInput: setInputType, examDateInput:string, setExamDateInput:setInputType, certNumInput:string, setCertNumInput:setInputType }) {
 
   const handleExamSelect = (option: string) => {
-    setExam(option);
+    setExamInput(option);
   };
 
   return (
@@ -316,7 +361,7 @@ function NationalExamSection() {
                 type="text"
                 id="nationalExam"
                 name="nationalExam"
-                defaultValue={exam}
+                defaultValue={examInput}
                 required
               ></input>
             </label>
@@ -331,6 +376,10 @@ function NationalExamSection() {
                 placeholder="mm/dd/yyyy"
                 pattern="^(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])/(19|20)\d{2}$"
                 required
+                value={examDateInput}
+                  onChange={(e) => {
+                    setExamDateInput(e.target.value);
+                }}
               />
             </label>
           </div>
@@ -343,6 +392,10 @@ function NationalExamSection() {
                 type="text"
                 placeholder="Enter Certificate Number"
                 required
+                value={certNumInput}
+                  onChange={(e) => {
+                    setCertNumInput(e.target.value);
+                }}
               />
             </label>
           </div>
@@ -357,12 +410,11 @@ function NationalExamSection() {
   );
 }
 
-function ICCCourses() {
+function ICCCourses({ courseInput, setCourseInput, courseDateInput, setCourseDateInput }: { courseInput: string, setCourseInput: setInputType, courseDateInput: string, setCourseDateInput: setInputType }) {
   const [courses, setCourses] = useState([{ id: 1 }]);
-  const [courseSelect, setCourseSelect] = useState("");
 
   const handleCourseSelect = (option: string) => {
-    setCourseSelect(option);
+    setCourseInput(option);
   };
 
   const addCourse = () => {
@@ -425,7 +477,7 @@ function ICCCourses() {
                       type="text"
                       id={`iccCourse${index}`}
                       name={`iccCourse${index}`}
-                      defaultValue={courseSelect}
+                      defaultValue={courseInput}
                       required
                     ></input>
                   </label>
@@ -440,6 +492,10 @@ function ICCCourses() {
                       placeholder="mm/dd/yyyy"
                       pattern="^(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])/(19|20)\d{2}$"
                       required
+                      value={courseDateInput}
+                      onChange={(e) => {
+                        setCourseDateInput(e.target.value);
+                      }}
                     />
                   </label>
                 </div>
@@ -455,12 +511,31 @@ function ICCCourses() {
     </div>
   );
 }
+
 type Step2Props = {
   pathNumber: number;
   onSubmit: () => void;
 };
 
 export function Step2({ pathNumber, onSubmit }: Step2Props) {
+
+  const [courseInput, setCourseInput] = useState("");
+  const [courseDateInput, setCourseDateInput] = useState("");
+  const [examInput, setExamInput] = useState("");
+  const [examDateInput, setExamDateInput] = useState("");
+  const [certNumInput, setCertNumInput] = useState("");
+  const [membershipInput, setMembershipInput] = useState("");
+  const [memLevelInput, setMemLevelInput] = useState("");
+  const [schoolInput, setSchoolInput] = useState("");
+  const [cityInput, setCityInput] = useState("");
+  const [stateInput, setStateInput] = useState("");
+  const [countryInput, setCountryInput] = useState("");
+  const [unitsInput, setUnitsInput] = useState("");
+  const [degreeInput, setDegreeInput] = useState("");
+  const [schoolStartInput, setSchoolStartInput] = useState("");
+  const [schoolEndInput, setSchoolEndInput] = useState("");
+
+
   let content;
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -471,22 +546,22 @@ export function Step2({ pathNumber, onSubmit }: Step2Props) {
   if (pathNumber === 3) {
     content = (
       <>
-        <NationalExamSection />
+        <NationalExamSection examInput={examInput} setExamInput={setExamInput} examDateInput={examDateInput} setExamDateInput={setExamDateInput} certNumInput={certNumInput} setCertNumInput={setCertNumInput}/>
       </>
     );
   } else if (pathNumber === 4) {
     content = (
       <>
-        <NationalExamSection />
-        <ICCCourses />
+        <NationalExamSection examInput={examInput} setExamInput={setExamInput} examDateInput={examDateInput} setExamDateInput={setExamDateInput} certNumInput={certNumInput} setCertNumInput={setCertNumInput}/>
+        <ICCCourses courseInput={courseInput} setCourseInput={setCourseInput} courseDateInput={courseDateInput} setCourseDateInput={setCourseDateInput} />
       </>
     );
   }
   return (
     <form id="step2-form" className={styles.formContainer} onSubmit={handleSubmit}>
-      <SchoolSection pathNumber={pathNumber} />
+      <SchoolSection pathNumber={pathNumber} schoolInput={schoolInput} setSchoolInput={setSchoolInput} cityInput={cityInput} setCityInput={setCityInput} stateInput={stateInput} setStateInput={setStateInput} countryInput={countryInput} setCountryInput={setCountryInput} unitsInput={unitsInput} setUnitsInput={setUnitsInput} degreeInput={degreeInput} setDegreeInput={setDegreeInput} schoolStartInput={schoolStartInput} setSchoolStartInput={setSchoolStartInput} schoolEndInput={schoolEndInput} setSchoolEndInput={setSchoolEndInput} />
       {content}
-      <ProfessionalAssociationSection />
+      <ProfessionalAssociationSection membershipInput = {membershipInput} setMembershipInput={setMembershipInput} memLevelInput={memLevelInput} setMemLevelInput={setMemLevelInput}/>
     </form>
   );
 }
