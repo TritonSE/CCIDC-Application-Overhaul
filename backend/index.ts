@@ -33,10 +33,12 @@ app.use(cookieParser());
 
 app.use("/file", fileRoutes);
 app.use("/", loginRoutes);
-app.use("/", formRoutes); // Use the new routes
+app.use("/form", formRoutes);
 
 const PORT: string | number = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
+
+server.timeout = 240000;
