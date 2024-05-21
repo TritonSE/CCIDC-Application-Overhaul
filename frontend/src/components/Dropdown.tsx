@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import styles from "./Dropdown.module.css";
 
@@ -6,9 +6,14 @@ export function Dropdown(props: {
   options: string[];
   onSelect: (value: string) => void;
   required?: boolean;
+  defaultValue?: string;
 }) {
   const [selected, setSelected] = useState("Select One");
   const [isActive, setIsActive] = useState(false);
+
+  useEffect(() => {
+    setSelected(props.defaultValue ?? "Select One");
+  }, [props.defaultValue]);
 
   const handleOptionClick = (option: string) => {
     setSelected(option);

@@ -1,28 +1,33 @@
-import { useState } from "react";
+import { useContext } from "react";
 
+import upload from "../assets/uploadIcon.svg";
+import { FormContext } from "../contexts/FormContext.tsx";
 import styles from "./Step4.module.css";
 import { Button, Dropdown } from "./index.ts";
 
-// Pass in Application's next function
 export type StepProps = {
   next: () => void;
 };
 
 export const Step4: React.FC<StepProps> = ({ next }: StepProps) => {
-  const [certified, setCertified] = useState("");
-  const [licenseNumber, setLicenseNumber] = useState("");
-  const [state, setState] = useState("");
-  const [licenseExpiration, setLicenseExpiration] = useState("");
-  const [selectedFelonyCharge, setSelectedFelonyCharge] = useState("");
-  const [eplanation, setExplanation] = useState("");
+  const { formData, setFormData } = useContext(FormContext);
 
-  // Stores the Selected Option Value
-  const handleSelect = (option: string) => {
-    setSelectedFelonyCharge(option);
-    console.log({ selectedFelonyCharge });
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
   };
 
-  // Checks if all Required Inputs are filled before moving on to next step
+  const handleSelect = (option: string) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      convictedOfFelony: option,
+    }));
+    console.log(formData.convictedOfFelony);
+  };
+
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -39,101 +44,135 @@ export const Step4: React.FC<StepProps> = ({ next }: StepProps) => {
         <div className={styles.page4Form}>
           <h2 className={styles.sectionTitle}>Additional Information</h2>
 
-          <div className={styles.formRow}>
-            <label htmlFor="license" className={styles.label}>
-              Certified/Registered/Licensed in any other Jurisdiction
-              <input
-                className={styles.input}
-                type="text"
-                id="license"
-                name="license"
-                value={certified}
-                onChange={(e) => {
-                  setCertified(e.target.value);
-                }}
-                placeholder="Enter Certified/Registered/Licensed in any other Jurisdiction"
-              />
-            </label>
+          <div className={styles.formSectionContainer}>
+            <div className={styles.inputBox}>
+              <label htmlFor="certifiedJurisdiction" className={styles.inputTitle}>
+                Certified/Registered/Licensed in any other Jurisdiction
+                <input
+                  className={styles.inputText}
+                  type="text"
+                  id="certifiedJurisdiction"
+                  name="certifiedJurisdiction"
+                  value={formData.certifiedJurisdiction}
+                  onChange={handleInputChange}
+                  placeholder="Enter Certified/Registered/Licensed in any other Jurisdiction"
+                />
+              </label>
+            </div>
 
-            <label
-              htmlFor="certificationExam"
-              id={styles.certificationExam}
-              className={styles.label}
-            >
-              Certification Exam
-              <input
-                className={styles.input}
-                type="text"
-                name="certificationExam"
-                id="certificationExam"
-                value="IDEX"
-                placeholder="Enter Certification Exam"
-              />
-            </label>
-          </div>
+            <div className={styles.inputBox}>
+              <label htmlFor="licenseNumber" className={styles.inputTitle}>
+                Certified/Registered/License Number
+                <input
+                  className={styles.inputText}
+                  type="text"
+                  name="licenseNumber"
+                  id="licenseNumber"
+                  value={formData.licenseNumber}
+                  onChange={handleInputChange}
+                  placeholder="Enter Certified/Registered/License Number"
+                />
+              </label>
+            </div>
 
-          <div className={styles.formRow}>
-            <label htmlFor="state" className={styles.label}>
-              Name of State/Jurisdiction
-              <input
-                className={styles.input}
-                type="text"
-                name="state"
-                id="state"
-                value={state}
-                onChange={(e) => {
-                  setState(e.target.value);
-                }}
-                placeholder="Enter Name of State/Jurisdiction"
-                pattern="Alabama|Alaska|Arizona|Arkansas|California|Colorado|Connecticut|Delaware|Florida|Georgia|Hawaii|Idaho|Illinois|Indiana|Iowa|Kansas|Kentucky|Louisiana|Maine|Maryland|Massachusetts|Michigan|Minnesota|Mississippi|Missouri|Montana|Nebraska|Nevada|New Hampshire|New Jersey|New Mexico|New York|North Carolina|North Dakota|Ohio|Oklahoma|Oregon|Pennsylvania|Rhode Island|South Carolina|South Dakota|Tennessee|Texas|Utah|Vermont|Virginia|Washington|West Virginia|Wisconsin|Wyoming"
-              />
-            </label>
+            <div className={styles.inputBox}>
+              <label htmlFor="jurisdictionName" className={styles.inputTitle}>
+                Name of State/Jurisdiction
+                <input
+                  className={styles.inputText}
+                  type="text"
+                  name="jurisdictionName"
+                  id="jurisdictionName"
+                  value={formData.jurisdictionName}
+                  onChange={handleInputChange}
+                  placeholder="Enter Name of State/Jurisdiction"
+                />
+              </label>
+            </div>
 
-            <label htmlFor="dropDown" className={styles.label}>
-              Have you ever been convicted of a Felony?<span className={styles.red}>*</span>
-              <Dropdown options={["Yes", "No"]} onSelect={handleSelect}></Dropdown>
-              {/* Add if dropDown Required */}
-              <input
-                className={styles.customDropDown}
-                type="text"
-                id="dropDown"
-                name="dropDown"
-                value={selectedFelonyCharge}
-                required
-              ></input>
-            </label>
-          </div>
+            <div className={styles.inputBox}>
+              <label htmlFor="dateCertified" className={styles.inputTitle}>
+                Date Certified/Registered/License Expires
+                <input
+                  className={styles.inputText}
+                  type="text"
+                  name="dateCertified"
+                  id="dateCertified"
+                  value={formData.dateCertified}
+                  onChange={handleInputChange}
+                  pattern="^(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])/(19|20)\d{2}$"
+                  placeholder="Enter Date Certified/Registered/License Expires"
+                />
+              </label>
+            </div>
 
-          <div className={styles.formRow}>
-            <label htmlFor="licenseNumber" className={styles.label}>
-              Certified/Registered/License Number
-              <input
-                className={styles.input}
-                type="text"
-                name="licenseNumber"
-                id="licenseNumber"
-                value={licenseNumber}
-                onChange={(e) => {
-                  setLicenseNumber(e.target.value);
-                }}
-                placeholder="Enter Certified/Registered/License Number"
-              />
-            </label>
+            <div className={styles.inputBox}>
+              <label htmlFor="certificationExam" className={styles.inputTitle}>
+                Certification Exam
+                <input
+                  className={styles.inputText}
+                  type="text"
+                  name="certificationExam"
+                  id="certificationExam"
+                  value={formData.certificationExam}
+                  onChange={handleInputChange}
+                  placeholder="Enter Certification Exam"
+                />
+              </label>
+            </div>
+            <div className={styles.inputBox}>
+              <label
+                htmlFor="dropconvictedOfFelonyDown"
+                className={`${styles.inputTitle} ${styles.felonyLabel}`}
+              >
+                Have you ever been convicted of a Felony?<span className={styles.boldRed}>*</span>
+                <Dropdown
+                  options={["Yes", "No"]}
+                  onSelect={handleSelect}
+                  defaultValue={formData.convictedOfFelony || undefined}
+                ></Dropdown>
+                <input
+                  className={styles.customDropDown}
+                  type="text"
+                  id="convictedOfFelony"
+                  name="convictedOfFelony"
+                  value={formData.convictedOfFelony}
+                  onChange={handleInputChange}
+                  required
+                ></input>
+              </label>
+            </div>
 
-            <label htmlFor="explanation" className={styles.label}>
-              If yes, please explain
-              <input
-                className={styles.input}
-                type="text"
-                name="explanation"
-                id="explanation"
-                placeholder="Please explain here"
-                value={eplanation}
-                onChange={(e) => {
-                  setExplanation(e.target.value);
-                }}
-              />
-            </label>
+            <div className={styles.inputBox}>
+              <label htmlFor="dateOfExam" className={styles.inputTitle}>
+                Date of Certification Exam
+                <input
+                  className={styles.inputText}
+                  type="text"
+                  name="dateOfExam"
+                  placeholder="mm/dd/yyyy"
+                  id="dateOfExam"
+                  pattern="^(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])/(19|20)\d{2}$"
+                  value={formData.dateOfExam}
+                  onChange={handleInputChange}
+                />
+              </label>
+            </div>
+
+            <div className={styles.inputBox}>
+              <label htmlFor="extraExplanation" className={styles.inputTitle}>
+                If yes, please explain
+                <input
+                  className={styles.inputText}
+                  type="text"
+                  name="extraExplanation"
+                  id="extraExplanation"
+                  placeholder="Please explain here"
+                  value={formData.extraExplanation}
+                  onChange={handleInputChange}
+                />
+              </label>
+            </div>
           </div>
 
           <div className={styles.formRow}>

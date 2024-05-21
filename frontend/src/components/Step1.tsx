@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext } from "react";
 
 import devices from "../constants/devices.json";
 import genders from "../constants/genders.json";
+import { FormContext } from "../contexts/FormContext.tsx";
 
 import styles from "./Steps.module.css";
 import { Dropdown } from "./index.ts";
@@ -11,22 +12,36 @@ type Step1Props = {
 };
 
 export function Step1({ onSubmit }: Step1Props) {
-  const [email, setEmail] = useState<string>("");
-  const [confirmEmail, setConfirmEmail] = useState<string>("");
-  const [gender, setGender] = useState("");
-  const [phoneType, setPhoneType] = useState("");
+  const { formData, setFormData } = useContext(FormContext);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
 
   const handleGenderSelect = (option: string) => {
-    setGender(option);
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      gender: option,
+    }));
   };
 
   const handlePhoneSelect = (option: string) => {
-    setPhoneType(option);
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      deviceType: option,
+    }));
   };
 
   const handleConfirmEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setConfirmEmail(e.target.value);
-    e.target.setCustomValidity(""); // Reset custom validity on input change
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      confirmEmail: e.target.value,
+    }));
+    e.target.setCustomValidity("");
   };
 
   const handleInvalid = (event: React.InvalidEvent<HTMLInputElement>) => {
@@ -103,6 +118,8 @@ export function Step1({ onSubmit }: Step1Props) {
                 type="text"
                 placeholder="Enter First Name Here"
                 name="firstName"
+                value={formData.firstName}
+                onChange={handleInputChange}
                 required
               />
             </label>
@@ -115,6 +132,8 @@ export function Step1({ onSubmit }: Step1Props) {
                 type="text"
                 placeholder="Enter Middle Name Here"
                 name="middleName"
+                onChange={handleInputChange}
+                value={formData.middleName}
               />
             </label>
           </div>
@@ -126,6 +145,8 @@ export function Step1({ onSubmit }: Step1Props) {
                 type="text"
                 placeholder="Enter Last Name Here"
                 name="lastName"
+                onChange={handleInputChange}
+                value={formData.lastName}
                 required
               />
             </label>
@@ -138,19 +159,26 @@ export function Step1({ onSubmit }: Step1Props) {
                 type="text"
                 placeholder="Enter 2nd Last Name Here"
                 name="maidenName"
+                onChange={handleInputChange}
+                value={formData.maidenName}
               />
             </label>
           </div>
           <div className={styles.inputBox}>
             <label htmlFor="gender" className={`${styles.inputTitle} ${styles.dropdownLabel}`}>
               Gender<span className={styles.boldRed}>*</span>
-              <Dropdown options={genders} onSelect={handleGenderSelect}></Dropdown>
+              <Dropdown
+                options={genders}
+                onSelect={handleGenderSelect}
+                defaultValue={formData.gender || undefined}
+              ></Dropdown>
               <input
                 className={styles.customDropDown}
                 type="text"
                 id="gender"
                 name="gender"
-                defaultValue={gender}
+                value={formData.gender}
+                onChange={handleInputChange}
                 required
               ></input>
             </label>
@@ -172,10 +200,8 @@ export function Step1({ onSubmit }: Step1Props) {
                 className={styles.inputText}
                 type="email"
                 name="email"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
+                value={formData.email}
+                onChange={handleInputChange}
                 placeholder="Enter Email Address"
                 autoComplete="email"
                 required
@@ -183,15 +209,20 @@ export function Step1({ onSubmit }: Step1Props) {
             </label>
           </div>
           <div className={styles.inputBox}>
-            <label htmlFor="phoneType" className={`${styles.inputTitle} ${styles.dropdownLabel}`}>
+            <label htmlFor="deviceType" className={`${styles.inputTitle} ${styles.dropdownLabel}`}>
               Phone Type<span className={styles.boldRed}>*</span>
-              <Dropdown options={devices} onSelect={handlePhoneSelect}></Dropdown>
+              <Dropdown
+                options={devices}
+                onSelect={handlePhoneSelect}
+                defaultValue={formData.deviceType || undefined}
+              ></Dropdown>
               <input
                 className={styles.customDropDown}
                 type="text"
-                id="phoneType"
-                name="phoneType"
-                defaultValue={phoneType}
+                id="deviceType"
+                name="deviceType"
+                value={formData.deviceType}
+                onChange={handleInputChange}
                 required
               ></input>
             </label>
@@ -204,10 +235,10 @@ export function Step1({ onSubmit }: Step1Props) {
                 type="email"
                 name="confirmEmail"
                 placeholder="Enter Email Address"
-                value={confirmEmail}
+                value={formData.confirmEmail}
                 onInvalid={handleInvalid}
                 onChange={handleConfirmEmailChange}
-                pattern={email}
+                pattern={formData.email}
                 required
               />
             </label>
@@ -221,8 +252,10 @@ export function Step1({ onSubmit }: Step1Props) {
                 placeholder="Enter Phone Number"
                 pattern="^\d+$"
                 autoComplete="tel"
+                value={formData.phoneNumber}
                 required
-                name="phone"
+                onChange={handleInputChange}
+                name="phoneNumber"
               />
             </label>
           </div>
@@ -246,6 +279,8 @@ export function Step1({ onSubmit }: Step1Props) {
                 required
                 name="address"
                 autoComplete="street-address"
+                onChange={handleInputChange}
+                value={formData.address}
               />
             </label>
           </div>
@@ -258,6 +293,8 @@ export function Step1({ onSubmit }: Step1Props) {
                 placeholder="Enter City"
                 name="city"
                 required
+                onChange={handleInputChange}
+                value={formData.city}
               />
             </label>
           </div>
@@ -269,6 +306,8 @@ export function Step1({ onSubmit }: Step1Props) {
                 type="text"
                 placeholder="Enter State"
                 name="state"
+                value={formData.state}
+                onChange={handleInputChange}
                 required
               />
             </label>
@@ -281,7 +320,9 @@ export function Step1({ onSubmit }: Step1Props) {
                 type="text"
                 placeholder="Enter Country"
                 name="country"
+                value={formData.country}
                 required
+                onChange={handleInputChange}
                 autoComplete="country"
               />
             </label>
@@ -294,6 +335,8 @@ export function Step1({ onSubmit }: Step1Props) {
                 type="text"
                 placeholder="Enter County"
                 name="county"
+                onChange={handleInputChange}
+                value={formData.county}
               />
             </label>
           </div>
@@ -305,6 +348,8 @@ export function Step1({ onSubmit }: Step1Props) {
                 type="text"
                 placeholder="Enter Zip Code"
                 name="zip"
+                onChange={handleInputChange}
+                value={formData.zip}
               />
             </label>
           </div>
