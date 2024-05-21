@@ -5,6 +5,7 @@ import mysql from "mysql";
 
 import fileRoutes from "./src/routes/fileRoutes";
 import loginRoutes from "./src/routes/loginRoutes";
+import formRoutes from "./src/routes/formRoutes";
 
 import mongoCreds from "./src/mongoCreds.json";
 
@@ -32,6 +33,7 @@ app.use(cookieParser());
 
 app.use("/file", fileRoutes);
 app.use("/", loginRoutes);
+app.use("/", formRoutes); // Use the new routes
 
 const PORT: string | number = process.env.PORT || 3000;
 
