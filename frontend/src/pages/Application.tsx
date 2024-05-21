@@ -40,10 +40,6 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
     }
 
     if (pageNum === 5) {
-      // toggle Congratulations Modal
-    }
-
-    if (pageNum === 5) {
       setConfirmSubmissionModalOpen(true);
     }
 
@@ -144,7 +140,9 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
       />
       <ConfirmSubmissionModal
         isOpen={confirmSubmissionModalOpen}
-        onClose={() => setConfirmSubmissionModalOpen(false)}
+        onClose={() => {
+          setConfirmSubmissionModalOpen(false);
+        }}
         onSubmit={function (): void {
           throw new Error("Function not implemented.");
         }}
