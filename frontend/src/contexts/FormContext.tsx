@@ -51,6 +51,7 @@ type FormData = {
   maidenName: string;
   gender: string;
   email: string;
+  confirmEmail: string;
   deviceType: string;
   phoneNumber: string;
   address: string;
@@ -96,6 +97,7 @@ const initialFormData: FormData = {
   maidenName: "",
   gender: "",
   email: "",
+  confirmEmail: "",
   deviceType: "",
   phoneNumber: "",
   address: "",
