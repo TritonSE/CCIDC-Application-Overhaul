@@ -1,8 +1,10 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 
 import cartIcon from "../assets/cart.svg";
 import logo from "../assets/logo.svg";
 import searchIcon from "../assets/search.svg";
+import { AuthContext } from "../contexts/AuthContext.tsx";
 
 import styles from "./NavBar.module.css";
 import { Button } from "./index.ts";
@@ -16,6 +18,8 @@ export function NavBar() {
     contactUs: "https://ccidc.org/contact-ccidc/",
     login: "https://ccidc.org/wp-login.php",
   };
+
+  const { isLoggedIn, logout } = useContext(AuthContext);
 
   return (
     <nav className={styles.navBar}>
@@ -59,17 +63,26 @@ export function NavBar() {
               Contact Us
             </a>
           </li>
-          <li>
-            <img src={cartIcon} className={styles.navIcon} alt="shop"></img>
-          </li>
+          {isLoggedIn && (
+            <li>
+              <img src={cartIcon} className={styles.navIcon} alt="shop"></img>
+            </li>
+          )}
+
           <li>
             <img src={searchIcon} className={styles.navIcon} alt="search"></img>
           </li>
 
           <li>
-            <a className={styles.legacyLink} href={destinations.login}>
-              Login
-            </a>
+            {isLoggedIn ? (
+              <button className={styles.logInOutButton} onClick={() => void logout()}>
+                Logout
+              </button>
+            ) : (
+              <NavLink className={styles.logInOutButton} to={"/login"}>
+                Login
+              </NavLink>
+            )}
           </li>
           <li>
             <NavLink className={styles.navLink} to={"/prescreening"}>

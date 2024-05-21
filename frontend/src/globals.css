@@ -1,6 +1,8 @@
 :root {
   --color-ccidc-white: #f9f9f9;
   --color-ccidc-red: #ad281f;
+  --color-ccidc-blue: #428bcd;
+  --color-ccidc-placeholder: #b4b4b4;
   --color-background: var(--color-ccidc-white);
   --color-text-primary: #000000;
   --color-text-secondary: #ffffff;
@@ -9,6 +11,7 @@
   --color-error: #fc3030;
   --color-red-secondary: #ce2e21;
   --color-shadow: #d8d8d8;
+  --color-link: #2a61bb;
   --font-title: normal bold 2rem "Rubik", sans-serif;
   --font-heading: normal bold 1.5rem "Rubik", sans-serif;
   --font-heading2: normal 1.5rem "Rubik", sans-serif;
@@ -24,18 +27,10 @@
   padding: 0;
 }
 
-*:focus-visible {
-  outline: var(--color-accent) solid medium;
-}
-
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-
-*:focus-visible {
-  outline: var(--color-accent) solid medium;
 }
 
 html,

@@ -1,9 +1,11 @@
 import { Outlet, Route, Routes } from "react-router-dom";
 
 import { NavBar } from "./components/index.ts";
+import { AuthProvider, FormProvider } from "./contexts/index.ts";
 import {
   Application,
   Candidates,
+  Login,
   PrescreeningForm,
   TestModals,
   ThankyouForApplying,
