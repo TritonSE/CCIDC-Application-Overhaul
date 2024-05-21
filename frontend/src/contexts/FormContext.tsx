@@ -77,6 +77,7 @@ type FormData = {
   dateCertified: string;
   convictedOfFelony: string;
   extraExplanation: string;
+  readRules: boolean;
 
   SchoolsAttended: SchoolsAttended[];
   ProfessionalMemberships: ProfessionalMemberships[];
@@ -123,6 +124,7 @@ const initialFormData: FormData = {
   dateCertified: "",
   convictedOfFelony: "",
   extraExplanation: "",
+  readRules: false,
 
   SchoolsAttended: [],
   ProfessionalMemberships: [],

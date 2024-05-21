@@ -14,11 +14,18 @@ export const Step4: React.FC<StepProps> = ({ next }: StepProps) => {
   const { formData, setFormData } = useContext(FormContext);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
+    const { name, value, type, checked } = e.target;
+    if (type === "checkbox") {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [name]: checked,
+      }));
+    } else {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [name]: value,
+      }));
+    }
   };
 
   const handleSelect = (option: string) => {
@@ -199,7 +206,15 @@ export const Step4: React.FC<StepProps> = ({ next }: StepProps) => {
           </p>
 
           <label htmlFor="select" className={styles.checkboxLabel}>
-            <input className={styles.select} type="checkbox" id="select" required />
+            <input
+              className={styles.select}
+              name="readRules"
+              type="checkbox"
+              id="select"
+              onChange={handleInputChange}
+              checked={formData.readRules}
+              required
+            />
             <span>
               Click here to acknowledge you have read and understood the rules and regulations
             </span>
