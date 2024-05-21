@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 
-import React, { useState, useContext } from "react"; // Organized imports
+import { useState, useContext } from "react"; // Organized imports
 import { FormContext } from "../contexts/FormContext";
 import { CongratulationsPopupWindow } from "../components";
 
