@@ -86,6 +86,19 @@ router.post("/submit-form", async (req, res) => {
         hireDate: "2022-01-01",
         lastDateWorked: "2022-12-31",
       },
+      {
+        numHours: 300,
+        superviserName: "Sample Supervisor",
+        companyAddress: "123 Sample St",
+        companyCity: "Sample City",
+        companyState: "Sample State",
+        companyZip: "12345",
+        companyCountry: "Sample Country",
+        superviserPhoneNum: "123-456-7890",
+        superviserEmail: "supervisor@example.com",
+        hireDate: "2022-01-01",
+        lastDateWorked: "2022-12-31",
+      },
     ];
   }
   const connection = await createConnection();
