@@ -4,7 +4,6 @@ import upload from "../assets/uploadIcon.svg";
 import { FormContext } from "../contexts/FormContext.tsx";
 
 import styles from "./Step4.module.css";
-import { Dropdown } from "./index.ts";
 
 export type StepProps = {
   next: () => void;
