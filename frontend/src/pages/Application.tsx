@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import arrow from "../assets/arrow.svg";
 import backArrow from "../assets/backArrow.svg";
-import { Button, PathwayTimeline, Step3, Step4 } from "../components/index.ts";
+import { Button, PathwayTimeline, Step1, Step2, Step3, Step4 } from "../components/index.ts";
+import { AuthContext } from "../contexts/AuthContext.tsx";
 import styles from "../stylesheets/Application.module.css";
 
 export type ApplicationProps = {
@@ -11,10 +13,20 @@ export type ApplicationProps = {
 
 export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationProps) => {
   const [pageNum, setPageNum] = useState<0 | 1 | 2 | 3 | 4 | 5>(0);
+  const { isLoggedIn, isLoading } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  // Redirect to login page if not logged in
+  useEffect(() => {
+    if (!isLoggedIn && !isLoading) {
+      navigate("/login");
+    }
+  }, [isLoggedIn, isLoading]);
 
   const next = () => {
     if (pageNum < 5) {
       setPageNum((newPageNum) => (newPageNum + 1) as 0 | 1 | 2 | 3 | 4 | 5);
+      window.scrollTo({ top: 0, behavior: "instant" });
     }
 
     if (pageNum === 5) {
@@ -88,16 +100,8 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
   };
 
   const applicationSteps = {
-    0: (
-      <form id="step1-form" onSubmit={onSubmit}>
-        <div />
-      </form>
-    ),
-    1: (
-      <form id="step2-form" onSubmit={onSubmit}>
-        <div />
-      </form>
-    ),
+    0: <Step1 onSubmit={next} />,
+    1: <Step2 pathNumber={path} onSubmit={next} />,
     2: <Step3 next={next} />,
     3: <Step4 next={next} />,
     4: (
@@ -110,24 +114,27 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
 
   return (
     <div className={styles.pathwayApplicationBase}>
-      <div className={styles.applicationContainer}>
-        <h1 className={styles.title}>Path {path} Application</h1>
+      {pageNum === 0 && (
+        <div className={styles.applicationContainer}>
+          <h1 className={styles.title}>Path {path} Application</h1>
 
-        <div className={styles.pathContent}>{path_descriptions[path]}</div>
-        <div className={styles.centeredContainer}>
-          <Button onClick={undefined}>Retake Prescreening Questionnaire</Button>
+          <div className={styles.pathContent}>{path_descriptions[path]}</div>
+          <div className={styles.centeredContainer}>
+            <Button onClick={undefined}>Retake Prescreening Questionnaire</Button>
+          </div>
+
+          <p className={styles.note}>
+            {" "}
+            If you would like to be sorted into a different pathway, please click above to retake
+            the
+            <br></br>
+            sorting questionnaire. For further inquiries, please reach out to{" "}
+            <a href="mailto:ccidc@ccidc.org" className={styles.red}>
+              <strong>ccidc@ccidc.org</strong>
+            </a>
+          </p>
         </div>
-
-        <p className={styles.note}>
-          {" "}
-          If you would like to be sorted into a different pathway, please click above to retake the
-          <br></br>
-          sorting questionnaire. For further inquiries, please reach out to{" "}
-          <a href="mailto:ccidc@ccidc.org" className={styles.red}>
-            <strong>ccidc@ccidc.org</strong>
-          </a>
-        </p>
-      </div>
+      )}
 
       <div className={styles.formContainer}>
         <PathwayTimeline path={path} progress={pageNum}></PathwayTimeline>
@@ -136,7 +143,12 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
           <button onClick={back} id="a" className={styles.backArrow}>
             <img src={backArrow} id={styles.backArrow} alt="backArrow"></img>
           </button>
-          <button type="submit" form={`step${pageNum + 1}-form`} className={styles.arrow}>
+          <button
+            type="submit"
+            form={`step${pageNum + 1}-form`}
+            onSubmit={next}
+            className={styles.arrow}
+          >
             <img src={arrow} id={styles.arrow} alt="arrow"></img>
           </button>
         </div>

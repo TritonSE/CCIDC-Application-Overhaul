@@ -140,7 +140,7 @@ export const Step4: React.FC<StepProps> = ({ next }: StepProps) => {
                   type="text"
                   id="dropDown"
                   name="dropDown"
-                  value={selectedFelonyCharge}
+                  defaultValue={selectedFelonyCharge}
                   required
                 ></input>
               </label>
@@ -213,7 +213,7 @@ export const Step4: React.FC<StepProps> = ({ next }: StepProps) => {
 
         <div className={styles.formSection}>
           <h2 className={styles.sectionTitle}>
-            Code of Ethics<span className={styles.red}>*</span>
+            Code of Ethics<span className={styles.boldRed}>*</span>
           </h2>
           <p className={styles.note}>
             Please read the{" "}
