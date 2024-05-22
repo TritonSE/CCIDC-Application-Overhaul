@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 import upload from "../assets/uploadIcon.svg";
+import { Dropdown } from "../components/index.ts";
 
 import styles from "./Step4.module.css";
-import { Dropdown } from "./index.ts";
 
 // Pass in Application's next function
 export type StepProps = {

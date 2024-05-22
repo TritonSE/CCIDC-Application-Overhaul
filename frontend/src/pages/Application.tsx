@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import arrow from "../assets/arrow.svg";
 import backArrow from "../assets/backArrow.svg";
-import { Button, PathwayTimeline, Step1, Step2, Step4 } from "../components/index.ts";
+import { Button, PathwayTimeline, Step1, Step2, Step3, Step4 } from "../components/index.ts";
 import { AuthContext } from "../contexts/AuthContext.tsx";
 import styles from "../stylesheets/Application.module.css";
 
@@ -41,6 +41,7 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
   };
 
   // Tests dummy forms
+
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -101,11 +102,7 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
   const applicationSteps = {
     0: <Step1 onSubmit={next} />,
     1: <Step2 pathNumber={path} onSubmit={next} />,
-    2: (
-      <form id="step3-form" onSubmit={onSubmit}>
-        <div />
-      </form>
-    ),
+    2: <Step3 next={next} />,
     3: <Step4 next={next} />,
     4: (
       <form id="step5-form" onSubmit={onSubmit}>
