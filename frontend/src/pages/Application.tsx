@@ -12,6 +12,7 @@ import {
   Step2,
   Step3,
   Step4,
+  Step5,
 } from "../components/index.ts";
 import { AuthContext } from "../contexts/AuthContext.tsx";
 import styles from "../stylesheets/Application.module.css";
@@ -52,19 +53,6 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
   const back = () => {
     if (pageNum > 0) {
       setPageNum((newPageNum) => (newPageNum - 1) as 0 | 1 | 2 | 3 | 4 | 5);
-    }
-  };
-
-  // Tests dummy forms
-
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const form = event.target as HTMLFormElement;
-    if (!form.checkValidity()) {
-      return;
-    } else {
-      next();
     }
   };
 
@@ -119,11 +107,7 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
     1: <Step2 pathNumber={path} onSubmit={next} />,
     2: <Step3 next={next} />,
     3: <Step4 next={next} />,
-    4: (
-      <form id="step5-form" onSubmit={onSubmit}>
-        <div />
-      </form>
-    ),
+    4: <Step5 next={next} />,
     5: <div className={styles.congratulationsModal}></div>,
   };
 
