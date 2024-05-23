@@ -3,7 +3,15 @@ import { useNavigate } from "react-router-dom";
 
 import arrow from "../assets/arrow.svg";
 import backArrow from "../assets/backArrow.svg";
-import { Button, PathwayTimeline, Step1, Step2, Step4 } from "../components/index.ts";
+import {
+  Button,
+  CompleteInOneSittingModal,
+  ConfirmSubmissionModal,
+  PathwayTimeline,
+  Step1,
+  Step2,
+  Step4,
+} from "../components/index.ts";
 import { AuthContext } from "../contexts/AuthContext.tsx";
 import styles from "../stylesheets/Application.module.css";
 
@@ -22,6 +30,8 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
       navigate("/login");
     }
   }, [isLoggedIn, isLoading]);
+  const [isCompleteInOneSittingModalOpen, setIsCompleteInOneSittingModalOpen] = useState(true);
+  const [confirmSubmissionModalOpen, setConfirmSubmissionModalOpen] = useState(false);
 
   const next = () => {
     if (pageNum < 5) {
@@ -30,7 +40,11 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
     }
 
     if (pageNum === 5) {
-      // toggle Congratulations Modal
+      setConfirmSubmissionModalOpen(true);
+    }
+
+    if (pageNum === 5) {
+      setConfirmSubmissionModalOpen(true);
     }
   };
 
@@ -117,6 +131,22 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
 
   return (
     <div className={styles.pathwayApplicationBase}>
+      <CompleteInOneSittingModal
+        path={path}
+        isOpen={isCompleteInOneSittingModalOpen}
+        onClose={() => {
+          setIsCompleteInOneSittingModalOpen(false);
+        }}
+      />
+      <ConfirmSubmissionModal
+        isOpen={confirmSubmissionModalOpen}
+        onClose={() => {
+          setConfirmSubmissionModalOpen(false);
+        }}
+        onSubmit={function (): void {
+          throw new Error("Function not implemented.");
+        }}
+      ></ConfirmSubmissionModal>
       {pageNum === 0 && (
         <div className={styles.applicationContainer}>
           <h1 className={styles.title}>Path {path} Application</h1>
