@@ -2,7 +2,6 @@ import { FormEvent, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../contexts/AuthContext";
-
 import styles from "../stylesheets/Login.module.css";
 
 export function Login() {
