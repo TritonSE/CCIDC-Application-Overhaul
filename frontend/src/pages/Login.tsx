@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../contexts/AuthContext";
 
-import styles from "./Login.module.css";
+import styles from "../stylesheets/Login.module.css";
 
 export function Login() {
   const { isLoggedIn, login } = useContext(AuthContext);
