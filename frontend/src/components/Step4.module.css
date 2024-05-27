@@ -175,16 +175,7 @@ input[type="checkbox"]:hover {
   position: relative;
   left: 15px;
 }
-/* Add if DropDown required. Hides default input, still shows Required warning */
 
 .felonyLabel {
   position: relative;
-}
-.customDropDown {
-  position: absolute;
-  bottom: 0.5rem;
-  left: 0.5rem;
-  /* Forcefully hide */
-  opacity: 0;
-  pointer-events: none;
 }

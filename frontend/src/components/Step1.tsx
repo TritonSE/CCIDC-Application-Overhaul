@@ -171,16 +171,7 @@ export function Step1({ onSubmit }: Step1Props) {
                 options={genders}
                 onSelect={handleGenderSelect}
                 defaultValue={formData.gender || undefined}
-              ></Dropdown>
-              <input
-                className={styles.customDropDown}
-                type="text"
-                id="gender"
-                name="gender"
-                value={formData.gender}
-                onChange={handleInputChange}
-                required
-              ></input>
+              />
             </label>
           </div>
         </div>
@@ -215,16 +206,7 @@ export function Step1({ onSubmit }: Step1Props) {
                 options={devices}
                 onSelect={handlePhoneSelect}
                 defaultValue={formData.deviceType || undefined}
-              ></Dropdown>
-              <input
-                className={styles.customDropDown}
-                type="text"
-                id="deviceType"
-                name="deviceType"
-                value={formData.deviceType}
-                onChange={handleInputChange}
-                required
-              ></input>
+              />
             </label>
           </div>
           <div className={styles.inputBox}>
