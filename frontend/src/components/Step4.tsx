@@ -91,16 +91,9 @@ export const Step4: React.FC<StepProps> = ({ next }: StepProps) => {
 
             <label htmlFor="dropDown" className={styles.label}>
               Have you ever been convicted of a Felony?<span className={styles.red}>*</span>
-              <Dropdown options={["Yes", "No"]} onSelect={handleSelect}></Dropdown>
-              {/* Add if dropDown Required */}
-              <input
-                className={styles.customDropDown}
-                type="text"
-                id="dropDown"
-                name="dropDown"
-                value={selectedFelonyCharge}
-                required
-              ></input>
+              <div className={styles.dropdownContainer}>
+                <Dropdown options={["Yes", "No"]} onSelect={handleSelect} required />
+              </div>
             </label>
           </div>
 
