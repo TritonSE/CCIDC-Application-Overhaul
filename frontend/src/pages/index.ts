@@ -3,6 +3,7 @@ import { Candidates } from "./Candidates.tsx";
 import { Login } from "./Login.tsx";
 import { PrescreeningForm } from "./PrescreeningForm.tsx";
 import { TestCongratulations } from "./TestCongratulations.tsx";
+import { TestModals } from "./TestModals.tsx";
 import { ThankyouForApplying } from "./ThankyouForApplying.tsx";
 export {
   Application,
@@ -11,4 +12,5 @@ export {
   ThankyouForApplying,
   PrescreeningForm,
   Login,
+  TestModals,
 };

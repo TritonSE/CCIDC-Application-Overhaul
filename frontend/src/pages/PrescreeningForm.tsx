@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import buttonStyle from "../components/Button.module.css";
-import { Page } from "../components/index.ts";
+import { Page, RequirementsNotMetModal } from "../components/index.ts";
 import styles from "../stylesheets/PrescreeningForm.module.css";
 
 export function PrescreeningForm() {
@@ -10,12 +10,12 @@ export function PrescreeningForm() {
   const [question1Value, setQuestion1Value] = useState("");
   const [question2Value, setQuestion2Value] = useState("");
   const [question3Value, setQuestion3Value] = useState("");
+  const [isRequirementsNotMetModalOpen, setIsRequirementsNotMetModalOpen] = useState(false);
 
   const pathOne = "/path1";
   const pathTwo = "/path2";
   const pathThree = "/path3";
   const pathFour = "/path4";
-  const pathNQ = "/ThankyouForApplying";
 
   const navigate = useNavigate();
 
@@ -50,15 +50,30 @@ export function PrescreeningForm() {
       question3Value === "op31"
     ) {
       finalPath = pathFour;
-    } else {
-      finalPath = pathNQ;
     }
 
-    navigate(finalPath);
+    if (finalPath !== "") {
+      navigate(finalPath);
+    } else {
+      setIsRequirementsNotMetModalOpen(true);
+    }
   };
+
+  function clearForm() {
+    setQuestion1Value("");
+    setQuestion2Value("");
+    setQuestion3Value("");
+  }
 
   return (
     <Page>
+      <RequirementsNotMetModal
+        isOpen={isRequirementsNotMetModalOpen}
+        onClose={() => {
+          setIsRequirementsNotMetModalOpen(false);
+        }}
+        clearForm={clearForm}
+      />
       <h1 className={styles.title}>Prescreening Questions</h1>
       <p className={styles.body}>
         Please answer the following questions about your experience as an Interior Designer. Based

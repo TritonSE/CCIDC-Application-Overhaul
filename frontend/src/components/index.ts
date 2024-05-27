@@ -3,6 +3,12 @@ import { Button } from "./Button.tsx";
 import { CongratulationsPopupWindow } from "./CongratulationsPopupWindow.tsx";
 import { Dropdown } from "./Dropdown.tsx";
 import { FAQs } from "./FAQs.tsx";
+import {
+  CompleteInOneSittingModal,
+  ConfirmSubmissionModal,
+  CongratulationsModal,
+  RequirementsNotMetModal,
+} from "./Modal.tsx";
 import { NavBar } from "./NavBar.tsx";
 import { Page } from "./Page.tsx";
 import { Pathway } from "./Pathway.tsx";
@@ -24,4 +30,8 @@ export {
   Step4,
   Dropdown,
   CongratulationsPopupWindow,
+  CompleteInOneSittingModal,
+  ConfirmSubmissionModal,
+  CongratulationsModal,
+  RequirementsNotMetModal,
 };

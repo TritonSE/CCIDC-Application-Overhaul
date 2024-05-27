@@ -24,3 +24,9 @@
 .select.unselected {
   color: #b4b4b4;
 }
+
+@media (max-width: 1250px) {
+  .dropDown {
+    width: 330px;
+  }
+}
