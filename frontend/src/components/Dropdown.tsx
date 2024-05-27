@@ -4,7 +4,7 @@ import styles from "./Dropdown.module.css";
 
 type DropdownProps = {
   options: string[];
-  onSelect: (value: string) => void;
+  onSelect?: (value: string) => void;
   required?: boolean;
 };
 
@@ -20,7 +20,7 @@ export function Dropdown(props: DropdownProps) {
     const element = event.target as HTMLSelectElement;
     const option = element.value;
     setSelected(option);
-    onSelect(option);
+    if (onSelect) onSelect(option);
   }
 
   return (
