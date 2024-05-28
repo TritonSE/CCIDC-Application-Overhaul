@@ -44,7 +44,7 @@ type WorkExperience = {
   lastDateWorked: string;
 };
 
-type FormData = {
+export type FormData = {
   firstName: string;
   lastName: string;
   middleName: string;

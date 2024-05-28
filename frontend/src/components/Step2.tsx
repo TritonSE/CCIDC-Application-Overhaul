@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState} from "react";
 
 import caretDown from "../assets/caretdown.svg";
 import caretUp from "../assets/caretup.svg";
@@ -8,17 +8,24 @@ import deleteIconHovered from "../assets/red-delete.svg";
 import upload from "../assets/upload.svg";
 import courseList from "../constants/courses.json";
 import examList from "../constants/exams.json";
+import { FormContext, FormData } from "../contexts/FormContext.tsx";
 
 import styles from "./Steps.module.css";
 import { Dropdown } from "./index.ts";
-
-type setInputType = React.Dispatch<React.SetStateAction<string>>;
 
 export type StepProps = {
   next: () => void;
 };
 
-function SchoolSection({ pathNumber, schoolInput, setSchoolInput, cityInput, setCityInput, stateInput, setStateInput, countryInput, setCountryInput, unitsInput, setUnitsInput, degreeInput, setDegreeInput, schoolStartInput, setSchoolStartInput, schoolEndInput, setSchoolEndInput }: { pathNumber: number,  schoolInput:string, setSchoolInput:setInputType, cityInput:string, setCityInput:setInputType, stateInput:string, setStateInput:setInputType, countryInput:string, setCountryInput:setInputType, unitsInput:string, setUnitsInput:setInputType, degreeInput:string, setDegreeInput:setInputType, schoolStartInput:string, setSchoolStartInput:setInputType, schoolEndInput:string, setSchoolEndInput:setInputType}) {
+const handleInputChange = (setFormData: React.Dispatch<React.SetStateAction<FormData>>) => 
+  (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData(prevData => ({
+      ...prevData,
+      [e.target.name]: e.target.value,
+    }));
+};
+
+function SchoolSection({ pathNumber, formData, setFormData }: { pathNumber:number, formData: FormData, setFormData: React.Dispatch<React.SetStateAction<FormData>> }) {
   const [schools, setSchools] = useState([{ id: 1 }]);
   const [showAddress, setShowAddress] = useState(false);
 
@@ -85,10 +92,8 @@ function SchoolSection({ pathNumber, schoolInput, setSchoolInput, cityInput, set
                       name={`school${index}`}
                       placeholder="Enter School Name"
                       required={isRequired}
-                      value={schoolInput}
-                        onChange={(e) => {
-                          setSchoolInput(e.target.value);
-                      }}
+                      value = {formData.SchoolsAttended[index]?.schoolName}
+                      onChange={handleInputChange(setFormData)}
                     />
                   </label>
                 </div>
@@ -102,10 +107,8 @@ function SchoolSection({ pathNumber, schoolInput, setSchoolInput, cityInput, set
                       name={`city${index}`}
                       placeholder="Enter City"
                       required={isRequired}
-                      value={cityInput}
-                        onChange={(e) => {
-                          setCityInput(e.target.value);
-                      }}
+                      value = {formData.SchoolsAttended[index]?.schoolCity}
+                      onChange={handleInputChange(setFormData)}
                     />
                   </label>
                 </div>
@@ -119,10 +122,8 @@ function SchoolSection({ pathNumber, schoolInput, setSchoolInput, cityInput, set
                       name={`state${index}`}
                       placeholder="Enter State"
                       required={isRequired}
-                      value={stateInput}
-                        onChange={(e) => {
-                          setStateInput(e.target.value);
-                      }}
+                      value = {formData.SchoolsAttended[index]?.schoolState}
+                      onChange={handleInputChange(setFormData)}
                     />
                   </label>
                 </div>
@@ -136,10 +137,8 @@ function SchoolSection({ pathNumber, schoolInput, setSchoolInput, cityInput, set
                       name={`country${index}`}
                       placeholder="Enter Country"
                       required={isRequired}
-                      value={countryInput}
-                        onChange={(e) => {
-                          setCountryInput(e.target.value);
-                      }}
+                      value = {formData.SchoolsAttended[index]?.schoolCountry}
+                      onChange={handleInputChange(setFormData)}
                     />
                   </label>
                 </div>
@@ -153,10 +152,8 @@ function SchoolSection({ pathNumber, schoolInput, setSchoolInput, cityInput, set
                       name={`coreUnits${index}`}
                       placeholder="Enter Number Here"
                       required={isRequired}
-                      value={unitsInput}
-                        onChange={(e) => {
-                          setUnitsInput(e.target.value);
-                      }}
+                      value = {formData.SchoolsAttended[index]?.coreUnits}
+                      onChange={handleInputChange(setFormData)}
                     />
                   </label>
                 </div>
@@ -170,10 +167,8 @@ function SchoolSection({ pathNumber, schoolInput, setSchoolInput, cityInput, set
                       name={`degree${index}`}
                       placeholder="Enter Degree Name"
                       required={isRequired}
-                      value={degreeInput}
-                        onChange={(e) => {
-                          setDegreeInput(e.target.value);
-                      }}
+                      value = {formData.SchoolsAttended[index]?.degreeReceived}
+                      onChange={handleInputChange(setFormData)}
                     />
                   </label>
                 </div>
@@ -188,10 +183,8 @@ function SchoolSection({ pathNumber, schoolInput, setSchoolInput, cityInput, set
                       placeholder="mm/yyyy"
                       pattern="^(0[1-9]|1[0-2])/(19|20)\d{2}$"
                       required={isRequired}
-                      value={schoolStartInput}
-                        onChange={(e) => {
-                          setSchoolStartInput(e.target.value);
-                      }}
+                      value = {formData.SchoolsAttended[index]?.dateStarted}
+                      onChange={handleInputChange(setFormData)}
                     />
                   </label>
                 </div>
@@ -206,10 +199,8 @@ function SchoolSection({ pathNumber, schoolInput, setSchoolInput, cityInput, set
                       placeholder="mm/yyyy"
                       pattern="^(0[1-9]|1[0-2])/(19|20)\d{2}$"
                       required={isRequired}
-                      value={schoolEndInput}
-                        onChange={(e) => {
-                          setSchoolEndInput(e.target.value);
-                      }}
+                      value = {formData.SchoolsAttended[index]?.dateStopped}
+                    onChange={handleInputChange(setFormData)}
                     />
                   </label>
                 </div>
@@ -244,8 +235,7 @@ function SchoolSection({ pathNumber, schoolInput, setSchoolInput, cityInput, set
   );
 }
 
-function ProfessionalAssociationSection( {membershipInput, setMembershipInput, memLevelInput, setMemLevelInput}: {membershipInput:string, setMembershipInput:setInputType, memLevelInput: string, setMemLevelInput: setInputType} ) {
-  const [associations, setAssociations] = useState([{ id: 1 }]);
+function ProfessionalAssociationSection({ formData, setFormData }: { formData: FormData, setFormData: React.Dispatch<React.SetStateAction<FormData>> }) {  const [associations, setAssociations] = useState([{ id: 1 }]);
 
   const addAssociation = () => {
     setAssociations((prevAssociations) => [
@@ -303,10 +293,8 @@ function ProfessionalAssociationSection( {membershipInput, setMembershipInput, m
                       type="text"
                       name={`email${index}`}
                       placeholder="Enter your Membership"
-                      value={membershipInput}
-                        onChange={(e) => {
-                          setMembershipInput(e.target.value);
-                      }}
+                      value = {formData.ProfessionalMemberships[index]?.membershipName}
+                      onChange={handleInputChange(setFormData)}
                     />
                   </label>
                 </div>
@@ -318,10 +306,8 @@ function ProfessionalAssociationSection( {membershipInput, setMembershipInput, m
                       type="text"
                       name={`memLevel${index}`}
                       placeholder="Enter Membership Level"
-                      value={memLevelInput}
-                        onChange={(e) => {
-                          setMemLevelInput(e.target.value);
-                      }}
+                      value = {formData.ProfessionalMemberships[index]?.membershipLevel}
+                      onChange={handleInputChange(setFormData)}
                     />
                   </label>
                 </div>
@@ -334,10 +320,21 @@ function ProfessionalAssociationSection( {membershipInput, setMembershipInput, m
   );
 }
 
-function NationalExamSection({ examInput, setExamInput, examDateInput, setExamDateInput, certNumInput, setCertNumInput }: { examInput: string, setExamInput: setInputType, examDateInput:string, setExamDateInput:setInputType, certNumInput:string, setCertNumInput:setInputType }) {
-
+function NationalExamSection({ formData, setFormData }: { formData: FormData, setFormData: React.Dispatch<React.SetStateAction<FormData>> }) {
+  const [exams, setExams] = useState([{ id: 1 }]);
   const handleExamSelect = (option: string) => {
-    setExamInput(option);
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      courseName: option,
+    }));
+  };
+
+  const addExam = () => {
+    setExams((prevExams) => [...prevExams, { id: prevExams.length + 1 }]);
+  };
+
+  const deleteExam = (idToDelete: number) => {
+    setExams((prevExams) => prevExams.filter((exam) => exam.id !== idToDelete));
   };
 
   return (
@@ -347,74 +344,106 @@ function NationalExamSection({ examInput, setExamInput, examDateInput, setExamDa
           <h2 className={styles.sectionName}>
             National Exam<span className={styles.boldRed}>*</span>
           </h2>
+          <button type="button" className={styles.add} onClick={addExam}>
+            <span>Add</span>
+            <img src={plus} alt="buttonpng" height="14px" />
+          </button>
         </div>
-        <div className={styles.formSectionContainer}>
-          <div className={styles.inputBox}>
-            <label
-              htmlFor="nationalExam"
-              className={`${styles.inputTitle} ${styles.dropdownLabel}`}
-            >
-              National Exam<span className={styles.boldRed}>*</span>
-              <Dropdown options={examList} onSelect={handleExamSelect}></Dropdown>
-              <input
-                className={styles.customDropDown}
-                type="text"
-                id="nationalExam"
-                name="nationalExam"
-                defaultValue={examInput}
-                required
-              ></input>
-            </label>
-          </div>
-          <div className={styles.inputBox}>
-            <label className={styles.inputTitle}>
-              Date of National Exam<span className={styles.boldRed}>*</span>
-              <input
-                className={styles.inputText}
-                name="exam-date"
-                type="text"
-                placeholder="mm/dd/yyyy"
-                pattern="^(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])/(19|20)\d{2}$"
-                required
-                value={examDateInput}
-                  onChange={(e) => {
-                    setExamDateInput(e.target.value);
-                }}
-              />
-            </label>
-          </div>
-          <div className={styles.inputBox}>
-            <label className={styles.inputTitle}>
-              Certificate Number<span className={styles.boldRed}>*</span>
-              <input
-                className={styles.inputText}
-                name="certificate-number"
-                type="text"
-                placeholder="Enter Certificate Number"
-                required
-                value={certNumInput}
-                  onChange={(e) => {
-                    setCertNumInput(e.target.value);
-                }}
-              />
-            </label>
-          </div>
+        {exams
+          .slice()
+          .reverse()
+          .map((exam, index) => (
+            <div className={styles.subSection} key={exam.id}>
+              <div className={styles.titleContainer}>
+                <h3 className={styles.subTitle}>{"Exam " + exam.id}</h3>
+                {exam.id > 1 && (
+                  <button
+                    type="button"
+                    className={styles.deleteButton}
+                    onClick={() => {
+                      deleteExam(exam.id);
+                    }}
+                  >
+                    <img
+                      src={deleteIconHovered}
+                      className={styles.redDelete}
+                      alt="delete-icon-hovered"
+                    />
+                    <img src={deleteIcon} className={styles.greyDelete} alt="delete-icon" />{" "}
+                    <span className={styles.deleteText}>Delete</span>
+                  </button>
+                )}
+              </div>
+              <div className={styles.formSectionContainer}>
+                <div className={styles.inputBox}>
+                  <label
+                    htmlFor={`nationalExam${index}`}
+                    className={`${styles.inputTitle} ${styles.dropdownLabel}`}
+                  >
+                    National Exam<span className={styles.boldRed}>*</span>
+                    <Dropdown options={examList} onSelect={handleExamSelect}></Dropdown>
+                    <input
+                      className={styles.customDropDown}
+                      type="text"
+                      id={`nationalExam${index}`}
+                      name={`nationalExam${index}`}
+                      value = {formData.NationalExams[index]?.examName}
+                      onChange={handleInputChange(setFormData)}
+                    ></input>
+                  </label>
+                </div>
+              <div className={styles.inputBox}>
+                <label className={styles.inputTitle}>
+                  Date of National Exam<span className={styles.boldRed}>*</span>
+                  <input
+                    className={styles.inputText}
+                    name={`nationalExamDate${index}`}
+                    type="text"
+                    id={`nationalExamDate${index}`}
+                    placeholder="mm/dd/yyyy"
+                    pattern="^(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])/(19|20)\d{2}$"
+                    required
+                    value = {formData.NationalExams[index]?.examDate}
+                    onChange={handleInputChange(setFormData)}
+                    
+                  />
+                </label>
+              </div>
+              <div className={styles.inputBox}>
+                <label className={styles.inputTitle}>
+                  Certificate Number<span className={styles.boldRed}>*</span>
+                  <input
+                    className={styles.inputText}
+                      type="text"
+                      id={`certNum${index}`}
+                      name={`certNum${index}`}
+                      value = {formData.NationalExams[index]?.certificateNumber}
+                      onChange={handleInputChange(setFormData)}
+                      required
+                  />
+                </label>
+              </div>
+            </div>
+            <button type="button" className={styles.upload}>
+              Upload Proof of National Exam
+              <img src={upload} className={styles.uploadButton} alt="buttonpng" />
+            </button>
+            </div>
+          ))}
         </div>
-        <button type="button" className={styles.upload}>
-          Upload Proof of National Exam
-          <img src={upload} className={styles.uploadButton} alt="buttonpng" />
-        </button>
-      </div>
       <hr />
     </div>
   );
 }
 
-function ICCCourses({ courseInput, setCourseInput, courseDateInput, setCourseDateInput }: { courseInput: string, setCourseInput: setInputType, courseDateInput: string, setCourseDateInput: setInputType }) {
+function ICCCourses({ formData, setFormData }: { formData: FormData, setFormData: React.Dispatch<React.SetStateAction<FormData>> }) {
   const [courses, setCourses] = useState([{ id: 1 }]);
 
   const handleCourseSelect = (option: string) => {
-    setCourseInput(option);
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      courseName: option,
+    }));
   };
 
   const addCourse = () => {
@@ -477,8 +506,8 @@ function ICCCourses({ courseInput, setCourseInput, courseDateInput, setCourseDat
                       type="text"
                       id={`iccCourse${index}`}
                       name={`iccCourse${index}`}
-                      defaultValue={courseInput}
-                      required
+                      value = {formData.ICCCourses[index]?.courseName}
+                      onChange={handleInputChange(setFormData)}
                     ></input>
                   </label>
                 </div>
@@ -492,10 +521,8 @@ function ICCCourses({ courseInput, setCourseInput, courseDateInput, setCourseDat
                       placeholder="mm/dd/yyyy"
                       pattern="^(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])/(19|20)\d{2}$"
                       required
-                      value={courseDateInput}
-                      onChange={(e) => {
-                        setCourseDateInput(e.target.value);
-                      }}
+                      value={formData.ICCCourses[index]?.courseCompleteDate}
+                      onChange={handleInputChange(setFormData)}
                     />
                   </label>
                 </div>
@@ -514,27 +541,12 @@ function ICCCourses({ courseInput, setCourseInput, courseDateInput, setCourseDat
 
 type Step2Props = {
   pathNumber: number;
-  onSubmit: () => void;
+   onSubmit: () => void;
 };
 
 export function Step2({ pathNumber, onSubmit }: Step2Props) {
 
-  const [courseInput, setCourseInput] = useState("");
-  const [courseDateInput, setCourseDateInput] = useState("");
-  const [examInput, setExamInput] = useState("");
-  const [examDateInput, setExamDateInput] = useState("");
-  const [certNumInput, setCertNumInput] = useState("");
-  const [membershipInput, setMembershipInput] = useState("");
-  const [memLevelInput, setMemLevelInput] = useState("");
-  const [schoolInput, setSchoolInput] = useState("");
-  const [cityInput, setCityInput] = useState("");
-  const [stateInput, setStateInput] = useState("");
-  const [countryInput, setCountryInput] = useState("");
-  const [unitsInput, setUnitsInput] = useState("");
-  const [degreeInput, setDegreeInput] = useState("");
-  const [schoolStartInput, setSchoolStartInput] = useState("");
-  const [schoolEndInput, setSchoolEndInput] = useState("");
-
+  const { formData, setFormData } = useContext(FormContext);
 
   let content;
 
@@ -546,22 +558,22 @@ export function Step2({ pathNumber, onSubmit }: Step2Props) {
   if (pathNumber === 3) {
     content = (
       <>
-        <NationalExamSection examInput={examInput} setExamInput={setExamInput} examDateInput={examDateInput} setExamDateInput={setExamDateInput} certNumInput={certNumInput} setCertNumInput={setCertNumInput}/>
+        <NationalExamSection formData={formData} setFormData={setFormData}/>
       </>
     );
   } else if (pathNumber === 4) {
     content = (
       <>
-        <NationalExamSection examInput={examInput} setExamInput={setExamInput} examDateInput={examDateInput} setExamDateInput={setExamDateInput} certNumInput={certNumInput} setCertNumInput={setCertNumInput}/>
-        <ICCCourses courseInput={courseInput} setCourseInput={setCourseInput} courseDateInput={courseDateInput} setCourseDateInput={setCourseDateInput} />
+        <NationalExamSection formData={formData} setFormData={setFormData}/>
+        <ICCCourses formData={formData} setFormData={setFormData} />
       </>
     );
   }
   return (
     <form id="step2-form" className={styles.formContainer} onSubmit={handleSubmit}>
-      <SchoolSection pathNumber={pathNumber} schoolInput={schoolInput} setSchoolInput={setSchoolInput} cityInput={cityInput} setCityInput={setCityInput} stateInput={stateInput} setStateInput={setStateInput} countryInput={countryInput} setCountryInput={setCountryInput} unitsInput={unitsInput} setUnitsInput={setUnitsInput} degreeInput={degreeInput} setDegreeInput={setDegreeInput} schoolStartInput={schoolStartInput} setSchoolStartInput={setSchoolStartInput} schoolEndInput={schoolEndInput} setSchoolEndInput={setSchoolEndInput} />
+      <SchoolSection pathNumber={pathNumber} formData={formData} setFormData={setFormData}/>
       {content}
-      <ProfessionalAssociationSection membershipInput = {membershipInput} setMembershipInput={setMembershipInput} memLevelInput={memLevelInput} setMemLevelInput={setMemLevelInput}/>
+      <ProfessionalAssociationSection formData={formData} setFormData={setFormData}/>    
     </form>
   );
 }
