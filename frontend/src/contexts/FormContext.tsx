@@ -28,7 +28,7 @@ type NationalExams = {
   certificateNumber: string;
 };
 
-type WorkExperience = {
+export type WorkExperience = {
   designExperience: string;
   numHours: number;
   superviserName: string;
@@ -132,7 +132,23 @@ const initialFormData: FormData = {
   ProfessionalMemberships: [],
   ICCCourses: [],
   NationalExams: [],
-  WorkExperience: [],
+  WorkExperience: [
+    {
+      designExperience: "",
+      numHours: 0,
+      superviserName: "",
+      superviserPhoneNum: "",
+      superviserEmail: "",
+      companyName: "",
+      companyAddress: "",
+      companyCity: "",
+      companyState: "",
+      companyZip: "",
+      companyCountry: "",
+      hireDate: "",
+      lastDateWorked: "",
+    },
+  ],
 };
 
 const initialState: FormContextType = {
