@@ -9,6 +9,10 @@ type AuthState = {
   logout: () => Promise<boolean> | undefined;
 };
 
+type loginVerificationResult = {
+  isValid: boolean;
+};
+
 const initialState: AuthState = {
   isLoggedIn: false,
   isLoading: true,
@@ -39,8 +43,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         method: "GET",
         credentials: "include",
       });
-
-      return response.ok;
+      const result: loginVerificationResult = (await response.json()) as loginVerificationResult;
+      return Boolean(result?.isValid);
     } catch (e) {
       return false;
     }

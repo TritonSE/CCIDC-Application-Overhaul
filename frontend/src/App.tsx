@@ -7,7 +7,6 @@ import {
   Candidates,
   Login,
   PrescreeningForm,
-  TestCongratulations,
   ThankyouForApplying,
 } from "./pages/index.ts";
 
@@ -35,7 +34,6 @@ function App() {
               <Route path="candidates" element={<Candidates />} />
               <Route path="prescreening" element={<PrescreeningForm />} />
               <Route path="ThankyouForApplying" element={<ThankyouForApplying />} />
-              <Route path="TestCongratulations" element={<TestCongratulations />} />
             </Route>
             <Route path="login" element={<Login />} />
           </Routes>

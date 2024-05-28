@@ -1,0 +1,127 @@
+.loginPage {
+  display: flex;
+  background-color: white;
+}
+
+.loginPageSection {
+  width: 50%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+.loginPageSection.signUpSection {
+  background-image: url("../assets/signUpImage.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.sectionContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginSection .sectionContent {
+  max-width: 20rem;
+}
+
+.signUpSection .sectionContent {
+  max-width: 25rem;
+}
+
+.loginSectionHeader {
+  padding: 0;
+  margin: 0;
+  font-size: 2rem;
+  font-family: "Rubik", sans-serif;
+  font-weight: 400;
+  color: var(--color-ccidc-red);
+  text-align: center;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.loginHeader {
+  margin: 0;
+}
+
+.loginFormLabel {
+  color: #6c6c6c;
+  font-size: 0.75rem;
+  font-family: "Rubik", sans-serif;
+}
+
+.loginFormInput {
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font: var(--font-body);
+  border: #d8d8d8 1px solid;
+  border-radius: 0.25rem;
+}
+
+.loginFormSubmit {
+  padding: 0.75rem 0;
+  background-color: var(--color-ccidc-red);
+  font: var(--font-body);
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  width: 100%;
+}
+
+.loginFormSubmit.loading {
+  background-color: var(--color-ccidc-placeholder);
+  cursor: default;
+}
+
+.loginFormLink {
+  margin: 0;
+  text-align: center;
+  color: var(--color-link);
+}
+
+.loginFormLink.forgotPassword {
+  color: var(--color-ccidc-red);
+}
+
+.loginError {
+  color: var(--color-error);
+  font-size: 0.75rem;
+}
+
+.signUpSectionHeader {
+  padding: 0;
+  margin: 0;
+  font-family: "Rubik", sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 72px;
+  letter-spacing: 0.02em;
+  text-align: center;
+  color: white;
+}
+
+.signUpButton {
+  width: 100%;
+  padding: 0.75rem 0;
+  background-color: white;
+  font: var(--font-body);
+  color: var(--color-ccidc-red);
+  border: none;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  text-align: center;
+}
