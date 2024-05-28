@@ -21,6 +21,9 @@ export function NavBar() {
 
   const { isLoggedIn, logout } = useContext(AuthContext);
 
+  const applicantPath = localStorage.getItem("applicantPath");
+  const applyRedirectUrl = applicantPath ? `/path${applicantPath}` : "/prescreening";
+
   return (
     <nav className={styles.navBar}>
       <div className={styles.navContent}>
@@ -83,7 +86,7 @@ export function NavBar() {
             )}
           </li>
           <li>
-            <NavLink className={styles.navLink} to={"/prescreening"}>
+            <NavLink className={styles.navLink} to={applyRedirectUrl}>
               <Button onClick={undefined}>Apply</Button>
             </NavLink>
           </li>

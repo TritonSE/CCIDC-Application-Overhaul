@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import arrow from "../assets/arrow.svg";
 import backArrow from "../assets/backArrow.svg";
@@ -144,7 +145,9 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
 
           <div className={styles.pathContent}>{path_descriptions[path]}</div>
           <div className={styles.centeredContainer}>
-            <Button onClick={undefined}>Retake Prescreening Questionnaire</Button>
+            <NavLink className={styles.navLink} to={"/prescreening"}>
+              <Button onClick={undefined}>Retake Prescreening Questionnaire</Button>
+            </NavLink>
           </div>
 
           <p className={styles.note}>

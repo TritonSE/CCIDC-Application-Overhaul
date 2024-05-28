@@ -103,6 +103,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       });
 
       void setCurrentState();
+      if (response.ok) localStorage.removeItem("applicantPath");
       return response.ok;
     } catch (e) {
       setIsLoading(false);
