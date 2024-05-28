@@ -59,7 +59,7 @@ export function Candidates() {
       </p>
       <div className={styles.centeredContainer}>
         <NavLink className={styles.navLink} to={"/prescreening"}>
-          <Button onClick={null}>Apply Now</Button>
+          <Button onClick={undefined}>Apply Now</Button>
         </NavLink>
       </div>
       <div className={styles.textDivider2}>
@@ -109,7 +109,7 @@ export function Candidates() {
 
       <div className={styles.centeredContainer}>
         <NavLink className={styles.navLink} to={"/prescreening"}>
-          <Button onClick={null}>Discover Your Ideal Pathway</Button>
+          <Button onClick={undefined}>Discover Your Ideal Pathway</Button>
         </NavLink>
       </div>
 

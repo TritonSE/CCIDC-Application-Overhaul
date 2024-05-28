@@ -19,6 +19,8 @@
   --font-body: normal 400 1rem "Rubik", sans-serif;
   --font-nav: "Roboto", sans-serif;
   --font-title-medium: 700 1.75rem "Rubik";
+  --font-error-num: 700 7.5rem "Rubik";
+  --font-error-type: 700 4rem "Rubik";
 }
 
 * {

@@ -1,0 +1,21 @@
+.errorMessageContainer {
+  display: flex;
+}
+
+.errorType {
+  color: var(--color-ccidc-red);
+  font: var(--font-error-num);
+}
+
+.errorReason {
+  color: var(--color-error);
+  font: var(--font-error-type);
+}
+
+.errorMessage {
+  color: var(--color-ccidc-red);
+}
+
+.lightBlue {
+  color: var(--color-ccidc-blue);
+}
