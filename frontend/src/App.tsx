@@ -7,6 +7,7 @@ import {
   Candidates,
   Login,
   PrescreeningForm,
+  RedirectTo404,
   ThankyouForApplying,
 } from "./pages/index.ts";
 
