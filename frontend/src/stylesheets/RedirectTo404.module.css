@@ -1,21 +1,75 @@
 .errorMessageContainer {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
 }
 
 .errorType {
+  margin-top: 1em;
   color: var(--color-red-tertiary);
   font: var(--font-error-num);
 }
 
 .errorReason {
+  margin-top: 0;
   color: var(--color-ccidc-red);
   font: var(--font-error-type);
 }
 
 .errorMessage {
   color: var(--color-red-tertiary);
+  text-align: center;
 }
 
 .lightBlue {
-  color: var(--color-ccidc-blue);
+  color: var(--color-link);
+}
+
+.topLeftRec {
+  position: absolute;
+  width: 498.79px;
+  height: 21.61px;
+  top: 465px;
+  left: -80px;
+  gap: 0px;
+  opacity: 0px;
+  transform: rotate(51deg);
+  background-color: #909090;
+}
+
+.bottomLeftRec {
+  position: absolute;
+  width: 498.79px;
+  height: 21.61px;
+  top: 850px;
+  left: -80px;
+  gap: 0px;
+  opacity: 0px;
+  transform: rotate(-51deg);
+  background-color: #909090;
+}
+
+.topRightRec {
+  position: absolute;
+  width: 498.79px;
+  height: 21.61px;
+  top: 265px;
+  right: -85px;
+  gap: 0px;
+  opacity: 0px;
+  transform: rotate(-51.55deg);
+  background-color: #909090;
+}
+
+.bottomRightRec {
+  position: absolute;
+  width: 490.86px;
+  height: 21.61px;
+  top: 645px;
+  right: -85px;
+  gap: 0px;
+  opacity: 0px;
+  transform: rotate(-130deg);
+  background-color: #909090;
 }

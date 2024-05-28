@@ -12,9 +12,15 @@ export function RedirectTo404() {
           <span className={styles.lightBlue}>
             <a href="">here.</a>
           </span>{" "}
+          <br />
           Please ensure that the URL is correct and try again.
         </p>
       </div>
+
+      <div className={styles.topLeftRec}></div>
+      <div className={styles.bottomLeftRec}></div>
+      <div className={styles.topRightRec}></div>
+      <div className={styles.bottomRightRec}></div>
     </Page>
   );
 }
