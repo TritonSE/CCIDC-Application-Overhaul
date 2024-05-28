@@ -3,17 +3,17 @@
 }
 
 .errorType {
-  color: var(--color-ccidc-red);
+  color: var(--color-red-tertiary);
   font: var(--font-error-num);
 }
 
 .errorReason {
-  color: var(--color-error);
+  color: var(--color-ccidc-red);
   font: var(--font-error-type);
 }
 
 .errorMessage {
-  color: var(--color-ccidc-red);
+  color: var(--color-red-tertiary);
 }
 
 .lightBlue {
