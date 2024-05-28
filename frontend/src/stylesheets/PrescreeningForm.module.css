@@ -21,6 +21,7 @@
 
 .ulprescreening {
   padding-left: 3rem;
+  font: var(--font-heading2);
 }
 
 .centeredContainer {

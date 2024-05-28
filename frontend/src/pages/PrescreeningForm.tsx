@@ -158,15 +158,15 @@ export function PrescreeningForm() {
           <p className={styles.question}>
             2. If you have passed any of the following qualifying National Interior Design Exams,
             please indicate so
-            <ul className={styles.ulprescreening}>
-              <li>ARE</li>
-              <li>CASP</li>
-              <li>LEED - AP (+)</li>
-              <li>NCBDC</li>
-              <li>NCIDQ</li>
-              <li>NKBA - CKBD (+)</li>
-            </ul>
           </p>
+          <ul className={styles.ulprescreening}>
+            <li>ARE</li>
+            <li>CASP</li>
+            <li>LEED - AP (+)</li>
+            <li>NCBDC</li>
+            <li>NCIDQ</li>
+            <li>NKBA - CKBD (+)</li>
+          </ul>
 
           <br />
 
