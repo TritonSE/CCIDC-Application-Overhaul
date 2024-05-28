@@ -89,7 +89,7 @@ input::placeholder {
 
 .inputText {
   width: 100%;
-  padding: 8px 48px 8px 16px;
+  padding: 8px 16px 8px 16px;
   margin-top: 4px;
   font-size: 16px;
   line-height: 24px;
@@ -228,4 +228,27 @@ ul {
 
 .dropdownLabel {
   position: relative;
+}
+
+.uploadVerificationButton {
+  width: 24px;
+  height: 24px;
+}
+
+.uploadVerification {
+  font-family: "Rubik";
+  font-size: 15px;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  border-radius: 4px;
+  height: 48px;
+  width: 338px;
+  text-align: left;
+  align-items: center;
+  display: flex;
+  margin-top: 1.5rem;
+  padding: 16px;
+  justify-content: space-between;
+  margin-bottom: 2em;
 }
