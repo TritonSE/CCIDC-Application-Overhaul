@@ -11,15 +11,8 @@
   padding-bottom: 30px;
 }
 
-@media (max-width: 1300px) {
-  .formRow {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .formRow .input {
-    width: 330px;
-  }
+.formRow .dropdownContainer {
+  width: 460px;
 }
 
 .sectionTitle {
@@ -63,6 +56,21 @@
 
 .input option {
   color: var(--color-ccidc-placeholder);
+}
+
+@media (max-width: 1300px) {
+  .formRow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .formRow .input {
+    width: 330px;
+  }
+
+  .formRow .dropdownContainer {
+    width: 330px;
+  }
 }
 
 .line {

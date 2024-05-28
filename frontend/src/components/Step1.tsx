@@ -13,16 +13,6 @@ type Step1Props = {
 export function Step1({ onSubmit }: Step1Props) {
   const [email, setEmail] = useState<string>("");
   const [confirmEmail, setConfirmEmail] = useState<string>("");
-  const [gender, setGender] = useState("");
-  const [phoneType, setPhoneType] = useState("");
-
-  const handleGenderSelect = (option: string) => {
-    setGender(option);
-  };
-
-  const handlePhoneSelect = (option: string) => {
-    setPhoneType(option);
-  };
 
   const handleConfirmEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setConfirmEmail(e.target.value);
@@ -144,15 +134,7 @@ export function Step1({ onSubmit }: Step1Props) {
           <div className={styles.inputBox}>
             <label htmlFor="gender" className={`${styles.inputTitle} ${styles.dropdownLabel}`}>
               Gender<span className={styles.boldRed}>*</span>
-              <Dropdown options={genders} onSelect={handleGenderSelect}></Dropdown>
-              <input
-                className={styles.customDropDown}
-                type="text"
-                id="gender"
-                name="gender"
-                defaultValue={gender}
-                required
-              ></input>
+              <Dropdown options={genders} required />
             </label>
           </div>
         </div>
@@ -185,15 +167,7 @@ export function Step1({ onSubmit }: Step1Props) {
           <div className={styles.inputBox}>
             <label htmlFor="phoneType" className={`${styles.inputTitle} ${styles.dropdownLabel}`}>
               Phone Type<span className={styles.boldRed}>*</span>
-              <Dropdown options={devices} onSelect={handlePhoneSelect}></Dropdown>
-              <input
-                className={styles.customDropDown}
-                type="text"
-                id="phoneType"
-                name="phoneType"
-                defaultValue={phoneType}
-                required
-              ></input>
+              <Dropdown options={devices} required />
             </label>
           </div>
           <div className={styles.inputBox}>
