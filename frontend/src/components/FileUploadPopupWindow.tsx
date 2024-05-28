@@ -29,7 +29,20 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({
     }
   }, [fileIds, areFilesUploadedProp]);
 
-  const openPopup = () => {
+  const deleteAllFiles = async () => {
+    for (const fileId of fileIds) {
+      await fetch(`http://localhost:3001/file/delete/file/${fileId}`, {
+        method: "DELETE",
+      });
+    }
+    setFileIds([]);
+    setSelectedFiles([]);
+  };
+
+  const openPopup = async () => {
+    if (fileIds.length > 0) {
+      await deleteAllFiles();
+    }
     setIsOpen(true);
     setTotalFilesCount(0);
     setUploadedCount(0);
@@ -167,7 +180,7 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({
       });
   }
 
-  const areFilesUploaded = Object.keys(fileIds).length > 0;
+  const areFilesUploaded = fileIds.length > 0;
 
   return (
     <>
