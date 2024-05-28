@@ -3,11 +3,10 @@ import dotenv from "dotenv";
 import express from "express";
 import mysql from "mysql";
 
-import fileRoutes from "./src/routes/fileRoutes";
-import loginRoutes from "./src/routes/loginRoutes";
-import formRoutes from "./src/routes/formRoutes";
-
 import mongoCreds from "./src/mongoCreds.json";
+import fileRoutes from "./src/routes/fileRoutes";
+import formRoutes from "./src/routes/formRoutes";
+import loginRoutes from "./src/routes/loginRoutes";
 
 dotenv.config();
 

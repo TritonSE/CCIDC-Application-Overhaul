@@ -1,5 +1,6 @@
-const express = require("express");
 const bodyParser = require("body-parser");
+const express = require("express");
+
 const db = require("./db");
 
 const app = express();
@@ -100,7 +101,9 @@ app.post("/submit-form", (req, res) => {
   res.status(201).json({ message: "Form data saved successfully" });
 });
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
 /* 
 import React, { useContext } from 'react';

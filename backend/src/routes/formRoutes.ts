@@ -1,5 +1,6 @@
 import { Router } from "express";
 import mysql from "mysql";
+
 import mongoCreds from "../mongoCreds.json";
 
 const { createConnection } = require("../helpers/db");
@@ -128,7 +129,7 @@ router.post("/submit-form", async (req, res) => {
   let nextCeuId = (maxCeuId || 0) + 1;
   let nextNationalExamId = (maxNationalExamId || 0) + 1;
   let nextExperienceId = (maxExperienceId || 0) + 1;
-  let nextIdexOtherId = (maxIdexOtherId || 0) + 1;
+  const nextIdexOtherId = (maxIdexOtherId || 0) + 1;
   let nextPhoneId = (maxPhoneId || 0) + 1;
 
   const newAddress = {
@@ -273,34 +274,37 @@ router.post("/submit-form", async (req, res) => {
     // Insert into cid_phones
     const insertPhoneQuery = "INSERT INTO cid_phones SET ?";
 
-    db.query(insertPhoneQuery, newPhones, (err, result) => {
+    db.query(insertPhoneQuery, newPhones, (err) => {
       if (err) {
-        return db.rollback(() => {
+        db.rollback(() => {
           console.error("Error inserting new phones:", err);
           return res.status(500).send("Error saving phones");
         });
+        return;
       }
 
       // Insert into cid_addresses
       const insertAddressQuery = "INSERT INTO cid_addresses SET ?";
 
-      db.query(insertAddressQuery, newAddress, (err, result) => {
+      db.query(insertAddressQuery, newAddress, (err) => {
         if (err) {
-          return db.rollback(() => {
+          db.rollback(() => {
             console.error("Error inserting new address:", err);
             return res.status(500).send("Error saving address");
           });
+          return;
         }
 
         // Insert into cid_emails
         const insertEmailQuery = "INSERT INTO cid_emails SET ?";
 
-        db.query(insertEmailQuery, newEmail, (err, result) => {
+        db.query(insertEmailQuery, newEmail, (err) => {
           if (err) {
-            return db.rollback(() => {
+            db.rollback(() => {
               console.error("Error inserting new email:", err);
               return res.status(500).send("Error saving email");
             });
+            return;
           }
 
           // Insert into idex_schools
@@ -333,12 +337,13 @@ router.post("/submit-form", async (req, res) => {
             ],
           );
 
-          db.query(insertSchoolQuery, [schoolValues], (err, result) => {
+          db.query(insertSchoolQuery, [schoolValues], (err) => {
             if (err) {
-              return db.rollback(() => {
+              db.rollback(() => {
                 console.error("Error inserting new school:", err);
                 return res.status(500).send("Error saving school data");
               });
+              return;
             }
 
             // Insert into cid_pro_assoc_memberships
@@ -361,12 +366,13 @@ router.post("/submit-form", async (req, res) => {
               ],
             );
 
-            db.query(insertProMembershipQuery, [proMembershipValues], (err, result) => {
+            db.query(insertProMembershipQuery, [proMembershipValues], (err) => {
               if (err) {
-                return db.rollback(() => {
+                db.rollback(() => {
                   console.error("Error inserting new professional membership:", err);
                   return res.status(500).send("Error saving professional membership");
                 });
+                return;
               }
 
               // Insert into cid_ceus
@@ -401,12 +407,13 @@ router.post("/submit-form", async (req, res) => {
                 ],
               );
 
-              db.query(insertCeuQuery, [ceuValues], (err, result) => {
+              db.query(insertCeuQuery, [ceuValues], (err) => {
                 if (err) {
-                  return db.rollback(() => {
+                  db.rollback(() => {
                     console.error("Error inserting new CEUs:", err);
                     return res.status(500).send("Error saving CEUs");
                   });
+                  return;
                 }
 
                 // Insert into cid_national_exams
@@ -429,12 +436,13 @@ router.post("/submit-form", async (req, res) => {
                   ],
                 );
 
-                db.query(insertNationalExamQuery, [nationalExamValues], (err, result) => {
+                db.query(insertNationalExamQuery, [nationalExamValues], (err) => {
                   if (err) {
-                    return db.rollback(() => {
+                    db.rollback(() => {
                       console.error("Error inserting new national exams:", err);
                       return res.status(500).send("Error saving national exams");
                     });
+                    return;
                   }
 
                   // Insert into idex_experience
@@ -479,43 +487,47 @@ router.post("/submit-form", async (req, res) => {
                     ],
                   );
 
-                  db.query(insertExperienceQuery, [experienceValues], (err, result) => {
+                  db.query(insertExperienceQuery, [experienceValues], () => {
                     if (err) {
-                      return db.rollback(() => {
+                      db.rollback(() => {
                         console.error("Error inserting new experiences:", err);
                         return res.status(500).send("Error saving experiences");
                       });
+                      return;
                     }
 
                     // Insert into idex_other
                     const insertIdexOtherQuery = "INSERT INTO idex_other SET ?";
 
-                    db.query(insertIdexOtherQuery, newIdexOther, (err, result) => {
+                    db.query(insertIdexOtherQuery, newIdexOther, () => {
                       if (err) {
-                        return db.rollback(() => {
+                        db.rollback(() => {
                           console.error("Error inserting into idex_other:", err);
                           return res.status(500).send("Error saving other data");
                         });
+                        return;
                       }
 
                       // Insert into cid_members
                       const insertMemberQuery = "INSERT INTO cid_members SET ?";
 
-                      db.query(insertMemberQuery, newMember, (err, result) => {
+                      db.query(insertMemberQuery, newMember, () => {
                         if (err) {
-                          return db.rollback(() => {
+                          db.rollback(() => {
                             console.error("Error inserting into cid_members:", err);
                             return res.status(500).send("Error saving member data");
                           });
+                          return;
                         }
 
                         // Commit the transaction
-                        db.commit((err) => {
+                        db.commit(() => {
                           if (err) {
-                            return db.rollback(() => {
+                            db.rollback(() => {
                               console.error("Error committing transaction:", err);
                               return res.status(500).send("Error saving form data");
                             });
+                            return;
                           }
 
                           res.status(200).send("Form data saved successfully");
