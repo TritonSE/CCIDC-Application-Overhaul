@@ -111,7 +111,7 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
   const applicationSteps = {
     0: <Step1 onSubmit={next} />,
     1: <Step2 pathNumber={path} onSubmit={next} />,
-    2: <Step3 next={next} />,
+    2: <Step3 pathNumber={path} next={next} />,
     3: <Step4 next={next} />,
     4: (
       <form id="step5-form" onSubmit={onSubmit}>
