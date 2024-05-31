@@ -252,3 +252,8 @@ ul {
   justify-content: space-between;
   margin-bottom: 2em;
 }
+
+.lastDateComment {
+  font-size: 10px !important;
+  color: #909090;
+}
