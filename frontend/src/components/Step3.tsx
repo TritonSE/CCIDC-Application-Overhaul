@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import deleteIcon from "../assets/deleteIcon.svg";
@@ -67,6 +67,12 @@ function WorkExperienceSection({ pathNumber }: { pathNumber: number }) {
 
   const isRequired = [2, 3, 4].includes(pathNumber);
 
+  useEffect(() => {
+    if (isRequired && formData.WorkExperience.length === 0) {
+      addWorkExperience();
+    }
+  }, [isRequired, formData.WorkExperience.length]);
+
   return (
     <div className={styles.formSection}>
       <div className={styles.titleContainer}>
@@ -86,7 +92,7 @@ function WorkExperienceSection({ pathNumber }: { pathNumber: number }) {
             <div className={styles.subSection} key={index}>
               <div className={styles.titleContainer}>
                 <h3 className={styles.subTitle}>{"Experience " + (index + 1)}</h3>
-                {index > 0 && (
+                {!(isRequired && index === 0) && (
                   <button
                     type="button"
                     className={styles.deleteButton}
@@ -108,14 +114,13 @@ function WorkExperienceSection({ pathNumber }: { pathNumber: number }) {
               <div className={styles.formSectionContainer}>
                 <div className={styles.inputBox}>
                   <label className={styles.inputTitle}>
-                    Recent diversified design experience
-                    {isRequired && <span className={styles.boldRed}>*</span>}
+                    Recent diversified design experience<span className={styles.boldRed}>*</span>
                     <input
                       className={styles.inputText}
                       type="text"
                       name={`designExperience${index}`}
                       placeholder="Enter Diversified Design Experience "
-                      required={isRequired}
+                      required
                       value={formData.WorkExperience[index]?.designExperience || ""}
                       onChange={(e) => {
                         handleInputChange(index, "designExperience", e.target.value);
@@ -126,13 +131,13 @@ function WorkExperienceSection({ pathNumber }: { pathNumber: number }) {
                 <div className={styles.inputBox}>
                   <label className={styles.inputTitle}>
                     Company Name
-                    {isRequired && <span className={styles.boldRed}>*</span>}
+                    <span className={styles.boldRed}>*</span>
                     <input
                       className={styles.inputText}
                       type="text"
                       name={`companyName${index}`}
                       placeholder="Enter Company Name"
-                      required={isRequired}
+                      required
                       value={formData.WorkExperience[index]?.companyName || ""}
                       onChange={(e) => {
                         handleInputChange(index, "companyName", e.target.value);
@@ -143,13 +148,13 @@ function WorkExperienceSection({ pathNumber }: { pathNumber: number }) {
                 <div className={styles.inputBox}>
                   <label className={styles.inputTitle}>
                     Name of Supervisor to Contact
-                    {isRequired && <span className={styles.boldRed}>*</span>}
+                    <span className={styles.boldRed}>*</span>
                     <input
                       className={styles.inputText}
                       type="text"
                       name={`superviserName${index}`}
                       placeholder="Enter Supervisor Name"
-                      required={isRequired}
+                      required
                       value={formData.WorkExperience[index]?.superviserName || ""}
                       onChange={(e) => {
                         handleInputChange(index, "superviserName", e.target.value);
@@ -160,13 +165,13 @@ function WorkExperienceSection({ pathNumber }: { pathNumber: number }) {
                 <div className={styles.inputBox}>
                   <label className={styles.inputTitle}>
                     How many hours per week did you work (on average)?
-                    {isRequired && <span className={styles.boldRed}>*</span>}
+                    <span className={styles.boldRed}>*</span>
                     <input
                       className={styles.inputText}
                       type="number"
                       name={`numHours${index}`}
                       placeholder="Enter Hours per week"
-                      required={isRequired}
+                      required
                       value={formData.WorkExperience[index]?.numHours || ""}
                       onChange={(e) => {
                         handleInputChange(index, "numHours", e.target.value);
@@ -177,13 +182,13 @@ function WorkExperienceSection({ pathNumber }: { pathNumber: number }) {
                 <div className={styles.inputBox}>
                   <label className={styles.inputTitle}>
                     Supervisor&apos;s Email Address
-                    {isRequired && <span className={styles.boldRed}>*</span>}
+                    <span className={styles.boldRed}>*</span>
                     <input
                       className={styles.inputText}
                       type="email"
                       name={`superviserEmail${index}`}
                       placeholder="Enter Supervisor's Email Address"
-                      required={isRequired}
+                      required
                       value={formData.WorkExperience[index]?.superviserEmail || ""}
                       onChange={(e) => {
                         handleInputChange(index, "superviserEmail", e.target.value);
@@ -194,14 +199,14 @@ function WorkExperienceSection({ pathNumber }: { pathNumber: number }) {
                 <div className={styles.inputBox}>
                   <label className={styles.inputTitle}>
                     Supervisor&apos;s Phone Number
-                    {isRequired && <span className={styles.boldRed}>*</span>}
+                    <span className={styles.boldRed}>*</span>
                     <input
                       className={styles.inputText}
                       type="tel"
                       pattern="^\d+$"
                       name={`superviserPhoneNum${index}`}
                       placeholder="Enter Phone Number"
-                      required={isRequired}
+                      required
                       value={formData.WorkExperience[index]?.superviserPhoneNum || ""}
                       onChange={(e) => {
                         handleInputChange(index, "superviserPhoneNum", e.target.value);
@@ -211,12 +216,12 @@ function WorkExperienceSection({ pathNumber }: { pathNumber: number }) {
                 </div>
                 <div className={styles.inputBox}>
                   <label className={styles.inputTitle}>
-                    Address {isRequired && <span className={styles.boldRed}>*</span>}
+                    Address <span className={styles.boldRed}>*</span>
                     <input
                       className={styles.inputText}
                       type="text"
                       placeholder="Enter Address"
-                      required={isRequired}
+                      required
                       name={`companyAddress${index}`}
                       autoComplete="street-address"
                       value={formData.WorkExperience[index]?.companyAddress || ""}
@@ -228,13 +233,13 @@ function WorkExperienceSection({ pathNumber }: { pathNumber: number }) {
                 </div>
                 <div className={styles.inputBox}>
                   <label className={styles.inputTitle}>
-                    City {isRequired && <span className={styles.boldRed}>*</span>}
+                    City <span className={styles.boldRed}>*</span>
                     <input
                       className={styles.inputText}
                       type="text"
                       placeholder="Enter City"
                       name={`companyCity${index}`}
-                      required={isRequired}
+                      required
                       value={formData.WorkExperience[index]?.companyCity || ""}
                       onChange={(e) => {
                         handleInputChange(index, "companyCity", e.target.value);
@@ -244,13 +249,13 @@ function WorkExperienceSection({ pathNumber }: { pathNumber: number }) {
                 </div>
                 <div className={styles.inputBox}>
                   <label className={styles.inputTitle}>
-                    State {isRequired && <span className={styles.boldRed}>*</span>}
+                    State <span className={styles.boldRed}>*</span>
                     <input
                       className={styles.inputText}
                       type="text"
                       placeholder="Enter State"
                       name={`companyState${index}`}
-                      required={isRequired}
+                      required
                       value={formData.WorkExperience[index]?.companyState || ""}
                       onChange={(e) => {
                         handleInputChange(index, "companyState", e.target.value);
@@ -260,13 +265,13 @@ function WorkExperienceSection({ pathNumber }: { pathNumber: number }) {
                 </div>
                 <div className={styles.inputBox}>
                   <label className={styles.inputTitle}>
-                    Zip {isRequired && <span className={styles.boldRed}>*</span>}
+                    Zip <span className={styles.boldRed}>*</span>
                     <input
                       className={styles.inputText}
                       type="text"
                       placeholder="Enter Zip"
                       name={`companyZip${index}`}
-                      required={isRequired}
+                      required
                       value={formData.WorkExperience[index]?.companyZip || ""}
                       onChange={(e) => {
                         handleInputChange(index, "companyZip", e.target.value);
@@ -276,13 +281,13 @@ function WorkExperienceSection({ pathNumber }: { pathNumber: number }) {
                 </div>
                 <div className={styles.inputBox}>
                   <label className={styles.inputTitle}>
-                    Country {isRequired && <span className={styles.boldRed}>*</span>}
+                    Country <span className={styles.boldRed}>*</span>
                     <input
                       className={styles.inputText}
                       type="text"
                       placeholder="Enter Country"
                       name={`companyCountry${index}`}
-                      required={isRequired}
+                      required
                       autoComplete="country"
                       value={formData.WorkExperience[index]?.companyCountry || ""}
                       onChange={(e) => {
@@ -294,14 +299,14 @@ function WorkExperienceSection({ pathNumber }: { pathNumber: number }) {
                 <div className={styles.inputBox}>
                   <label className={styles.inputTitle}>
                     Hire Date
-                    {isRequired && <span className={styles.boldRed}>*</span>}
+                    <span className={styles.boldRed}>*</span>
                     <input
                       className={styles.inputText}
                       type="text"
                       name={`hireDate${index}`}
                       placeholder="mm/dd/yyyy"
                       pattern="^(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])/(19|20)\d{2}$"
-                      required={isRequired}
+                      required
                       value={formData.WorkExperience[index]?.hireDate || ""}
                       onChange={(e) => {
                         handleInputChange(index, "hireDate", e.target.value);
@@ -312,20 +317,23 @@ function WorkExperienceSection({ pathNumber }: { pathNumber: number }) {
                 <div className={styles.inputBox}>
                   <label className={styles.inputTitle}>
                     Last Date Worked
-                    {isRequired && <span className={styles.boldRed}>*</span>}
+                    <span className={styles.boldRed}>*</span>
                     <input
                       className={styles.inputText}
                       type="text"
                       name={`lastDateWorked${index}`}
                       placeholder="mm/dd/yyyy"
                       pattern="^(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])/(19|20)\d{2}$"
-                      required={isRequired}
+                      required
                       value={formData.WorkExperience[index]?.lastDateWorked || ""}
                       onChange={(e) => {
                         handleInputChange(index, "lastDateWorked", e.target.value);
                       }}
                     />
                   </label>
+                  <small className={styles.lastDateComment}>
+                    If working here now, please put the current date
+                  </small>
                 </div>
               </div>
             </div>
@@ -346,7 +354,6 @@ export const Step3: React.FC<StepProps> = ({ pathNumber, next }: StepProps) => {
     }));
   };
 
-  // Checks if all Required Inputs are filled before moving on to next step
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 

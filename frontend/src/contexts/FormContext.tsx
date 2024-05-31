@@ -132,23 +132,7 @@ const initialFormData: FormData = {
   ProfessionalMemberships: [],
   ICCCourses: [],
   NationalExams: [],
-  WorkExperience: [
-    {
-      designExperience: "",
-      numHours: 0,
-      superviserName: "",
-      superviserPhoneNum: "",
-      superviserEmail: "",
-      companyName: "",
-      companyAddress: "",
-      companyCity: "",
-      companyState: "",
-      companyZip: "",
-      companyCountry: "",
-      hireDate: "",
-      lastDateWorked: "",
-    },
-  ],
+  WorkExperience: [],
 };
 
 const initialState: FormContextType = {
