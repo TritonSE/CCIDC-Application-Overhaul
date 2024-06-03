@@ -20,7 +20,7 @@ export type ApplicationProps = {
 };
 
 export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationProps) => {
-  const [pageNum, setPageNum] = useState<0 | 1 | 2 | 3 | 4 | 5>(0);
+  const [pageNum, setPageNum] = useState<0 | 1 | 2 | 3 | 4>(0);
   const { isLoggedIn, isLoading } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -34,23 +34,19 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
   const [confirmSubmissionModalOpen, setConfirmSubmissionModalOpen] = useState(false);
 
   const next = () => {
-    if (pageNum < 5) {
-      setPageNum((newPageNum) => (newPageNum + 1) as 0 | 1 | 2 | 3 | 4 | 5);
+    if (pageNum < 4) {
+      setPageNum((newPageNum) => (newPageNum + 1) as 0 | 1 | 2 | 3 | 4);
       window.scrollTo({ top: 0, behavior: "instant" });
     }
 
-    if (pageNum === 5) {
-      setConfirmSubmissionModalOpen(true);
-    }
-
-    if (pageNum === 5) {
+    if (pageNum === 4) {
       setConfirmSubmissionModalOpen(true);
     }
   };
 
   const back = () => {
     if (pageNum > 0) {
-      setPageNum((newPageNum) => (newPageNum - 1) as 0 | 1 | 2 | 3 | 4 | 5);
+      setPageNum((newPageNum) => (newPageNum - 1) as 0 | 1 | 2 | 3 | 4);
     }
   };
 
