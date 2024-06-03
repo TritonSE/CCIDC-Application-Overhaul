@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 
 import cartIcon from "../assets/cart.svg";
 import logo from "../assets/logo.svg";
-import searchIcon from "../assets/search.svg";
 import { AuthContext } from "../contexts/AuthContext.tsx";
 
 import styles from "./NavBar.module.css";
@@ -17,6 +16,7 @@ export function NavBar() {
     resources: "https://ccidc.org/", // resources nav item on ccidc.org does not have link address
     contactUs: "https://ccidc.org/contact-ccidc/",
     login: "https://ccidc.org/wp-login.php",
+    payment: "https://ccidc.org/product-category/idex/",
   };
 
   const { isLoggedIn, logout } = useContext(AuthContext);
@@ -65,13 +65,11 @@ export function NavBar() {
           </li>
           {isLoggedIn && (
             <li>
-              <img src={cartIcon} className={styles.navIcon} alt="shop"></img>
+              <a href={destinations.payment}>
+                <img src={cartIcon} className={styles.navIcon} alt="shop"></img>
+              </a>
             </li>
           )}
-
-          <li>
-            <img src={searchIcon} className={styles.navIcon} alt="search"></img>
-          </li>
 
           <li>
             {isLoggedIn ? (
