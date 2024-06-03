@@ -9,7 +9,7 @@ import styles from "./PathwayTimeline.module.css";
 type TimelinePointProps = {
   completed: boolean;
   inProgress: boolean;
-  children: string;
+  children: React.ReactNode;
 };
 function TimelinePoint(props: TimelinePointProps) {
   const { completed, inProgress, children } = props;
@@ -39,7 +39,7 @@ function TimelinePoint(props: TimelinePointProps) {
   );
 }
 
-type PathwayProps = { path: 1 | 2 | 3 | 4; progress: 0 | 1 | 2 | 3 | 4 | 5 };
+type PathwayProps = { path: 1 | 2 | 3 | 4; progress: 0 | 1 | 2 | 3 | 4 };
 export function PathwayTimeline(props: PathwayProps) {
   const { path, progress } = props;
 
@@ -47,7 +47,7 @@ export function PathwayTimeline(props: PathwayProps) {
     <div className={styles.pathwayContainer}>
       <h2 className={styles.timelineHeader}>Path {path} Application</h2>
       <p className={styles.timelineDescription}>
-        You must complete all 5 steps in order for your application to be reviewed and to qualify
+        You must complete all 4 steps in order for your application to be reviewed and to qualify
         for examination.
       </p>
 
@@ -64,9 +64,6 @@ export function PathwayTimeline(props: PathwayProps) {
           </TimelinePoint>
           <TimelinePoint completed={progress > 3} inProgress={progress === 3}>
             Additional Information
-          </TimelinePoint>
-          <TimelinePoint completed={progress > 4} inProgress={progress === 4}>
-            Payment Information
           </TimelinePoint>
           <hr className={styles.timelineLine} />
         </div>
