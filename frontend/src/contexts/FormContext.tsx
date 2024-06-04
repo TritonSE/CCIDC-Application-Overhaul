@@ -82,6 +82,8 @@ type FormData = {
   ICCCourses: ICCCourses[];
   NationalExams: NationalExams[];
   WorkExperience: WorkExperience[];
+
+  applicantPath: "1" | "2" | "3" | "4" | "";
 };
 
 type FormContextType = {
@@ -127,6 +129,8 @@ const initialFormData: FormData = {
   ICCCourses: [],
   NationalExams: [],
   WorkExperience: [],
+
+  applicantPath: "",
 };
 
 const initialState: FormContextType = {
