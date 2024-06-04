@@ -74,7 +74,7 @@ type FormData = {
   certificationExam: string;
   dateOfExam: string;
   licenseNumber: string;
-  dateCertified: string;
+  dateCertifiedExpires: string;
   convictedOfFelony: string;
   extraExplanation: string;
   readRules: boolean;
@@ -121,7 +121,7 @@ const initialFormData: FormData = {
   certificationExam: "",
   dateOfExam: "",
   licenseNumber: "",
-  dateCertified: "",
+  dateCertifiedExpires: "",
   convictedOfFelony: "",
   extraExplanation: "",
   readRules: false,

@@ -101,14 +101,14 @@ export const Step4: React.FC<StepProps> = ({ next }: StepProps) => {
             </div>
 
             <div className={styles.inputBox}>
-              <label htmlFor="dateCertified" className={styles.inputTitle}>
+              <label htmlFor="dateCertifiedExpires" className={styles.inputTitle}>
                 Date Certified/Registered/License Expires
                 <input
                   className={styles.inputText}
                   type="text"
-                  name="dateCertified"
-                  id="dateCertified"
-                  value={formData.dateCertified}
+                  name="dateCertifiedExpires"
+                  id="dateCertifiedExpires"
+                  value={formData.dateCertifiedExpires}
                   onChange={handleInputChange}
                   pattern="^(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])/(19|20)\d{2}$"
                   placeholder="Enter Date Certified/Registered/License Expires"
