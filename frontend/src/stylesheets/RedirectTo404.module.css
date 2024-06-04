@@ -1,0 +1,81 @@
+.errorMessageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+
+.errorType {
+  margin-top: 1.5em;
+  color: var(--color-red-tertiary);
+  font: var(--font-error-num);
+}
+
+.errorReason {
+  margin-top: 0;
+  color: var(--color-ccidc-red);
+  font: var(--font-error-type);
+}
+
+.errorMessage {
+  color: var(--color-red-tertiary);
+  text-align: center;
+}
+
+.lightBlue {
+  color: var(--color-ccidc-blue);
+}
+
+.leftCorner {
+  width: 100%;
+}
+
+.rightCorner {
+  width: 100%;
+}
+
+.topLeftRec {
+  position: absolute;
+  width: 600px;
+  height: 40px;
+  top: 465px;
+  left: -125px;
+  gap: 0px;
+  opacity: 0px;
+  transform: rotate(50deg);
+  background-color: #b4b4b4;
+}
+
+.bottomLeftRec {
+  position: absolute;
+  width: 500px;
+  height: 40px;
+  top: 848px;
+  left: -95px;
+  gap: 0px;
+  opacity: 0px;
+  transform: rotate(-40deg);
+  background-color: #b4b4b4;
+}
+
+.topRightRec {
+  position: absolute;
+  width: 500px;
+  height: 40px;
+  top: 275px;
+  right: -71px;
+  transform: rotate(-40deg);
+  background-color: #6c6c6c;
+  overflow: hidden;
+}
+
+.bottomRightRec {
+  position: absolute;
+  width: 600px;
+  height: 40px;
+  top: 646.5px;
+  right: -115px;
+  transform: rotate(-135deg);
+  background-color: #6c6c6c;
+  overflow: hidden;
+}

@@ -10,6 +10,7 @@
   --color-accent: #b4b4b4;
   --color-error: #fc3030;
   --color-red-secondary: #ce2e21;
+  --color-red-tertiary: #782420;
   --color-shadow: #d8d8d8;
   --color-link: #2a61bb;
   --font-title: normal bold 2rem "Rubik", sans-serif;
@@ -19,6 +20,8 @@
   --font-body: normal 400 1rem "Rubik", sans-serif;
   --font-nav: "Roboto", sans-serif;
   --font-title-medium: 700 1.75rem "Rubik";
+  --font-error-num: 700 7.5rem "Rubik";
+  --font-error-type: 700 4rem "Rubik";
 }
 
 * {
