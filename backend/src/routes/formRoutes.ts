@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { format } from "date-fns";
 import mysql from "mysql";
 
 import mongoCreds from "../mongoCreds.json";
@@ -14,7 +15,7 @@ const db = mysql.createConnection({
   database: mongoCreds.database,
 });
 // Connect to the database
-db.connect((err: any) => {
+db.connect((err: mysql.MysqlError | null) => {
   if (err) {
     console.error("Error connecting to the database:", err);
     return;
@@ -76,21 +77,8 @@ router.post("/submit-form", async (req, res) => {
     formData.WorkExperience = [
       {
         numHours: 200,
-        superviserName: "Sample Supervisor",
-        companyAddress: "123 Sample St",
-        companyCity: "Sample City",
-        companyState: "Sample State",
-        companyZip: "12345",
-        companyCountry: "Sample Country",
-        superviserPhoneNum: "123-456-7890",
-        superviserEmail: "supervisor@example.com",
-        hireDate: "2022-01-01",
-        lastDateWorked: "2022-12-31",
-      },
-      {
-        numHours: 300,
-        superviserName: "Sample Supervisor",
-        companyAddress: "123 Sample St",
+        superviserName: "",
+        companyAddress: "",
         companyCity: "Sample City",
         companyState: "Sample State",
         companyZip: "12345",
@@ -162,13 +150,24 @@ router.post("/submit-form", async (req, res) => {
     degree: school.degreeReceived,
   }));
 
-  const newProMemberships = formData.ProfessionalMemberships.map((membership: any) => ({
-    pro_membership_id: nextProMembershipId++,
-    cid_id: nextCidId,
-    pro_membership: membership.membershipName,
-    level: membership.membershipLevel,
-    other_memberships: "", // Set other_memberships as an empty string
-  }));
+  const otherMemberships =
+    formData.ProfessionalMemberships.length > 1
+      ? formData.ProfessionalMemberships.slice(1)
+          .map((m: any) => m.membershipName)
+          .join(", ")
+      : "";
+  const newProMemberships =
+    formData.ProfessionalMemberships.length > 0
+      ? [
+          {
+            pro_membership_id: nextProMembershipId++,
+            cid_id: nextCidId,
+            pro_membership: formData.ProfessionalMemberships[0].membershipName,
+            level: formData.ProfessionalMemberships[0].membershipLevel,
+            other_memberships: otherMemberships,
+          },
+        ]
+      : [];
 
   const newCeus = formData.ICCCourses.map((ceu: any) => ({
     ceu_id: nextCeuId++,
@@ -224,13 +223,13 @@ router.post("/submit-form", async (req, res) => {
     date: formData.dateOfExam,
     total_hours: formData.totalHours,
     total_years: formData.totalYears,
-    app_date: "", // Assuming this field is empty
-    app_docs_received: "", // Assuming this field is empty
-    app_date_payment: "", // Assuming this field is empty
+    app_date: format(new Date(), "yyyy-MM-dd"), // Assuming this field is empty
+    app_docs_received: "application", // Assuming this field is empty
+    app_date_payment: "0000-00-00", // Assuming this field is empty
     app_payment_type: "", // Assuming this field is empty
     app_payment_id: "", // Assuming this field is empty
     app_amount_received: "", // Assuming this field is empty
-    path: "", // Assuming this field is empty
+    path: "Path " + formData.pathNum, // Assuming this field is empty
   };
 
   const newPhones = {
@@ -244,8 +243,8 @@ router.post("/submit-form", async (req, res) => {
     cid_id: nextCidId,
     cert_status: "",
     cert_number: "",
-    cert_issue_date: formData.dateCertified,
-    cert_expiration: "",
+    cert_issue_date: "",
+    cert_expiration: formData.dateCertified,
     first_name: formData.firstName,
     middle_name: formData.middleName,
     last_name: formData.lastName,
@@ -265,7 +264,7 @@ router.post("/submit-form", async (req, res) => {
   };
 
   // Start a transaction
-  db.beginTransaction((err) => {
+  db.beginTransaction((err: mysql.MysqlError | null) => {
     if (err) {
       console.error("Error starting transaction:", err);
       return res.status(500).send("Error starting transaction");
@@ -274,7 +273,7 @@ router.post("/submit-form", async (req, res) => {
     // Insert into cid_phones
     const insertPhoneQuery = "INSERT INTO cid_phones SET ?";
 
-    db.query(insertPhoneQuery, newPhones, (err) => {
+    db.query(insertPhoneQuery, newPhones, (err: mysql.MysqlError | null) => {
       if (err) {
         db.rollback(() => {
           console.error("Error inserting new phones:", err);
@@ -286,7 +285,7 @@ router.post("/submit-form", async (req, res) => {
       // Insert into cid_addresses
       const insertAddressQuery = "INSERT INTO cid_addresses SET ?";
 
-      db.query(insertAddressQuery, newAddress, (err) => {
+      db.query(insertAddressQuery, newAddress, (err: mysql.MysqlError | null) => {
         if (err) {
           db.rollback(() => {
             console.error("Error inserting new address:", err);
@@ -298,7 +297,7 @@ router.post("/submit-form", async (req, res) => {
         // Insert into cid_emails
         const insertEmailQuery = "INSERT INTO cid_emails SET ?";
 
-        db.query(insertEmailQuery, newEmail, (err) => {
+        db.query(insertEmailQuery, newEmail, (err: mysql.MysqlError | null) => {
           if (err) {
             db.rollback(() => {
               console.error("Error inserting new email:", err);
@@ -313,16 +312,16 @@ router.post("/submit-form", async (req, res) => {
 
           const schoolValues = newSchools.map(
             (school: {
-              school_id: any;
-              cid_id: any;
-              name: any;
-              city: any;
-              state: any;
-              country: any;
-              start: any;
-              end: any;
-              core_units: any;
-              degree: any;
+              school_id: number;
+              cid_id: number;
+              name: string;
+              city: string;
+              state: string;
+              country: string;
+              start: string;
+              end: string;
+              core_units: number;
+              degree: number;
             }) => [
               school.school_id,
               school.cid_id,
@@ -337,7 +336,7 @@ router.post("/submit-form", async (req, res) => {
             ],
           );
 
-          db.query(insertSchoolQuery, [schoolValues], (err) => {
+          db.query(insertSchoolQuery, [schoolValues], (err: mysql.MysqlError | null) => {
             if (err) {
               db.rollback(() => {
                 console.error("Error inserting new school:", err);
@@ -352,11 +351,11 @@ router.post("/submit-form", async (req, res) => {
 
             const proMembershipValues = newProMemberships.map(
               (membership: {
-                pro_membership_id: any;
-                cid_id: any;
-                pro_membership: any;
-                level: any;
-                other_memberships: any;
+                pro_membership_id: number;
+                cid_id: number;
+                pro_membership: string;
+                level: number;
+                other_memberships: string;
               }) => [
                 membership.pro_membership_id,
                 membership.cid_id,
@@ -366,178 +365,188 @@ router.post("/submit-form", async (req, res) => {
               ],
             );
 
-            db.query(insertProMembershipQuery, [proMembershipValues], (err) => {
-              if (err) {
-                db.rollback(() => {
-                  console.error("Error inserting new professional membership:", err);
-                  return res.status(500).send("Error saving professional membership");
-                });
-                return;
-              }
-
-              // Insert into cid_ceus
-              const insertCeuQuery =
-                "INSERT INTO cid_ceus (ceu_id, cid_id, type, code, course_name, sponsor, sponsor_other, hours, completion_date, online, old_id) VALUES ?";
-
-              const ceuValues = newCeus.map(
-                (ceu: {
-                  ceu_id: any;
-                  cid_id: any;
-                  type: any;
-                  code: any;
-                  course_name: any;
-                  sponsor: any;
-                  sponsor_other: any;
-                  hours: any;
-                  completion_date: any;
-                  online: any;
-                  old_id: any;
-                }) => [
-                  ceu.ceu_id,
-                  ceu.cid_id,
-                  ceu.type,
-                  ceu.code,
-                  ceu.course_name,
-                  ceu.sponsor,
-                  ceu.sponsor_other,
-                  ceu.hours,
-                  ceu.completion_date,
-                  ceu.online,
-                  ceu.old_id,
-                ],
-              );
-
-              db.query(insertCeuQuery, [ceuValues], (err) => {
+            db.query(
+              insertProMembershipQuery,
+              [proMembershipValues],
+              (err: mysql.MysqlError | null) => {
                 if (err) {
                   db.rollback(() => {
-                    console.error("Error inserting new CEUs:", err);
-                    return res.status(500).send("Error saving CEUs");
+                    console.error("Error inserting new professional membership:", err);
+                    return res.status(500).send("Error saving professional membership");
                   });
                   return;
                 }
 
-                // Insert into cid_national_exams
-                const insertNationalExamQuery =
-                  "INSERT INTO cid_national_exams (national_exam_id, cid_id, exam_name, date, exam_number) VALUES ?";
+                // Insert into cid_ceus
+                const insertCeuQuery =
+                  "INSERT INTO cid_ceus (ceu_id, cid_id, type, code, course_name, sponsor, sponsor_other, hours, completion_date, online, old_id) VALUES ?";
 
-                const nationalExamValues = newNationalExams.map(
-                  (exam: {
-                    national_exam_id: any;
-                    cid_id: any;
-                    exam_name: any;
-                    date: any;
-                    exam_number: any;
+                const ceuValues = newCeus.map(
+                  (ceu: {
+                    ceu_id: number;
+                    cid_id: number;
+                    type: string;
+                    code: string;
+                    course_name: string;
+                    sponsor: string;
+                    sponsor_other: string;
+                    hours: number;
+                    completion_date: string;
+                    online: string;
+                    old_id: number;
                   }) => [
-                    exam.national_exam_id,
-                    exam.cid_id,
-                    exam.exam_name,
-                    exam.date,
-                    exam.exam_number,
+                    ceu.ceu_id,
+                    ceu.cid_id,
+                    ceu.type,
+                    ceu.code,
+                    ceu.course_name,
+                    ceu.sponsor,
+                    ceu.sponsor_other,
+                    ceu.hours,
+                    ceu.completion_date,
+                    ceu.online,
+                    ceu.old_id,
                   ],
                 );
 
-                db.query(insertNationalExamQuery, [nationalExamValues], (err) => {
+                db.query(insertCeuQuery, [ceuValues], (err: mysql.MysqlError | null) => {
                   if (err) {
                     db.rollback(() => {
-                      console.error("Error inserting new national exams:", err);
-                      return res.status(500).send("Error saving national exams");
+                      console.error("Error inserting new CEUs:", err);
+                      return res.status(500).send("Error saving CEUs");
                     });
                     return;
                   }
 
-                  // Insert into idex_experience
-                  const insertExperienceQuery =
-                    "INSERT INTO idex_experience (experience_id, cid_id, documents, hours, outside, diversified_work, supervisor, address, city, state, zip, country, sup_phone, sup_email, hire_date, last_date) VALUES ?";
+                  // Insert into cid_national_exams
+                  const insertNationalExamQuery =
+                    "INSERT INTO cid_national_exams (national_exam_id, cid_id, exam_name, date, exam_number) VALUES ?";
 
-                  const experienceValues = newExperiences.map(
-                    (experience: {
-                      experience_id: any;
-                      cid_id: any;
-                      documents: any;
-                      hours: any;
-                      outside: any;
-                      diversified_work: any;
-                      supervisor: any;
-                      address: any;
-                      city: any;
-                      state: any;
-                      zip: any;
-                      country: any;
-                      sup_phone: any;
-                      sup_email: any;
-                      hire_date: any;
-                      last_date: any;
+                  const nationalExamValues = newNationalExams.map(
+                    (exam: {
+                      national_exam_id: number;
+                      cid_id: number;
+                      exam_name: string;
+                      date: string;
+                      exam_number: number;
                     }) => [
-                      experience.experience_id,
-                      experience.cid_id,
-                      experience.documents,
-                      experience.hours,
-                      experience.outside,
-                      experience.diversified_work,
-                      experience.supervisor,
-                      experience.address,
-                      experience.city,
-                      experience.state,
-                      experience.zip,
-                      experience.country,
-                      experience.sup_phone,
-                      experience.sup_email,
-                      experience.hire_date,
-                      experience.last_date,
+                      exam.national_exam_id,
+                      exam.cid_id,
+                      exam.exam_name,
+                      exam.date,
+                      exam.exam_number,
                     ],
                   );
 
-                  db.query(insertExperienceQuery, [experienceValues], () => {
-                    if (err) {
-                      db.rollback(() => {
-                        console.error("Error inserting new experiences:", err);
-                        return res.status(500).send("Error saving experiences");
-                      });
-                      return;
-                    }
-
-                    // Insert into idex_other
-                    const insertIdexOtherQuery = "INSERT INTO idex_other SET ?";
-
-                    db.query(insertIdexOtherQuery, newIdexOther, () => {
+                  db.query(
+                    insertNationalExamQuery,
+                    [nationalExamValues],
+                    (err: mysql.MysqlError | null) => {
                       if (err) {
                         db.rollback(() => {
-                          console.error("Error inserting into idex_other:", err);
-                          return res.status(500).send("Error saving other data");
+                          console.error("Error inserting new national exams:", err);
+                          return res.status(500).send("Error saving national exams");
                         });
                         return;
                       }
 
-                      // Insert into cid_members
-                      const insertMemberQuery = "INSERT INTO cid_members SET ?";
+                      // Insert into idex_experience
+                      const insertExperienceQuery =
+                        "INSERT INTO idex_experience (experience_id, cid_id, documents, hours, outside, diversified_work, supervisor, address, city, state, zip, country, sup_phone, sup_email, hire_date, last_date) VALUES ?";
 
-                      db.query(insertMemberQuery, newMember, () => {
+                      const experienceValues = newExperiences.map(
+                        (experience: {
+                          experience_id: number;
+                          cid_id: number;
+                          documents: string;
+                          hours: number;
+                          outside: string;
+                          diversified_work: string;
+                          supervisor: string;
+                          address: string;
+                          city: string;
+                          state: string;
+                          zip: string;
+                          country: string;
+                          sup_phone: string;
+                          sup_email: string;
+                          hire_date: string;
+                          last_date: string;
+                        }) => [
+                          experience.experience_id,
+                          experience.cid_id,
+                          experience.documents,
+                          experience.hours,
+                          experience.outside,
+                          experience.diversified_work,
+                          experience.supervisor,
+                          experience.address,
+                          experience.city,
+                          experience.state,
+                          experience.zip,
+                          experience.country,
+                          experience.sup_phone,
+                          experience.sup_email,
+                          experience.hire_date,
+                          experience.last_date,
+                        ],
+                      );
+
+                      if (formData.WorkExperience[0].superviserName != "") {
+                        db.query(insertExperienceQuery, [experienceValues], () => {
+                          if (err) {
+                            db.rollback(() => {
+                              console.error("Error inserting new experiences:", err);
+                              return res.status(500).send("Error saving experiences");
+                            });
+                            return;
+                          }
+                        });
+                      }
+
+                      // Insert into idex_other
+                      const insertIdexOtherQuery = "INSERT INTO idex_other SET ?";
+
+                      db.query(insertIdexOtherQuery, newIdexOther, () => {
                         if (err) {
                           db.rollback(() => {
-                            console.error("Error inserting into cid_members:", err);
-                            return res.status(500).send("Error saving member data");
+                            console.error("Error inserting into idex_other:", err);
+                            return res.status(500).send("Error saving other data");
                           });
                           return;
                         }
 
-                        // Commit the transaction
-                        db.commit(() => {
+                        // Insert into cid_members
+                        const insertMemberQuery = "INSERT INTO cid_members SET ?";
+
+                        db.query(insertMemberQuery, newMember, () => {
                           if (err) {
                             db.rollback(() => {
-                              console.error("Error committing transaction:", err);
-                              return res.status(500).send("Error saving form data");
+                              console.error("Error inserting into cid_members:", err);
+                              return res.status(500).send("Error saving member data");
                             });
                             return;
                           }
 
-                          res.status(200).send("Form data saved successfully");
+                          // Commit the transaction
+                          db.commit(() => {
+                            if (err) {
+                              db.rollback(() => {
+                                console.error("Error committing transaction:", err);
+                                return res.status(500).send("Error saving form data");
+                              });
+                              return;
+                            }
+
+                            res.status(200).send("Form data saved successfully");
+                          });
                         });
                       });
-                    });
-                  });
+                    },
+                  );
                 });
-              });
-            });
+              },
+            );
           });
         });
       });
