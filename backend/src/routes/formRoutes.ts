@@ -76,17 +76,17 @@ router.post("/submit-form", async (req, res) => {
   if (!formData.WorkExperience || formData.WorkExperience.length === 0) {
     formData.WorkExperience = [
       {
-        numHours: 200,
+        numHours: 0,
         superviserName: "",
         companyAddress: "",
-        companyCity: "Sample City",
-        companyState: "Sample State",
-        companyZip: "12345",
-        companyCountry: "Sample Country",
-        superviserPhoneNum: "123-456-7890",
-        superviserEmail: "supervisor@example.com",
-        hireDate: "2022-01-01",
-        lastDateWorked: "2022-12-31",
+        companyCity: "",
+        companyState: "",
+        companyZip: "",
+        companyCountry: "",
+        superviserPhoneNum: "",
+        superviserEmail: "",
+        hireDate: "",
+        lastDateWorked: "",
       },
     ];
   }
@@ -244,7 +244,7 @@ router.post("/submit-form", async (req, res) => {
     cert_status: "",
     cert_number: "",
     cert_issue_date: "",
-    cert_expiration: formData.dateCertified,
+    cert_expiration: formData.dateCertifiedExpires,
     first_name: formData.firstName,
     middle_name: formData.middleName,
     last_name: formData.lastName,
