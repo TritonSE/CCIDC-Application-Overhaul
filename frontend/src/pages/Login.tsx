@@ -41,9 +41,6 @@ export function Login() {
       setIsLoginLoading(false);
       return;
     }
-    if (!captchaValue) {
-      alert("Please verify the reCAPTCHA!");
-    }
     const loginPromise = login(username, password);
 
     if (loginPromise instanceof Promise) {
