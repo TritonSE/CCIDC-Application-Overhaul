@@ -26,6 +26,14 @@
   color: var(--color-ccidc-blue);
 }
 
+.leftCorner {
+  width: 100%;
+}
+
+.rightCorner {
+  width: 100%;
+}
+
 .topLeftRec {
   position: absolute;
   width: 600px;
@@ -56,10 +64,9 @@
   height: 40px;
   top: 275px;
   right: -71px;
-  gap: 0px;
-  opacity: 0px;
   transform: rotate(-40deg);
   background-color: #6c6c6c;
+  overflow: hidden;
 }
 
 .bottomRightRec {
@@ -68,8 +75,7 @@
   height: 40px;
   top: 646.5px;
   right: -115px;
-  gap: 0px;
-  opacity: 0px;
   transform: rotate(-135deg);
   background-color: #6c6c6c;
+  overflow: hidden;
 }

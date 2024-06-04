@@ -1,5 +1,5 @@
-import styles from "../stylesheets/RedirectTo404.module.css";
 import { Page } from "../components";
+import styles from "../stylesheets/RedirectTo404.module.css";
 
 export function RedirectTo404() {
   return (
@@ -8,16 +8,14 @@ export function RedirectTo404() {
         <h1 className={styles.errorType}>404</h1>
         <h2 className={styles.errorReason}>Page Not Found</h2>
         <p className={styles.errorMessage}>
-          Sorry, we couldn't find the page you're looking for, click{" "}
-          <span className={styles.lightBlue}>
-            <a href="">here.</a>
-          </span>{" "}
+          Sorry, we couldn&apos;t find the page you&apos;re looking for, click{" "}
+          <a className={styles.lightBlue} href="https://ccidc.org/">
+            here.
+          </a>
           <br />
           Please ensure that the URL is correct and try again.
         </p>
       </div>
-
-      {/* <div className={styles.leftArrows}></div> */}
 
       <div className={styles.topLeftRec}></div>
       <div className={styles.bottomLeftRec}></div>
