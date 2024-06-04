@@ -7,7 +7,6 @@ export type StepProps = {
 };
 
 export const Step5: React.FC<StepProps> = ({ next }: StepProps) => {
-  // Checks if all Required Inputs are filled before moving on to next step
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -25,9 +24,9 @@ export const Step5: React.FC<StepProps> = ({ next }: StepProps) => {
           <hr />
           <div className={styles.formSection}>
             <p>
-              To pay via <strong className={styles.red}> credit card </strong>: Navigate to the
+              To pay via <strong className={styles.red}> credit card</strong>: Navigate to the
               Payment Portal using the button below <br />
-              Please Note: In the required “Invoice” field, please enter: IDEX – Candidates Name{" "}
+              <u>Please Note:</u> In the required “Invoice” field, please enter: IDEX – Candidates Name{" "}
               <br />
               <strong className={styles.red}> Mail checks </strong> to: CCIDC, Inc. – 365 W. Second
               Ave, Suite 221, Escondido, CA 92025

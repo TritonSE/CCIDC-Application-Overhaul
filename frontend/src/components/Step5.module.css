@@ -3,8 +3,6 @@
 }
 
 .formContainer {
-  /* width: 100%;
-      margin: 3rem 10rem !important; */
   background-color: var(--color-text-secondary);
 }
 
@@ -29,13 +27,4 @@
   justify-content: center;
   align-items: center;
   margin-top: 20px; /* Adjust margin as needed */
-}
-
-.uploadButton {
-  width: 24px;
-  height: 24px;
-}
-
-.blueLink {
-  color: blue;
 }
