@@ -6,7 +6,7 @@
 }
 
 .errorType {
-  margin-top: 1em;
+  margin-top: 1.5em;
   color: var(--color-red-tertiary);
   font: var(--font-error-num);
 }
@@ -23,53 +23,53 @@
 }
 
 .lightBlue {
-  color: var(--color-link);
+  color: var(--color-ccidc-blue);
 }
 
 .topLeftRec {
   position: absolute;
-  width: 498.79px;
-  height: 21.61px;
+  width: 600px;
+  height: 40px;
   top: 465px;
-  left: -80px;
+  left: -125px;
   gap: 0px;
   opacity: 0px;
-  transform: rotate(51deg);
-  background-color: #909090;
+  transform: rotate(50deg);
+  background-color: #b4b4b4;
 }
 
 .bottomLeftRec {
   position: absolute;
-  width: 498.79px;
-  height: 21.61px;
-  top: 850px;
-  left: -80px;
+  width: 500px;
+  height: 40px;
+  top: 848px;
+  left: -95px;
   gap: 0px;
   opacity: 0px;
-  transform: rotate(-51deg);
-  background-color: #909090;
+  transform: rotate(-40deg);
+  background-color: #b4b4b4;
 }
 
 .topRightRec {
   position: absolute;
-  width: 498.79px;
-  height: 21.61px;
-  top: 265px;
-  right: -85px;
+  width: 500px;
+  height: 40px;
+  top: 275px;
+  right: -71px;
   gap: 0px;
   opacity: 0px;
-  transform: rotate(-51.55deg);
-  background-color: #909090;
+  transform: rotate(-40deg);
+  background-color: #6c6c6c;
 }
 
 .bottomRightRec {
   position: absolute;
-  width: 490.86px;
-  height: 21.61px;
-  top: 645px;
-  right: -85px;
+  width: 600px;
+  height: 40px;
+  top: 646.5px;
+  right: -115px;
   gap: 0px;
   opacity: 0px;
-  transform: rotate(-130deg);
-  background-color: #909090;
+  transform: rotate(-135deg);
+  background-color: #6c6c6c;
 }
