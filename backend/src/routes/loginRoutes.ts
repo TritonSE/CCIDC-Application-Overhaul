@@ -97,9 +97,7 @@ router.get("/validate", cors(corsOptions), (req: Request, res: Response) => {
     },
   })
     .then((response) => {
-      if (!response.ok) throw new LoginError(403, "Unable to verify the given token");
-
-      res.status(200).json({ message: "Token verification succeeded" });
+      res.status(200).json({ isValid: response.ok });
     })
     .catch((error) => {
       const loginError = error as LoginError;

@@ -1,0 +1,114 @@
+.modalDrawer:focus {
+  /* Hide focus outline when user presses "Escape" key */
+  outline: none;
+}
+
+.popupCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.popupWindow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 696px;
+  padding: 2rem;
+  background-color: var(--color-background);
+  border-radius: 0.5rem;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.28);
+  font-family: var(--font-body);
+  font: var(--font-body);
+}
+
+.closeButtonContainer {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  justify-content: flex-end;
+  margin-left: auto;
+  background-color: transparent;
+  border: none;
+}
+.closeButtonContainer img {
+  cursor: pointer;
+}
+
+.modalChildren {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.modalImage {
+  margin-bottom: 2px;
+  width: 200px;
+  height: 200px;
+}
+
+.title {
+  color: #000;
+  text-align: center;
+  font-family: Rubik;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%;
+  letter-spacing: 0.48px;
+}
+
+.mainText {
+  color: #000;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  font-family: Rubik;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.64px;
+}
+
+.subtext {
+  width: 596px;
+  font: var(--font-body);
+  color: var(--color-text-neutral-grey);
+  text-align: center;
+}
+
+.centeredText {
+  text-align: center;
+}
+.reviewText {
+  width: 596px;
+  font: var(--font-body);
+  color: var(--color-text-neutral-grey);
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.boldText {
+  font-weight: 700;
+}
+
+.modalLink {
+  padding: 0;
+  margin: 0;
+  color: var(--color-ccidc-red);
+  text-decoration: underline;
+  cursor: pointer;
+  display: inline;
+}
+
+.linkBlue {
+  color: #2a61bb;
+}
