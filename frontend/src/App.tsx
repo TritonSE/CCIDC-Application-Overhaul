@@ -36,6 +36,7 @@ function App() {
               <Route path="candidates" element={<Candidates />} />
               <Route path="prescreening" element={<PrescreeningForm />} />
               <Route path="ThankyouForApplying" element={<ThankyouForApplying />} />
+              <Route path="*" element={<RedirectTo404 />} />
             </Route>
             <Route path="login" element={<Login />} />
           </Routes>

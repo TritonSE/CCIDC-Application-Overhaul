@@ -17,6 +17,8 @@ export function RedirectTo404() {
         </p>
       </div>
 
+      {/* <div className={styles.leftArrows}></div> */}
+
       <div className={styles.topLeftRec}></div>
       <div className={styles.bottomLeftRec}></div>
       <div className={styles.topRightRec}></div>
