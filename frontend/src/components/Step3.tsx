@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import deleteIcon from "../assets/deleteIcon.svg";
@@ -16,6 +16,30 @@ export type StepProps = {
 
 function WorkExperienceSection({ pathNumber }: { pathNumber: number }) {
   const { formData, setFormData } = useContext(FormContext);
+  const isRequired = [2, 3, 4].includes(pathNumber);
+
+  if (isRequired && formData.WorkExperience.length === 0) {
+    const newWorkExperience: WorkExperience = {
+      designExperience: "",
+      numHours: 0,
+      superviserName: "",
+      superviserPhoneNum: "",
+      superviserEmail: "",
+      companyName: "",
+      companyAddress: "",
+      companyCity: "",
+      companyState: "",
+      companyZip: "",
+      companyCountry: "",
+      hireDate: "",
+      lastDateWorked: "",
+    };
+
+    setFormData({
+      ...formData,
+      WorkExperience: [newWorkExperience],
+    });
+  }
 
   const handleInputChange = (
     index: number,
@@ -64,14 +88,6 @@ function WorkExperienceSection({ pathNumber }: { pathNumber: number }) {
       WorkExperience: prevFormData.WorkExperience.filter((_, index) => index !== indexToDelete),
     }));
   };
-
-  const isRequired = [2, 3, 4].includes(pathNumber);
-
-  useEffect(() => {
-    if (isRequired && formData.WorkExperience.length === 0) {
-      addWorkExperience();
-    }
-  }, [isRequired, formData.WorkExperience.length]);
 
   return (
     <div className={styles.formSection}>
