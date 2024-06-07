@@ -1,6 +1,5 @@
-import { FormEvent, useContext, useEffect, useState, useRef } from "react";
+import { FormEvent, useContext, useEffect, useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
-
 import { useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../contexts/AuthContext";
@@ -11,6 +10,7 @@ export function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showError, setShowError] = useState(false);
+  const [showCaptchaError, setShowCaptchaError] = useState(false);
   const [isLoginLoading, setIsLoginLoading] = useState(false);
   const recaptcha = useRef<ReCAPTCHA>(null);
   const navigate = useNavigate();
@@ -32,12 +32,12 @@ export function Login() {
     if (recaptcha.current) {
       const captchaValue = recaptcha.current.getValue();
       if (!captchaValue) {
-        alert("Please verify the reCAPTCHA!");
+        setShowCaptchaError(true);
         setIsLoginLoading(false);
         return;
       }
     } else {
-      alert("reCAPTCHA not loaded!");
+      setShowCaptchaError(true);
       setIsLoginLoading(false);
       return;
     }
@@ -99,7 +99,13 @@ export function Login() {
               />
             </div>
             <div>
-              <ReCAPTCHA ref={recaptcha} sitekey={import.meta.env.VITE_SERVER_SITE_KEY as string} />
+              <ReCAPTCHA
+                ref={recaptcha}
+                sitekey={import.meta.env.VITE_SERVER_SITE_KEY as string}
+                onChange={() => {
+                  setShowCaptchaError(false);
+                }}
+              />
             </div>
 
             {showError && (
@@ -107,6 +113,9 @@ export function Login() {
                 Sorry, we are having trouble logging you in. Please check that Username and Password
                 are correct.
               </div>
+            )}
+            {showCaptchaError && (
+              <div className={styles.loginError}>Please verify the reCAPTCHA</div>
             )}
             <input
               className={`${styles.loginFormSubmit} ${isLoginLoading && styles.loading}`}
