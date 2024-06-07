@@ -161,7 +161,7 @@ input[type="checkbox"]:hover {
 .checkboxLabel {
   display: block;
   white-space: nowrap;
-  margin: 10px 0;
+  margin: 2rem 0;
 }
 
 .checkboxLabel input {
