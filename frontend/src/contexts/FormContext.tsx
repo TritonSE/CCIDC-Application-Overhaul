@@ -51,6 +51,7 @@ type FormData = {
   maidenName: string;
   gender: string;
   email: string;
+  confirmEmail: string;
   deviceType: string;
   phoneNumber: string;
   address: string;
@@ -73,9 +74,11 @@ type FormData = {
   certificationExam: string;
   dateOfExam: string;
   licenseNumber: string;
-  dateCertified: string;
+  dateCertifiedExpires: string;
   convictedOfFelony: string;
   extraExplanation: string;
+  readRules: boolean;
+  readPay: boolean;
 
   SchoolsAttended: SchoolsAttended[];
   ProfessionalMemberships: ProfessionalMemberships[];
@@ -96,6 +99,7 @@ const initialFormData: FormData = {
   maidenName: "",
   gender: "",
   email: "",
+  confirmEmail: "",
   deviceType: "",
   phoneNumber: "",
   address: "",
@@ -118,9 +122,11 @@ const initialFormData: FormData = {
   certificationExam: "",
   dateOfExam: "",
   licenseNumber: "",
-  dateCertified: "",
+  dateCertifiedExpires: "",
   convictedOfFelony: "",
   extraExplanation: "",
+  readRules: false,
+  readPay: false,
 
   SchoolsAttended: [],
   ProfessionalMemberships: [],
