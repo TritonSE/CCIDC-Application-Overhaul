@@ -105,17 +105,10 @@ export const Step4: React.FC<StepProps> = ({ next }: StepProps) => {
                 <Dropdown
                   options={["Yes", "No"]}
                   onSelect={handleSelect}
+                  name={"dropconvictedOfFelonyDown"}
                   defaultValue={formData.convictedOfFelony || undefined}
-                ></Dropdown>
-                <input
-                  className={styles.customDropDown}
-                  type="text"
-                  id="convictedOfFelony"
-                  name="convictedOfFelony"
-                  value={formData.convictedOfFelony}
-                  onChange={handleInputChange}
                   required
-                ></input>
+                />
               </label>
             </div>
             <div className={styles.inputBox}>
@@ -140,7 +133,7 @@ export const Step4: React.FC<StepProps> = ({ next }: StepProps) => {
                   type="text"
                   name="extraExplanation"
                   id="extraExplanation"
-                  placeholder="Please explain here"
+                  placeholder="Explain here"
                   value={formData.extraExplanation}
                   onChange={handleInputChange}
                 />
@@ -157,7 +150,7 @@ export const Step4: React.FC<StepProps> = ({ next }: StepProps) => {
                   value={formData.dateCertifiedExpires}
                   onChange={handleInputChange}
                   pattern="^(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])/(19|20)\d{2}$"
-                  placeholder="Enter Date Certified/Registered/License Expires"
+                  placeholder="mm/dd/yyyy"
                 />
               </label>
             </div>

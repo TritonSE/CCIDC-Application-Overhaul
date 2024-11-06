@@ -289,12 +289,6 @@ function ProfessionalAssociationSection() {
 }
 
 function NationalExamSection() {
-  const [exam, setExam] = useState("");
-
-  const handleExamSelect = (option: string) => {
-    setExam(option);
-  };
-
   return (
     <div>
       <div className={styles.formSection}>
@@ -310,15 +304,7 @@ function NationalExamSection() {
               className={`${styles.inputTitle} ${styles.dropdownLabel}`}
             >
               National Exam<span className={styles.boldRed}>*</span>
-              <Dropdown options={examList} onSelect={handleExamSelect}></Dropdown>
-              <input
-                className={styles.customDropDown}
-                type="text"
-                id="nationalExam"
-                name="nationalExam"
-                defaultValue={exam}
-                required
-              ></input>
+              <Dropdown name={"nationalExam"} options={examList} required />
             </label>
           </div>
           <div className={styles.inputBox}>
@@ -359,11 +345,6 @@ function NationalExamSection() {
 
 function ICCCourses() {
   const [courses, setCourses] = useState([{ id: 1 }]);
-  const [courseSelect, setCourseSelect] = useState("");
-
-  const handleCourseSelect = (option: string) => {
-    setCourseSelect(option);
-  };
 
   const addCourse = () => {
     setCourses((prevCourses) => [...prevCourses, { id: prevCourses.length + 1 }]);
@@ -418,16 +399,7 @@ function ICCCourses() {
                   >
                     Courses
                     <span className={styles.boldRed}>*</span>
-                    <Dropdown options={courseList} onSelect={handleCourseSelect}></Dropdown>
-                    {/* Add if dropDown Required */}
-                    <input
-                      className={styles.customDropDown}
-                      type="text"
-                      id={`iccCourse${index}`}
-                      name={`iccCourse${index}`}
-                      defaultValue={courseSelect}
-                      required
-                    ></input>
+                    <Dropdown name={`iccCourse${index}`} options={courseList} required />
                   </label>
                 </div>
                 <div className={styles.inputBox}>

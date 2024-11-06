@@ -51,6 +51,10 @@
   column-gap: 8px;
 }
 
+.formRow .dropdownContainer {
+  width: 460px;
+}
+
 .uploadButton {
   width: 24px;
   height: 24px;
@@ -116,6 +120,26 @@ select.inputText {
   padding-left: 5px;
 }
 
+@media (max-width: 1300px) {
+  .formRow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .formRow .input {
+    width: 330px;
+  }
+
+  .formRow .dropdownContainer {
+    width: 330px;
+  }
+}
+
+.line {
+  border: 0.5px solid #d8d8d8;
+  margin-top: 30px;
+}
+
 .optionDefault {
   color: var(--color-accent);
 }
@@ -175,16 +199,7 @@ input[type="checkbox"]:hover {
   position: relative;
   left: 15px;
 }
-/* Add if DropDown required. Hides default input, still shows Required warning */
 
 .felonyLabel {
   position: relative;
-}
-.customDropDown {
-  position: absolute;
-  bottom: 0.5rem;
-  left: 0.5rem;
-  /* Forcefully hide */
-  opacity: 0;
-  pointer-events: none;
 }

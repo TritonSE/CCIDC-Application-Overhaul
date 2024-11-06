@@ -1,61 +1,56 @@
-import { useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 
 import styles from "./Dropdown.module.css";
 
-export function Dropdown(props: {
+type DropdownProps = {
   options: string[];
-  onSelect: (value: string) => void;
+  onSelect?: (value: string) => void;
   required?: boolean;
+  name?: string;
   defaultValue?: string;
-}) {
-  const [selected, setSelected] = useState("Select One");
-  const [isActive, setIsActive] = useState(false);
+};
 
-  useEffect(() => {
-    setSelected(props.defaultValue ?? "Select One");
-  }, [props.defaultValue]);
+export function Dropdown(props: DropdownProps) {
+  const { options, onSelect, required, name, defaultValue } = props;
 
-  const handleOptionClick = (option: string) => {
-    setSelected(option);
-    setIsActive(false);
-    props.onSelect(option);
-  };
+  // default value must be "" for required prop to work, https://stackoverflow.com/a/6048891
+  const defaultSelected = "";
+
+  const [selected, setSelected] = useState(defaultValue ?? defaultSelected);
+
+  const onSelectChange = useCallback(
+    (event: React.FormEvent) => {
+      const element = event.target as HTMLSelectElement;
+      const option = element.value;
+      setSelected(option);
+      if (onSelect) onSelect(option);
+    },
+    [setSelected, onSelect],
+  );
 
   return (
-    <div
-      className={styles.dropDown}
-      onClick={() => {
-        setIsActive(!isActive);
-      }}
-      role="button"
-      tabIndex={0}
-      onKeyDown={() => {
-        setIsActive(!isActive);
-      }}
+    <select
+      className={`${styles.select} ${selected === defaultSelected ? styles.unselected : ""}`}
+      onChange={onSelectChange}
+      required={required}
+      name={name}
+      defaultValue={selected}
     >
-      <div className={selected === "Select One" ? styles.selectOne : styles.selectedOption}>
-        {selected ?? "Select One"}
-      </div>
-      {isActive && (
-        <div className={styles.dpContent}>
-          {props.options.map((option, index) => (
-            <div
-              onClick={() => {
-                handleOptionClick(option);
-              }}
-              className={styles.dpItem}
-              role="button"
-              tabIndex={0}
-              key={index}
-              onKeyDown={() => {
-                setIsActive(!isActive);
-              }}
-            >
-              {option}
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
+      <option
+        value={defaultSelected}
+        hidden={selected !== defaultSelected}
+        disabled
+        className={styles.defaultOption}
+      >
+        Select One
+      </option>
+
+      {options?.length &&
+        options.map((option) => (
+          <option key={option} value={option} className={styles.option}>
+            {option}
+          </option>
+        ))}
+    </select>
   );
 }
