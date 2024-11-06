@@ -32,7 +32,6 @@ export const Step4: React.FC<StepProps> = ({ next }: StepProps) => {
       ...prevFormData,
       convictedOfFelony: option,
     }));
-    console.log(formData.convictedOfFelony);
   };
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
