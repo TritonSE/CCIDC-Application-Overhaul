@@ -1,4 +1,5 @@
-import { FormEvent, useContext, useEffect, useState } from "react";
+import { FormEvent, useContext, useEffect, useRef, useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 import { useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../contexts/AuthContext";
@@ -9,7 +10,9 @@ export function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showError, setShowError] = useState(false);
+  const [showCaptchaError, setShowCaptchaError] = useState(false);
   const [isLoginLoading, setIsLoginLoading] = useState(false);
+  const recaptcha = useRef<ReCAPTCHA>(null);
   const navigate = useNavigate();
 
   // Redirect once logged in
@@ -25,6 +28,19 @@ export function Login() {
     if (isLoginLoading) return;
 
     setIsLoginLoading(true);
+
+    if (recaptcha.current) {
+      const captchaValue = recaptcha.current.getValue();
+      if (!captchaValue) {
+        setShowCaptchaError(true);
+        setIsLoginLoading(false);
+        return;
+      }
+    } else {
+      setShowCaptchaError(true);
+      setIsLoginLoading(false);
+      return;
+    }
     const loginPromise = login(username, password);
 
     if (loginPromise instanceof Promise) {
@@ -51,7 +67,7 @@ export function Login() {
         <div className={styles.sectionContent}>
           <h2 className={styles.loginSectionHeader}>Login</h2>
           <form onSubmit={handleSubmit} className={styles.loginForm}>
-            <div>
+            <div className={styles.inputField}>
               <label className={styles.loginFormLabel} htmlFor="username">
                 Username or Email Address
               </label>
@@ -66,7 +82,7 @@ export function Login() {
                 }}
               />
             </div>
-            <div>
+            <div className={styles.inputField}>
               <label className={styles.loginFormLabel} htmlFor="password">
                 Password
               </label>
@@ -82,11 +98,24 @@ export function Login() {
                 }}
               />
             </div>
+            <div>
+              <ReCAPTCHA
+                ref={recaptcha}
+                sitekey={import.meta.env.VITE_SERVER_SITE_KEY as string}
+                onChange={() => {
+                  setShowCaptchaError(false);
+                }}
+              />
+            </div>
+
             {showError && (
               <div className={styles.loginError}>
                 Sorry, we are having trouble logging you in. Please check that Username and Password
                 are correct.
               </div>
+            )}
+            {showCaptchaError && (
+              <div className={styles.loginError}>Please verify the reCAPTCHA</div>
             )}
             <input
               className={`${styles.loginFormSubmit} ${isLoginLoading && styles.loading}`}
