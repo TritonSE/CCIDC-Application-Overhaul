@@ -170,6 +170,7 @@ export function Step1({ onSubmit }: Step1Props) {
               <Dropdown
                 options={genders}
                 onSelect={handleGenderSelect}
+                name={"gender"}
                 defaultValue={formData.gender || undefined}
               />
             </label>
@@ -205,6 +206,7 @@ export function Step1({ onSubmit }: Step1Props) {
               <Dropdown
                 options={devices}
                 onSelect={handlePhoneSelect}
+                name={"deviceType"}
                 defaultValue={formData.deviceType || undefined}
               />
             </label>

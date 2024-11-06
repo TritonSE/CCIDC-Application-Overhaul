@@ -105,6 +105,7 @@ export const Step4: React.FC<StepProps> = ({ next }: StepProps) => {
                 <Dropdown
                   options={["Yes", "No"]}
                   onSelect={handleSelect}
+                  name={"dropconvictedOfFelonyDown"}
                   defaultValue={formData.convictedOfFelony || undefined}
                   required
                 />

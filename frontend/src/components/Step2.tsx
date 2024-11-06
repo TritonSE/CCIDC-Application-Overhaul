@@ -304,7 +304,7 @@ function NationalExamSection() {
               className={`${styles.inputTitle} ${styles.dropdownLabel}`}
             >
               National Exam<span className={styles.boldRed}>*</span>
-              <Dropdown options={examList} required />
+              <Dropdown name={"nationalExam"} options={examList} required />
             </label>
           </div>
           <div className={styles.inputBox}>
@@ -399,7 +399,7 @@ function ICCCourses() {
                   >
                     Courses
                     <span className={styles.boldRed}>*</span>
-                    <Dropdown options={courseList} required />
+                    <Dropdown name={`iccCourse${index}`} options={courseList} required />
                   </label>
                 </div>
                 <div className={styles.inputBox}>
