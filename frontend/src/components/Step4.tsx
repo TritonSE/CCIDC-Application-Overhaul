@@ -2,8 +2,9 @@ import { useContext } from "react";
 
 import upload from "../assets/uploadIcon.svg";
 import { FormContext } from "../contexts/FormContext.tsx";
+
 import styles from "./Step4.module.css";
-import { Button, Dropdown } from "./index.ts";
+import { Dropdown } from "./index.ts";
 
 export type StepProps = {
   next: () => void;
@@ -46,9 +47,11 @@ export const Step4: React.FC<StepProps> = ({ next }: StepProps) => {
 
   return (
     <>
-      <form id="step4-form" onSubmit={onSubmit}>
-        <div className={styles.page4Form}>
-          <h2 className={styles.sectionTitle}>Additional Information</h2>
+      <form id="step4-form" className={styles.formContainer} onSubmit={onSubmit}>
+        <div className={styles.formSection}>
+          <div className={styles.titleContainer}>
+            <h2 className={styles.sectionTitle}>Additional Information</h2>
+          </div>
 
           <div className={styles.formSectionContainer}>
             <div className={styles.inputBox}>
@@ -65,22 +68,20 @@ export const Step4: React.FC<StepProps> = ({ next }: StepProps) => {
                 />
               </label>
             </div>
-
             <div className={styles.inputBox}>
-              <label htmlFor="licenseNumber" className={styles.inputTitle}>
-                Certified/Registered/License Number
+              <label htmlFor="certificationExam" className={styles.inputTitle}>
+                Certification Exam
                 <input
                   className={styles.inputText}
                   type="text"
-                  name="licenseNumber"
-                  id="licenseNumber"
-                  value={formData.licenseNumber}
+                  name="certificationExam"
+                  id="certificationExam"
+                  value={"IDEX"}
                   onChange={handleInputChange}
-                  placeholder="Enter Certified/Registered/License Number"
+                  placeholder="Enter Certification Exam"
                 />
               </label>
             </div>
-
             <div className={styles.inputBox}>
               <label htmlFor="jurisdictionName" className={styles.inputTitle}>
                 Name of State/Jurisdiction
@@ -92,37 +93,6 @@ export const Step4: React.FC<StepProps> = ({ next }: StepProps) => {
                   value={formData.jurisdictionName}
                   onChange={handleInputChange}
                   placeholder="Enter Name of State/Jurisdiction"
-                />
-              </label>
-            </div>
-
-            <div className={styles.inputBox}>
-              <label htmlFor="dateCertified" className={styles.inputTitle}>
-                Date Certified/Registered/License Expires
-                <input
-                  className={styles.inputText}
-                  type="text"
-                  name="dateCertified"
-                  id="dateCertified"
-                  value={formData.dateCertified}
-                  onChange={handleInputChange}
-                  pattern="^(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])/(19|20)\d{2}$"
-                  placeholder="Enter Date Certified/Registered/License Expires"
-                />
-              </label>
-            </div>
-
-            <div className={styles.inputBox}>
-              <label htmlFor="certificationExam" className={styles.inputTitle}>
-                Certification Exam
-                <input
-                  className={styles.inputText}
-                  type="text"
-                  name="certificationExam"
-                  id="certificationExam"
-                  value={formData.certificationExam}
-                  onChange={handleInputChange}
-                  placeholder="Enter Certification Exam"
                 />
               </label>
             </div>
@@ -148,26 +118,23 @@ export const Step4: React.FC<StepProps> = ({ next }: StepProps) => {
                 ></input>
               </label>
             </div>
-
             <div className={styles.inputBox}>
-              <label htmlFor="dateOfExam" className={styles.inputTitle}>
-                Date of Certification Exam
+              <label htmlFor="licenseNumber" className={styles.inputTitle}>
+                Certified/Registered/License Number
                 <input
                   className={styles.inputText}
                   type="text"
-                  name="dateOfExam"
-                  placeholder="mm/dd/yyyy"
-                  id="dateOfExam"
-                  pattern="^(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])/(19|20)\d{2}$"
-                  value={formData.dateOfExam}
+                  name="licenseNumber"
+                  id="licenseNumber"
+                  value={formData.licenseNumber}
                   onChange={handleInputChange}
+                  placeholder="Enter Certified/Registered/License Number"
                 />
               </label>
             </div>
-
             <div className={styles.inputBox}>
               <label htmlFor="extraExplanation" className={styles.inputTitle}>
-                If yes, please explain
+                If yes, please explain here
                 <input
                   className={styles.inputText}
                   type="text"
@@ -179,31 +146,33 @@ export const Step4: React.FC<StepProps> = ({ next }: StepProps) => {
                 />
               </label>
             </div>
+            <div className={styles.inputBox}>
+              <label htmlFor="dateCertifiedExpires" className={styles.inputTitle}>
+                Date Certified/Registered/License Expires
+                <input
+                  className={styles.inputText}
+                  type="text"
+                  name="dateCertifiedExpires"
+                  id="dateCertifiedExpires"
+                  value={formData.dateCertifiedExpires}
+                  onChange={handleInputChange}
+                  pattern="^(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])/(19|20)\d{2}$"
+                  placeholder="Enter Date Certified/Registered/License Expires"
+                />
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <hr />
+
+        <div className={styles.formSection}>
+          <div className={styles.titleContainer}>
+            <h2 className={styles.sectionTitle}>
+              Rules & Regulations<span className={styles.boldRed}>*</span>
+            </h2>
           </div>
 
-          <div className={styles.formRow}>
-            <label htmlFor="licenseExpiration" className={styles.label}>
-              Date Certified/Registered/License Expires
-              <input
-                className={styles.input}
-                type="text"
-                name="licenseExpiration"
-                id="licenseExpiration"
-                pattern="\d{2}-\d{2}-\d{4}"
-                value={licenseExpiration}
-                onChange={(e) => {
-                  setLicenseExpiration(e.target.value);
-                }}
-                placeholder="mm/dd/yyyy"
-              />
-            </label>
-          </div>
-
-          <hr className={styles.line} />
-
-          <h2 className={styles.sectionTitle}>
-            Rules & Regulations<span className={styles.red}>*</span>
-          </h2>
           <p className={styles.note}>
             Please read the{" "}
             <a
@@ -226,13 +195,14 @@ export const Step4: React.FC<StepProps> = ({ next }: StepProps) => {
             />
             <span>
               Click here to acknowledge you have read and understood the rules and regulations
-            </label>
-          </div>
+            </span>
+          </label>
+        </div>
+        <hr />
 
-          <hr className={styles.line} />
-
+        <div className={styles.formSection}>
           <h2 className={styles.sectionTitle}>
-            Code of Ethics<span className={styles.red}>*</span>
+            Code of Ethics<span className={styles.boldRed}>*</span>
           </h2>
           <p className={styles.note}>
             Please read the{" "}
@@ -244,14 +214,59 @@ export const Step4: React.FC<StepProps> = ({ next }: StepProps) => {
             </a>
           </p>
 
-          <br></br>
-
-          <Button onClick={undefined} additionalStyle={styles.upload}>
+          <button className={styles.upload}>
             Upload Signed Code of Ethics
-          </Button>
-
-          <hr className={styles.bottomLine} />
+            <img src={upload} className={styles.uploadButton} alt="buttonpng" />
+          </button>
         </div>
+        <hr />
+        <div className={styles.formSection}>
+          <div className={styles.titleContainer}>
+            <h2 className={styles.sectionTitle}>
+              Payment Information<span className={styles.boldRed}>*</span>
+            </h2>
+          </div>
+
+          <p className={styles.note}>
+            After submitting your application, you will be navigated to pay via{" "}
+            <b className={styles.boldRed}>credit card</b> through the Payment Portal <br />
+            <u>Please Note:</u> In the required “Invoice” field, please enter: IDEX - Candidates
+            Name
+          </p>
+
+          <p className={styles.note}>
+            To <b className={styles.boldRed}>mail checks</b>, please send them to: CCIDC, Inc. - 365
+            W. Second Ave, Suite 221, Escondido, CA 92025
+          </p>
+
+          <p className={styles.boldRed}>
+            Total Fees due with application (Includes Application Fee + IDEX Exam Fee + Testing
+            Center Fee)**: <b className={styles.boldRed}>$700 Total*</b>
+          </p>
+
+          <p className={styles.note}>
+            <span className={styles.boldRed}>*</span>Fee is nonrefundable
+            <br />
+            <span className={styles.boldRed}>**</span>Application fees must be submitted with
+            application.
+          </p>
+
+          <label htmlFor="select" className={styles.checkboxLabel}>
+            <input
+              className={styles.select}
+              name="readRules"
+              type="checkbox"
+              id="select"
+              onChange={handleInputChange}
+              checked={formData.readRules}
+              required
+            />
+            <span>
+              Click here to acknowledge you have read the information on how to pay for your pathway{" "}
+            </span>
+          </label>
+        </div>
+        <hr className={styles.bottomLine} />
       </form>
     </>
   );
