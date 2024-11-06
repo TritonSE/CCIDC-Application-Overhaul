@@ -251,14 +251,14 @@ export const Step4: React.FC<StepProps> = ({ next }: StepProps) => {
             application.
           </p>
 
-          <label htmlFor="select" className={styles.checkboxLabel}>
+          <label htmlFor="selectPay" className={styles.checkboxLabel}>
             <input
               className={styles.select}
-              name="readRules"
+              name="readPay"
               type="checkbox"
-              id="select"
+              id="selectPay"
               onChange={handleInputChange}
-              checked={formData.readRules}
+              checked={formData.readPay}
               required
             />
             <span>
