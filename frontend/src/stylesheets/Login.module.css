@@ -50,6 +50,7 @@
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  align-items: center;
 }
 
 .loginHeader {
@@ -68,6 +69,10 @@
   font: var(--font-body);
   border: #d8d8d8 1px solid;
   border-radius: 0.25rem;
+}
+
+.inputField {
+  width: 100%;
 }
 
 .loginFormSubmit {
