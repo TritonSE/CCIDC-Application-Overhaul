@@ -4,6 +4,7 @@ import upload from "../assets/uploadIcon.svg";
 import { FormContext } from "../contexts/FormContext.tsx";
 
 import styles from "./Step4.module.css";
+import { Dropdown } from "./index.ts";
 
 export type StepProps = {
   next: () => void;
@@ -135,6 +136,7 @@ export const Step4: React.FC<StepProps> = ({ next }: StepProps) => {
                   placeholder="Explain here"
                   value={formData.extraExplanation}
                   onChange={handleInputChange}
+                  required={formData.convictedOfFelony === "Yes"}
                 />
               </label>
             </div>
