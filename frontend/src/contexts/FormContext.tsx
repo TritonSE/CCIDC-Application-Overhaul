@@ -42,6 +42,7 @@ export type WorkExperience = {
   companyCountry: string;
   hireDate: string;
   lastDateWorked: string;
+  currentWork: boolean;
 };
 
 type FormData = {

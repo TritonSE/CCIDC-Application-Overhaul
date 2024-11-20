@@ -111,6 +111,7 @@ select.inputText {
   background-position: right top 50%;
   cursor: pointer;
 }
+
 .selectInput {
   border: 0;
   vertical-align: middle;
@@ -192,12 +193,21 @@ input[type="checkbox"]:hover {
   vertical-align: middle;
   top: 2px;
 }
+
 .checkboxLabel span {
   display: inline-block;
   white-space: normal;
   vertical-align: top;
   position: relative;
   left: 15px;
+}
+
+.noMargin {
+  margin: 0;
+}
+
+.grayText {
+  color: #6c6c6c;
 }
 
 .felonyLabel {

@@ -7,6 +7,7 @@ import deleteIconHovered from "../assets/red-delete.svg";
 import upload from "../assets/uploadIcon.svg";
 import { FormContext, WorkExperience } from "../contexts/FormContext.tsx";
 
+import checkboxStyles from "./Step4.module.css";
 import styles from "./Steps.module.css";
 
 export type StepProps = {
@@ -33,6 +34,7 @@ function WorkExperienceSection({ pathNumber }: { pathNumber: number }) {
       companyCountry: "",
       hireDate: "",
       lastDateWorked: "",
+      currentWork: false,
     };
 
     setFormData({
@@ -44,7 +46,7 @@ function WorkExperienceSection({ pathNumber }: { pathNumber: number }) {
   const handleInputChange = (
     index: number,
     field: keyof WorkExperience,
-    value: string | number,
+    value: string | number | boolean,
   ) => {
     setFormData((prevFormData) => {
       const updatedWorkExperiences = [...prevFormData.WorkExperience];
@@ -74,6 +76,7 @@ function WorkExperienceSection({ pathNumber }: { pathNumber: number }) {
       companyCountry: "",
       hireDate: "",
       lastDateWorked: "",
+      currentWork: false,
     };
 
     setFormData((prevFormData) => ({
@@ -345,11 +348,27 @@ function WorkExperienceSection({ pathNumber }: { pathNumber: number }) {
                       onChange={(e) => {
                         handleInputChange(index, "lastDateWorked", e.target.value);
                       }}
+                      disabled={formData.WorkExperience[index]?.currentWork}
                     />
                   </label>
-                  <small className={styles.lastDateComment}>
-                    If working here now, please put the current date
-                  </small>
+                  <div className={styles.inputBox}>
+                    <label
+                      htmlFor="select"
+                      className={`${checkboxStyles.checkboxLabel} ${checkboxStyles.noMargin}`}
+                    >
+                      <input
+                        name="readRules"
+                        type="checkbox"
+                        id="select"
+                        onChange={(e) => {
+                          handleInputChange(index, "lastDateWorked", "");
+                          handleInputChange(index, "currentWork", e.target.checked);
+                        }}
+                        checked={formData.WorkExperience[index]?.currentWork}
+                      />
+                      <span className={checkboxStyles.grayText}>I currently work here</span>
+                    </label>
+                  </div>
                 </div>
               </div>
             </div>
@@ -394,7 +413,7 @@ export const Step3: React.FC<StepProps> = ({ pathNumber, next }: StepProps) => {
                 <input
                   className={styles.inputText}
                   type="text"
-                  placeholder="Add Company Name"
+                  placeholder="Enter Company Name"
                   name="currCompanyName"
                   value={formData.currCompanyName}
                   onChange={handleInputChange}
@@ -407,7 +426,7 @@ export const Step3: React.FC<StepProps> = ({ pathNumber, next }: StepProps) => {
                 <input
                   className={styles.inputText}
                   type="text"
-                  placeholder="Add your Company's Website"
+                  placeholder="Enter your Company's Website"
                   name="currCompanyWebsite"
                   onChange={handleInputChange}
                   value={formData.currCompanyWebsite}
@@ -420,7 +439,7 @@ export const Step3: React.FC<StepProps> = ({ pathNumber, next }: StepProps) => {
                 <input
                   className={styles.inputText}
                   type="text"
-                  placeholder="Add Profession Here"
+                  placeholder="Enter Profession"
                   name="currCompanyProfession"
                   onChange={handleInputChange}
                   value={formData.currCompanyProfession}
@@ -433,7 +452,7 @@ export const Step3: React.FC<StepProps> = ({ pathNumber, next }: StepProps) => {
                 <input
                   className={styles.inputText}
                   type="text"
-                  placeholder="Add Specialization Here"
+                  placeholder="Enter Specialization Here"
                   name="currCompanySpecialization"
                   onChange={handleInputChange}
                   value={formData.currCompanySpecialization}
@@ -471,7 +490,7 @@ export const Step3: React.FC<StepProps> = ({ pathNumber, next }: StepProps) => {
                 Total Years Work Experience<span className={styles.boldRed}>*</span>
                 <input
                   className={styles.inputText}
-                  type="text"
+                  type="number"
                   placeholder="Enter Number of Years"
                   name="totalYears"
                   onChange={handleInputChange}
