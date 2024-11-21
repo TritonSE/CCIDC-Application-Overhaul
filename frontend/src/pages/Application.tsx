@@ -14,17 +14,25 @@ import {
   Step4,
 } from "../components/index.ts";
 import { AuthContext } from "../contexts/AuthContext.tsx";
+import { ApplicationPathType, FormContext } from "../contexts/FormContext.tsx";
 import styles from "../stylesheets/Application.module.css";
 
-export type ApplicationProps = {
-  path: 1 | 2 | 3 | 4;
-};
-
-export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationProps) => {
+export const Application: React.FC = () => {
   const [pageNum, setPageNum] = useState<0 | 1 | 2 | 3 | 4>(0);
   const { isLoggedIn, isLoading } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  const { formData } = useContext(FormContext);
+
+  let path = formData.applicantPath;
+
+  if (path === "") {
+    navigate("/prescreening");
+    path = path as ApplicationPathType;
+  }
+
+  console.log("in Application appPath is ", path);
+  console.log("in application formData is ", formData);
   // Redirect to login page if not logged in
   useEffect(() => {
     if (!isLoggedIn && !isLoading) {
@@ -63,7 +71,7 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
   };
 
   const path_descriptions = {
-    1: (
+    "1": (
       <p>
         Path 1 is for Applicants who meet minimum education or experience-only requirements but who
         are still in the process of completing the necessary education/work experience, may take the{" "}
@@ -74,7 +82,7 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
       </p>
     ),
 
-    2: (
+    "2": (
       <p>
         Path 2 is for Applicants who meet minimum education and education/work experience, may take
         the <span className={styles.red}>IDEX California® Examination</span>. After successfully
@@ -84,7 +92,7 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
       </p>
     ),
 
-    3: (
+    "3": (
       <p>
         Path 3 is for Applicants who meet minimum education and education/work experience, and has
         passed one of the qualifying National Interior Designer Exams. Applicants are eligible and
@@ -95,7 +103,7 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
       </p>
     ),
 
-    4: (
+    "4": (
       <p>
         Path 4 is for Applicants who meet minimum education and education/work experience, have
         passed one of the qualifying National Interior Designer Exams, and passed required ICC
@@ -109,9 +117,9 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
   };
 
   const applicationSteps = {
-    0: <Step1 onSubmit={next} />,
-    1: <Step2 pathNumber={path} onSubmit={next} />,
-    2: <Step3 pathNumber={path} next={next} />,
+    0: <Step1 next={next} />,
+    1: <Step2 next={next} />,
+    2: <Step3 next={next} />,
     3: <Step4 next={next} />,
     4: (
       <form id="step5-form" onSubmit={onSubmit}>
@@ -123,7 +131,6 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
   return (
     <div className={styles.pathwayApplicationBase}>
       <CompleteInOneSittingModal
-        path={path}
         isOpen={isCompleteInOneSittingModalOpen}
         onClose={() => {
           setIsCompleteInOneSittingModalOpen(false);
@@ -163,7 +170,7 @@ export const Application: React.FC<ApplicationProps> = ({ path }: ApplicationPro
       )}
 
       <div className={styles.formContainer}>
-        <PathwayTimeline path={path} progress={pageNum}></PathwayTimeline>
+        <PathwayTimeline progress={pageNum} />
         <div>{applicationSteps[pageNum]}</div>
         <div className={styles.navigationContainer}>
           <button onClick={back} id="a" className={styles.backArrow}>

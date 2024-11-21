@@ -1,8 +1,11 @@
+import { useContext } from "react";
+
 import {
   timelinePointCompleted,
   timelinePointInProgress,
   timelinePointUncompleted,
 } from "../assets/index.ts";
+import { FormContext } from "../contexts/FormContext.tsx";
 
 import styles from "./PathwayTimeline.module.css";
 
@@ -39,13 +42,14 @@ function TimelinePoint(props: TimelinePointProps) {
   );
 }
 
-type PathwayProps = { path: 1 | 2 | 3 | 4; progress: 0 | 1 | 2 | 3 | 4 };
+type PathwayProps = { progress: 0 | 1 | 2 | 3 | 4 };
 export function PathwayTimeline(props: PathwayProps) {
-  const { path, progress } = props;
+  const { progress } = props;
+  const { formData } = useContext(FormContext);
 
   return (
     <div className={styles.pathwayContainer}>
-      <h2 className={styles.timelineHeader}>Path {path} Application</h2>
+      <h2 className={styles.timelineHeader}>Path {formData.applicantPath} Application</h2>
       <p className={styles.timelineDescription}>
         You must complete all 4 steps in order for your application to be reviewed and to qualify
         for examination.

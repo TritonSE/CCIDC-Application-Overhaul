@@ -27,10 +27,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<Candidates />} />
-              <Route path="path1" element={<Application path={1} />} />
-              <Route path="path2" element={<Application path={2} />} />
-              <Route path="path3" element={<Application path={3} />} />
-              <Route path="path4" element={<Application path={4} />} />
+              <Route path="application" element={<Application />} />
               <Route path="candidates" element={<Candidates />} />
               <Route path="prescreening" element={<PrescreeningForm />} />
               <Route path="ThankyouForApplying" element={<ThankyouForApplying />} />

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 import checkMark from "../assets/checkMarkIcon.svg";
@@ -6,6 +6,7 @@ import closeIcon from "../assets/closeIcon.svg";
 import errorAlert from "../assets/errorAlert.svg";
 import questionMark from "../assets/questionMark.svg";
 import warningHand from "../assets/warningHand.svg";
+import { FormContext } from "../contexts/FormContext.tsx";
 
 import { Button } from "./Button.tsx";
 import styles from "./Modal.module.css";
@@ -121,24 +122,19 @@ export function RequirementsNotMetModal(props: RequirementsNotMetModalProps) {
           </button>{" "}
           and reapply when you have met the requirements for at least path one.
         </p>
-        {/* TODO: route to correct page */}
         <Button onClick={onRetake}>Retake Prescreening Questions</Button>
       </div>
     </Modal>
   );
 }
 
-type CompleteInOneSittingModalProps = {
-  path: 1 | 2 | 3 | 4;
-} & ModalProps;
-
-export function CompleteInOneSittingModal(props: CompleteInOneSittingModalProps) {
-  const { path, ...modalProps } = props;
+export function CompleteInOneSittingModal(modalProps: ModalProps) {
+  const { formData } = useContext(FormContext);
   return (
     <Modal {...modalProps}>
       <div className={styles.modalChildren}>
         <img className={styles.modalImage} src={warningHand} alt="Warning Hand" />
-        <p className={styles.mainText}>Hi, Path {path} Application</p>
+        <p className={styles.mainText}>Hi, Path {formData.applicantPath} Application</p>
         <p className={styles.reviewText}>
           Before you start, please note that this application form must be completed in one sitting.
           Your details will <b>NOT</b> be saved as you go on.

@@ -17,7 +17,7 @@ export function Login() {
     // TODO: route to correct path, currently no way of knowing what path (1, 2, 3, or 4) to route to
     if (isLoggedIn) {
       const applicantPath = localStorage.getItem("applicantPath");
-      const redirectUrl = applicantPath ? `/path${applicantPath}` : `/`;
+      const redirectUrl = applicantPath ? `/applicaiton` : `/`;
       navigate(redirectUrl);
     }
   }, [isLoggedIn]);

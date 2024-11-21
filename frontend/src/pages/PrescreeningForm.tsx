@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import buttonStyle from "../components/Button.module.css";
 import { Page, RequirementsNotMetModal } from "../components/index.ts";
+import { ApplicationPathType, FormContext } from "../contexts/FormContext.tsx";
 import styles from "../stylesheets/PrescreeningForm.module.css";
 
 export function PrescreeningForm() {
@@ -12,11 +13,12 @@ export function PrescreeningForm() {
   const [question3Value, setQuestion3Value] = useState("");
   const [isRequirementsNotMetModalOpen, setIsRequirementsNotMetModalOpen] = useState(false);
   const navigate = useNavigate();
+  const { setFormData } = useContext(FormContext);
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    let finalPath = "";
+    let finalPath = "" as ApplicationPathType | "";
 
     // Use the selected values to determine the finalPath
     // Can modify this logic based on your requirements
@@ -48,7 +50,13 @@ export function PrescreeningForm() {
 
     if (finalPath !== "") {
       localStorage.setItem("applicantPath", finalPath);
-      navigate(`/path${finalPath}`);
+
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        applicantPath: finalPath,
+      }));
+
+      navigate(`/application`);
     } else {
       setIsRequirementsNotMetModalOpen(true);
     }

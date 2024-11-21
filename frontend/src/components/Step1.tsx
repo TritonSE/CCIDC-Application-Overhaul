@@ -8,10 +8,10 @@ import styles from "./Steps.module.css";
 import { Dropdown } from "./index.ts";
 
 type Step1Props = {
-  onSubmit: () => void;
+  next: () => void;
 };
 
-export function Step1({ onSubmit }: Step1Props) {
+export function Step1({ next }: Step1Props) {
   const { formData, setFormData } = useContext(FormContext);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,7 +50,7 @@ export function Step1({ onSubmit }: Step1Props) {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    onSubmit();
+    next();
   };
 
   return (
