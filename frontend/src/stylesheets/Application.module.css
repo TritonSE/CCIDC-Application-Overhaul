@@ -83,3 +83,8 @@
 .navigationContainer img {
   margin-top: 1rem;
 }
+
+.navLink {
+  text-decoration: none;
+  color: var(--color-text-primary);
+}

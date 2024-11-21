@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import buttonStyle from "../components/Button.module.css";
 import { Page, RequirementsNotMetModal } from "../components/index.ts";
+import { ApplicationPathType, FormContext } from "../contexts/FormContext.tsx";
 import styles from "../stylesheets/PrescreeningForm.module.css";
 
 export function PrescreeningForm() {
@@ -11,18 +12,13 @@ export function PrescreeningForm() {
   const [question2Value, setQuestion2Value] = useState("");
   const [question3Value, setQuestion3Value] = useState("");
   const [isRequirementsNotMetModalOpen, setIsRequirementsNotMetModalOpen] = useState(false);
-
-  const pathOne = "/path1";
-  const pathTwo = "/path2";
-  const pathThree = "/path3";
-  const pathFour = "/path4";
-
   const navigate = useNavigate();
+  const { setFormData } = useContext(FormContext);
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    let finalPath = "";
+    let finalPath = "" as ApplicationPathType | "";
 
     // Use the selected values to determine the finalPath
     // Can modify this logic based on your requirements
@@ -31,29 +27,36 @@ export function PrescreeningForm() {
     }
 
     if (question1Value === "op12" && question2Value === "op22" && question3Value === "op32") {
-      finalPath = pathOne;
+      finalPath = "1";
     } else if (
       question1Value === "op11" &&
       question2Value === "op22" &&
       question3Value === "op32"
     ) {
-      finalPath = pathTwo;
+      finalPath = "2";
     } else if (
       question1Value === "op11" &&
       question2Value === "op21" &&
       question3Value === "op32"
     ) {
-      finalPath = pathThree;
+      finalPath = "3";
     } else if (
       question1Value === "op11" &&
       question2Value === "op21" &&
       question3Value === "op31"
     ) {
-      finalPath = pathFour;
+      finalPath = "4";
     }
 
     if (finalPath !== "") {
-      navigate(finalPath);
+      localStorage.setItem("applicantPath", finalPath);
+
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        applicantPath: finalPath,
+      }));
+
+      navigate(`/application`);
     } else {
       setIsRequirementsNotMetModalOpen(true);
     }

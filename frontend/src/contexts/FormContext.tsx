@@ -45,6 +45,8 @@ export type WorkExperience = {
   currentWork: boolean;
 };
 
+export type ApplicationPathType = "1" | "2" | "3" | "4";
+
 type FormData = {
   firstName: string;
   lastName: string;
@@ -86,12 +88,18 @@ type FormData = {
   ICCCourses: ICCCourses[];
   NationalExams: NationalExams[];
   WorkExperience: WorkExperience[];
+
+  applicantPath: ApplicationPathType | "";
 };
 
 type FormContextType = {
   formData: FormData;
   setFormData: React.Dispatch<React.SetStateAction<FormData>>;
 };
+
+const storedValue = localStorage.getItem("applicantPath") ?? "";
+const validValues = ["1", "2", "3", "4", ""];
+const appPath = validValues.includes(storedValue) ? (storedValue as ApplicationPathType | "") : "";
 
 const initialFormData: FormData = {
   firstName: "",
@@ -134,6 +142,8 @@ const initialFormData: FormData = {
   ICCCourses: [],
   NationalExams: [],
   WorkExperience: [],
+
+  applicantPath: appPath,
 };
 
 const initialState: FormContextType = {

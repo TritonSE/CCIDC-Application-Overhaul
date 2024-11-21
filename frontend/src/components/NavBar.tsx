@@ -1,9 +1,10 @@
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import { NavLink } from "react-router-dom";
 
 import cartIcon from "../assets/cart.svg";
 import logo from "../assets/logo.svg";
 import { AuthContext } from "../contexts/AuthContext.tsx";
+import { FormContext } from "../contexts/FormContext.tsx";
 
 import styles from "./NavBar.module.css";
 import { Button } from "./index.ts";
@@ -20,6 +21,13 @@ export function NavBar() {
   };
 
   const { isLoggedIn, logout } = useContext(AuthContext);
+
+  const { formData } = useContext(FormContext);
+
+  const applyRedirectUrl = useMemo(
+    () => (formData.applicantPath ? `/application` : "/prescreening"),
+    [formData.applicantPath],
+  );
 
   return (
     <nav className={styles.navBar}>
@@ -83,7 +91,7 @@ export function NavBar() {
             )}
           </li>
           <li>
-            <NavLink className={styles.navLink} to={"/prescreening"}>
+            <NavLink className={styles.navLink} to={applyRedirectUrl}>
               <Button onClick={undefined}>Apply</Button>
             </NavLink>
           </li>

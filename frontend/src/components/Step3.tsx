@@ -11,13 +11,12 @@ import checkboxStyles from "./Step4.module.css";
 import styles from "./Steps.module.css";
 
 export type StepProps = {
-  pathNumber: number;
   next: () => void;
 };
 
-function WorkExperienceSection({ pathNumber }: { pathNumber: number }) {
+function WorkExperienceSection() {
   const { formData, setFormData } = useContext(FormContext);
-  const isRequired = [2, 3, 4].includes(pathNumber);
+  const isRequired = ["2", "3", "4"].includes(formData.applicantPath);
 
   if (isRequired && formData.WorkExperience.length === 0) {
     const newWorkExperience: WorkExperience = {
@@ -378,7 +377,7 @@ function WorkExperienceSection({ pathNumber }: { pathNumber: number }) {
   );
 }
 
-export const Step3: React.FC<StepProps> = ({ pathNumber, next }: StepProps) => {
+export const Step3: React.FC<StepProps> = ({ next }: StepProps) => {
   const { formData, setFormData } = useContext(FormContext);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -462,7 +461,7 @@ export const Step3: React.FC<StepProps> = ({ pathNumber, next }: StepProps) => {
           </div>
         </div>
         <hr />
-        <WorkExperienceSection pathNumber={pathNumber} />
+        <WorkExperienceSection />
         <hr />
         <div className={styles.formSection}>
           <div className={styles.titleContainer}>

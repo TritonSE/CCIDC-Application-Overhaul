@@ -15,7 +15,11 @@ export function Login() {
   // Redirect once logged in
   useEffect(() => {
     // TODO: route to correct path, currently no way of knowing what path (1, 2, 3, or 4) to route to
-    if (isLoggedIn) navigate("/path1");
+    if (isLoggedIn) {
+      const applicantPath = localStorage.getItem("applicantPath");
+      const redirectUrl = applicantPath ? `/applicaiton` : `/`;
+      navigate(redirectUrl);
+    }
   }, [isLoggedIn]);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {

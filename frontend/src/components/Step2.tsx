@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import caretDown from "../assets/caretdown.svg";
 import caretUp from "../assets/caretup.svg";
@@ -8,11 +8,12 @@ import deleteIconHovered from "../assets/red-delete.svg";
 import upload from "../assets/upload.svg";
 import courseList from "../constants/courses.json";
 import examList from "../constants/exams.json";
+import { FormContext } from "../contexts/FormContext.tsx";
 
 import styles from "./Steps.module.css";
 import { Dropdown } from "./index.ts";
 
-function SchoolSection({ pathNumber }: { pathNumber: number }) {
+function SchoolSection() {
   const [schools, setSchools] = useState([{ id: 1 }]);
   const [showAddress, setShowAddress] = useState(false);
 
@@ -28,7 +29,8 @@ function SchoolSection({ pathNumber }: { pathNumber: number }) {
     setShowAddress((prevState) => !prevState);
   };
 
-  const isRequired = [2, 3, 4].includes(pathNumber);
+  const { formData } = useContext(FormContext);
+  const isRequired = ["2", "3", "4"].includes(formData.applicantPath);
 
   return (
     <div>
@@ -428,25 +430,26 @@ function ICCCourses() {
   );
 }
 type Step2Props = {
-  pathNumber: number;
-  onSubmit: () => void;
+  next: () => void;
 };
 
-export function Step2({ pathNumber, onSubmit }: Step2Props) {
+export function Step2({ next }: Step2Props) {
   let content;
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    onSubmit();
+    next();
   };
 
-  if (pathNumber === 3) {
+  const { formData } = useContext(FormContext);
+
+  if (formData.applicantPath === "3") {
     content = (
       <>
         <NationalExamSection />
       </>
     );
-  } else if (pathNumber === 4) {
+  } else if (formData.applicantPath === "4") {
     content = (
       <>
         <NationalExamSection />
@@ -456,7 +459,7 @@ export function Step2({ pathNumber, onSubmit }: Step2Props) {
   }
   return (
     <form id="step2-form" className={styles.formContainer} onSubmit={handleSubmit}>
-      <SchoolSection pathNumber={pathNumber} />
+      <SchoolSection />
       {content}
       <ProfessionalAssociationSection />
     </form>

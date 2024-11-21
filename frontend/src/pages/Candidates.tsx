@@ -9,6 +9,9 @@ import { Button, FAQs, Page, Pathway } from "../components/index.ts";
 import styles from "../stylesheets/Candidates.module.css";
 
 export function Candidates() {
+  const applicantPath = localStorage.getItem("applicantPath");
+  const applyRedirectUrl = applicantPath ? `/applicaiton` : "/prescreening";
+
   return (
     <Page>
       <h1 className={styles.title}>Become a Certified Interior Designer (CID)</h1>
@@ -58,8 +61,8 @@ export function Candidates() {
         standards.
       </p>
       <div className={styles.centeredContainer}>
-        <NavLink className={styles.navLink} to={"/prescreening"}>
-          <Button onClick={null}>Apply Now</Button>
+        <NavLink className={styles.navLink} to={applyRedirectUrl}>
+          <Button onClick={undefined}>Apply Now</Button>
         </NavLink>
       </div>
       <div className={styles.textDivider2}>
@@ -109,7 +112,7 @@ export function Candidates() {
 
       <div className={styles.centeredContainer}>
         <NavLink className={styles.navLink} to={"/prescreening"}>
-          <Button onClick={null}>Discover Your Ideal Pathway</Button>
+          <Button onClick={undefined}>Discover Your Ideal Pathway</Button>
         </NavLink>
       </div>
 
