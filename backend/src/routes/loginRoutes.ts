@@ -75,6 +75,36 @@ router.post(
   },
 );
 
+router.options("/recaptcha/verify", cors(corsOptions));
+
+// Verify Recaptcha token
+router.post("/recaptcha/verify", cors(corsOptions), (req: Request, res: Response) => {
+  const captchaValue = req.body.captchaValue;
+  fetch(
+    `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SITE_SECRET}&response=${captchaValue}`,
+    {
+      method: "POST",
+    },
+  )
+    .then((response) => {
+      if (!response.ok) {
+        res.status(500).send("Failed to get Captcha response");
+        return;
+      }
+      response
+        .json()
+        .then((data) => {
+          res.send(data);
+        })
+        .catch(() => {
+          res.status(500).send("Failed to get Captcha response");
+        });
+    })
+    .catch(() => {
+      res.status(500).send("Failed to get Captcha response");
+    });
+});
+
 router.post("/logout", cors(corsOptions), (req: Request, res: Response) => {
   res.clearCookie("token");
   res.clearCookie("email");

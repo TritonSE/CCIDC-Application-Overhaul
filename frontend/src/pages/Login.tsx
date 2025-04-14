@@ -35,29 +35,59 @@ export function Login() {
         setShowCaptchaError(true);
         setIsLoginLoading(false);
         return;
+      } else {
+        const SERVER_URL = import.meta.env.VITE_SERVER_URL as string;
+        const VERIFY_RECAPTCHA_URL = `${SERVER_URL}/recaptcha/verify`;
+
+        fetch(VERIFY_RECAPTCHA_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            captchaValue,
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if ((data as Record<string, string>).success) {
+              const loginPromise = login(username, password);
+
+              if (loginPromise instanceof Promise) {
+                loginPromise
+                  .then((result) => {
+                    if (!result) {
+                      recaptcha.current?.reset();
+                      setShowError(true);
+                      setIsLoginLoading(false);
+                    }
+                  })
+                  .catch(() => {
+                    recaptcha.current?.reset();
+                    setShowError(true);
+                    setIsLoginLoading(false);
+                  });
+              } else {
+                recaptcha.current?.reset();
+                setShowError(true);
+                setIsLoginLoading(false);
+              }
+            } else {
+              recaptcha.current?.reset();
+              setShowError(true);
+              setIsLoginLoading(false);
+            }
+          })
+          .catch(() => {
+            recaptcha.current?.reset();
+            setShowError(true);
+            setIsLoginLoading(false);
+          });
       }
     } else {
       setShowCaptchaError(true);
       setIsLoginLoading(false);
       return;
-    }
-    const loginPromise = login(username, password);
-
-    if (loginPromise instanceof Promise) {
-      loginPromise
-        .then((result) => {
-          if (!result) {
-            setShowError(true);
-            setIsLoginLoading(false);
-          }
-        })
-        .catch(() => {
-          setShowError(true);
-          setIsLoginLoading(false);
-        });
-    } else {
-      setShowError(true);
-      setIsLoginLoading(false);
     }
   }
 
