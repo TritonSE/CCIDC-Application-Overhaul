@@ -79,7 +79,7 @@ router.options("/recaptcha/verify", cors(corsOptions));
 
 // Verify Recaptcha token
 router.post("/recaptcha/verify", cors(corsOptions), (req: Request, res: Response) => {
-  const captchaValue = req.body.captchaValue;
+  const { captchaValue } = req.body as Record<string, string>;
   fetch(
     `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SITE_SECRET}&response=${captchaValue}`,
     {
