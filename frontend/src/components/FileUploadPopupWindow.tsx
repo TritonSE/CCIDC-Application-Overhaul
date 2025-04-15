@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
+
 import closeIcon from "../assets/closeIcon.svg";
-import fileUploadIcon from "../assets/fileUploadIcon.svg";
-import styles from "./FileUploadPopupWindow.module.css";
-import spinnerImage from "../assets/spinner.png";
-import checkMark from "../assets/fileUploadCheckmark.svg";
 import fileIcon from "../assets/fileIcon.svg";
+import checkMark from "../assets/fileUploadCheckmark.svg";
+import fileUploadIcon from "../assets/fileUploadIcon.svg";
+import spinnerImage from "../assets/spinner.png";
+
+import styles from "./FileUploadPopupWindow.module.css";
 
 interface FileUploadPopupWindowProps {
   areFilesUploaded: (value: boolean) => void; // Indicates whether files are uploaded
