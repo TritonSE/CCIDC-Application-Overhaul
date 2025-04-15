@@ -13,7 +13,12 @@ const PORT: string | number = process.env.PORT ?? 3000;
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: JSON.parse(process.env.LOGIN_ORIGINS ?? "[]") as string[],
+    credentials: true,
+  }),
+);
 app.use(express.json());
 app.use(cookieParser());
 
