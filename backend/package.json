@@ -2,9 +2,10 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "Backend for CCIDC Application Overhaul",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "ts-node-esm index.ts",
+    "start": "ts-node-esm src/index.ts",
+    "build": "tsc",
     "format": "npm run check-git-hooks && prettier --write .",
     "lint-fix": "npm run check-git-hooks && (eslint --fix --cache --report-unused-disable-directives . || true) && prettier --write .",
     "lint-check": "npm run check-git-hooks && eslint --cache --report-unused-disable-directives . && prettier --check .",

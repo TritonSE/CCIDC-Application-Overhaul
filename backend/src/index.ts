@@ -5,9 +5,9 @@ import express from "express";
 
 dotenv.config();
 
-import driveRoutes from "./src/routes/driveRoutes";
-import formRoutes from "./src/routes/formRoutes";
-import loginRoutes from "./src/routes/loginRoutes";
+import driveRoutes from "./routes/driveRoutes";
+import formRoutes from "./routes/formRoutes";
+import loginRoutes from "./routes/loginRoutes";
 
 const app = express();
 
