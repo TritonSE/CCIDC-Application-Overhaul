@@ -10,10 +10,9 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 function authenticateServiceAccount() {
-  const SERVICE_ACCOUNT_KEY_FILE = "secret.json"; // Adjust the path as necessary
   const SCOPES = ["https://www.googleapis.com/auth/drive"];
   const auth = new google.auth.GoogleAuth({
-    keyFile: SERVICE_ACCOUNT_KEY_FILE,
+    credentials: JSON.parse(process.env.GOOGLE_SECRET_KEY ?? ""),
     scopes: SCOPES,
   });
 

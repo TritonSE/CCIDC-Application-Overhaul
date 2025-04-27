@@ -20,10 +20,10 @@ const router = express_1.default.Router();
 const storage = multer_1.default.memoryStorage();
 const upload = (0, multer_1.default)({ storage });
 function authenticateServiceAccount() {
-    const SERVICE_ACCOUNT_KEY_FILE = "secret.json"; // Adjust the path as necessary
+    var _a;
     const SCOPES = ["https://www.googleapis.com/auth/drive"];
     const auth = new googleapis_1.google.auth.GoogleAuth({
-        keyFile: SERVICE_ACCOUNT_KEY_FILE,
+        credentials: JSON.parse((_a = process.env.GOOGLE_SECRET_KEY) !== null && _a !== void 0 ? _a : ""),
         scopes: SCOPES,
     });
     const drive = googleapis_1.google.drive({ version: "v3", auth });
