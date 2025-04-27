@@ -47,10 +47,19 @@ router.post("/login", (req: Request<object, object, LoginBody>, res: Response) =
     .then((data: WordpressLoginResponse) => {
       const e = (v: string) => v; // overide url encoding when setting cookies
 
-      res.cookie("token", data.token, { httpOnly: true, secure: true, encode: e });
-      res.cookie("email", data.user_email, { secure: true, encode: e });
-      res.cookie("nicename", data.user_nicename, { secure: true, encode: e });
-      res.cookie("displayName", data.user_display_name, { secure: true, encode: e });
+      res.cookie("token", data.token, {
+        sameSite: "none",
+        httpOnly: true,
+        secure: true,
+        encode: e,
+      });
+      res.cookie("email", data.user_email, { sameSite: "none", secure: true, encode: e });
+      res.cookie("nicename", data.user_nicename, { sameSite: "none", secure: true, encode: e });
+      res.cookie("displayName", data.user_display_name, {
+        sameSite: "none",
+        secure: true,
+        encode: e,
+      });
       res.status(200).json({
         message: "Login succeeded",
       });
