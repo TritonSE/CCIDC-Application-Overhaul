@@ -12,5 +12,17 @@
       "src": "/(.*)",
       "dest": "dist/index.js"
     }
+  ],
+
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "https://ccidc-application-overhaul-frontend.vercel.app"
+        }
+      ]
+    }
   ]
 }
