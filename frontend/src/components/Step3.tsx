@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import deleteIcon from "../assets/deleteIcon.svg";
 import plus from "../assets/plusIcon.svg";
 import deleteIconHovered from "../assets/red-delete.svg";
-import upload from "../assets/uploadIcon.svg";
 import { FormContext, WorkExperience } from "../contexts/FormContext.tsx";
 
+import FileUploadPopupWindow from "./FileUploadPopupWindow.tsx";
 import checkboxStyles from "./Step4.module.css";
 import styles from "./Steps.module.css";
 
@@ -510,7 +510,7 @@ export const Step3: React.FC<StepProps> = ({ next }: StepProps) => {
           <p>
             i. IF YOU ARE SELF-EMPLOYED - Complete the{" "}
             <Link
-              to="https://ccidc.org/wp-content/uploads/2023/05/Work-Verification-Form.pdf"
+              to="https://ccidc.org/wp-content/uploads/2025/02/Work-Verification-Form.pdf"
               className={styles.link}
             >
               Employment Verification Form
@@ -520,7 +520,7 @@ export const Step3: React.FC<StepProps> = ({ next }: StepProps) => {
             CPA or Attorney. <br />
             ii. IF YOU ARE NOT SELF-EMPLOYED - Fill out the{" "}
             <Link
-              to="https://ccidc.org/wp-content/uploads/2023/05/Work-Verification-Form.pdf"
+              to="https://ccidc.org/wp-content/uploads/2025/02/Work-Verification-Form.pdf"
               className={styles.link}
             >
               Employment Verification Form
@@ -528,10 +528,7 @@ export const Step3: React.FC<StepProps> = ({ next }: StepProps) => {
             must be signed by Candidate and Employer.
           </p>
 
-          <button type="button" className={styles.uploadVerification}>
-            Upload Employment Verification Form
-            <img src={upload} className={styles.uploadVerificationButton} alt="buttonpng" />
-          </button>
+          <FileUploadPopupWindow buttonTitle="Upload Employment Verification Form" />
         </div>
         <hr />
       </form>

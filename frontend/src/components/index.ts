@@ -1,6 +1,5 @@
 import { Accordion } from "./Accordion.tsx";
 import { Button } from "./Button.tsx";
-import { CongratulationsPopupWindow } from "./CongratulationsPopupWindow.tsx";
 import { Dropdown } from "./Dropdown.tsx";
 import { FAQs } from "./FAQs.tsx";
 import {
@@ -31,7 +30,6 @@ export {
   Step2,
   Step4,
   Dropdown,
-  CongratulationsPopupWindow,
   CompleteInOneSittingModal,
   ConfirmSubmissionModal,
   CongratulationsModal,

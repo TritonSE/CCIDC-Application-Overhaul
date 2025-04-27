@@ -2,6 +2,7 @@
   padding: 0.5rem 1rem;
   width: 100%;
   background-image: url("../assets/dropDownIcon.svg");
+  background-color: transparent;
   background-repeat: no-repeat, repeat;
   background-position:
     right 0.7em top 50%,

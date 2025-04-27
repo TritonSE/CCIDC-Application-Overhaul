@@ -1,0 +1,22 @@
+.root {
+  height: calc(100vh - 106px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.buttonContents {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+}
+
+.cartImage {
+  width: unset;
+}

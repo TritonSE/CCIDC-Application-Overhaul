@@ -1,8 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { FormEvent, useContext, useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
 import arrow from "../assets/arrow.svg";
 import backArrow from "../assets/backArrow.svg";
+import { CongratulationsPage } from "../components/CongratulationsPage.tsx";
 import {
   Button,
   CompleteInOneSittingModal,
@@ -18,11 +19,12 @@ import { ApplicationPathType, FormContext } from "../contexts/FormContext.tsx";
 import styles from "../stylesheets/Application.module.css";
 
 export const Application: React.FC = () => {
-  const [pageNum, setPageNum] = useState<0 | 1 | 2 | 3 | 4>(0);
+  const [pageNum, setPageNum] = useState<0 | 1 | 2 | 3>(0);
+  const [showCongratsPage, setShowCongratsPage] = useState(false);
   const { isLoggedIn, isLoading } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const { formData } = useContext(FormContext);
+  const { formData, submitForm } = useContext(FormContext);
 
   let path = formData.applicantPath;
 
@@ -31,8 +33,6 @@ export const Application: React.FC = () => {
     path = path as ApplicationPathType;
   }
 
-  console.log("in Application appPath is ", path);
-  console.log("in application formData is ", formData);
   // Redirect to login page if not logged in
   useEffect(() => {
     if (!isLoggedIn && !isLoading) {
@@ -43,19 +43,19 @@ export const Application: React.FC = () => {
   const [confirmSubmissionModalOpen, setConfirmSubmissionModalOpen] = useState(false);
 
   const next = () => {
-    if (pageNum < 4) {
-      setPageNum((newPageNum) => (newPageNum + 1) as 0 | 1 | 2 | 3 | 4);
+    if (pageNum < 3) {
+      setPageNum((newPageNum) => (newPageNum + 1) as 0 | 1 | 2 | 3);
       window.scrollTo({ top: 0, behavior: "instant" });
     }
 
-    if (pageNum === 4) {
+    if (pageNum === 3) {
       setConfirmSubmissionModalOpen(true);
     }
   };
 
   const back = () => {
     if (pageNum > 0) {
-      setPageNum((newPageNum) => (newPageNum - 1) as 0 | 1 | 2 | 3 | 4);
+      setPageNum((newPageNum) => (newPageNum - 1) as 0 | 1 | 2 | 3);
     }
   };
 
@@ -121,13 +121,12 @@ export const Application: React.FC = () => {
     1: <Step2 next={next} />,
     2: <Step3 next={next} />,
     3: <Step4 next={next} />,
-    4: (
-      <form id="step5-form" onSubmit={onSubmit}>
-        <div />
-      </form>
-    ),
-    5: <div className={styles.congratulationsModal}></div>,
   };
+
+  if (showCongratsPage) {
+    return <CongratulationsPage />;
+  }
+
   return (
     <div className={styles.pathwayApplicationBase}>
       <CompleteInOneSittingModal
@@ -142,7 +141,13 @@ export const Application: React.FC = () => {
           setConfirmSubmissionModalOpen(false);
         }}
         onSubmit={function (): void {
-          throw new Error("Function not implemented.");
+          submitForm()
+            .then(() => {
+              setShowCongratsPage(true);
+            })
+            .catch((error) => {
+              alert(`Error submitting form data: ${error}`);
+            });
         }}
       ></ConfirmSubmissionModal>
       {pageNum === 0 && (
@@ -179,7 +184,9 @@ export const Application: React.FC = () => {
           <button
             type="submit"
             form={`step${pageNum + 1}-form`}
-            onSubmit={next}
+            onSubmit={(e) => {
+              onSubmit(e as unknown as FormEvent<HTMLFormElement>);
+            }}
             className={styles.arrow}
           >
             <img src={arrow} id={styles.arrow} alt="arrow"></img>

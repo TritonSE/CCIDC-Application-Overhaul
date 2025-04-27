@@ -171,7 +171,7 @@ export function Step1({ next }: Step1Props) {
                 options={genders}
                 onSelect={handleGenderSelect}
                 name={"gender"}
-                defaultValue={formData.gender || undefined}
+                value={formData.gender || ""}
               />
             </label>
           </div>
@@ -207,7 +207,7 @@ export function Step1({ next }: Step1Props) {
                 options={devices}
                 onSelect={handlePhoneSelect}
                 name={"deviceType"}
-                defaultValue={formData.deviceType || undefined}
+                value={formData.deviceType || ""}
               />
             </label>
           </div>

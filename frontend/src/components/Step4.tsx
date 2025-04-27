@@ -1,8 +1,8 @@
 import { useContext } from "react";
 
-import upload from "../assets/uploadIcon.svg";
 import { FormContext } from "../contexts/FormContext.tsx";
 
+import FileUploadPopupWindow from "./FileUploadPopupWindow.tsx";
 import styles from "./Step4.module.css";
 import { Dropdown } from "./index.ts";
 
@@ -106,7 +106,7 @@ export const Step4: React.FC<StepProps> = ({ next }: StepProps) => {
                   options={["Yes", "No"]}
                   onSelect={handleSelect}
                   name={"dropconvictedOfFelonyDown"}
-                  defaultValue={formData.convictedOfFelony || undefined}
+                  value={formData.convictedOfFelony || ""}
                   required
                 />
               </label>
@@ -172,6 +172,8 @@ export const Step4: React.FC<StepProps> = ({ next }: StepProps) => {
             <a
               className={styles.lightBlue}
               href="https://ccidc.org/wp-content/uploads/2017/07/CCIDC-Rules-and-Regulations.pdf"
+              target="blank"
+              rel="noopener noreferrer"
             >
               CCIDC RULES & REGULATIONS
             </a>
@@ -203,15 +205,14 @@ export const Step4: React.FC<StepProps> = ({ next }: StepProps) => {
             <a
               className={styles.lightBlue}
               href="https://ccidc.org/wp-content/uploads/2023/05/CCIDC-CODE-OF-ETHICS-2023.pdf"
+              target="blank"
+              rel="noopener noreferrer"
             >
               CCIDC CODE OF ETHICS
             </a>
           </p>
 
-          <button className={styles.upload}>
-            Upload Signed Code of Ethics
-            <img src={upload} className={styles.uploadButton} alt="buttonpng" />
-          </button>
+          <FileUploadPopupWindow buttonTitle="Upload Signed Code of Ethics" />
         </div>
         <hr />
         <div className={styles.formSection}>

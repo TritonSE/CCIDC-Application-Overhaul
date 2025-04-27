@@ -1,0 +1,223 @@
+.uploadButton {
+  font-family: "Rubik";
+  font-size: 15px;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  border-radius: 4px;
+  height: 48px;
+  width: 338px;
+  text-align: left;
+  align-items: center;
+  display: flex;
+  margin-top: 1.5rem;
+  padding: 16px;
+  justify-content: space-between;
+  margin-bottom: 2em;
+}
+
+.uploadButtonImg {
+  width: 24px;
+  height: 24px;
+}
+
+.popupCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.popupWindow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: 536px;
+  height: 433px;
+  padding: 2rem;
+
+  background-color: var(--color-background);
+  border-radius: 0.5rem;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.28);
+  font-family: var(--font-body);
+  font: var(--font-body);
+}
+
+.closeButtonContainer {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.closeButton {
+  all: unset;
+}
+
+.closeButton:hover {
+  cursor: pointer;
+}
+
+.dragAndDropArea {
+  width: 100%;
+  border-radius: 8px;
+  background: #d8d8d854;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.dragAndDropArea.dragOver {
+  background: #8f8f8f54;
+}
+
+.dragAndDropInstructions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.dragAndDropInstructions * {
+  margin: 0;
+  width: fit-content;
+}
+
+.title {
+  color: #000;
+
+  text-align: center;
+  /* Title/Small */
+  font-family: Rubik;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 36px */
+  letter-spacing: 0.48px;
+}
+
+.subtext {
+  font: var(--font-body);
+  color: var(--color-text-neutral-grey);
+}
+
+.browseFiles {
+  color: #428bcd;
+  text-decoration: underline;
+}
+
+.browseFiles:hover {
+  cursor: pointer;
+}
+
+.uploaded-files-container {
+  display: flex;
+  align-items: center; /* Aligns vertically */
+}
+
+.uploadedFilesWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 635px; /* Adjust as needed */
+  margin-top: 1.5rem;
+}
+
+.fileBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background: #cafae0;
+  border-radius: 8px;
+  margin-bottom: 10px; /* Adjust as needed */
+  font-family: var(--font-body);
+  font: var(--font-body);
+  font-size: 13px;
+}
+
+.fileName {
+  margin-right: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.removeButton {
+  cursor: pointer;
+}
+
+.progressBarContainer {
+  width: 100%;
+  height: 20px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.progressBar {
+  height: 75%;
+  border-radius: 5px;
+  background-color: red;
+}
+
+.spinner {
+  height: 34px;
+  width: 34px;
+  align-items: center;
+}
+
+.spinning {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg); /* Start spinning from 0 degrees */
+  }
+  100% {
+    transform: rotate(360deg); /* End spinning at 360 degrees (one full rotation) */
+  }
+}
+
+.spinnerContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+}
+
+.uploadCompleteMessage {
+  background: #d8d8d854;
+  border-style: solid;
+
+  border-color: #18840f;
+  border-width: 4px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.checkMark {
+  height: 50px;
+  width: 50px;
+}
+
+.fileIconDisplay {
+  height: 23px;
+  width: 23px;
+  margin-right: 10px;
+}

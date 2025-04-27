@@ -1,5 +1,7 @@
 import { FormEvent, useContext, useEffect, useRef, useState } from "react";
-import { ReCAPTCHA } from "react-google-recaptcha";
+// Disable linter warning because Captcha doesn't work when imported as a named import
+// eslint-disable-next-line import/no-named-as-default
+import ReCAPTCHA from "react-google-recaptcha";
 import { useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../contexts/AuthContext";
@@ -20,7 +22,7 @@ export function Login() {
     // TODO: route to correct path, currently no way of knowing what path (1, 2, 3, or 4) to route to
     if (isLoggedIn) {
       const applicantPath = localStorage.getItem("applicantPath");
-      const redirectUrl = applicantPath ? `/applicaiton` : `/`;
+      const redirectUrl = applicantPath ? `/application` : `/`;
       navigate(redirectUrl);
     }
   }, [isLoggedIn]);

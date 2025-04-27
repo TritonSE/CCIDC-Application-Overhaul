@@ -4,7 +4,8 @@ type FormProviderProps = {
   children: ReactNode;
 };
 
-type SchoolsAttended = {
+// Define types for various form data sections
+export type SchoolsAttended = {
   schoolName: string;
   schoolCity: string;
   schoolState: string;
@@ -14,15 +15,19 @@ type SchoolsAttended = {
   dateStarted: string;
   dateStopped: string;
 };
-type ProfessionalMemberships = {
+
+export type ProfessionalMemberships = {
   membershipName: string;
   membershipLevel: string;
 };
-type ICCCourses = {
+
+export type ICCCourses = {
   courseName: string;
   courseCompleteDate: string;
+  courseCertificateNumber: string;
 };
-type NationalExams = {
+
+export type NationalExams = {
   examName: string;
   examDate: string;
   certificateNumber: string;
@@ -47,6 +52,7 @@ export type WorkExperience = {
 
 export type ApplicationPathType = "1" | "2" | "3" | "4";
 
+// Define the complete form data type
 type FormData = {
   firstName: string;
   lastName: string;
@@ -92,9 +98,15 @@ type FormData = {
   applicantPath: ApplicationPathType | "";
 };
 
+// Maps unique IDs to uploaded files
+type FormFiles = Record<string, File | null>;
+
 type FormContextType = {
   formData: FormData;
+  formFiles: FormFiles;
   setFormData: React.Dispatch<React.SetStateAction<FormData>>;
+  setFormFiles: React.Dispatch<React.SetStateAction<FormFiles>>;
+  submitForm: () => Promise<void>;
 };
 
 const storedValue = localStorage.getItem("applicantPath") ?? "";
@@ -146,15 +158,89 @@ const initialFormData: FormData = {
   applicantPath: appPath,
 };
 
-const initialState: FormContextType = {
+export const FormContext = createContext<FormContextType>({
   formData: initialFormData,
-  setFormData: () => undefined,
-};
+  formFiles: {},
+  setFormData: () => {},
+  setFormFiles: () => {},
+  submitForm: async () => {},
+});
 
-export const FormContext = createContext<FormContextType>(initialState);
+// Function to parse current cookies and return a map of name to value.
+function parseCookies() {
+  const cookieString = document.cookie;
+
+  if (!cookieString) {
+    return {};
+  }
+
+  const cookies: Record<string, string> = {};
+  const cookieArray = cookieString.split(";");
+
+  for (const cookieEntry of cookieArray) {
+    const cookie = cookieEntry.trim();
+    const parts = cookie.split("=");
+    const name = parts[0];
+    const value = parts.slice(1).join("="); // Handles values with "="
+    cookies[name] = value;
+  }
+  return cookies;
+}
 
 export const FormProvider: React.FC<FormProviderProps> = ({ children }) => {
   const [formData, setFormData] = useState<FormData>(initialFormData);
+  const [formFiles, setFormFiles] = useState<FormFiles>({});
 
-  return <FormContext.Provider value={{ formData, setFormData }}>{children}</FormContext.Provider>;
+  const submitForm = async () => {
+    const SERVER_URL = import.meta.env.VITE_SERVER_URL as string;
+
+    const folderName = `${formData.firstName}_${formData.lastName}_${new Date()
+      .toDateString()
+      .replace(/ /g, "_")}`;
+
+    const cookies = parseCookies();
+    const nicename = cookies?.nicename;
+
+    await Promise.all(
+      Object.keys(formFiles).map(async (fileUuid) => {
+        const file = formFiles[fileUuid] ?? null;
+        if (!file) {
+          return Promise.resolve();
+        }
+
+        const fileFormData = new FormData();
+        fileFormData.append("files", file);
+        fileFormData.append("folderName", folderName);
+
+        const response = await fetch(`${SERVER_URL}/file/upload`, {
+          method: "POST",
+          body: fileFormData,
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error ${response.status}: ${response.statusText}`);
+        }
+      }),
+    );
+
+    const response = await fetch(`${SERVER_URL}/form/submit-form`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ ...formData, nicename }),
+    });
+
+    if (response.status !== 200) {
+      throw new Error(`HTTP error ${response.status}: ${response.statusText}`);
+    }
+
+    console.log("Form data submitted successfully");
+  };
+
+  return (
+    <FormContext.Provider value={{ formData, formFiles, setFormData, setFormFiles, submitForm }}>
+      {children}
+    </FormContext.Provider>
+  );
 };
