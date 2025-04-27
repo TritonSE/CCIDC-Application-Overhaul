@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Backend for CCIDC Application Overhaul",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "start": "ts-node-esm index.ts",
     "format": "npm run check-git-hooks && prettier --write .",
