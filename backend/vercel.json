@@ -9,14 +9,14 @@
   ],
   "rewrites": [
     {
-      "source": "/*",
-      "destination": "dist/index.js"
+      "source": "/:path*",
+      "destination": "/dist/index"
     }
   ],
 
   "headers": [
     {
-      "source": "/*",
+      "source": "/:path*",
       "headers": [
         {
           "key": "Access-Control-Allow-Origin",
