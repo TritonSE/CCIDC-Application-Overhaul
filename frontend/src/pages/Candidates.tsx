@@ -10,7 +10,7 @@ import styles from "../stylesheets/Candidates.module.css";
 
 export function Candidates() {
   const applicantPath = localStorage.getItem("applicantPath");
-  const applyRedirectUrl = applicantPath ? `/applicaiton` : "/prescreening";
+  const applyRedirectUrl = applicantPath ? `/application` : "/prescreening";
 
   return (
     <Page>

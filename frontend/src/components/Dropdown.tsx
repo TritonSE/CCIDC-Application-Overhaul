@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 
 import styles from "./Dropdown.module.css";
 
@@ -7,41 +7,30 @@ type DropdownProps = {
   onSelect?: (value: string) => void;
   required?: boolean;
   name?: string;
-  defaultValue?: string;
+  value?: string;
 };
 
 export function Dropdown(props: DropdownProps) {
-  const { options, onSelect, required, name, defaultValue } = props;
-
-  // default value must be "" for required prop to work, https://stackoverflow.com/a/6048891
-  const defaultSelected = "";
-
-  const [selected, setSelected] = useState(defaultValue ?? defaultSelected);
+  const { options, onSelect, required, name, value } = props;
 
   const onSelectChange = useCallback(
     (event: React.FormEvent) => {
       const element = event.target as HTMLSelectElement;
       const option = element.value;
-      setSelected(option);
       if (onSelect) onSelect(option);
     },
-    [setSelected, onSelect],
+    [onSelect],
   );
 
   return (
     <select
-      className={`${styles.select} ${selected === defaultSelected ? styles.unselected : ""}`}
+      className={`${styles.select} ${value === "" ? styles.unselected : ""}`}
       onChange={onSelectChange}
       required={required}
       name={name}
-      defaultValue={selected}
+      defaultValue={value}
     >
-      <option
-        value={defaultSelected}
-        hidden={selected !== defaultSelected}
-        disabled
-        className={styles.defaultOption}
-      >
+      <option value="" hidden={value !== ""} disabled className={styles.defaultOption}>
         Select One
       </option>
 

@@ -1,53 +1,37 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useMemo, useRef, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 import closeIcon from "../assets/closeIcon.svg";
 import fileIcon from "../assets/fileIcon.svg";
-import checkMark from "../assets/fileUploadCheckmark.svg";
 import fileUploadIcon from "../assets/fileUploadIcon.svg";
-import spinnerImage from "../assets/spinner.png";
+import upload from "../assets/uploadIcon.svg";
+import { FormContext } from "../contexts/FormContext";
 
 import styles from "./FileUploadPopupWindow.module.css";
 
 interface FileUploadPopupWindowProps {
-  areFilesUploaded: (value: boolean) => void; // Indicates whether files are uploaded
+  buttonTitle: string;
 }
-const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({
-  areFilesUploaded: areFilesUploadedProp,
-}) => {
+const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({ buttonTitle }) => {
   const [isOpen, setIsOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const closeButtonRef = useRef<HTMLImageElement>(null);
-  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
-  const [fileIds, setFileIds] = useState<string[]>([]);
-  const [uploadedCount, setUploadedCount] = useState(0);
-  const [totalFilesCount, setTotalFilesCount] = useState(0);
-  const [uploadingFile, setUploadingFile] = useState(false);
+  const { formFiles, setFormFiles } = useContext(FormContext);
 
-  useEffect(() => {
-    if (fileIds.length > 0) {
-      areFilesUploadedProp(true);
-    } else {
-      areFilesUploadedProp(false);
-    }
-  }, [fileIds, areFilesUploadedProp]);
+  const fileUuid = useMemo(() => uuidv4(), []);
+  const file = useMemo(() => formFiles[fileUuid] ?? null, [formFiles, fileUuid]);
 
-  const deleteAllFiles = async () => {
-    for (const fileId of fileIds) {
-      await fetch(`http://localhost:3001/file/delete/file/${fileId}`, {
-        method: "DELETE",
-      });
+  const deleteFile = () => {
+    if (file !== null) {
+      setFormFiles((prevFormFiles) => ({
+        ...prevFormFiles,
+        [fileUuid]: null,
+      }));
     }
-    setFileIds([]);
-    setSelectedFiles([]);
   };
 
-  const openPopup = async () => {
-    if (fileIds.length > 0) {
-      await deleteAllFiles();
-    }
+  const openPopup = () => {
     setIsOpen(true);
-    setTotalFilesCount(0);
-    setUploadedCount(0);
   };
 
   const closePopup = (e: React.MouseEvent<HTMLElement>) => {
@@ -68,87 +52,35 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({
     e.currentTarget.classList.remove(styles.dragOver);
   };
 
-  const handleDrop = async (e: React.DragEvent<HTMLDivElement>) => {
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
     e.currentTarget.classList.remove(styles.dragOver);
     const files = e.dataTransfer.files;
 
-    const filesToUpload = [...selectedFiles].slice(0, 1);
-    filesToUpload.push(...files);
-    setSelectedFiles((prevFiles) => [...prevFiles, ...filesToUpload.slice(0, 1)]);
-
-    setTotalFilesCount(filesToUpload.length);
-    for (const file of filesToUpload) {
-      const formData = new FormData();
-      formData.append("files", file);
-      formData.append("folderName", "testing");
-      try {
-        setUploadingFile(true); // Set uploadingFile to true to display "Uploading file" text and spinner
-        const response = await fetch("http://localhost:3001/file/upload", {
-          method: "POST",
-          body: formData,
-        });
-
-        if (!response.ok) {
-          throw new Error("Server responded with a non-200 status code");
-        }
-
-        const data = await response.json();
-        console.log("File uploaded successfully:", data);
-        setFileIds((fileIds) => [...fileIds, data[0].fileId]);
-      } catch (error) {
-        console.error("Error uploading file:", error);
-      } finally {
-        setUploadingFile(false); // Set uploadingFile back to false after uploading is complete
-      }
+    if (files.length > 0) {
+      setFormFiles((prevFormFiles) => ({
+        ...prevFormFiles,
+        [fileUuid]: files[0],
+      }));
     }
-    if (uploadedCount === totalFilesCount) {
-      setTimeout(() => {
-        setIsOpen(false);
-      }, 1500);
-    }
+
+    setIsOpen(false);
   };
 
-  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (files) {
       const filesToUpload = Array.from(files).slice(0, 1);
 
-      setSelectedFiles((prevFiles) => [...prevFiles, ...filesToUpload]);
-
-      setTotalFilesCount(filesToUpload.length);
-      for (const file of filesToUpload) {
-        const formData = new FormData();
-        formData.append("files", file);
-        formData.append("folderName", "testing");
-
-        try {
-          setUploadingFile(true); // Set uploadingFile to true to display "Uploading file" text and spinner
-          const response = await fetch("http://localhost:3001/file/upload", {
-            method: "POST",
-            body: formData,
-          });
-
-          if (!response.ok) {
-            throw new Error("Server responded with a non-200 status code");
-          }
-
-          const data = await response.json();
-          console.log("File uploaded successfully:", data);
-
-          setFileIds((fileIds) => [...fileIds, data[0].fileId]);
-        } catch (error) {
-          console.error("Error uploading file:", error);
-        } finally {
-          setUploadingFile(false);
-        }
+      if (filesToUpload.length > 0) {
+        setFormFiles((prevFormFiles) => ({
+          ...prevFormFiles,
+          [fileUuid]: filesToUpload[0],
+        }));
       }
-    }
-    if (uploadedCount === totalFilesCount) {
-      setTimeout(() => {
-        setIsOpen(false);
-      }, 1500);
+
+      setIsOpen(false);
     }
   };
 
@@ -158,35 +90,14 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({
     }
   };
 
-  function handleDeleteFile(index: number): void {
-    const fileId = fileIds[index];
-
-    fetch(`http://localhost:3001/file/delete/file/${fileId}`, { method: "DELETE" })
-      .then((response) => {
-        if (response.ok) {
-          const updatedFileIds = fileIds.filter((id) => id !== fileId);
-          setFileIds(updatedFileIds);
-          console.log("File deleted successfully");
-          const updatedFiles = [...selectedFiles];
-          updatedFiles.splice(index, 1);
-          setSelectedFiles(updatedFiles);
-        } else {
-          console.error("Failed to delete the file");
-          response.text().then((text) => {
-            console.error(text);
-          });
-        }
-      })
-      .catch((error) => {
-        console.error("Error deleting file:", error);
-      });
-  }
-
-  const areFilesUploaded = fileIds.length > 0;
-
   return (
     <>
-      <button onClick={openPopup}>File Upload</button>
+      {file === null ? (
+        <button type="button" className={styles.uploadButton} onClick={openPopup}>
+          {buttonTitle}
+          <img src={upload} className={styles.uploadButtonImg} alt="buttonpng" />
+        </button>
+      ) : null}
       {isOpen && (
         <div className={styles.popupCanvas}>
           <div className={styles.popupWindow}>
@@ -202,67 +113,44 @@ const FileUploadPopupWindow: React.FC<FileUploadPopupWindowProps> = ({
 
             <div className={styles.title}> Upload Files </div>
             <div className={styles.subtext}> Add your relevant files here. </div>
-            {uploadedCount === 0 && (
+            {file ? null : (
               <div
                 className={styles.dragAndDropArea}
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}
                 onDrop={handleDrop}
               >
-                {uploadingFile ? (
-                  <div className={styles.spinnerContainer}>
-                    <img
-                      className={`${styles.spinner} ${styles.spinning}`}
-                      src={spinnerImage}
-                      alt="Spinner"
-                    />
-                    <p>Uploading file...</p>
-                  </div>
-                ) : fileIds.length > 0 && totalFilesCount > 0 ? (
-                  <div className={styles.uploadCompleteMessage}>
-                    <img className={styles.checkMark} src={checkMark} alt="CheckMark" />
-                    <p>Upload Successful!</p>
-                  </div>
-                ) : (
-                  <div className={styles.dragAndDropInstructions}>
-                    <img src={fileUploadIcon} alt="File Upload" />
-                    <p className={styles.subtext}> Drag and drop your files here</p>
-                    <p className={styles.subtext}> or </p>
-                    <p className={styles.browseFiles} onClick={handleUploadClick}>
-                      browse files
-                    </p>
-                    <input
-                      type="file"
-                      ref={fileInputRef}
-                      style={{ display: "none" }}
-                      multiple
-                      onChange={handleChange}
-                    />
-                  </div>
-                )}
+                <div className={styles.dragAndDropInstructions}>
+                  <img src={fileUploadIcon} alt="File Upload" />
+                  <p className={styles.subtext}> Drag and drop your files here</p>
+                  <p className={styles.subtext}> or </p>
+                  <p className={styles.browseFiles} onClick={handleUploadClick}>
+                    browse files
+                  </p>
+                  <input
+                    type="file"
+                    ref={fileInputRef}
+                    style={{ display: "none" }}
+                    multiple
+                    onChange={handleChange}
+                  />
+                </div>
               </div>
             )}
           </div>
         </div>
       )}
-      {areFilesUploaded && (
+      {file !== null && (
         <div className={styles.uploadedFilesWrapper}>
-          {fileIds.map((fileId, index) => (
-            <div key={fileId} className={styles.fileBox}>
-              <div className={styles.fileName}>
-                <img className={styles.fileIconDisplay} src={fileIcon} />
-                {selectedFiles[index].name} has been successfully uploaded
-              </div>
-              <div
-                className={styles.removeButton}
-                onClick={() => {
-                  handleDeleteFile(index);
-                }}
-              >
-                x
-              </div>
+          <div className={styles.fileBox}>
+            <div className={styles.fileName}>
+              <img className={styles.fileIconDisplay} src={fileIcon} alt="File icon" />
+              {file.name} has been successfully uploaded
             </div>
-          ))}
+            <button className={styles.removeButton} onClick={deleteFile}>
+              x
+            </button>
+          </div>
         </div>
       )}
     </>

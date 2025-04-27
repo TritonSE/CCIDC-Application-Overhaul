@@ -5,7 +5,6 @@ import { AuthProvider, FormProvider } from "./contexts/index.ts";
 import {
   Application,
   Candidates,
-  FileTesting,
   Login,
   PrescreeningForm,
   RedirectTo404,
@@ -33,7 +32,6 @@ function App() {
               <Route path="candidates" element={<Candidates />} />
               <Route path="prescreening" element={<PrescreeningForm />} />
               <Route path="ThankyouForApplying" element={<ThankyouForApplying />} />
-              <Route path="FileTesting" element={<FileTesting />} />
               <Route path="*" element={<RedirectTo404 />} />
             </Route>
             <Route path="login" element={<Login />} />

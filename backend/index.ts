@@ -3,13 +3,11 @@ import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 
-import fileRoutes from "./src/routes/driveRoutes.ts"; // Assuming the converted file is driveRoutes.js
-import loginRoutes from "./src/routes/loginRoutes";
-
 dotenv.config();
 
-// use port 3000 unless there exists a preconfigured port
-const PORT: string | number = process.env.PORT ?? 3000;
+import driveRoutes from "./src/routes/driveRoutes";
+import formRoutes from "./src/routes/formRoutes";
+import loginRoutes from "./src/routes/loginRoutes";
 
 const app = express();
 
@@ -19,12 +17,18 @@ app.use(
     credentials: true,
   }),
 );
+
 app.use(express.json());
 app.use(cookieParser());
 
-app.use("/file", fileRoutes);
+app.use("/file", driveRoutes);
 app.use("/", loginRoutes);
+app.use("/form", formRoutes);
 
-app.listen(PORT, () => {
+const PORT: string | number = process.env.PORT ?? 3000;
+
+const server = app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
+
+server.timeout = 240000;
