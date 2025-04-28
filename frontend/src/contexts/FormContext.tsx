@@ -191,6 +191,26 @@ export const FormProvider: React.FC<FormProviderProps> = ({ children }) => {
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [formFiles, setFormFiles] = useState<FormFiles>({});
 
+  const uploadFile = async (serverUrl: string, folderName: string, fileUuid: string) => {
+    const file = formFiles[fileUuid] ?? null;
+    if (!file) {
+      return Promise.resolve();
+    }
+
+    const fileFormData = new FormData();
+    fileFormData.append("files", file);
+    fileFormData.append("folderName", folderName);
+
+    const response = await fetch(`${serverUrl}/file/upload`, {
+      method: "POST",
+      body: fileFormData,
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error ${response.status}: ${response.statusText}`);
+    }
+  };
+
   const submitForm = async () => {
     const SERVER_URL = import.meta.env.VITE_SERVER_URL as string;
 
@@ -198,31 +218,20 @@ export const FormProvider: React.FC<FormProviderProps> = ({ children }) => {
       .toDateString()
       .replace(/ /g, "_")}`;
 
-    const cookies = parseCookies();
-    const nicename = cookies?.nicename;
+    // Upload first file first, then upload others, so we don't create duplicate folders
+    // due to race condition
+    const allFileIds = Object.keys(formFiles);
+    if (allFileIds.length > 0) {
+      await uploadFile(SERVER_URL, folderName, allFileIds[0]);
+    }
 
     await Promise.all(
-      Object.keys(formFiles).map(async (fileUuid) => {
-        const file = formFiles[fileUuid] ?? null;
-        if (!file) {
-          return Promise.resolve();
-        }
-
-        const fileFormData = new FormData();
-        fileFormData.append("files", file);
-        fileFormData.append("folderName", folderName);
-
-        const response = await fetch(`${SERVER_URL}/file/upload`, {
-          method: "POST",
-          body: fileFormData,
-        });
-
-        if (!response.ok) {
-          throw new Error(`HTTP error ${response.status}: ${response.statusText}`);
-        }
-      }),
+      allFileIds.slice(1).map((fileUuid) => uploadFile(SERVER_URL, folderName, fileUuid)),
     );
 
+    // Now submit the form
+    const cookies = parseCookies();
+    const nicename = cookies?.nicename;
     const response = await fetch(`${SERVER_URL}/form/submit-form`, {
       method: "POST",
       headers: {
