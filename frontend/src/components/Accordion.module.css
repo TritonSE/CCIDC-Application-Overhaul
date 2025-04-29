@@ -3,11 +3,12 @@
   flex-direction: row;
   column-gap: 0.7rem;
   align-items: center;
+  cursor: pointer;
+  margin: 6px 0;
 }
 
 .question {
   font-weight: 700;
-  margin-top: 10px;
 }
 
 .expandButton {

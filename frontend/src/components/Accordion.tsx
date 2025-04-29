@@ -24,13 +24,13 @@ export const Accordion: FC<AccordionProps> = ({ question, children, toggleAll })
 
   return (
     <>
-      <div className={styles.faqBar}>
+      <div className={styles.faqBar} onClick={toggleAccordion}>
         <span className={styles.question}>{question}</span>
         <button onClick={toggleAccordion} className={styles.expandButton}>
           <img alt={toggle ? "-" : "+"} src={toggle ? unselectFAQ : selectFAQ} />
         </button>
       </div>
-      <div>{toggle && children}</div>
+      {toggle ? <div>{children}</div> : null}
       <hr className={styles.lineShadow}></hr>
     </>
   );
