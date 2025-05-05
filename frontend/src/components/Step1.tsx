@@ -201,13 +201,18 @@ export function Step1({ next }: Step1Props) {
             </label>
           </div>
           <div className={styles.inputBox}>
-            <label htmlFor="deviceType" className={`${styles.inputTitle} ${styles.dropdownLabel}`}>
-              Phone Type<span className={styles.boldRed}>*</span>
-              <Dropdown
-                options={devices}
-                onSelect={handlePhoneSelect}
-                name={"deviceType"}
-                value={formData.deviceType || ""}
+            <label className={styles.inputTitle}>
+              Phone Number<span className={styles.boldRed}>*</span>
+              <input
+                className={styles.inputText}
+                type="tel"
+                placeholder="Enter Phone Number"
+                pattern="^\d+$"
+                autoComplete="tel"
+                value={formData.phoneNumber}
+                required
+                onChange={handleInputChange}
+                name="phoneNumber"
               />
             </label>
           </div>
@@ -228,18 +233,13 @@ export function Step1({ next }: Step1Props) {
             </label>
           </div>
           <div className={styles.inputBox}>
-            <label className={styles.inputTitle}>
-              Phone Number<span className={styles.boldRed}>*</span>
-              <input
-                className={styles.inputText}
-                type="tel"
-                placeholder="Enter Phone Number"
-                pattern="^\d+$"
-                autoComplete="tel"
-                value={formData.phoneNumber}
-                required
-                onChange={handleInputChange}
-                name="phoneNumber"
+            <label htmlFor="deviceType" className={`${styles.inputTitle} ${styles.dropdownLabel}`}>
+              Phone Type<span className={styles.boldRed}>*</span>
+              <Dropdown
+                options={devices}
+                onSelect={handlePhoneSelect}
+                name={"deviceType"}
+                value={formData.deviceType || ""}
               />
             </label>
           </div>
