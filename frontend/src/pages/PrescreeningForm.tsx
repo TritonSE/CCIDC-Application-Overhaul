@@ -8,9 +8,12 @@ import styles from "../stylesheets/PrescreeningForm.module.css";
 
 export function PrescreeningForm() {
   // State to manage the selected values for each question
-  const [question1Value, setQuestion1Value] = useState("");
-  const [question2Value, setQuestion2Value] = useState("");
-  const [question3Value, setQuestion3Value] = useState("");
+  const [experienceQuestionValue, setExperienceQuestionValue] = useState("");
+  const [educationQuestionValue, setEducationQuestionValue] = useState("");
+  const [examsQuestionValue, setExamsQuestionValue] = useState("");
+  const [mainlyCommercialDesignQuestionValue, setMainlyCommercialDesignQuestionValue] =
+    useState("");
+
   const [isRequirementsNotMetModalOpen, setIsRequirementsNotMetModalOpen] = useState(false);
   const navigate = useNavigate();
   const { setFormData } = useContext(FormContext);
@@ -22,30 +25,34 @@ export function PrescreeningForm() {
 
     // Use the selected values to determine the finalPath
     // Can modify this logic based on your requirements
-    if (question1Value === "" || question2Value === "" || question3Value === "") {
+    if (
+      experienceQuestionValue === "" ||
+      educationQuestionValue === "" ||
+      examsQuestionValue === "" ||
+      mainlyCommercialDesignQuestionValue === ""
+    ) {
       return;
     }
 
-    if (question1Value === "op12" && question2Value === "op22" && question3Value === "op32") {
+    if (
+      (experienceQuestionValue === "lessFiveYears" && educationQuestionValue === "yes") ||
+      (experienceQuestionValue === "fiveToSevenYears" && educationQuestionValue === "no")
+    ) {
       finalPath = "1";
     } else if (
-      question1Value === "op11" &&
-      question2Value === "op22" &&
-      question3Value === "op32"
+      (experienceQuestionValue === "fiveToSevenYears" && educationQuestionValue === "yes") ||
+      experienceQuestionValue === "eightPlusYears"
     ) {
-      finalPath = "2";
-    } else if (
-      question1Value === "op11" &&
-      question2Value === "op21" &&
-      question3Value === "op32"
-    ) {
-      finalPath = "3";
-    } else if (
-      question1Value === "op11" &&
-      question2Value === "op21" &&
-      question3Value === "op31"
-    ) {
-      finalPath = "4";
+      // Paths 2-4
+      if (examsQuestionValue === "yes") {
+        if (mainlyCommercialDesignQuestionValue === "yes") {
+          finalPath = "4";
+        } else {
+          finalPath = "3";
+        }
+      } else {
+        finalPath = "2";
+      }
     }
 
     if (finalPath !== "") {
@@ -63,9 +70,10 @@ export function PrescreeningForm() {
   };
 
   function clearForm() {
-    setQuestion1Value("");
-    setQuestion2Value("");
-    setQuestion3Value("");
+    setExperienceQuestionValue("");
+    setEducationQuestionValue("");
+    setExamsQuestionValue("");
+    setMainlyCommercialDesignQuestionValue("");
   }
 
   return (
@@ -89,78 +97,108 @@ export function PrescreeningForm() {
       </p>
 
       <form onSubmit={handleFormSubmit} id="form1">
-        {/* Question 1 */}
-        <div className="QuestionOne">
+        {/* Experience Question */}
+        <div>
           <p className={styles.question}>
-            1. Please select the appropriate amount of experience you currently have.
+            1. Please select the amount of experience you currently have.
           </p>
 
           <br />
 
           <input
             type="radio"
-            id="op11"
+            id="lessFiveYears"
             name="question1"
-            checked={question1Value === "op11"}
+            checked={experienceQuestionValue === "lessFiveYears"}
             onChange={() => {
-              setQuestion1Value("op11");
+              setExperienceQuestionValue("lessFiveYears");
             }}
           />
 
-          <label htmlFor="op11" className={styles.label}>
-            <p>
-              5+ years of Diversified Design Experience <strong> and/or </strong> 40+ Core Units
-            </p>
+          <label htmlFor="lessFiveYears" className={styles.label}>
+            <p>Less than 5 years of Diversified Design Experience</p>
           </label>
 
           <br />
 
           <input
             type="radio"
-            id="op12"
+            id="fiveToSevenYears"
             name="question1"
-            checked={question1Value === "op12"}
+            checked={experienceQuestionValue === "fiveToSevenYears"}
             onChange={() => {
-              setQuestion1Value("op12");
+              setExperienceQuestionValue("fiveToSevenYears");
             }}
           />
 
-          <label htmlFor="op12" className={styles.label}>
-            <p>
-              I do not have 5 years of Diversified Design Experience <strong> and/or </strong> 40+
-              Core Units but am in the process of completing <strong> one </strong> of these two and
-              will do <strong> within a year </strong> from today.
-            </p>
+          <label htmlFor="fiveToSevenYears" className={styles.label}>
+            <p>5-7 years of Diversified Design Experience</p>
           </label>
 
           <br />
 
           <input
             type="radio"
-            id="op13"
+            id="eightPlusYears"
             name="question1"
-            checked={question1Value === "op13"}
+            checked={experienceQuestionValue === "eightPlusYears"}
             onChange={() => {
-              setQuestion1Value("op13");
+              setExperienceQuestionValue("eightPlusYears");
             }}
           />
 
-          <label htmlFor="op13" className={styles.label}>
-            <p>
-              I do not have 5 years of Diversified Design Experience or have 40+ Core Units and
-              <strong> will not complete </strong> at least one of these two requirements{" "}
-              <strong> within a year </strong> from today.
-            </p>
+          <label htmlFor="eightPlusYears" className={styles.label}>
+            <p>8+ years of Diversified Design Experience</p>
           </label>
         </div>
 
         <br />
 
-        {/* Question 2 */}
-        <div className="QuestionTwo">
+        {/* Education Question */}
+        <div>
           <p className={styles.question}>
-            2. If you have passed any of the following qualifying National Interior Design Exams,
-            please indicate so
+            2. Have you completed at least 40 Core Units of education?
+          </p>
+
+          <br />
+
+          <input
+            type="radio"
+            id="yes"
+            name="educationQuestion"
+            checked={educationQuestionValue === "yes"}
+            onChange={() => {
+              setEducationQuestionValue("yes");
+            }}
+          />
+
+          <label htmlFor="yes" className={styles.label}>
+            Yes
+          </label>
+
+          <br />
+
+          <input
+            type="radio"
+            id="no"
+            name="educationQuestion"
+            checked={educationQuestionValue === "no"}
+            onChange={() => {
+              setEducationQuestionValue("no");
+            }}
+          />
+
+          <label htmlFor="no" className={styles.label}>
+            No
+          </label>
+        </div>
+
+        <br />
+
+        {/* Exams Question */}
+        <div>
+          <p className={styles.question}>
+            3. Have you passed any of the following qualifying National Interior Design Exams?
           </p>
           <ul className={styles.ulprescreening}>
             <li>ARE</li>
@@ -175,15 +213,15 @@ export function PrescreeningForm() {
 
           <input
             type="radio"
-            id="op21"
+            id="yes"
             name="question2"
-            checked={question2Value === "op21"}
+            checked={examsQuestionValue === "yes"}
             onChange={() => {
-              setQuestion2Value("op21");
+              setExamsQuestionValue("yes");
             }}
           />
 
-          <label htmlFor="op21" className={styles.label}>
+          <label htmlFor="yes" className={styles.label}>
             Yes
           </label>
 
@@ -191,38 +229,38 @@ export function PrescreeningForm() {
 
           <input
             type="radio"
-            id="op22"
+            id="no"
             name="question2"
-            checked={question2Value === "op22"}
+            checked={examsQuestionValue === "no"}
             onChange={() => {
-              setQuestion2Value("op22");
+              setExamsQuestionValue("no");
             }}
           />
 
-          <label htmlFor="op22" className={styles.label}>
+          <label htmlFor="no" className={styles.label}>
             No
           </label>
         </div>
 
         <br />
 
-        {/* Question 3 */}
-        <div className="QuestionThree">
-          <p className={styles.question}>3. Do you mainly practice commercial design?</p>
+        {/* Mainly Commerical Design Question */}
+        <div>
+          <p className={styles.question}>4. Do you mainly practice commercial design?</p>
 
           <br />
 
           <input
             type="radio"
-            id="op31"
+            id="yes"
             name="question3"
-            checked={question3Value === "op31"}
+            checked={mainlyCommercialDesignQuestionValue === "yes"}
             onChange={() => {
-              setQuestion3Value("op31");
+              setMainlyCommercialDesignQuestionValue("yes");
             }}
           />
 
-          <label htmlFor="op31" className={styles.label}>
+          <label htmlFor="yes" className={styles.label}>
             Yes
           </label>
 
@@ -230,14 +268,14 @@ export function PrescreeningForm() {
 
           <input
             type="radio"
-            id="op32"
+            id="no"
             name="question3"
-            checked={question3Value === "op32"}
+            checked={mainlyCommercialDesignQuestionValue === "no"}
             onChange={() => {
-              setQuestion3Value("op32");
+              setMainlyCommercialDesignQuestionValue("no");
             }}
           />
-          <label htmlFor="op32" className={styles.label}>
+          <label htmlFor="no" className={styles.label}>
             No
           </label>
         </div>
