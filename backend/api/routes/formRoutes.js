@@ -51,10 +51,10 @@ router.post("/submit-form", (req, res) => {
                 resolve();
             });
         });
-        const nicename = formData.nicename;
+        const nicename = req.cookies.nicename;
         let userId = null;
         yield new Promise((resolve, reject) => {
-            db.query(`SELECT ID FROM wp_bcaf_users WHERE user_login = '${nicename}'`, (err, results) => {
+            db.query(`SELECT ID FROM wp_bcaf_users WHERE user_login = '${nicename}' OR user_nicename = '${nicename}'`, (err, results) => {
                 var _a;
                 if (err) {
                     db.rollback(() => {
