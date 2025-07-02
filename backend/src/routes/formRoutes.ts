@@ -44,24 +44,27 @@ router.post("/submit-form", (req, res) => {
       });
     });
 
-    const nicename = formData.nicename;
+    const nicename = req.cookies.nicename;
 
     let userId: number | null = null;
     await new Promise<void>((resolve, reject) => {
-      db.query(`SELECT ID FROM wp_bcaf_users WHERE user_login = '${nicename}'`, (err, results) => {
-        if (err) {
-          db.rollback(() => {
-            console.error("Error getting logged-in user's ID:", err, results);
-            db.end();
-            res.status(500).send("Error saving member data");
-            reject(err);
-          });
-          return;
-        }
-        // If we don't have any results, this will just be null/undefined and we'll get a new cidId
-        userId = results?.[0]?.id;
-        resolve();
-      });
+      db.query(
+        `SELECT ID FROM wp_bcaf_users WHERE user_login = '${nicename}' OR user_nicename = '${nicename}'`,
+        (err, results) => {
+          if (err) {
+            db.rollback(() => {
+              console.error("Error getting logged-in user's ID:", err, results);
+              db.end();
+              res.status(500).send("Error saving member data");
+              reject(err);
+            });
+            return;
+          }
+          // If we don't have any results, this will just be null/undefined and we'll get a new cidId
+          userId = results?.[0]?.id;
+          resolve();
+        },
+      );
     });
 
     const newMember = {

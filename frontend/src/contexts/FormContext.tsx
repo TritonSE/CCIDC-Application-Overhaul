@@ -166,27 +166,6 @@ export const FormContext = createContext<FormContextType>({
   submitForm: async () => {},
 });
 
-// Function to parse current cookies and return a map of name to value.
-function parseCookies() {
-  const cookieString = document.cookie;
-
-  if (!cookieString) {
-    return {};
-  }
-
-  const cookies: Record<string, string> = {};
-  const cookieArray = cookieString.split(";");
-
-  for (const cookieEntry of cookieArray) {
-    const cookie = cookieEntry.trim();
-    const parts = cookie.split("=");
-    const name = parts[0];
-    const value = parts.slice(1).join("="); // Handles values with "="
-    cookies[name] = value;
-  }
-  return cookies;
-}
-
 export const FormProvider: React.FC<FormProviderProps> = ({ children }) => {
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [formFiles, setFormFiles] = useState<FormFiles>({});
@@ -230,14 +209,12 @@ export const FormProvider: React.FC<FormProviderProps> = ({ children }) => {
     );
 
     // Now submit the form
-    const cookies = parseCookies();
-    const nicename = cookies?.nicename;
     const response = await fetch(`${SERVER_URL}/form/submit-form`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ ...formData, nicename }),
+      body: JSON.stringify(formData),
     });
 
     if (response.status !== 200) {
