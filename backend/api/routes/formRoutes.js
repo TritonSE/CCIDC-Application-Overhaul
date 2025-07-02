@@ -66,7 +66,7 @@ router.post("/submit-form", (req, res) => {
                     return;
                 }
                 // If we don't have any results, this will just be null/undefined and we'll get a new cidId
-                userId = (_a = results === null || results === void 0 ? void 0 : results[0]) === null || _a === void 0 ? void 0 : _a.id;
+                userId = (_a = results === null || results === void 0 ? void 0 : results[0]) === null || _a === void 0 ? void 0 : _a.ID;
                 resolve();
             });
         });
