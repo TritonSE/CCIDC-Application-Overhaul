@@ -102,10 +102,14 @@ router.post("/recaptcha/verify", (req: Request, res: Response) => {
 });
 
 router.post("/logout", (req: Request, res: Response) => {
-  res.clearCookie("token");
-  res.clearCookie("email");
-  res.clearCookie("nicename");
-  res.clearCookie("displayName");
+  res.clearCookie("token", {
+    sameSite: "none",
+    httpOnly: true,
+    secure: true,
+  });
+  res.clearCookie("email", { sameSite: "none", secure: true });
+  res.clearCookie("nicename", { sameSite: "none", secure: true });
+  res.clearCookie("displayName", { sameSite: "none", secure: true });
   res.status(200).send({ message: "Logout succeeded" });
 });
 

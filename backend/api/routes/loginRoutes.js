@@ -82,10 +82,14 @@ router.post("/recaptcha/verify", (req, res) => {
     });
 });
 router.post("/logout", (req, res) => {
-    res.clearCookie("token");
-    res.clearCookie("email");
-    res.clearCookie("nicename");
-    res.clearCookie("displayName");
+    res.clearCookie("token", {
+        sameSite: "none",
+        httpOnly: true,
+        secure: true,
+    });
+    res.clearCookie("email", { sameSite: "none", secure: true });
+    res.clearCookie("nicename", { sameSite: "none", secure: true });
+    res.clearCookie("displayName", { sameSite: "none", secure: true });
     res.status(200).send({ message: "Logout succeeded" });
 });
 router.get("/validate", (req, res) => {
