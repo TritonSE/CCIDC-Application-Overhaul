@@ -271,8 +271,8 @@ router.post("/submit-form", (req, res) => {
             explanation: formData.extraExplanation,
             exam: formData.certificationExam,
             date: formData.dateOfExam,
-            total_hours: formData.totalHours,
-            total_years: formData.totalYears,
+            total_hours: formData.totalHours * 10000,
+            total_years: formData.totalYears * 10000,
             app_date: (0, date_fns_1.format)(new Date(), "yyyy-MM-dd"), // Assuming this field is empty
             app_docs_received: "application", // Assuming this field is empty
             app_date_payment: "0000-00-00", // Assuming this field is empty
